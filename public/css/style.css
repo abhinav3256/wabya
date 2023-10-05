@@ -2801,7 +2801,7 @@ button{font-family: Gothic A1 !important;}
        .user-time-table .table td:nth-child(2n) .box:last-child{background-color: #f59632;padding:10px 3px ;}
 
        .client-sec,.month-sec{position: relative;padding: 30px 0;}
-       .client-sec .table{border-spacing: 0;width: 100%;text-align: left;position: relative;}
+       .client-sec .table{border-spacing: 0;width: 100%;text-align: left;position: relative;border-collapse: inherit;}
        .user-time-table .month-sec .table tr th,.client-sec .table tr th{font-weight: 800 !important;text-align: center;padding: 10px;}
        .client-sec h2{letter-spacing: 4px;margin: 10px 0 20px;color:#0e2540;}
        .client-sec > .table tr:nth-child(1) th,.client-sec > .table tr:nth-child(2) th:nth-child(1){border-top: 1px solid #000;}
