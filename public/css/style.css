@@ -2457,7 +2457,7 @@ color: #fff !important;
  .frontend-change .profile-button .inner{width: 130px; text-align: center; padding: 0px 0px 0px !important;} 
  .frontend-change  .profile-button .dropdown { min-width: 135px !important;} 
  .frontend-change .profile-button ul li a:hover { width: 95px !important;} 
- .myadmin .menu-head .navbar-nav > li{width: 10px; padding: 0px 55px;} 
+ .myadmin .menu-head .navbar-nav > li{width: auto; padding: 0 20px;} 
  .custom-class .profile-button .dropdown .inner .btn{ color: white !important;} 
  .upload_notes_client{font-size: 14px; color: #f79632; text-decoration: underline; cursor: pointer;} 
  .planactive{background: #f27553; border-radius: 30px;} 
