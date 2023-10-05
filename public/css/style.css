@@ -3045,6 +3045,8 @@ button{font-family: Gothic A1 !important;}
    
    .myadmin .menu-head .navbar-nav > li{width: 100%; display: block; margin: 0; padding: 0;}
    .admin-header.superadmin-head{padding: 0 0 15px;}
+   .admin-header.superadmin-head.header .menu-head .navbar-toggler{background: #f79632 !important;}
+   .admin-header.superadmin-head.header .menu-head .navbar-nav > li > a{color: #f79632; padding: 4px 0;}
    
 }
 
