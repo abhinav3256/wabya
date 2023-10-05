@@ -62,12 +62,11 @@ h4{color:#f79632;}
 
 @media (min-width: 1091px) { 
   
-  .myadmin .menu-head .navbar-nav > li{width: auto; padding: 0 20px;} 
-  .admin-header .container{max-width: 97%;}
-  .admin-header .menu-head{margin:0; position:relative; padding:0; z-index:2; font-weight:700; text-transform:capitalize; font-size: 20px;}
-  .admin-header .menu-head .navbar-brand{padding: 30px 0; height: auto; display: block; margin: 0 5% 0 0; position: relative; -webkit-border-radius: 0; -moz-border-radius: 0; border-radius: 5;}
-  .admin-header .menu-head .navbar-nav{text-align:center; margin-left: inherit; margin-right: auto; float: none; align-items: center;}
-  .admin-header .menu-head .navbar-nav > li{display:inline-block; float:none; list-style:none; padding: 0 100px; margin: 0; position: relative; vertical-align: middle;}
+  .myadmin .menu-head .navbar-nav > li{width: auto; padding: 0 20px;}
+  .admin-header .menu-head{margin:0; position:relative; padding:0; z-index:2; font-weight:700; text-transform:capitalize; font-size: 17px;}
+  .admin-header .menu-head .navbar-brand{padding: 15px 0; height: auto; display: block; margin:0; position: relative; -webkit-border-radius: 0; -moz-border-radius: 0; border-radius: 5;}
+  .admin-header .menu-head .navbar-nav{text-align:center; margin-left: auto; margin-right: auto; float: none; align-items: center;}
+  .admin-header .menu-head .navbar-nav > li{display:inline-block; float:none; list-style:none; padding: 0 20px; margin: 0; position: relative; vertical-align: middle;}
   .admin-header .menu-head .navbar-nav > li > a:hover::before, .admin-header .menu-head .navbar-nav > li > a:focus::before, .admin-header .menu-head .navbar-nav .current-menu-item a::before{opacity: 1; width: 100%;}
   .admin-header .menu-head .navbar-nav > li.sub-drop > a::after{content: ""; display: inline-block; width: .6rem; height: .6rem; border-right: 2px solid #fff; border-bottom: 2px solid #fff; -webkit-transform: rotate(45deg) scale(.85); transform: rotate(45deg) scale(.85); margin-left: 10px; position: relative; bottom: .125rem;}
   .admin-header .menu-head .navbar-nav > li.sub-drop:hover > a::after{border-color:#fff;}
