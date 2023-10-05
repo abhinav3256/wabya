@@ -3178,6 +3178,9 @@ button{font-family: Gothic A1 !important;}
    .clients-listing .row{margin: 0 -15px;}
    .clients-listing .filter-coll{padding: 0 15px;}
    .clients-listing .cl-coll{padding: 0 15px;}
+   
+   .client-profile{padding: 190px 0 80px;}
+   .client-profile .inner-info figure{max-width: 190px;}
 
 }
 
