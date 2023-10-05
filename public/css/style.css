@@ -2565,6 +2565,16 @@ button{font-family: Gothic A1 !important;}
   .availability-popbtn .btn:focus:after, .availability-popbtn .btn:visited:after, .availability-popbtn .btn:hover:after{width: 100%;}
 .update-show{margin: auto; font-weight: 600; color: #b95427; text-align: center;}
 
+.session-history{position: relative; margin: 0; padding: 0 0 15px; z-index: 1;}
+   .session-history .container{padding: 0;}
+   .session-history:before{content: ""; position: absolute; height: 20px; width: 80px; right: 10px; bottom: 0; background-image: url(../images/session-shape-01.png); background-repeat: no-repeat; background-position: center 0; background-attachment: scroll; background-size: cover;}
+   .session-history .session-inner{padding: 0 0 10px;}
+   .session-history .session-inner .row{background: #f7f0e4; -webkit-border-radius: 10px; -moz-border-radius: 10px; border-radius: 10px; color: #0f2540; position: relative; padding: 10px 10px 1px; font-size: 12px; margin: 0 0 15px;}
+   .session-history .session-inner .row > *{padding: 0 5px;}
+   .session-history .session-inner .row p{margin: 0 0 10px; line-height:16px; word-wrap: break-word;}
+   .session-history .session-btn{padding: 0 15px;}
+   .session-history .session-btn .btn{font-size: 13px; padding: 10px 11px 8px;}
+
 @media (min-width: 768px) and (max-width: 959px) {
   .client-listing-desktop{display: none;}
 }
@@ -2944,16 +2954,6 @@ button{font-family: Gothic A1 !important;}
    .get-paid .session-grid .dropdown-toggle{font-size:16px; padding: 15px 20px;}
    .get-paid .session-grid .dropdown-toggle small{font-size: 14px; padding: 0 10px 0 0;}
    .four-easy-steps .row{padding: 40px 10px 10px;}
-   
-   .session-history{position: relative; margin: 0; padding: 0 0 15px; z-index: 1;}
-   .session-history .container{padding: 0;}
-   .session-history:before{content: ""; position: absolute; height: 20px; width: 80px; right: 10px; bottom: 0; background-image: url(../images/session-shape-01.png); background-repeat: no-repeat; background-position: center 0; background-attachment: scroll; background-size: cover;}
-   .session-history .session-inner{padding: 0 0 10px;}
-   .session-history .session-inner .row{background: #f7f0e4; -webkit-border-radius: 10px; -moz-border-radius: 10px; border-radius: 10px; color: #0f2540; position: relative; padding: 10px 10px 1px; font-size: 12px; margin: 0 0 15px;}
-   .session-history .session-inner .row > *{padding: 0 5px;}
-   .session-history .session-inner .row p{margin: 0 0 10px; line-height:16px; word-wrap: break-word;}
-   .session-history .session-btn{padding: 0 15px;}
-   .session-history .session-btn .btn{font-size: 13px; padding: 10px 11px 8px;}
    
    .desktop-hidden{display:none !important;}
    .mobile-hidden{display:block !important;}
