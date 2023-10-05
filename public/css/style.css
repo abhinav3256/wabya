@@ -2587,7 +2587,7 @@ button{font-family: Gothic A1 !important;}
    .client-pass-mobile form{position:relative;}
    .user-detail-mobile{display: block;}
    .user-details-desktop{display: none;}
-   .react-calendar__tile abbr{width: 30px; height: 30px; line-height: 30px;}
+   .react-calendar__tile abbr{width: 30px; height: 30px; line-height: 30px; font-size: 13px;}
    .reschedule-zone .resc-cal{border-left: 0; height: 100%; padding-left: 0;}
    .reschedule-zone .col-sm-6{padding: 0 5px;}
    .reschedule-zone .resc-cal h5{text-align: center;}
@@ -2878,9 +2878,6 @@ button{font-family: Gothic A1 !important;}
   font-size: 12px;
   font-weight: 700;
 }
-.react-calendar__tile abbr{
-  width: 32px;
-}
 .cal-time .btn-time {
   background: #f6efe3;
   font-weight: 400;
@@ -3050,6 +3047,7 @@ button{font-family: Gothic A1 !important;}
    .close-back{position: absolute; right: -10px; top: -10px; z-index: 99; background: rgba(0, 0, 0, 0.1); width: 30px; height: 30px; text-align: center; line-height: 30px; -webkit-border-radius: 20px; -moz-border-radius: 30px; border-radius: 30px;}
    
    .react-calendar__month-view__days{min-height: 195px;}
+   .client-profile .info-grid{padding: 10px;}
    
 }
 
