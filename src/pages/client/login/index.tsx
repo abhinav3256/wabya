@@ -86,20 +86,25 @@ console.log('working');
       const querySnapshot2 = await getDocs(q2);
 
       if (querySnapshot2.empty) {
+        setError('Incorrect password');
         throw new Error('Credentials are invalid!');
+      
       }
 
       // Check if the password is correct
       const user2 = querySnapshot2.docs[0].data();
       if (user2.coach_password !== password) {
+        setError('Incorrect password');
         throw new Error('Incorrect password');
+        
       }
-
+      
       // Set the user ID as a session variable
         sessionStorage.setItem('coachId', querySnapshot2.docs[0].id);
 
       // Redirect to the home page
         router.push('/coach/dashboard');
+      
 
     } catch (error2) {
       //setError(error2.message);
@@ -109,6 +114,7 @@ console.log('working');
         // Check if the password is correct
         const user = querySnapshot.docs[0].data();
         if (user.client_password !== password) {
+          setError('Incorrect password');
           throw new Error('Incorrect password');
         }
 
@@ -120,7 +126,7 @@ console.log('working');
 
       } catch (error) {
        // console.log(error);
-        setError('Incorrect password');
+        //setError('Incorrect password');
       }
     };
 
