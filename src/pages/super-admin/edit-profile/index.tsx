@@ -221,7 +221,8 @@ const EditProfile = () => {
 
 
   return (
-    <section className="edit-profile">
+    <>
+    <section className="edit-profile desktop-hidden">
       <div className="container">
         <div className="row">
           <div className="col-sm-12">
@@ -325,6 +326,128 @@ const EditProfile = () => {
         </div>
       </div>
     </section>
+    <section className="user-detail new-user-profile-edit mobile-hidden">
+ 
+    <div className="user-profile mrb-20">
+      <figure>
+      {file ? (<ImgStyled src={URL.createObjectURL(file)} alt='Profile Pic' />) :
+        (<img src={proImage} alt="" />)}
+      </figure>
+      
+      <Box>
+            <ButtonStyled className='btn' component='label' variant='contained' htmlFor='account-settings-upload-image'>
+              Upload New Photo
+              <input name='pro_image'
+                hidden
+                type='file'
+                onChange={handleFileChange}
+                accept='image/png, image/jpeg'
+                id='account-settings-upload-image'
+              />
+            </ButtonStyled>
+
+           
+          </Box>
+      {/* <div className="accepting-info mrb-20">
+        <span>accepting new client</span>
+        <label className="switch">
+          <input className="switch-input" type="checkbox" />
+          <span className="switch-label" data-on="Yes" data-off="No" />
+          <span className="switch-handle" />
+        </label>
+      </div> */}
+      <br></br>
+      <div className="user-bio">
+        <form>
+        <div className="close-back"><a href="/coach/dashboard"><i class="fa fa-times" aria-hidden="true"></i></a></div>
+          <ul className="row">
+            <li className="col-12">
+              <span className="bold">information</span>
+            </li>
+            <li className="col-12">
+              <span className="bold">Name</span>{" "}
+              <input
+                type="text"
+                className="form-control"
+                placeholder='Name' value={proName} onChange={event => setName(event.target.value)}  id='pro_fullname' name='pro_fullname'
+              />
+            </li>
+            <li className="col-6">
+              <span className="bold">email:</span>{" "}
+              <input
+                type="text"
+                className="form-control"
+                placeholder='Email' value={proEmail} onChange={event => setEmail(event.target.value)} name='pro_email' id='pro_email' disabled
+              />
+            </li>
+            <li className="col-6">
+              <span className="bold">phone</span>{" "}
+              <input
+                type="text"
+                className="form-control"
+                placeholder='Phone' name='pro_phone' id='pro_phone' value={proPhone} onChange={event => setPhone(event.target.value)}
+              />
+            </li>
+
+           
+          
+
+            <li className="col-12">
+              <span className="bold">timezone</span>{" "}
+              <input
+                type="text"
+                className="form-control"
+                placeholder='Phone' name='pro_timezone' id='pro_timezone' value={proTimeZone} onChange={event => setTimeZone(event.target.value)}
+              />
+            </li>
+            <li className="col-12">
+              <span className="bold">languages</span>{" "}
+              <input
+                type="text"
+                className="form-control"
+                placeholder='Language' name='pro_language' id='pro_language' value={proLanguage} onChange={event => setLanguage(event.target.value)}
+              />
+            </li>
+            <li className="col-12">
+              <span className="bold">bio </span>{" "}
+              <textarea
+                className="form-control"
+                placeholder='Bio'
+                name='pro_bio'
+                id='pro_bio'
+                value= {proBio}
+                onChange={event => setBio(event.target.value)}
+                >{proBio}</textarea>
+              
+            </li>
+            <li className="col-12">
+              <span className="bold">about </span>{" "}
+              <textarea
+                className="form-control"
+                placeholder='About'
+          value={proAbout}
+          id='pro_about'
+          name='pro_about'
+          onChange={event => setAbout(event.target.value)}
+                >{proAbout}</textarea>
+            
+            </li>
+            <li className='col-12'>{message ? (
+          <Alert message="Profile updated successfully" type="success" showIcon closable afterClose={handleClose} />
+      ) : null}</li>
+            <li className="col-12 user-edit-btn">
+              <button className="btn btn-send" onClick={handleSubmit}>save</button>
+            </li>
+    
+          
+    
+          </ul>
+        </form>
+      </div>
+    </div>
+ 
+</section>
+</>
   )
 }
 
