@@ -128,7 +128,13 @@ const Header = () => {
                 <div className='container-fluid'>
                   <a href='/coach/dashboard' passHref>
                     <a className='navbar-brand'>
-                      <img src='../../images/admin.png' alt='Wabya Logo' />
+
+                    {router.pathname.startsWith('/coach/clientDetail/') ? (
+          <img src="../../../images/admin.png"alt='Wabya Logo' />
+        ) : (
+          <img src="../../images/admin.png" alt='Wabya Logo' />
+        )}
+                      {/* <img src='../../images/admin.png' alt='Wabya Logo' /> */}
                     </a>
                   </a>
 
