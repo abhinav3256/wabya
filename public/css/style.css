@@ -3141,6 +3141,7 @@ button{font-family: Gothic A1 !important;}
    .user-profile .inner-info figure{max-width: 190px;}
    
    .calendar{overflow: hidden;}
+   .calendar.calendar-desktop .row{margin:0;}
    .timesheet-carousel .owl-item div{font-size: 14px; letter-spacing: 0;}
 
 }
