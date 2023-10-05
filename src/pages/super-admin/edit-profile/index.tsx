@@ -359,7 +359,7 @@ const EditProfile = () => {
       <br></br>
       <div className="user-bio">
         <form noValidate autoComplete='off' onSubmit={e => e.preventDefault()}>
-        <div className="close-back"><a href="/coach/dashboard"><i class="fa fa-times" aria-hidden="true"></i></a></div>
+        <div className="close-back"><a href="/superadmin/dashboard"><i class="fa fa-times" aria-hidden="true"></i></a></div>
           <ul className="row">
             <li className="col-12">
               <span className="bold">information</span>
