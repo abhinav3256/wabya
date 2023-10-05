@@ -385,6 +385,7 @@ h4{color:#f79632;}
 .client-profile{position:relative; margin:0; padding:270px 0 80px; z-index:1;}
   .client-profile .inner-info{background:#f7f0e4; -webkit-border-radius:20px; -moz-border-radius:20px; border-radius:20px; color:#0f2540; position: relative; margin: 0 0 30px; padding:10px 30px; display: flex; justify-content: space-between; align-items: center; align-content: end;}
   .client-profile .inner-info figure{position: absolute; left:0; right:0; bottom:30px; margin:0 auto; -webkit-border-radius:100%; -moz-border-radius:100%; border-radius:100%; border:5px solid #fff; max-width:270px;}
+  .client-profile .inner-info figure img{-webkit-border-radius:100%; -moz-border-radius:100%; border-radius:100%;}
   .client-profile h2{color:#0f2540; font-size:30px; margin:0; position:relative;}
   .client-profile h2 span{display:block; font-size:20px; margin:5px 0 0; text-transform: uppercase; font-weight:500;}
   .client-profile .right-area{position:relative; padding:0;}
@@ -3175,6 +3176,7 @@ button{font-family: Gothic A1 !important;}
    .timesheet-carousel .owl-item div{font-size: 14px; letter-spacing: 0;}
    
    .clients-listing .row{margin: 0 -15px;}
+   .clients-listing .filter-coll{padding: 0 15px;}
    .clients-listing .cl-coll{padding: 0 15px;}
 
 }
