@@ -154,7 +154,7 @@ h4{color:#f79632;}
 
   /* profile dashboard */
   .profile-button{position: relative; left: 0; top: 0; z-index: 3; order:3;}
-  .profile-button > figure{display: inline-block; -webkit-border-radius: 100%; -moz-border-radius: 100%; border-radius:100%; vertical-align: middle; width: 70px; border: 5px solid #fff; margin: 0 14px 0 0;}
+  .profile-button > figure{display: inline-block; -webkit-border-radius: 100%; -moz-border-radius: 100%; border-radius:100%; vertical-align: middle; width: 70px; border: 3px solid #fff; margin: 0 14px 0 0;}
   .profile-button > figure img{-webkit-border-radius: 100%; -moz-border-radius: 100%; border-radius:100%;}
   .profile-button .dropdown{display: inline-block; min-width: 164px; vertical-align: middle;}
   .profile-button .dropdown-toggle{position: relative;}
@@ -320,7 +320,7 @@ h4{color:#f79632;}
   /* user profile */
   .user-profile{position:relative; margin:0; padding:270px 0 80px; z-index:1;}
   .user-profile .inner-info{background:#f7f0e4; -webkit-border-radius:20px; -moz-border-radius:20px; border-radius:20px; color:#0f2540; position: relative; margin: 0 0 30px 100px; display: flex; justify-content: space-between; align-items: center; align-content: end;}
-  .user-profile .inner-info figure{position: absolute; left:-100px; bottom:0; margin:0; max-width:270px; -webkit-border-radius: 100%; -moz-border-radius: 100%; border-radius: 100%;}
+  .user-profile .inner-info figure{position: absolute; left:-100px; bottom:0; margin:0; max-width:270px; -webkit-border-radius: 100%; -moz-border-radius: 100%; border-radius: 100%; border: 3px solid #fff;}
   .user-profile .inner-info figure img{-webkit-border-radius: 100%; -moz-border-radius: 100%; border-radius: 100%;}
   .user-profile h2{color: #0f2540; font-size: 30px; position: relative; margin: 0; letter-spacing: 5px; padding: 0 0 0 18%;}
   .user-profile .right-area{position:relative; padding:15px;}
