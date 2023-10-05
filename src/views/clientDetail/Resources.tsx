@@ -10,7 +10,7 @@ import { useRouter } from 'next/router'
 import { database, storage } from '../../../firebaseConfig'
 import { collection, doc, updateDoc, getDoc,query,where,getDocs,addDoc } from 'firebase/firestore'
 import { useFormik } from 'formik';
-import {ref, uploadBytesResumable, getDownloadURL } from "firebase/storage"
+import {ref, uploadBytesResumable, getDownloadURL,getStorage } from "firebase/storage"
 
 
 import { Modal } from "antd";
@@ -181,27 +181,46 @@ useEffect(() => {
        
      }
 
-//      const downloadFile = async (e) => {
-//       // const downloadURL = await getDownloadURL('https://firebasestorage.googleapis.com/v0/b/wabya-45dba.appspot.com/o/resources%2F849myx1682005199274?alt=media&amp;token=7e1523f8-cde9-4ef2-a158-0e50a2522019');
-//       // const response = await fetch(downloadURL);
-//       // console.log(response)
-//       // const blob = await response.blob();
-//       // return blob;
+     const downloadFile = async (e) => {
+      // const downloadURL = await getDownloadURL('https://firebasestorage.googleapis.com/v0/b/wabya-45dba.appspot.com/o/resources%2F849myx1682005199274?alt=media&amp;token=7e1523f8-cde9-4ef2-a158-0e50a2522019');
+      // const response = await fetch(downloadURL);
+      // console.log(response)
+      // const blob = await response.blob();
+      // return blob;
 
-//       e.preventDefault();
-//       var starsRef = ref.child('resources/029bwt1681967062564');
-
-// // Get the download URL
-// starsRef.getDownloadURL()
-// .then((url) => {
-//   // Insert url into an <img> tag to "download"
-
-//   console.log('url');
-// })
-// .catch((err) => {
-//   console.log('err', err);
-// })
-//     };
+      e.preventDefault();
+      // var starsRef = ref.child('resources/029bwt1681967062564');
+      const storage = getStorage();
+      const starsRef = ref(storage, 'resources/029bwt1681967062564.png');
+      
+      // Get the download URL
+      getDownloadURL(starsRef)
+        .then((url) => {
+         console.log(url);
+        })
+        .catch((error) => {
+          // A full list of error codes is available at
+          // https://firebase.google.com/docs/storage/web/handle-errors
+          switch (error.code) {
+            case 'storage/object-not-found':
+              // File doesn't exist
+              break;
+            case 'storage/unauthorized':
+              // User doesn't have permission to access the object
+              break;
+            case 'storage/canceled':
+              // User canceled the upload
+              break;
+      
+            // ...
+      
+            case 'storage/unknown':
+              // Unknown error occurred, inspect the server response
+              break;
+          }
+        });
+      
+    };
     //  const downloadFile = (e) => {
     //   e.preventDefault();
     //   const url = 'https://firebasestorage.googleapis.com/v0/b/wabya-45dba.appspot.com/o/resources%2F849myx1682005199274?alt=media&amp;token=7e1523f8-cde9-4ef2-a158-0e50a2522019';

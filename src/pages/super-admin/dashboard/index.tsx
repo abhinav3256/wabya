@@ -33,7 +33,8 @@ const Dashboard = () => {
 
 
 return (
-    <section className="user-profile">
+  <section className='superadmin-information'>
+    <section className="user-profile superadmin-dashboard-desktop">
       <div className="container">
         <div className="row">
 
@@ -82,7 +83,74 @@ return (
 
         </div> {/* <!--/ row --> */}
       </div>
-    </section> // user profile
+    </section> 
+    <section className="user-detail superadmin-dashboard-mobile">
+    <div className="container">
+      <div className="row">
+        <div className="col-12">
+        {fireData.map((data) => {
+          return(
+            <>
+          <div className="user-profile  mrb-20">
+            <figure>
+              <img src={ data.profile } alt={ data.name }   />
+            </figure>
+            <h3>{ data.name }</h3>
+        
+            <div className="user-bio">
+              <ul className="row">
+                <li className="col-12">
+                  <span className="bold">information</span>
+                </li>
+                <p>Contact Details: <span><a href={`mailto:${data.email}`}>{data.email}</a></span></p>
+                <p>Time Zone: <span>{data.timezone}</span></p>
+                <p>Languages: <span> {data.languages} </span></p>
+                
+                <li className="col-6">
+                  <span className="bold">Contact Details::</span>{" "}
+                  <span>
+                    <a  href={`mailto:${data.email}`}>{data.email}</a>
+                  </span>
+                </li>
+                <li className="col-6">
+                  <span className="bold">time zone</span>{" "}
+                  <span>{data.timezone}</span>
+                </li>
+                <li className="col-12">
+                  <span className="bold">languages</span>{" "}
+                  <span>{data.languages}</span>
+                </li>
+                <li className="col-12">
+                  <span className="bold">bio </span> { data.bio }
+                </li>
+                <li className="col-12">
+                  <span className="bold">about </span> { data.about }
+                </li>
+              </ul>
+            </div>
+          </div>
+          </>
+        )
+      })}
+          <p className="btn-p">
+          <div className="btn btn-thulian-pink">
+  <Link href="/super-admin/edit-profile">
+    <a className='edit-profile-mob'>edit my details</a>
+  </Link>
+</div>
+          </p>
+          <p className="btn-p">
+            <a href="/super-admin/change-password" className="btn btn-orange">
+              change password
+            </a>
+          </p>
+        </div>
+        {/*/ cl-coll */}
+      </div>
+      {/*/ row */}
+    </div>
+  </section>
+    </section>
 
   )
 }
