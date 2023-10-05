@@ -34,7 +34,7 @@ const Dashboard = () => {
 
 return (
   <section className='superadmin-information'>
-    <section className="user-profile superadmin-dashboard-desktop">
+    <section className="user-profile desktop-hidden">
       <div className="container">
         <div className="row">
 
@@ -84,7 +84,7 @@ return (
         </div> {/* <!--/ row --> */}
       </div>
     </section> 
-    <section className="user-detail superadmin-dashboard-mobile">
+    <section className="user-detail mobile-hidden">
     <div className="container">
       <div className="row">
         <div className="col-12">
