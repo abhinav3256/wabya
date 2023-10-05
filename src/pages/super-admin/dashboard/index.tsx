@@ -102,10 +102,7 @@ return (
                 <li className="col-12">
                   <span className="bold">information</span>
                 </li>
-                <p>Contact Details: <span><a href={`mailto:${data.email}`}>{data.email}</a></span></p>
-                <p>Time Zone: <span>{data.timezone}</span></p>
-                <p>Languages: <span> {data.languages} </span></p>
-                
+               
                 <li className="col-6">
                   <span className="bold">Contact Details::</span>{" "}
                   <span>
