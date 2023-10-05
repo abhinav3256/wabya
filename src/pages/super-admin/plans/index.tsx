@@ -214,6 +214,7 @@ const AddPlan = () => {
                   </figure>
               </div>
             </div>
+            <div className='col-sm-12'>
             <div className='coach-table'>
 
               <div className='table-responsive'>
@@ -257,6 +258,7 @@ const AddPlan = () => {
                     </tbody>
                   </table>
               </div>
+            </div>
             </div>
 
           </div>

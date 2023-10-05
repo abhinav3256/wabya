@@ -58,12 +58,15 @@ const ClientList = ()  => {
   }
 
   return (
+
     <section className='coaches-list'>
       <div className='container'>
         <div className='row'>
           <div className='col-sm-12 mrb-30'>
             <h2>Client List</h2>
           </div>
+
+          <div className='col-sm-12'>
           <div className='coach-table'>
 
             <div className='table-responsive'>
@@ -106,6 +109,7 @@ const ClientList = ()  => {
                   </tbody>
                 </table>
             </div>
+          </div>
           </div>
         </div>
       </div>

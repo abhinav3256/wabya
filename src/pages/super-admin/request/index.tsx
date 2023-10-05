@@ -177,6 +177,7 @@ const updateUserPlan = async (event) => {
           <div className='col-sm-12 mrb-30'>
             <h2>Request List</h2>
           </div>
+          <div className='col-sm-12'>
           <div className='coach-table'>
             <div className='table-responsive'>
 
@@ -227,6 +228,7 @@ const updateUserPlan = async (event) => {
                   </tbody>
                 </table>
             </div>
+          </div>
           </div>
         </div>
       </div>

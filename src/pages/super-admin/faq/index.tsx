@@ -179,6 +179,7 @@ const AddFAQ = () => {
                   </figure>
               </div>
             </div>
+            <div className='col-sm-12'>
             <div className='coach-table'>
 
               <div className='table-responsive'>
@@ -222,7 +223,7 @@ const AddFAQ = () => {
                   </table>
               </div>
             </div>
-
+</div>
           </div>
         </div>
       </div>

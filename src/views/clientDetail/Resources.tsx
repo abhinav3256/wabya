@@ -181,46 +181,32 @@ useEffect(() => {
        
      }
 
-     const downloadFile = async (e) => {
-      // const downloadURL = await getDownloadURL('https://firebasestorage.googleapis.com/v0/b/wabya-45dba.appspot.com/o/resources%2F849myx1682005199274?alt=media&amp;token=7e1523f8-cde9-4ef2-a158-0e50a2522019');
-      // const response = await fetch(downloadURL);
-      // console.log(response)
-      // const blob = await response.blob();
-      // return blob;
+//     const downloadFile = async () => {
+//   const storage = getStorage();
+//   const fileRef = ref(storage, 'resources/029bwt1681967062564'); // Replace this with your file path in Firebase Storage
 
-      e.preventDefault();
-      // var starsRef = ref.child('resources/029bwt1681967062564');
-      const storage = getStorage();
-      const starsRef = ref(storage, 'resources/029bwt1681967062564.png');
-      
-      // Get the download URL
-      getDownloadURL(starsRef)
-        .then((url) => {
-         console.log(url);
-        })
-        .catch((error) => {
-          // A full list of error codes is available at
-          // https://firebase.google.com/docs/storage/web/handle-errors
-          switch (error.code) {
-            case 'storage/object-not-found':
-              // File doesn't exist
-              break;
-            case 'storage/unauthorized':
-              // User doesn't have permission to access the object
-              break;
-            case 'storage/canceled':
-              // User canceled the upload
-              break;
-      
-            // ...
-      
-            case 'storage/unknown':
-              // Unknown error occurred, inspect the server response
-              break;
-          }
-        });
-      
-    };
+//   try {
+//     const downloadURL = await getDownloadURL(fileRef);
+
+//     // Create a temporary anchor element
+//     const anchor = document.createElement('a');
+//     anchor.href = downloadURL;
+//     anchor.download = 'yourFileName.pdf'; // Set the desired file name here
+//     anchor.target = '_blank'; // Open the link in a new tab (optional)
+
+//     // Append the anchor to the body
+//     document.body.appendChild(anchor);
+
+//     // Trigger a click event on the anchor to initiate the download
+//     anchor.click();
+
+//     // Remove the anchor from the body
+//     document.body.removeChild(anchor);
+//   } catch (error) {
+//     // Handle any errors that occur during the process
+//     console.error('Error downloading the file:', error);
+//   }
+// };
     //  const downloadFile = (e) => {
     //   e.preventDefault();
     //   const url = 'https://firebasestorage.googleapis.com/v0/b/wabya-45dba.appspot.com/o/resources%2F849myx1682005199274?alt=media&amp;token=7e1523f8-cde9-4ef2-a158-0e50a2522019';
@@ -435,7 +421,7 @@ const year = today.getFullYear();
               <figure><img src={`../../images/${image_}.${img_ext}`} alt=""/></figure>
             <h4>{myfile.fileName} <span>{myfile.uploadDate}</span></h4>
             <figure className="download-right">
-                      <img src="../../images/download.png" alt=""  />
+                      <img src="../../images/download.png" alt=""   />
                     </figure>
               </div></a>
             </div>
