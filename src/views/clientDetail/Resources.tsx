@@ -180,8 +180,26 @@ useEffect(() => {
          }
        
      }
-
-
+     const downloadFile = (e) => {
+      e.preventDefault();
+      const url = 'https://firebasestorage.googleapis.com/v0/b/wabya-45dba.appspot.com/o/resources%2F849myx1682005199274?alt=media&amp;token=7e1523f8-cde9-4ef2-a158-0e50a2522019';
+      const fileName = 'Intro to type in organisations - MBTI.pdf';
+  
+      fetch(url, {
+        method: 'GET',
+      })
+        .then(response => response.blob())
+        .then(blob => {
+          const url = window.URL.createObjectURL(new Blob([blob]));
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = fileName;
+          document.body.appendChild(a);
+          a.click();
+          window.URL.revokeObjectURL(url);
+        })
+        .catch(error => console.error('Error downloading the file:', error));
+    };
 
 
      function addInFirebase() {
@@ -481,7 +499,7 @@ else{
                     {myfile.fileName}<span>{myfile.uploadDate}</span>
                     </h4>
                     <figure className="download-right">
-                      <img src="images/download.png" alt="" />
+                      <img src="images/download.png" alt=""  onClick={downloadFile} />
                     </figure>
                   </div>
                 </div>

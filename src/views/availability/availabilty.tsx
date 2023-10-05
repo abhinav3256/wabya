@@ -466,8 +466,8 @@ console.log(userProfile);
   
                     </div>
                     <div className="row">
-                <div className="col-md-5">.</div>
-                <div className="col-md-6">
+               
+                <div className="col-md-12 text-center">
                     <button className="btn btn-unavailable" onClick={setUnAvailablity}>
                           Update 
                         </button>
@@ -481,8 +481,8 @@ console.log(userProfile);
 
 
                         <div className="row">
-                <div className="col-md-5">.</div>
-                <div className="col-md-6">
+               
+                <div className="col-md-12 text-center mrb-20">
                   
 
                         {!isUnavailable ? (
@@ -497,15 +497,15 @@ console.log(userProfile);
                 <div className="col-md-3">.</div>
 
                 {isShowErrmsg && (
-                <div className="col-md-8">
+                <div className="col-md-12 text-center mrb-20">
 
-                  Select Both Start And End Time...
+                 <p className='update-show'> Select Both Start And End Time...</p>
                 </div>
  )}
                 {isShowmsg && (
-                <div className="col-md-8">
+                <div className="col-md-12 text-center mrb-20">
 
-                  Data Updated...
+<p className='update-show'>  Data Updated...</p>
                 </div>
  )}
                 </div>
