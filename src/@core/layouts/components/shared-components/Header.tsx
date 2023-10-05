@@ -121,7 +121,7 @@ const Header = () => {
       :
       (
         <>
-        <header className='admin-header coach-header'>
+        <header className='admin-header coach-header header'>
           <div className='menu-head'>
             <div className='container'>
               <nav className='navbar navbar-expand-lg'>
