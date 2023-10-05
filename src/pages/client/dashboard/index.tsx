@@ -3824,7 +3824,7 @@ const timeRemaining = Math.floor((meetingDate - currentTime) / 60000);
               myfile.fileName.toLowerCase().indexOf(SearchVal.toLowerCase()) !== -1
               ? 
               <div className="file-box">
-                <a href="#" className="file-link" target="_blank" />
+                <a href={myfile.resourceURL} className="file-link" target="_blank" />
                 <div className="inner">
                   <figure>
                     <img src="../../images/file-icon.png" alt="" />
