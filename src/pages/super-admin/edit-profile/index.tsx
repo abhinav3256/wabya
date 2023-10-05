@@ -130,7 +130,7 @@ const EditProfile = () => {
         languages : proLanguage,
         bio : proBio,
         about : proAbout,
-        profile : fileUrl
+        profile : 'https://firebasestorage.googleapis.com/v0/b/wabya-45dba.appspot.com/o/super-admin%2Fprofile%2Fimageedit_5_2493534812.png?alt=media&token=d538d2b9-e2ef-4967-9468-2cab763aa3df&_gl=1*ve6mq7*_ga*MTIzMzY1Njg1LjE2OTA4MDU4Nzg.*_ga_CW55HF8NVT*MTY5NjUwMTg3NC42OC4xLjE2OTY1MDE4ODQuNTAuMC4w'
     };
     await updateDoc(userDocRef, updatedData);
     setMessage(true);
@@ -358,7 +358,7 @@ const EditProfile = () => {
       </div> */}
       <br></br>
       <div className="user-bio">
-        <form>
+        <form noValidate autoComplete='off' onSubmit={e => e.preventDefault()}>
         <div className="close-back"><a href="/coach/dashboard"><i class="fa fa-times" aria-hidden="true"></i></a></div>
           <ul className="row">
             <li className="col-12">
