@@ -3059,8 +3059,9 @@ button{font-family: Gothic A1 !important;}
    .admin-header.superadmin-head.header .menu-head .sub-menu > li > a{background:none !important; padding:5px 15px 5px 30px; width: auto;}
    .admin-header.superadmin-head .profile-button{padding: 8px 0 0;}
    .admin-header.superadmin-head .profile-button .dropdown{min-width: inherit;}
-   .admin-header.superadmin-head .profile-button .inner{padding: 2px 2px 2.5px; position: relative; right: 0; top: 0; max-width: 100px;}
-   .admin-header.superadmin-head .profile-button .inner .btn{padding: 4px 10px;}
+   .admin-header.superadmin-head .profile-button .inner{padding: 0; position: relative; right: 0; top: 0; max-width: 100px;}
+   .admin-header.superadmin-head .profile-button .inner .btn{padding: 7px 10px;}
+   .admin-header.superadmin-head .profile-button .inner .btn.btn::after{background-color: #f59533;}
     
 }
 
