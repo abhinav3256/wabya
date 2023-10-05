@@ -467,7 +467,7 @@ console.log(userProfile);
                     </div>
                     <div className="row">
                
-                <div className="col-md-12 text-center">
+                <div className="col-md-12 text-center mrb-20">
                     <button className="btn btn-unavailable" onClick={setUnAvailablity}>
                           Update 
                         </button>
@@ -486,7 +486,7 @@ console.log(userProfile);
                   
 
                         {!isUnavailable ? (
-                <button className="btn btn-unavailable rem-un" onClick={() => deleteDocument(unavailableId)}>
+                <button className="btn btn-unavailable" onClick={() => deleteDocument(unavailableId)}>
                 Remove 
               </button>
                 )

@@ -391,9 +391,11 @@ const year = today.getFullYear();
               <a href={myfile.resourceURL} target='_blank'>
             <div className="inner">
              
-              <figure><img src={`../images/${image_}.${img_ext}`} alt=""/></figure>
+              <figure><img src={`../../images/${image_}.${img_ext}`} alt=""/></figure>
             <h4>{myfile.fileName} <span>{myfile.uploadDate}</span></h4>
-            
+            <figure className="download-right">
+                      <img src="../../images/download.png" alt=""  onClick={downloadFile} />
+                    </figure>
               </div></a>
             </div>
             :null
@@ -493,13 +495,13 @@ else{
                   <a href={myfile.resourceURL} className="file-link" target="_blank" />
                   <div className="inner">
                     <figure>
-                      <img src={`../images/${image_}.${img_ext}`} alt="" />
+                      <img src={`../../images/${image_}.${img_ext}`} alt="" />
                     </figure>
                     <h4>
                     {myfile.fileName}<span>{myfile.uploadDate}</span>
                     </h4>
                     <figure className="download-right">
-                      <img src="images/download.png" alt=""  onClick={downloadFile} />
+                      <img src="../../images/download.png" alt=""  onClick={downloadFile} />
                     </figure>
                   </div>
                 </div>
