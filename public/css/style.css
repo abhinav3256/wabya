@@ -2300,7 +2300,7 @@ img.tree-image {
    .menu-head .navbar-toggler{border:0; background: #f79632 !important; color: #fff; margin: 15px 0 0; border-radius: 0;}
    .navbar-default .navbar-toggler .icon-bar{background-color:#fff !important;}
    .navbar-default .navbar-toggler:focus, .navbar-default .navbar-toggler:hover{background:none;}
-   .menu-head .navbar-collapse{border:none; box-shadow: none; padding:15px 0 0;}
+   .menu-head .navbar-collapse{border:none; box-shadow: none; padding:15px 0 0; order: 4;}
    .menu-head .navbar-collapse.in ul{margin: 0; box-shadow: none; border: 0;}
    .menu-head .navbar-nav{margin: 0; text-align:left; top: 0;}
    .menu-head .navbar-nav > li:before{display:none;}
