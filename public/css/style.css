@@ -2613,11 +2613,6 @@ button{font-family: Gothic A1 !important;}
   i ~ i ~ i ~ i ~ i{width: 100%;}
 }
 
-@media (min-width: 768px) and (max-width: 959px) {
-  .client-listing-desktop{display: none;}
-}
-
-
 @media (min-width: 320px) and (max-width: 767px) {
   
    .header{border-top: 3px solid #ec2397;}
@@ -3178,6 +3173,9 @@ button{font-family: Gothic A1 !important;}
    .calendar{overflow: hidden;}
    .calendar.calendar-desktop .row{margin:0;}
    .timesheet-carousel .owl-item div{font-size: 14px; letter-spacing: 0;}
+   
+   .clients-listing .row{margin: 0 -15px;}
+   .clients-listing .cl-coll{padding: 0 15px;}
 
 }
 
