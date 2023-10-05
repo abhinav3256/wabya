@@ -102,7 +102,7 @@ console.log('working');
         router.push('/coach/dashboard');
 
     } catch (error2) {
-      setError(error2.message);
+      //setError(error2.message);
     }
         }
 
@@ -119,7 +119,8 @@ console.log('working');
           router.push('/client/dashboard');
 
       } catch (error) {
-        setError(error.message);
+       // console.log(error);
+        setError('Incorrect password');
       }
     };
 
