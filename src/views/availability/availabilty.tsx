@@ -467,7 +467,7 @@ console.log(userProfile);
                     </div>
                     <div className="row">
                
-                <div className="col-md-12 text-center mrb-20">
+                <div className="col-md-12 text-center mrb-20 availability-popbtn">
                     <button className="btn btn-unavailable" onClick={setUnAvailablity}>
                           Update 
                         </button>
@@ -482,7 +482,7 @@ console.log(userProfile);
 
                         <div className="row">
                
-                <div className="col-md-12 text-center mrb-20">
+                <div className="col-md-12 text-center mrb-20 availability-popbtn">
                   
 
                         {!isUnavailable ? (
