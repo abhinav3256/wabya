@@ -3045,7 +3045,9 @@ button{font-family: Gothic A1 !important;}
    
    .myadmin .menu-head .navbar-nav > li{width: 100%; display: block; margin: 0; padding: 0;}
    .admin-header.superadmin-head{padding: 0 0 8px;}
-   .admin-header.superadmin-head.header .menu-head .navbar-toggler{background: #f79632 !important;}
+   .admin-header.superadmin-head.header .menu-head .navbar-toggler{margin: 10px 0 0;}
+   .admin-header.superadmin-head.header .menu-head .navbar-toggler:focus{outline:non; box-shadow:none;}
+   .admin-header.superadmin-head.header .menu-head .navbar-toggler span{background-image: url(../images/toggle-icon.png); width: 25px; height: 25px;}
    .admin-header.superadmin-head.header .menu-head .navbar-nav{margin: 0 0 15px; text-align:left; top: 0; background: #fffff3; -webkit-border-radius: 15px; -moz-border-radius: 15px; border-radius: 15px;}
    .admin-header.superadmin-head.header .menu-head .navbar-nav > li:before{display:none;}
    .admin-header.superadmin-head.header .menu-head .navbar-nav > li{width: 100%; display:block; margin:0; padding:0; border-bottom: 1px solid  #ece6d3;}
@@ -3083,7 +3085,7 @@ button{font-family: Gothic A1 !important;}
    .myadmin .menu-head .navbar-nav > li{width: 100%; display: block; margin: 0; padding: 0;}
    .admin-header.superadmin-head{padding: 0 0 8px;}
    .admin-header.superadmin-head.header .menu-head .navbar-brand{padding: 10px 0 5px;}
-   .admin-header.superadmin-head.header .menu-head .navbar-toggler{margin: 0;}
+   .admin-header.superadmin-head.header .menu-head .navbar-toggler{margin: 10px 0 0;}
    .admin-header.superadmin-head.header .menu-head .navbar-toggler:focus{outline:non; box-shadow:none;}
    .admin-header.superadmin-head.header .menu-head .navbar-toggler span{background-image: url(../images/toggle-icon.png); width: 25px; height: 25px;}
    .admin-header.superadmin-head.header .menu-head .navbar-nav{margin: 0 0 15px; text-align:left; top: 0; background: #fffff3; -webkit-border-radius: 15px; -moz-border-radius: 15px; border-radius: 15px;}
