@@ -3031,6 +3031,7 @@ button{font-family: Gothic A1 !important;}
    
    .react-calendar__month-view__days{min-height: 195px;}
    .client-profile .info-grid{padding: 10px;}
+   .update-show{margin: auto; font-weight: 600; color: #b95427; text-align: center;}
    
 }
 
