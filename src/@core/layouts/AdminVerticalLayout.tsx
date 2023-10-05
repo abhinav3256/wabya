@@ -80,7 +80,7 @@ const AdminVerticalLayout = (props: LayoutProps) => {
     <>
         {/* Navigation Menu */}
 
-        <header className='admin-header superadmin-head myadmin'>
+        <header className='admin-header superadmin-head myadmin header'>
           <div className='menu-head'>
             <div className='container'>
               <nav className='navbar navbar-expand-lg'>

@@ -181,13 +181,27 @@ useEffect(() => {
        
      }
 
-    //  const downloadFile = async (e) => {
-    //   const downloadURL = await getDownloadURL('https://firebasestorage.googleapis.com/v0/b/wabya-45dba.appspot.com/o/resources%2F849myx1682005199274?alt=media&amp;token=7e1523f8-cde9-4ef2-a158-0e50a2522019');
-    //   const response = await fetch(downloadURL);
-    //   console.log(response)
-    //   const blob = await response.blob();
-    //   return blob;
-    // };
+//      const downloadFile = async (e) => {
+//       // const downloadURL = await getDownloadURL('https://firebasestorage.googleapis.com/v0/b/wabya-45dba.appspot.com/o/resources%2F849myx1682005199274?alt=media&amp;token=7e1523f8-cde9-4ef2-a158-0e50a2522019');
+//       // const response = await fetch(downloadURL);
+//       // console.log(response)
+//       // const blob = await response.blob();
+//       // return blob;
+
+//       e.preventDefault();
+//       var starsRef = ref.child('resources/029bwt1681967062564');
+
+// // Get the download URL
+// starsRef.getDownloadURL()
+// .then((url) => {
+//   // Insert url into an <img> tag to "download"
+
+//   console.log('url');
+// })
+// .catch((err) => {
+//   console.log('err', err);
+// })
+//     };
     //  const downloadFile = (e) => {
     //   e.preventDefault();
     //   const url = 'https://firebasestorage.googleapis.com/v0/b/wabya-45dba.appspot.com/o/resources%2F849myx1682005199274?alt=media&amp;token=7e1523f8-cde9-4ef2-a158-0e50a2522019';
@@ -396,7 +410,7 @@ const year = today.getFullYear();
         
           <div className="col-sm-4 fi-coll">
            
-              <a href={myfile.resourceURL} target='_blank'  >
+              <a href={myfile.resourceURL} target='_blank' >
             <div className="inner">
              
               <figure><img src={`../../images/${image_}.${img_ext}`} alt=""/></figure>
@@ -500,7 +514,7 @@ else{
   myfile.fileName.toLowerCase().indexOf(SearchVal.toLowerCase()) !== -1
    ? 
                 <div className="file-box">
-                  <a href={myfile.resourceURL} className="file-link" target="_blank"  />
+                  <a href={myfile.resourceURL} className="file-link" target="_blank"   />
                   <div className="inner">
                     <figure>
                       <img src={`../../images/${image_}.${img_ext}`} alt="" />

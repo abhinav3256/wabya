@@ -327,7 +327,7 @@ console.log(
                 Already have an account?
               </Typography>
               <Typography variant='body2'>
-                <Link passHref href='/pages/login'>
+                <Link passHref href='/client/login'>
                   <LinkStyled>Sign In</LinkStyled>
                 </Link>
               </Typography>
