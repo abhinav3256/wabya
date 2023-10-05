@@ -2578,6 +2578,41 @@ button{font-family: Gothic A1 !important;}
    .session-history .session-btn{padding: 0 15px;}
    .session-history .session-btn .btn{font-size: 13px; padding: 10px 11px 8px;}
 
+.coach-feedback{position:relative; margin:0; padding: 60px 15px 50px; z-index:1;}
+  .coach-feedback h5{font-size: 14px; text-align: center;}
+  .coach-feedback .feedback-box{background:#faf4e8; -webkit-border-radius:30px; -moz-border-radius:30px; border-radius:30px; color:#0f2540; position: relative; padding:30px 25px 10px; font-size:12px; text-align:center;} 
+  .coach-feedback form .form-control{background:#fff; border:0; box-shadow:none; font-weight:700; -webkit-border-radius: 15px; -moz-border-radius: 15px; border-radius: 15px; font-size:8px; color: #0b233f; height:36px; padding:3px 8px;}
+  .coach-feedback form .form-control:focus{border-color:#f59633;}
+  .coach-feedback form .form-control::-webkit-input-placeholder{opacity:1;}
+  .coach-feedback form .form-control::-moz-placeholder{opacity:1;}
+  .coach-feedback form .form-control:-ms-input-placeholder{opacity:1;}
+  .coach-feedback form .form-control:-moz-placeholder{opacity:1;}
+  .coach-feedback form textarea{height:200px !important;}
+  .coach-feedback form label{display:block; margin:0 0 10px; font-size:13px; font-weight:400;}
+  .coach-feedback form .form-group{margin:0 0 15px;}
+  .coach-feedback form .form-btn{margin:0 15px 15px;}
+  .coach-feedback form .btn{background: #1d696c; margin: 0 0 -45px;}
+  .coach-feedback form .btn:after{background: #0e2540;}
+  .coach-feedback .skip-link{font-size: 14px; font-weight:600; text-align:right; margin: 40px 0;}
+  .coach-feedback .skip-link i{margin: 0 0 0 10px;}
+  .coach-feedback .skip-link a{color: #1d696c;}
+  .coach-feedback .skip-link a:hover{color: #f79632;}
+  
+  .star-rating{font-size:0; white-space:nowrap; display:inline-block; width: 180px;
+  height: 30px;
+  overflow: hidden;
+  position: relative;
+  background-image: url(images/shape-feedback1.png);
+  background-size: contain;
+  i{opacity: 0; position: absolute; left: 0; top: 0; height: 100%; width: 20%; z-index: 1; background: url(images/shape-feedback2.png); background-size: contain;}
+  input{-moz-appearance:none; -webkit-appearance:none; opacity: 0; display:inline-block; width: 20%; height: 100%; margin:0; padding:0; z-index: 2; position: relative; &:hover + i, &:checked + i{opacity:1;}
+  }
+  i ~ i{width: 40%;}
+  i ~ i ~ i{width: 60%;}
+  i ~ i ~ i ~ i{width: 80%;}
+  i ~ i ~ i ~ i ~ i{width: 100%;}
+}
+
 @media (min-width: 768px) and (max-width: 959px) {
   .client-listing-desktop{display: none;}
 }
