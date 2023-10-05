@@ -3827,7 +3827,7 @@ const timeRemaining = Math.floor((meetingDate - currentTime) / 60000);
                 <a href={myfile.resourceURL} className="file-link" target="_blank" />
                 <div className="inner">
                   <figure>
-                    <img src="../../images/file-icon.png" alt="" />
+                    <img src="../../images/file-icon.jpg" alt="" />
                   </figure>
                   <h4>
                   {myfile.fileName}<span>{myfile.uploadDate}</span>
