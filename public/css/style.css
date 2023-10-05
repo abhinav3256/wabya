@@ -3139,6 +3139,9 @@ button{font-family: Gothic A1 !important;}
    
    .user-profile{padding: 190px 0 80px;}
    .user-profile .inner-info figure{max-width: 190px;}
+   
+   .calendar{overflow: hidden;}
+   .timesheet-carousel .owl-item div{font-size: 14px; letter-spacing: 0;}
 
 }
 
