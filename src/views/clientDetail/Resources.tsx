@@ -180,26 +180,34 @@ useEffect(() => {
          }
        
      }
-     const downloadFile = (e) => {
-      e.preventDefault();
-      const url = 'https://firebasestorage.googleapis.com/v0/b/wabya-45dba.appspot.com/o/resources%2F849myx1682005199274?alt=media&amp;token=7e1523f8-cde9-4ef2-a158-0e50a2522019';
-      const fileName = 'Intro to type in organisations - MBTI.pdf';
+
+    //  const downloadFile = async (e) => {
+    //   const downloadURL = await getDownloadURL('https://firebasestorage.googleapis.com/v0/b/wabya-45dba.appspot.com/o/resources%2F849myx1682005199274?alt=media&amp;token=7e1523f8-cde9-4ef2-a158-0e50a2522019');
+    //   const response = await fetch(downloadURL);
+    //   console.log(response)
+    //   const blob = await response.blob();
+    //   return blob;
+    // };
+    //  const downloadFile = (e) => {
+    //   e.preventDefault();
+    //   const url = 'https://firebasestorage.googleapis.com/v0/b/wabya-45dba.appspot.com/o/resources%2F849myx1682005199274?alt=media&amp;token=7e1523f8-cde9-4ef2-a158-0e50a2522019';
+    //   const fileName = 'Intro to type in organisations - MBTI.pdf';
   
-      fetch(url, {
-        method: 'GET',
-      })
-        .then(response => response.blob())
-        .then(blob => {
-          const url = window.URL.createObjectURL(new Blob([blob]));
-          const a = document.createElement('a');
-          a.href = url;
-          a.download = fileName;
-          document.body.appendChild(a);
-          a.click();
-          window.URL.revokeObjectURL(url);
-        })
-        .catch(error => console.error('Error downloading the file:', error));
-    };
+    //   fetch(url, {
+    //     method: 'GET',
+    //   })
+    //     .then(response => response.blob())
+    //     .then(blob => {
+    //       const url = window.URL.createObjectURL(new Blob([blob]));
+    //       const a = document.createElement('a');
+    //       a.href = url;
+    //       a.download = fileName;
+    //       document.body.appendChild(a);
+    //       a.click();
+    //       window.URL.revokeObjectURL(url);
+    //     })
+    //     .catch(error => console.error('Error downloading the file:', error));
+    // };
 
 
      function addInFirebase() {
@@ -388,13 +396,13 @@ const year = today.getFullYear();
         
           <div className="col-sm-4 fi-coll">
            
-              <a href={myfile.resourceURL} target='_blank'>
+              <a href={myfile.resourceURL} target='_blank'  >
             <div className="inner">
              
               <figure><img src={`../../images/${image_}.${img_ext}`} alt=""/></figure>
             <h4>{myfile.fileName} <span>{myfile.uploadDate}</span></h4>
             <figure className="download-right">
-                      <img src="../../images/download.png" alt=""  onClick={downloadFile} />
+                      <img src="../../images/download.png" alt=""  />
                     </figure>
               </div></a>
             </div>
@@ -492,7 +500,7 @@ else{
   myfile.fileName.toLowerCase().indexOf(SearchVal.toLowerCase()) !== -1
    ? 
                 <div className="file-box">
-                  <a href={myfile.resourceURL} className="file-link" target="_blank" />
+                  <a href={myfile.resourceURL} className="file-link" target="_blank"  />
                   <div className="inner">
                     <figure>
                       <img src={`../../images/${image_}.${img_ext}`} alt="" />
@@ -501,7 +509,7 @@ else{
                     {myfile.fileName}<span>{myfile.uploadDate}</span>
                     </h4>
                     <figure className="download-right">
-                      <img src="../../images/download.png" alt=""  onClick={downloadFile} />
+                      <img src="../../images/download.png" alt=""   />
                     </figure>
                   </div>
                 </div>

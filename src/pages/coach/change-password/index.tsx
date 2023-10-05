@@ -70,7 +70,7 @@ const EditCoachPassword = () => {
     setCoachId(coachId);
 
     if (!coachId) {
-      router.push('/pages/login')
+      router.push('/cliengt/login')
     }
 
 }, [coachId])

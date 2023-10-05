@@ -267,7 +267,7 @@ const Calender = () => {
     console.log('test');
     const coachId = sessionStorage.getItem('coachId');
     if(!coachId){
-      router.push('/pages/login')
+      router.push('/client/login')
   }
 
 
@@ -361,7 +361,7 @@ useEffect(() => {
 
       const coachId = sessionStorage.getItem('coachId');
       if(coachId == ""){
-        router.push('/pages/login')
+        router.push('/client/login')
     }
       setCoachId(coachId);
 

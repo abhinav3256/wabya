@@ -15,7 +15,7 @@ const Header = () => {
 
     const logout = () => {
       sessionStorage.removeItem('coachId');
-      router.push('/pages/login')
+      router.push('/client/login')
     }
 
     const clientLogout = () => {

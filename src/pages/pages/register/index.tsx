@@ -113,7 +113,7 @@ const coachesRef = collection(database, 'coaches_user');
           })
             .then(() => {
               toast.success('Coach registered successfully')
-              router.push('/pages/login')
+              router.push('/client/login')
             })
             .catch((err) => {
               console.error(err);
