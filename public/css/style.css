@@ -1995,6 +1995,7 @@ img.tree-image {
   }
   
 :where(.css-diro6f).ant-modal-root .ant-modal-centered .unavailable-modal{top: -150px;}
+#searchForm .btn-search{display: none !important;}
 
     /** Smartphones **/
 @media (min-width: 320px) and (max-width: 481px) {
@@ -2189,6 +2190,8 @@ img.tree-image {
    .easy-steps .es-coll{padding:0 15px; width: 50%;}
    .get-paid h2{font-size: 50px;}
    .get-paid .right figure::after{height: 103px; width: 101px; top: -60px; right: -10px;}
+   
+   .client-bg .fi-coll{width: 50%;}
 
 }
 
