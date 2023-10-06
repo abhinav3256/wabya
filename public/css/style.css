@@ -3199,7 +3199,7 @@ button{font-family: Gothic A1 !important;}
    .admin-header.coach-header.header .menu-head .navbar-brand img{max-width: 120px; vertical-align: middle;}
    .admin-header.coach-header.header .menu-head .navbar-brand{padding: 20px 0px;}
    
-   .user-profile{padding: 190px 0 80px;}
+   .user-profile{padding: 190px 0 80px; word-break: break-all;}
    .user-profile .inner-info figure{max-width: 190px;}
    
    .calendar{overflow: hidden;}
@@ -3210,7 +3210,7 @@ button{font-family: Gothic A1 !important;}
    .clients-listing .filter-coll{padding: 0 15px;}
    .clients-listing .cl-coll{padding: 0 15px;}
    
-   .client-profile{padding: 190px 0 80px;}
+   .client-profile{padding: 190px 0 80px; word-break: break-all;}
    .client-profile .inner-info figure{max-width: 190px;}
    .client-resources .left figure, .profile-button > figure, .user-profile .inner-info figure{border:3px solid #fff;}
    
