@@ -1079,7 +1079,7 @@ var interval = "45";
       let month_ = new Date(meeting[meetId].meetingDate).getMonth();
       let year_ = new Date(meeting[meetId].meetingDate).getFullYear();
 
-       busySchedule.push({ meet_idd: meeting[meetId].meet_id,starttime: meeting[meetId].meetingTime, endtime: meeting[meetId].meetingEndTime, title:meeting[meetId].meetingName,date:date_,month:month_,year:year_});
+       busySchedule.push({ meet_idd: meeting[meetId].meeting_id,starttime: meeting[meetId].meetingTime, endtime: meeting[meetId].meetingEndTime, title:meeting[meetId].meetingName,date:date_,month:month_,year:year_});
 
 
         }
