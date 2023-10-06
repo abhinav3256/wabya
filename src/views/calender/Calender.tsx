@@ -158,7 +158,7 @@ const Calender = () => {
   const meetingRef = collection(database, "meeting");
   const clientRef = collection(database, "client_user");
 
-  const [bookedTimeslot, setbookedTimeslot] = useState([{starttime:"",endtime:"",title:"",date:"",clientName:""}]);
+  const [bookedTimeslot, setbookedTimeslot] = useState([{meet_idd:"",starttime:"",endtime:"",title:"",date:"",clientName:""}]);
   const [meeting, setMeeting] = useState([]);
 
   const [meetingClientJoinedData, setmeetingClientJoinedData] =useState([]);
@@ -1079,7 +1079,7 @@ var interval = "45";
       let month_ = new Date(meeting[meetId].meetingDate).getMonth();
       let year_ = new Date(meeting[meetId].meetingDate).getFullYear();
 
-       busySchedule.push({ starttime: meeting[meetId].meetingTime, endtime: meeting[meetId].meetingEndTime, title:meeting[meetId].meetingName,date:date_,month:month_,year:year_});
+       busySchedule.push({ meet_idd: meeting[meetId].meet_id,starttime: meeting[meetId].meetingTime, endtime: meeting[meetId].meetingEndTime, title:meeting[meetId].meetingName,date:date_,month:month_,year:year_});
 
 
         }
@@ -1526,7 +1526,7 @@ var interval = "45";
               // });
 
 
-              const matchingTimeslot = bookedTimeslot.find(({ starttime, endtime,title,date,clientName }) => timeslot >= starttime && timeslot < endtime && index2 < 7 && nextSevenDay[index2].date == date);
+              const matchingTimeslot = bookedTimeslot.find(({meet_idd, starttime, endtime,title,date,clientName }) => timeslot >= starttime && timeslot < endtime && index2 < 7 && nextSevenDay[index2].date == date);
 
 const isBetween = !!matchingTimeslot; // will be true if matchingTimeslot is truthy, false otherwise
 
@@ -1534,6 +1534,7 @@ const matchingStarttime = matchingTimeslot && matchingTimeslot.starttime.slice(0
 const matchingEndtime = matchingTimeslot && matchingTimeslot.endtime.slice(0,-3); // will be the endtime of the matching timeslot, or undefined if no matching timeslot
 const matchingTitle = matchingTimeslot && matchingTimeslot.title; // will be the endtime of the matching timeslot, or undefined if no matching timeslot
 const clientName = matchingTimeslot && matchingTimeslot.clientName;
+const meet_iddd = matchingTimeslot && matchingTimeslot.meet_idd;
 if(isBetween)
 
 
@@ -1545,7 +1546,7 @@ return(<>
 
                        <small>Client :  Client</small>
 
-                       <p><u   data-id={data.meeting_id}>Accept</u></p>
+                       <p><u   data-id={meet_iddd}>Accept</u></p>
                        <p><u>Reject</u></p>
                        
                         </div>
