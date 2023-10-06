@@ -1070,7 +1070,8 @@ var interval = "45";
 
       console.log(meeting[meetId]);
      
-
+      console.log(meetId);
+      console.log('abc');
 
       console.log(meeting[meetId].meetingDate);
 
@@ -1121,6 +1122,23 @@ var interval = "45";
    console.log(busySchedule);
    }, [meeting]);
 
+
+   const acceptMeet = () => {
+    const fieldToEdit2 = doc(database, 'newPlanRequest', request_id);
+
+    updateDoc(fieldToEdit, {
+      plan_id:new_plan_id
+    })
+    .then(() => {
+     
+
+  
+     
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+   }
 
 
    const updateSchedule = (e) => {
@@ -1527,9 +1545,9 @@ return(<>
 
                        <small>Client :  Client</small>
 
-                       <p><u>Accept</u></p>
+                       <p><u   data-id={data.meeting_id}>Accept</u></p>
                        <p><u>Reject</u></p>
-                       <p><u>Reschedule</u></p>
+                       
                         </div>
                       </td>
                       </>
