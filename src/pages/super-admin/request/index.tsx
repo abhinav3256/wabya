@@ -224,6 +224,12 @@ const updateUserPlan = async (event) => {
                         }
                     })}
 
+{count == 1 ? (
+        <tr>
+            <td colSpan="6">No data found</td>
+        </tr>
+    ) : null }
+
 
                   </tbody>
                 </table>
