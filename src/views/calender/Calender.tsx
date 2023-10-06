@@ -1128,11 +1128,12 @@ var interval = "45";
     const fieldToEdit2 = doc(database, 'meeting', meet_iddd);
 
     updateDoc(fieldToEdit2, {
-      isCoachAccept:1
+      isCoachAccept:1,
+      meetingTime:"10:30:00"
     })
     .then(() => {
      
-
+      getMeeting();
   
      
     })
