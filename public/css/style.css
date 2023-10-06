@@ -426,8 +426,8 @@ h4{color:#f79632;}
   .timesheet-resources h2 span{display:block; font-size:20px; margin:5px 0 0; text-transform: uppercase; font-weight:500;}
   .timesheet-resources .file-info{background:#f7f0e4; -webkit-border-radius:20px; -moz-border-radius:20px; border-radius:20px; height: 480px; overflow-y: scroll; overflow-x: hidden; padding:0; margin: 0 0 30px;}
   .timesheet-resources .file-scroll{color:#0f2540; position: relative; padding:50px 40px 20px;}
-  .timesheet-resources .file-info .fi-coll .inner{background: #fff; -webkit-border-radius:15px; -moz-border-radius:15px; border-radius:15px; padding: 20px 15px; display: flex; align-items: center; align-content: end; margin:0 0 30px}
-  .timesheet-resources .file-info .fi-coll .inner figure{width: 35px; margin:0 10px 0 0;}
+  .timesheet-resources .file-info .fi-coll .inner{background: #fff; -webkit-border-radius:15px; -moz-border-radius:15px; border-radius:15px; padding: 20px 15px; display: flex; align-items: center; align-content: end; margin:0 0 30px; word-break: break-all;}
+  .timesheet-resources .file-info .fi-coll .inner figure{width: 35px; margin:0 10px 0 0; min-width: 35px;}
   .timesheet-resources .file-info .fi-coll .inner h4{color:#0f2540; font-size:14px; margin:0; text-transform: uppercase; position:relative; text-align: left;}
   .timesheet-resources .file-info .fi-coll .inner h4 span{display:block; font-size:13px; margin:5px 0 0; font-weight:500;}
   .timesheet-resources .file-info .fi-coll .inner h4 a{color:#0f2540;}
@@ -2631,7 +2631,15 @@ button{font-family: Gothic A1 !important;}
   .coach-feedback .skip-link a{color: #1d696c;}
   .coach-feedback .skip-link a:hover{color: #f79632;}
   
-   
+  .star-rating{min-width: 155px; position:relative; margin: 0 auto;}
+  .star-rating input{-moz-appearance: none; -webkit-appearance: none; display: inline-block; margin: 0; padding: 0; z-index: 2; position: relative; background-image: url(../images/shape-feedback1.png); background-size: contain; height: 21px; width: 22px; background-repeat: no-repeat; background-attachment: scroll; background-position: center center;}
+  .star-rating input.select-feeback{-moz-appearance: none; -webkit-appearance: none; display: inline-block; margin: 0; padding: 0; z-index: 2; position: relative; background-image: url(../images/shape-feedback2.png); background-size: contain; height: 21px; width: 22px; background-repeat: no-repeat; background-attachment: scroll; background-position: center center;}
+  /* .star-rating input.select-feeback.active{display: inline-block;} */
+  .star-rating input.active-opacity{opacity: 0;}
+  .star-rating input.sf2{left: 25px;}
+  .star-rating input.sf3{left: 50px;}
+  .star-rating input.sf4{left: 75px;}
+  .star-rating input.sf5{left: 100px;}
 
 .react-calendar__month-view__days{min-height: 252px;}
 
@@ -3235,6 +3243,7 @@ button{font-family: Gothic A1 !important;}
    
    .center-arrow span{font-size: 14px; padding: 0 5px; margin: 0 5px;}
    .center-arrow{position: absolute; top: 13px; left: 40px; letter-spacing: 0; text-align: center; right: 40px;}
+   .timesheet-resources .fi-coll{width: 50%;}
 
 }
 
