@@ -2602,8 +2602,8 @@ button{font-family: Gothic A1 !important;}
    .session-history .session-inner .row{background: #f7f0e4; -webkit-border-radius: 10px; -moz-border-radius: 10px; border-radius: 10px; color: #0f2540; position: relative; padding: 10px 10px 1px; font-size: 12px; margin: 0 0 15px;}
    .session-history .session-inner .row > *{padding: 0 5px;}
    .session-history .session-inner .row p{margin: 0 0 10px; line-height:16px; word-wrap: break-word;}
-   .session-history .session-btn{padding: 0 15px;}
-   .session-history .session-btn .btn{font-size: 14px; padding: 9px 11px 8px; background:#236a6d; border:0; text-decoration: none; -webkit-border-radius: 30px; -moz-border-radius: 30px; border-radius: 30px; font-weight:700; position: relative; z-index: 1; display: inline-block; text-align: center; color: #eae3d1; letter-spacing:1px; width:100%; margin:0; overflow:hidden; text-shadow:none; box-shadow:none; text-transform: inherit;}
+   .session-history .session-btn{padding: 0 15px; text-align:right;}
+   .session-history .session-btn .btn{font-size: 14px; padding: 9px 11px 8px; background:#236a6d !important; border:0; text-decoration: none; -webkit-border-radius: 30px; -moz-border-radius: 30px; border-radius: 30px; font-weight:700; position: relative; z-index: 1; display: inline-block; text-align: center; color: #eae3d1; letter-spacing:1px; width:auto; margin:0; overflow:hidden; text-shadow:none; box-shadow:none; min-width: 250px; text-transform: inherit;}
    .session-history .session-btn .btn:hover, .session-history .session-btn .btn:focus, .session-history .session-btn .btn:visited{color: #eae3d1 !important; background:#f79632;}
    .session-history .session-btn .btn:after{content: ''; position: absolute; height: 100%; left: 0; top: 0; width: 0%; -webkit-transition: all .3s; -moz-transition: all .3s; -o-transition: all .3s; transition: all .3s; background-color: #0e2540; z-index: -1; border: 0; margin:0;}
    .session-history .session-btn .btn:focus:after, .session-history .session-btn .btn:visited:after, .session-history .session-btn .btn:hover:after{width: 100%;}
