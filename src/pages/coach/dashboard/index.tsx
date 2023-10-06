@@ -207,8 +207,8 @@ useEffect(() => {
                           <div className="inner">
                           <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Edit My Profile</button>
                           <ul className="dropdown-menu">
-                            <li><Link href='/edit-profile' passHref><a className="dropdown-item">Edit Profile</a></Link></li>
-                          <li><Link href='/change-password' passHref><a className="dropdown-item">Change Password</a></Link></li>
+                            <li><Link href='/coach/edit-profile' passHref><a className="dropdown-item">Edit Profile</a></Link></li>
+                          <li><Link href='/coach/change-password' passHref><a className="dropdown-item">Change Password</a></Link></li>
                           </ul>
                         </div>
                       </div>
