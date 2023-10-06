@@ -1122,14 +1122,33 @@ var interval = "45";
    console.log(busySchedule);
    }, [meeting]);
 
+   
+   const rejectMeet = (meet_iddd) => {
+    console.log(meet_iddd);
+    const fieldToEdit2 = doc(database, 'meeting', meet_iddd);
+
+    updateDoc(fieldToEdit2, {
+      isCoachAccept:0
+     
+    })
+    .then(() => {
+     
+      getMeeting();
+  
+     
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+   }
 
    const acceptMeet = (meet_iddd) => {
     console.log(meet_iddd);
     const fieldToEdit2 = doc(database, 'meeting', meet_iddd);
 
     updateDoc(fieldToEdit2, {
-      isCoachAccept:1,
-      meetingTime:"10:30:00"
+      isCoachAccept:1
+   
     })
     .then(() => {
      
@@ -1556,7 +1575,13 @@ return(<>
 ) : (
   <p>Accepted</p>
 )}
-                       <p><u>Reject</u></p>
+                       {isCoachAccept_ !== undefined && isCoachAccept_ !== 0 ? (
+  <p>
+    <u onClick={() => rejectMeet(meet_iddd)}>Reject</u>
+  </p>
+) : (
+  <p>Rejected</p>
+)}
                        
                         </div>
                       </td>
