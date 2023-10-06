@@ -3193,6 +3193,11 @@ button{font-family: Gothic A1 !important;}
    .about-coaching .right{width: 100%;}
    
    .pricing-wrap .col-sm-6{width: 100%;}
+   .front-pricing{top: 20%; left: 35px; right: 35px;}
+   .front-pricing .para-modal{margin: 50px 20px;}
+   
+   .login-wrap .inner-info{padding: 50px 40px 30px;}
+   .login-wrap{margin: 0 15%;}
 
 }
 
