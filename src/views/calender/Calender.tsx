@@ -1123,8 +1123,8 @@ var interval = "45";
    }, [meeting]);
 
 
-   const acceptMeet = (event) => {
-    console.log(event.target);
+   const acceptMeet = (meet_iddd) => {
+    console.log(meet_iddd);
     // const fieldToEdit2 = doc(database, 'newPlanRequest', request_id);
 
     // updateDoc(fieldToEdit, {
@@ -1547,7 +1547,7 @@ return(<>
 
                        <small>Client :  Client</small>
 
-                       <p><u   data-id={meet_iddd} onClick={acceptMeet}>Accept</u></p>
+                       <p><u   onClick={() => acceptMeet(meet_iddd)}>Accept</u></p>
                        <p><u>Reject</u></p>
                        
                         </div>
