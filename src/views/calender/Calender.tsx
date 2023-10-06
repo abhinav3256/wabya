@@ -1125,20 +1125,20 @@ var interval = "45";
 
    const acceptMeet = (meet_iddd) => {
     console.log(meet_iddd);
-    // const fieldToEdit2 = doc(database, 'newPlanRequest', request_id);
+    const fieldToEdit2 = doc(database, 'newPlanRequest', meet_iddd);
 
-    // updateDoc(fieldToEdit, {
-    //   plan_id:new_plan_id
-    // })
-    // .then(() => {
+    updateDoc(fieldToEdit, {
+      plan_id:new_plan_id
+    })
+    .then(() => {
      
 
   
      
-    // })
-    // .catch((err) => {
-    //   console.log(err);
-    // })
+    })
+    .catch((err) => {
+      console.log(err);
+    })
    }
 
 
