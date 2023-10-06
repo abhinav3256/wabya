@@ -1527,8 +1527,8 @@ return(<>
 
                        <small>Client :  Client</small>
 
-                       <p><u>Accept</u>
-                       <u>Reject</u></p>
+                       <p><u>Accept</u></p>
+                       <p><u>Reject</u></p>
                        <p><u>Reschedule</u></p>
                         </div>
                       </td>
