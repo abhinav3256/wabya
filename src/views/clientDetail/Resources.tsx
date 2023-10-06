@@ -287,13 +287,11 @@ const year = today.getFullYear();
 
           <div className="col-sm-12">
           <section className="client-password">
-          <div className="row">
-          <div className="col-sm-2"></div>
-          <div className="col-sm-4"> <h3 style={{ textAlign: 'left' }}>upload notes</h3></div>
-        </div>
+         
             <div className="row">
-            <div className="col-sm-2"></div>
-              <div className="col-sm-8">
+           
+              <div className="col-sm-12">
+              <h3 style={{ textAlign: 'left' }}>upload notes</h3>
                 <div className='inner-info'>
                 
                 <form noValidate autoComplete='off' onSubmit={e => e.preventDefault()} className='form-password'>
