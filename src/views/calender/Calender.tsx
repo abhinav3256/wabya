@@ -1125,7 +1125,7 @@ var interval = "45";
 
    const acceptMeet = (meet_iddd) => {
     console.log(meet_iddd);
-    const fieldToEdit2 = doc(database, 'newPlanRequest', meet_iddd);
+    const fieldToEdit2 = doc(database, 'meeting', meet_iddd);
 
     updateDoc(fieldToEdit2, {
       isCoachAccept:1
