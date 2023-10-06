@@ -1070,8 +1070,8 @@ var interval = "45";
 
       console.log(meeting[meetId]);
      
-      console.log(meetId);
-      console.log('abc');
+      console.log(meeting[meetId].meet_id);
+      console.log();
 
       console.log(meeting[meetId].meetingDate);
 
