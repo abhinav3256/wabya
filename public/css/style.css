@@ -879,7 +879,7 @@ padding: 25px 40px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  align-content: end;
+  align-content: end; word-break: break-all;
   margin: 0 0 30px;
 }
 .client-bg .fi-coll .inner figure { width: 35px;
