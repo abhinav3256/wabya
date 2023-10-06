@@ -1123,21 +1123,22 @@ var interval = "45";
    }, [meeting]);
 
 
-   const acceptMeet = () => {
-    const fieldToEdit2 = doc(database, 'newPlanRequest', request_id);
+   const acceptMeet = (event) => {
+    console.log(event.target.getAttribute('data-id'));
+    // const fieldToEdit2 = doc(database, 'newPlanRequest', request_id);
 
-    updateDoc(fieldToEdit, {
-      plan_id:new_plan_id
-    })
-    .then(() => {
+    // updateDoc(fieldToEdit, {
+    //   plan_id:new_plan_id
+    // })
+    // .then(() => {
      
 
   
      
-    })
-    .catch((err) => {
-      console.log(err);
-    })
+    // })
+    // .catch((err) => {
+    //   console.log(err);
+    // })
    }
 
 
@@ -1546,7 +1547,7 @@ return(<>
 
                        <small>Client :  Client</small>
 
-                       <p><u   data-id={meet_iddd}>Accept</u></p>
+                       <p><u   data-id={meet_iddd} onClick={acceptMeet}>Accept</u></p>
                        <p><u>Reject</u></p>
                        
                         </div>
