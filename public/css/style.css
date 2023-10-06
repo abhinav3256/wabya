@@ -3233,7 +3233,7 @@ button{font-family: Gothic A1 !important;}
    .react-calendar__month-view__weekdays{font-size: 14px; letter-spacing: 0;}
    .react-calendar__tile abbr{width: 38px; height: 38px; line-height: 38px;}
    
-   .header-desktop .menu-head{marging:0;}
+   .header-desktop .menu-head{margin:0;}
    
    .next-session .left, .next-session .right{width: 100%;}
    .client-plans .col-sm-7, .client-plans .col-sm-5{width: 100%;}
