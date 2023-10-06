@@ -3239,6 +3239,8 @@ button{font-family: Gothic A1 !important;}
    .client-plans .col-sm-7, .client-plans .col-sm-5{width: 100%;}
    .client-contact .col-sm-7, .client-contact .col-sm-5{width: 100%;}
    .client-contact .coach-resp{padding: 0 0 0; border-bottom: 1px solid #1d696c; border-right: 0; margin: 0 0 30px;}
+   .client-contact .client-help{padding: 0;}
+   .client-plans figure{width: auto; float: none; margin: 30px 0;}
 
 }
 
