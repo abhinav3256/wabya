@@ -3183,6 +3183,10 @@ button{font-family: Gothic A1 !important;}
    .client-profile{padding: 190px 0 80px;}
    .client-profile .inner-info figure{max-width: 190px;}
    .client-resources .left figure, .profile-button > figure, .user-profile .inner-info figure{border:3px solid #fff;}
+   
+   .meet-client{flex-flow: inherit;}
+   .meet-client .col-sm-3{width: 50%;}
+   .pvmv .gs-coll{width: 50%;}
 
 }
 
