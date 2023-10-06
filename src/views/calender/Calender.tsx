@@ -1526,6 +1526,10 @@ return(<>
                           <p><span>{ matchingStarttime} - {matchingEndtime} </span> </p>
 
                        <small>Client :  Client</small>
+
+                       <p><u>Accept</u>
+                       <u>Reject</u></p>
+                       <p><u>Reschedule</u></p>
                         </div>
                       </td>
                       </>

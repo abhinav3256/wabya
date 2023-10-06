@@ -522,6 +522,9 @@ function test(){
 
 const addNewRequest = async (event :  any) =>{
 event.preventDefault();
+const addButton = event.target;
+  addButton.setAttribute("disabled", true);
+  addButton.textContent = "Loading...";
   if(await countMyRequest() == 0){
     var new_plan_id=event.target.getAttribute("data-plan-id");
  
@@ -534,12 +537,16 @@ event.preventDefault();
       .then(() => {
         getNewRequest();
         toast.success('Data Updated successfully')
-      
-        
+       // Re-enable the button and remove loading state
+    
       })
       .catch((err) => {
         console.error(err);
+         // Re-enable the button and remove loading state
+        
       })
+
+
   }
   else{
     var new_plan_id=event.target.getAttribute("data-plan-id");
@@ -560,7 +567,8 @@ event.preventDefault();
         // ...
       });
     });
-
+    addButton.removeAttribute("disabled");
+    addButton.textContent = "Requested"; 
     getNewRequest();
   }
   
@@ -2937,7 +2945,7 @@ var myArr=new Date(data.meetingDate).toLocaleDateString().split('/');
 
                             <button  data-plan-id={data.plan_id} className="btn btnn buy-pro buyagain-btn" onClick={addNewRequest}>
                               {" "} 
-                              {data.plan_id === clientPlanId ? 'Buy Again' : 'Current Selection'}
+                              {data.plan_id === clientPlanId ? 'Buy Again' : 'Requested'}
                             </button>
 
 
