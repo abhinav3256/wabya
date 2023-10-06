@@ -86,7 +86,7 @@ const Header = () => {
                     </div>
                   </div>
 
-                  <button
+                  {/* <button
                     className='navbar-toggler'
                     type='button'
                     data-bs-toggle='collapse'
@@ -96,7 +96,7 @@ const Header = () => {
                     aria-label='Toggle navigation'
                   >
                     <span className='navbar-toggler-icon'></span>
-                  </button>
+                  </button> */}
 
 
                 </div>
