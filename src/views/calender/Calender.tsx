@@ -158,7 +158,7 @@ const Calender = () => {
   const meetingRef = collection(database, "meeting");
   const clientRef = collection(database, "client_user");
 
-  const [bookedTimeslot, setbookedTimeslot] = useState([{meet_idd:"",starttime:"",endtime:"",title:"",date:"",clientName:""}]);
+  const [bookedTimeslot, setbookedTimeslot] = useState([{isCoachAccept:"",meet_idd:"",starttime:"",endtime:"",title:"",date:"",clientName:""}]);
   const [meeting, setMeeting] = useState([]);
 
   const [meetingClientJoinedData, setmeetingClientJoinedData] =useState([]);
@@ -1079,7 +1079,7 @@ var interval = "45";
       let month_ = new Date(meeting[meetId].meetingDate).getMonth();
       let year_ = new Date(meeting[meetId].meetingDate).getFullYear();
 
-       busySchedule.push({ meet_idd: meeting[meetId].meeting_id,starttime: meeting[meetId].meetingTime, endtime: meeting[meetId].meetingEndTime, title:meeting[meetId].meetingName,date:date_,month:month_,year:year_});
+       busySchedule.push({ isCoachAccept:meeting[meetId].isCoachAccept,meet_idd: meeting[meetId].meeting_id,starttime: meeting[meetId].meetingTime, endtime: meeting[meetId].meetingEndTime, title:meeting[meetId].meetingName,date:date_,month:month_,year:year_});
 
 
         }
@@ -1528,7 +1528,7 @@ var interval = "45";
               // });
 
 
-              const matchingTimeslot = bookedTimeslot.find(({meet_idd, starttime, endtime,title,date,clientName }) => timeslot >= starttime && timeslot < endtime && index2 < 7 && nextSevenDay[index2].date == date);
+              const matchingTimeslot = bookedTimeslot.find(({meet_idd,isCoachAccept, starttime, endtime,title,date,clientName }) => timeslot >= starttime && timeslot < endtime && index2 < 7 && nextSevenDay[index2].date == date);
 
 const isBetween = !!matchingTimeslot; // will be true if matchingTimeslot is truthy, false otherwise
 
@@ -1537,6 +1537,7 @@ const matchingEndtime = matchingTimeslot && matchingTimeslot.endtime.slice(0,-3)
 const matchingTitle = matchingTimeslot && matchingTimeslot.title; // will be the endtime of the matching timeslot, or undefined if no matching timeslot
 const clientName = matchingTimeslot && matchingTimeslot.clientName;
 const meet_iddd = matchingTimeslot && matchingTimeslot.meet_idd;
+const isCoachAccept_ = matchingTimeslot && matchingTimeslot.isCoachAccept;
 if(isBetween)
 
 
@@ -1548,7 +1549,13 @@ return(<>
 
                        <small>Client :  Client</small>
 
-                       <p><u   onClick={() => acceptMeet(meet_iddd)}>Accept</u></p>
+                       {isCoachAccept_ !== undefined && isCoachAccept_ !== 1 ? (
+  <p>
+    <u onClick={() => acceptMeet(meet_iddd)}>Accept</u>
+  </p>
+) : (
+  <p>Accepted</p>
+)}
                        <p><u>Reject</u></p>
                        
                         </div>
