@@ -1124,7 +1124,7 @@ var interval = "45";
 
 
    const acceptMeet = (event) => {
-    console.log(event.target.getAttribute('data-id'));
+    console.log(event.target);
     // const fieldToEdit2 = doc(database, 'newPlanRequest', request_id);
 
     // updateDoc(fieldToEdit, {
