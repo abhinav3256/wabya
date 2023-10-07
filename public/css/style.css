@@ -2095,6 +2095,7 @@ img.tree-image {
    .get-paid h2{font-size: 40px;}
    .get-paid .right figure::after{height: 103px; width: 101px; top: -60px; right: -10px;}
    .session-history-modal .modall{overflow-y: unset; overflow-y: unset;}
+   .PROBONO-modal .modal-dialog { max-width: 100% !important; }
 
 }
 
@@ -2192,6 +2193,7 @@ img.tree-image {
    .get-paid .right figure::after{height: 103px; width: 101px; top: -60px; right: -10px;}
    
    .client-bg .fi-coll{width: 50%;}
+   .PROBONO-modal .modal-dialog { max-width: 100% !important; }
 
 }
 
@@ -2296,6 +2298,7 @@ img.tree-image {
    .get-paid .row{align-items: center;}
    .get-paid h2{font-size: 50px;}
    .get-paid .right figure::after{height: 103px; width: 101px; top: -60px; right: -10px;}
+   .PROBONO-modal .modal-dialog { max-width: 100% !important; }
 
 }
 
@@ -2419,6 +2422,7 @@ img.tree-image {
    .get-paid .row{align-items: center;}
    .get-paid h2{font-size: 50px;}
    .get-paid .right figure::after{height: 103px; width: 101px; top: -60px; right: -10px;}
+   .PROBONO-modal .modal-dialog { max-width: 90% !important; }
 
 }
 
@@ -3302,3 +3306,8 @@ button{font-family: Gothic A1 !important;}
 .standard-availability .form-group input{margin: 0 2px;}
 .standard-availability .close-button{position: relative; padding: 0 20px; text-align: center;}
 .standard-availability .close-button .btn-close{opacity: 1; height: auto; padding: 12px 0 10px; margin: 0 0 -20px;}
+
+
+.PROBONO-modal .modal-dialog { max-width: 80%;}
+.PROBONO-modal .modal-content { background: transparent; }
+.PROBONO-modal  .btn-close {background: none;position: absolute; right: 30px;}

@@ -10,7 +10,7 @@ import { Alert } from 'antd'
 import {ref, uploadBytesResumable, getDownloadURL } from "firebase/storage"
 import { countries } from 'countries-list';
 import { Select, MenuItem } from '@mui/material';
-
+import { sendMail } from "../../../services/sendMail";  
 
 
 import allCountries from '../../../@core/utils/countries'
@@ -333,7 +333,12 @@ function toggleProfile() {
   //   setNext(true)
   // }
 
- 
+  async function sendMailFunc (email,content,$subject){   
+    let response = await sendMail(email,$subject,content);   
+  
+    console.log('response',response);
+  }    	
+
 
   const scheduleNext = async () => {
     setbookingLoad(true);
@@ -369,6 +374,55 @@ function toggleProfile() {
 
         setBookedId(data.id);
 
+        const logoUrl = 'https://wabya.com/images/logo-new.png';
+        const msg = `
+        <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+        <html xmlns="http://www.w3.org/1999/xhtml">
+           <head>
+              <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+              <meta name="viewport" content="width=device-width, initial-scale=1">
+              <title>Wabya</title>
+              <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap" rel="stylesheet">
+              <style type="text/css">
+                 body{padding-top: 0 !important; padding-bottom: 0 !important; padding-top: 0 !important; padding-bottom: 0 !important; margin:0 !important; width: 100% !important; -webkit-text-size-adjust: 100% !important; -ms-text-size-adjust: 100% !important; -webkit-font-smoothing: antialiased !important; font-size:14px; line-height:22px; font-family: 'Lato', sans-serif; font-weight:400;}
+              </style>
+           </head>
+           <body paddingwidth="0" paddingheight="0"  style="" offset="0" toppadding="0" leftpadding="0">
+           <div style="display:table; width:600px !important; margin: 0 auto; background: #fff; padding:20px;">
+              <table width="600" border="0" cellspacing="0" cellpadding="0" class="tableContent bgBody" align="center" style='width: 600px; display: block;'>
+                 <tbody>
+                    <tr>
+                       <table class="MainContainer" width="600" cellspacing="0" cellpadding="0" border="0" bgcolor="#ece6d5" align="center" style='width: 600px; -webkit-border-radius: 15px; -moz-border-radius: 15px; border-radius: 15px;'>
+                          <tbody style=''>
+        <tr>
+                                <td colspan="2"><div style="text-align: center; margin:35px 0 0" class="contentLogo"><a href="https://www.#.com"><img src="${logoUrl}" width="200px" alt="" border="0" style=""></a></div></td>
+                             </tr>
+                             <tr>
+                                <td>
+                                   <div style="padding:0 30px;  position: relative; z-index: 2;line-height: 22px;font-family: 'Lato', sans-serif;font-weight: 600;text-align: center;">
+            <p style="color: #3498db;text-align: center;font-size: 36px;">Meeting ${res_action}!</p>
+        <p style="font-size: 18px; text-align: center; color: #864985;">Your meeting  has been Schedule. We are looking forward to seeing you there!</p>
+        <p style="font-size: 16px; text-align: center; margin:0 0 10px;color: #242424;">Date: ${meetingdate}</p>
+        <p style="font-size: 16px; text-align: center; margin:0 0 20px;color: #242424;">Time: ${meetingtime} - ${meetingendtime}</p>
+        <hr style="border: 1px solid #1c686b;">
+        <p style="font-size: 14px; color: #242424; text-align: center;">Thank you,<br>Wabya Team</p>
+         </div>  
+                                </td>
+                             </tr>
+                          </tbody>
+                       </table>
+                    </tr>
+                 </tbody>
+              </table>
+         </div>
+           </body>
+        </html>
+  `;
+      sendMailFunc('abhinavkumar3256@gmail.com',msg,'Meeting Scheduled');   	
+      
+
+
+
      
       } else {
         setbookingLoad(false);
@@ -384,7 +438,53 @@ function toggleProfile() {
 
   }
   else{
+    const logoUrl = 'https://wabya.com/images/logo-new.png';
+    const msg = `
+    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    <html xmlns="http://www.w3.org/1999/xhtml">
+       <head>
+          <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+          <meta name="viewport" content="width=device-width, initial-scale=1">
+          <title>Wabya</title>
+          <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap" rel="stylesheet">
+          <style type="text/css">
+             body{padding-top: 0 !important; padding-bottom: 0 !important; padding-top: 0 !important; padding-bottom: 0 !important; margin:0 !important; width: 100% !important; -webkit-text-size-adjust: 100% !important; -ms-text-size-adjust: 100% !important; -webkit-font-smoothing: antialiased !important; font-size:14px; line-height:22px; font-family: 'Lato', sans-serif; font-weight:400;}
+          </style>
+       </head>
+       <body paddingwidth="0" paddingheight="0"  style="" offset="0" toppadding="0" leftpadding="0">
+       <div style="display:table; width:600px !important; margin: 0 auto; background: #fff; padding:20px;">
+          <table width="600" border="0" cellspacing="0" cellpadding="0" class="tableContent bgBody" align="center" style='width: 600px; display: block;'>
+             <tbody>
+                <tr>
+                   <table class="MainContainer" width="600" cellspacing="0" cellpadding="0" border="0" bgcolor="#ece6d5" align="center" style='width: 600px; -webkit-border-radius: 15px; -moz-border-radius: 15px; border-radius: 15px;'>
+                      <tbody style=''>
+    <tr>
+                            <td colspan="2"><div style="text-align: center; margin:35px 0 0" class="contentLogo"><a href="https://www.#.com"><img src="${logoUrl}" width="200px" alt="" border="0" style=""></a></div></td>
+                         </tr>
+                         <tr>
+                            <td>
+                               <div style="padding:0 30px;  position: relative; z-index: 2;line-height: 22px;font-family: 'Lato', sans-serif;font-weight: 600;text-align: center;">
+        <p style="color: #3498db;text-align: center;font-size: 36px;">Meeting ${res_action}!</p>
+    <p style="font-size: 18px; text-align: center; color: #864985;">Your meeting  has been Schedule. We are looking forward to seeing you there!</p>
+    <p style="font-size: 16px; text-align: center; margin:0 0 10px;color: #242424;">Date: ${meetingdate}</p>
+    <p style="font-size: 16px; text-align: center; margin:0 0 20px;color: #242424;">Time: ${meetingtime} - ${meetingendtime}</p>
+    <hr style="border: 1px solid #1c686b;">
+    <p style="font-size: 14px; color: #242424; text-align: center;">Thank you,<br>Wabya Team</p>
+     </div>  
+                            </td>
+                         </tr>
+                      </tbody>
+                   </table>
+                </tr>
+             </tbody>
+          </table>
+     </div>
+       </body>
+    </html>
+`;
+  sendMailFunc('abhinavkumar3256@gmail.com',msg,'Meeting Rescheduled');   
     updateMeeting();
+    
 
   }
 
@@ -803,6 +903,9 @@ const getMeetingSession = async () => {
   };
   const rescheduleCancel = () => {
     setReschedule(false);
+    setNext(false);
+    setbookingLoad(false);
+    setbookingError(false);
   };
 
   const showModal = () => {

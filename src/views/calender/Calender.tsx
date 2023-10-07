@@ -6,7 +6,7 @@ import { useState, useEffect, SyntheticEvent, Fragment, ReactNode } from 'react'
 import { useRouter } from 'next/router'
 import { database } from '../../../firebaseConfig'
 import { collection, getDocs, getDoc, doc, where, query,addDoc,updateDoc } from "firebase/firestore";
-
+import { sendMail } from "../../services/sendMail";    
 // ** MUI Imports
 import Box from '@mui/material/Box'
 import { styled, Theme } from '@mui/material/styles'
@@ -158,7 +158,7 @@ const Calender = () => {
   const meetingRef = collection(database, "meeting");
   const clientRef = collection(database, "client_user");
 
-  const [bookedTimeslot, setbookedTimeslot] = useState([{isCoachAccept:"",meet_idd:"",starttime:"",endtime:"",title:"",date:"",clientName:""}]);
+  const [bookedTimeslot, setbookedTimeslot] = useState([{isCoachAccept:"",meet_idd:"",starttime:"",endtime:"",title:"",date:"",clientName:"",clientEmail:""}]);
   const [meeting, setMeeting] = useState([]);
 
   const [meetingClientJoinedData, setmeetingClientJoinedData] =useState([]);
@@ -896,17 +896,40 @@ const getEventTypes = async () => {
     // get all meeting data
   const getMeeting = async () => {
     const coachId = sessionStorage.getItem('coachId');
+    const meetingQuery = query(meetingRef, where("coachId", "==", coachId), where("meetingApiCreated", "==", true));
+    // Query for meeting data
+  //  const meetingQuery = query(collection(db, 'meetings'), where("coachId", "==", coachId), where("meetingApiCreated", "==", true));
 
-    const queryDoc = query(meetingRef, where("coachId", "==", coachId),where("meetingApiCreated", "==", true));
+    // Query for client data
+    const clientQuery = query(clientRef, where("assign_coach_id", "==", coachId));
+   // const clientQuery = query(collection(db, 'clients'), where("assign_coach_id", "==", coachId));
+console.log('abcddd');
+try {
+  const meetingData = await getDocs(meetingQuery);
+  const clientData = await getDocs(clientQuery);
 
-    await getDocs(queryDoc).then((response) => {
-      setMeeting(
-        response.docs.map((data) => {
-          return { ...data.data(), meeting_id: data.id };
-        })
-      );
-    });
+  const meetings = meetingData.docs.map((meetingDoc) => {
+    const matchingClient = clientData.docs.find((clientDoc) => clientDoc.id === meetingDoc.data().clientId);
+
+    const clients = matchingClient
+      ? [{ clientId: matchingClient.id, name: matchingClient.data().client_name, email: matchingClient.data().client_email }]
+      : [];
+
+    return {
+      ...meetingDoc.data(),
+      meeting_id: meetingDoc.id,
+     client_name: clients[0].name,
+     client_email: clients[0].email,
+    };
+  });
+setMeeting(meetings);
+  console.log(meetings); // Logging the meetings with client details
+} catch (error) {
+  console.error("Error fetching data: ", error);
+}
+    console.error("dfbhbh");
   };
+  
 
    // coach data fetch
    const getClientData = async () => {
@@ -1063,7 +1086,8 @@ var interval = "45";
 
     const busySchedule = [];
     //console.log(meeting[0]);
-
+    console.log('abty');
+    console.log(meeting);
     for (const meetId in meeting) {
 
      
@@ -1079,7 +1103,7 @@ var interval = "45";
       let month_ = new Date(meeting[meetId].meetingDate).getMonth();
       let year_ = new Date(meeting[meetId].meetingDate).getFullYear();
 
-       busySchedule.push({ isCoachAccept:meeting[meetId].isCoachAccept,meet_idd: meeting[meetId].meeting_id,starttime: meeting[meetId].meetingTime, endtime: meeting[meetId].meetingEndTime, title:meeting[meetId].meetingName,date:date_,month:month_,year:year_});
+       busySchedule.push({ clientName:meeting[meetId].client_name,clientEmail:meeting[meetId].client_email,isCoachAccept:meeting[meetId].isCoachAccept,meet_idd: meeting[meetId].meeting_id,starttime: meeting[meetId].meetingTime, endtime: meeting[meetId].meetingEndTime, title:meeting[meetId].meetingName,date:date_,month:month_,year:year_});
 
 
         }
@@ -1123,8 +1147,10 @@ var interval = "45";
    }, [meeting]);
 
    
-   const rejectMeet = (meet_iddd) => {
+   const rejectMeet = (meet_iddd,clientName,clientEmail,meet_date,meet_day,meet_month,meeting_start_time,meeting_end_time) => {
     console.log(meet_iddd);
+    console.log(clientName);
+    console.log(clientEmail);
     const fieldToEdit2 = doc(database, 'meeting', meet_iddd);
 
     updateDoc(fieldToEdit2, {
@@ -1132,7 +1158,16 @@ var interval = "45";
      
     })
     .then(() => {
-     
+      const msg = `
+      <div style="background-color: #f9f9f9; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+          <h1 style="color: #e74c3c; text-align: center;">Meeting Cancelled</h1>
+          <p style="font-size: 18px; text-align: center;">We regret to inform you that the following meeting has been cancelled:</p>
+          <p style="font-size: 16px; text-align: center;">Date: ${meet_date} ${meet_month} ${meet_day}<br>Time: ${meeting_start_time} - ${meeting_end_time}</p>
+          <hr style="border: 1px solid #e74c3c;">
+          <p style="font-size: 14px; color: #888; text-align: center;">We apologize for any inconvenience caused.<br>Thank you,<br>Wabya Team</p>
+      </div>
+  `;
+      sendMailFunc('abhinavkumar3256@gmail.com',msg);  
       getMeeting();
   
      
@@ -1142,7 +1177,13 @@ var interval = "45";
     })
    }
 
-   const acceptMeet = (meet_iddd) => {
+   async function sendMailFunc (email,content){   
+    let response = await sendMail(email,"sample mail",content);   
+  
+    console.log('response',response);
+  }    	
+
+   const acceptMeet = (meet_iddd,meet_date,meet_day,meet_month,meeting_start_time,meeting_end_time) => {
     console.log(meet_iddd);
     const fieldToEdit2 = doc(database, 'meeting', meet_iddd);
 
@@ -1151,11 +1192,20 @@ var interval = "45";
    
     })
     .then(() => {
-     
+      const msg = `
+      <div style="background-color: #f9f9f9; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+          <h1 style="color: #3498db; text-align: center;">Meeting Accepted!</h1>
+          <p style="font-size: 18px; text-align: center;">Your meeting request  has been accepted. We are looking forward to seeing you there!</p>
+          <p style="font-size: 16px; text-align: center;">Date: ${meet_date} ${meet_month}  ${meet_day}<br>Time: ${meeting_start_time} - ${meeting_end_time}</p>
+          <hr style="border: 1px solid #3498db;">
+          <p style="font-size: 14px; color: #888; text-align: center;">Thank you,<br>Wabya Team</p>
+      </div>
+  `;
+      sendMailFunc('abhinavkumar3256@gmail.com',msg);  
       getMeeting();
   
      
-    })
+    }) 
     .catch((err) => {
       console.log(err);
     })
@@ -1363,7 +1413,7 @@ var interval = "45";
 
 
           <div className="timesheet-carousel">
-          <OwlCarousel options={options}>
+          {/* <OwlCarousel options={options}> */}
 
           { forloops.map((floop, index) => {
             let i=(index)*7;
@@ -1384,7 +1434,7 @@ var interval = "45";
             }
 
           })}
-          </OwlCarousel>
+          {/* </OwlCarousel> */}
           </div>
 
 
@@ -1547,7 +1597,7 @@ var interval = "45";
               // });
 
 
-              const matchingTimeslot = bookedTimeslot.find(({meet_idd,isCoachAccept, starttime, endtime,title,date,clientName }) => timeslot >= starttime && timeslot < endtime && index2 < 7 && nextSevenDay[index2].date == date);
+              const matchingTimeslot = bookedTimeslot.find(({clientEmail,meet_idd,isCoachAccept, starttime, endtime,title,date,clientName }) => timeslot >= starttime && timeslot < endtime && index2 < 7 && nextSevenDay[index2].date == date);
 
 const isBetween = !!matchingTimeslot; // will be true if matchingTimeslot is truthy, false otherwise
 
@@ -1555,6 +1605,7 @@ const matchingStarttime = matchingTimeslot && matchingTimeslot.starttime.slice(0
 const matchingEndtime = matchingTimeslot && matchingTimeslot.endtime.slice(0,-3); // will be the endtime of the matching timeslot, or undefined if no matching timeslot
 const matchingTitle = matchingTimeslot && matchingTimeslot.title; // will be the endtime of the matching timeslot, or undefined if no matching timeslot
 const clientName = matchingTimeslot && matchingTimeslot.clientName;
+const clientEmail = matchingTimeslot && matchingTimeslot.clientEmail;
 const meet_iddd = matchingTimeslot && matchingTimeslot.meet_idd;
 const isCoachAccept_ = matchingTimeslot && matchingTimeslot.isCoachAccept;
 if(isBetween)
@@ -1570,14 +1621,14 @@ return(<>
 
                        {isCoachAccept_ !== undefined && isCoachAccept_ !== 1 ? (
   <p>
-    <u onClick={() => acceptMeet(meet_iddd)}>Accept</u>
+    <u onClick={() => acceptMeet(meet_iddd,clientName,clientEmail,nextSevenDay[index2].date,nextSevenDay[index2].day,nextSevenDay[index2].month,matchingStarttime,matchingEndtime)}>Accept</u>
   </p>
 ) : (
-  <p>Accepted</p>
+  <p>{clientName}</p>
 )}
                        {isCoachAccept_ !== undefined && isCoachAccept_ !== 0 ? (
   <p>
-    <u onClick={() => rejectMeet(meet_iddd)}>Reject</u>
+    <u onClick={() => rejectMeet(meet_iddd,clientName,clientEmail,nextSevenDay[index2].date,nextSevenDay[index2].day,nextSevenDay[index2].month,matchingStarttime,matchingEndtime)}>Reject</u>
   </p>
 ) : (
   <p>Rejected</p>
