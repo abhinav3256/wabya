@@ -59,7 +59,7 @@ const Header = () => {
             <div className='container'>
               <nav className='navbar navbar-expand-lg'>
                 <div className='container-fluid'>
-                  <Link href='/client/dashboard' passHref>
+                  <a href='/client/dashboard' >
                     <a className='navbar-brand' href="/client/dashboard/">
 
                     {router.pathname.startsWith('/client/joinvideo/') ? (
@@ -69,7 +69,7 @@ const Header = () => {
         )}
                      
                     </a>
-                  </Link>
+                  </a>
 
                   <div className='profile-button'>
                     <div className='dropdown'>
