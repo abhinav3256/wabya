@@ -66,71 +66,69 @@ const ClientLoginPage = () => {
     const handleLogin = async (event) => {
       event.preventDefault();
 console.log('working');
-      try {
-        // Check if the user exists in the database
-        const usersRef = collection(database, 'client_user');
-        const q = query(usersRef, where('client_email', '==', email));
-        const querySnapshot = await getDocs(q);
+      // try {
+      //   // Check if the user exists in the database
+      //   const usersRef = collection(database, 'client_user');
+      //   const q = query(usersRef, where('client_email', '==', email));
+      //   const querySnapshot = await getDocs(q);
  
-        if (querySnapshot.empty) {
-          //throw new Error('Credentials are invalid!');
+      //   if (querySnapshot.empty) {
+      //     //throw new Error('Credentials are invalid!');
 
 
           //coach login
 
 
-    //         try {
-    //   // Check if the user exists in the database
-    //   const usersRef2 = collection(database, 'coaches_user');
-    //   const q2 = query(usersRef2, where('coach_email', '==', email));
-    //   const querySnapshot2 = await getDocs(q2);
+            try {
+      // Check if the user exists in the database
+      const usersRef2 = collection(database, 'coaches_user');
+      const q2 = query(usersRef2, where('coach_email', '==', email));
+      const querySnapshot2 = await getDocs(q2);
 
-    //   if (querySnapshot2.empty) {
-    //     setError('Incorrect password');
-    //     throw new Error('Credentials are invalid!');
+      if (querySnapshot2.empty) {
+        setError('Incorrect password');
+        throw new Error('Credentials are invalid!');
       
-    //   }
-
-    //   // Check if the password is correct
-    //   const user2 = querySnapshot2.docs[0].data();
-    //   if (user2.coach_password !== password) {
-    //     setError('Incorrect password');
-    //     throw new Error('Incorrect password');
-        
-    //   }
-      
-    //   // Set the user ID as a session variable
-    //     sessionStorage.setItem('coachId', querySnapshot2.docs[0].id);
-
-    //   // Redirect to the home page
-    //     router.push('/coach/dashboard');
-      
-
-    // } catch (error2) {
-    //   //setError(error2.message);
-    // }
-
-    setError('Incorrect Password');
-    throw new Error('Incorrect password');
-        }
-
-        // Check if the password is correct
-        const user = querySnapshot.docs[0].data();
-        if (user.client_password !== password) {
-          setError('Incorrect password');
-          throw new Error('Incorrect password');
-        }
-
-        // Set the user ID as a session variable
-          sessionStorage.setItem('userId', querySnapshot.docs[0].id);
-
-        // Redirect to the home page
-          router.push('/client/dashboard');
-
-      } catch (error) {
-       // console.log(error);
-        //setError('Incorrect password');
       }
+
+      // Check if the password is correct
+      const user2 = querySnapshot2.docs[0].data();
+      if (user2.coach_password !== password) {
+        setError('Incorrect password');
+        throw new Error('Incorrect password');
+        
+      }
+      
+      // Set the user ID as a session variable
+        sessionStorage.setItem('coachId', querySnapshot2.docs[0].id);
+
+      // Redirect to the home page
+        router.push('/coach/dashboard');
+      
+
+    } catch (error2) {
+      //setError(error2.message);
+      setError('Incorrect password');
+    }
+      //  }
+
+      //   // Check if the password is correct
+      //   const user = querySnapshot.docs[0].data();
+      //   if (user.client_password !== password) {
+      //     setError('Incorrect password');
+      //     throw new Error('Incorrect password');
+      //   }
+
+      //   // Set the user ID as a session variable
+      //     sessionStorage.setItem('userId', querySnapshot.docs[0].id);
+
+      //   // Redirect to the home page
+      //     router.push('/client/dashboard');
+
+      // } catch (error) {
+      //  // console.log(error);
+      //   //setError('Incorrect password');
+      // }
     };
 
 

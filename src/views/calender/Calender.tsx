@@ -260,7 +260,7 @@ const Calender = () => {
     console.log('test');
     const coachId = sessionStorage.getItem('coachId');
     if(!coachId){
-      router.push('/client/login')
+      router.push('/coach/login')
   }
 
 
@@ -1406,7 +1406,7 @@ var interval = "45";
 
 
           <div className="timesheet-carousel">
-          {/* <OwlCarousel options={options}> */}
+          <OwlCarousel options={options}>
 
           { forloops.map((floop, index) => {
             let i=(index)*7;
@@ -1427,7 +1427,7 @@ var interval = "45";
             }
 
           })}
-          {/* </OwlCarousel> */}
+          </OwlCarousel>
           </div>
 
 

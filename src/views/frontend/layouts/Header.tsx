@@ -158,7 +158,7 @@ const Header = () => {
                             </Link>
                           </li>
                           <li>
-                            <Link href='/client/login' passHref >
+                            <Link href='/coach/login' passHref >
                               <a className='dropdown-item' onClick={setlogin}>Coaches</a>
                             </Link>
                           </li>
