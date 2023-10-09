@@ -30,7 +30,7 @@ console.log('abc');
 
 
     if(!token){
-        router.push('/client/login')
+        router.push('/coach/login')
     }else{
       getClients();
       console.log(client);

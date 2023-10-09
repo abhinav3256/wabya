@@ -16,7 +16,7 @@ const Availability = () => {
     const token = sessionStorage.getItem('coachId')
 
     if(!token){
-        router.push('/frontend/apply')
+        router.push('/coach/login')
     }
 }, [])
 

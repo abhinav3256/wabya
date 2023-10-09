@@ -63,7 +63,7 @@ const FileUpload = () => {
     setCoachId(coachId);
 
     if (!coachId) {
-      router.push('/client/login')
+      router.push('/coach/login')
     }
 
 }, [coachId])

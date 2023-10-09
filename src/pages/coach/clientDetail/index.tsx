@@ -16,7 +16,7 @@ const clientDetail = () => {
     const token = sessionStorage.getItem('coachId')
 
     if(!token){
-        router.push('/client/login')
+        router.push('/coach/login')
     }
 }, [])
 
