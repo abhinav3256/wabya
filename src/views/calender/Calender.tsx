@@ -177,7 +177,10 @@ const Calender = () => {
  
 
   const handleHourChange = (e, day) => {
+    console.log('working');
     const { name, value } = e.target;
+
+    console.log(name,value);
     const numericValue = parseInt(value, 10);
   
     // Ensure the input value is within the valid range (00 to 23 for hours)
@@ -209,46 +212,36 @@ const Calender = () => {
   
 
   const handleMinuteChange = (e, day) => {
+    e.preventDefault();
+    console.log("handleMinuteChange called");
+   
     const { name, value } = e.target;
-    const numericValue = parseInt(value, 10);
+    console.log(e.target);
+    const numericValue = parseInt(e.target.value, 10);
     const sanitizedValue = Math.max(0, Math.min(numericValue, 59));
-  
-    const startHour = parseInt(availability[day].startHour, 10);
-    const endHour = parseInt(availability[day].endHour, 10);
-    const startMinute = parseInt(availability[day].startMinute, 10);
-    const endMinute = sanitizedValue;
-  
-    if (startHour === endHour) {
-      if (name === 'startMinute') {
-        const updatedEndMinute = sanitizedValue >= startMinute ? sanitizedValue + 1 : startMinute;
-  
-        setAvailability(prevState => ({
-          ...prevState,
-          [day]: {
-            ...prevState[day],
-            [name]: sanitizedValue.toString().padStart(2, '0'),
-            endMinute: updatedEndMinute.toString().padStart(2, '0')
-          }
-        }));
-      } else {
-        setAvailability(prevState => ({
-          ...prevState,
-          [day]: {
-            ...prevState[day],
-            startMinute: sanitizedValue.toString().padStart(2, '0'),
-            [name]: sanitizedValue.toString().padStart(2, '0')
-          }
-        }));
+    console.log(name,value);
+    const updatedAvailability = {
+      ...availability,
+      [day]: {
+        ...availability[day],
+        [name]: sanitizedValue.toString().padStart(2, '0')
       }
-    } else {
-      setAvailability(prevState => ({
-        ...prevState,
-        [day]: {
-          ...prevState[day],
-          [name]: sanitizedValue.toString().padStart(2, '0')
-        }
-      }));
+    };
+    console.log(sanitizedValue);
+    if (name === 'endMinute' && updatedAvailability[day].startHour === updatedAvailability[day].endHour) {
+      const startMinute = parseInt(updatedAvailability[day].startMinute, 10);
+      const endMinute = sanitizedValue >= startMinute ? sanitizedValue + 1 : startMinute;
+      updatedAvailability[day].endMinute = endMinute.toString().padStart(2, '0');
     }
+  
+    if (name === 'startMinute' ) {
+      
+      console.log(sanitizedValue);
+      const startMinute = parseInt(updatedAvailability[day].startMinute, 10);
+      const endMinute = sanitizedValue >= startMinute ? sanitizedValue + 1 : startMinute;
+      updatedAvailability[day].startMinute = endMinute.toString().padStart(2, '0');
+    }
+    setAvailability(updatedAvailability);
   };
   
   
@@ -320,30 +313,30 @@ const getMyMeeting = async () => {
  }
 
  useEffect(() => {
-  if (myAvailability) {
-    const updatedAvailability = { ...availability };
-    myAvailability.forEach((myData) => {
-      const { day, startHour, startMinute, endHour, endMinute } = myData;
-      updatedAvailability[day] = {
-        startHour: startHour.padStart(2, '0'),
-        startMinute: startMinute.padStart(2, '0'),
-        endHour: endHour.padStart(2, '0'),
-        endMinute: endMinute.padStart(2, '0')
-      };
-    });
-    setAvailability(updatedAvailability);
+  // if (myAvailability) {
+  //   const updatedAvailability = { ...availability };
+  //   myAvailability.forEach((myData) => {
+  //     const { day, startHour, startMinute, endHour, endMinute } = myData;
+  //     updatedAvailability[day] = {
+  //       startHour: startHour.padStart(2, '0'),
+  //       startMinute: startMinute.padStart(2, '0'),
+  //       endHour: endHour.padStart(2, '0'),
+  //       endMinute: endMinute.padStart(2, '0')
+  //     };
+  //   });
+  //   setAvailability(updatedAvailability);
     
-    console.log('my availability');
-    console.log(myAvailability);
-    console.log(updatedAvailability);
+  //   console.log('my availability');
+  //   console.log(myAvailability);
+  //   console.log(updatedAvailability);
 
-    myAvailability.forEach((myData) => {
-      const { day, startHour } = myData;
-      if (updatedAvailability[day]) {
-        console.log(`Start Hour for ${day}: ${updatedAvailability[day].startHour}`);
-      }
-    });
-  }
+  //   myAvailability.forEach((myData) => {
+  //     const { day, startHour } = myData;
+  //     if (updatedAvailability[day]) {
+  //       console.log(`Start Hour for ${day}: ${updatedAvailability[day].startHour}`);
+  //     }
+  //   });
+  // }
 }, [myAvailability]);
 
 
@@ -382,7 +375,7 @@ useEffect(() => {
         };
         fetchCoach();
         getMyMeeting();
-        getMyAvailability();
+      //  getMyAvailability();
       }
 
 
@@ -1413,7 +1406,7 @@ var interval = "45";
 
 
           <div className="timesheet-carousel">
-          <OwlCarousel options={options}>
+          {/* <OwlCarousel options={options}> */}
 
           { forloops.map((floop, index) => {
             let i=(index)*7;
@@ -1434,7 +1427,7 @@ var interval = "45";
             }
 
           })}
-          </OwlCarousel>
+          {/* </OwlCarousel> */}
           </div>
 
 
@@ -1492,7 +1485,7 @@ var interval = "45";
             <div className='row'>
               <div className='col-sm-12'>
                 {/* <button className='btn btn-two'>sync calendars</button> */}
-                <button className='btn btn-four' onClick={handleFormOk}>set availability</button>
+                <button className='btn btn-four' >set availability</button>
 
                   <Fragment>
 
@@ -1619,20 +1612,29 @@ return(<>
 
                        <small>Client :  Client</small>
 
-                       {isCoachAccept_ !== undefined && isCoachAccept_ !== 1 ? (
+                       {isCoachAccept_ == undefined && isCoachAccept_ !== 1 ? (
   <p>
     <u onClick={() => acceptMeet(meet_iddd,clientName,clientEmail,nextSevenDay[index2].date,nextSevenDay[index2].day,nextSevenDay[index2].month,matchingStarttime,matchingEndtime)}>Accept</u>
   </p>
-) : (
-  <p>{clientName}</p>
-)}
-                       {isCoachAccept_ !== undefined && isCoachAccept_ !== 0 ? (
+) : null}
+
+{isCoachAccept_ !== undefined && isCoachAccept_ == 1 ? (
+  <p>
+    Accepted
+      </p>
+) : null}
+
+                       {isCoachAccept_ == undefined && isCoachAccept_ !== 0 ? (
   <p>
     <u onClick={() => rejectMeet(meet_iddd,clientName,clientEmail,nextSevenDay[index2].date,nextSevenDay[index2].day,nextSevenDay[index2].month,matchingStarttime,matchingEndtime)}>Reject</u>
   </p>
-) : (
-  <p>Rejected</p>
-)}
+) : null}
+
+{isCoachAccept_ !== undefined && isCoachAccept_ == 0 ? (
+  <p>
+    Rejected
+      </p>
+) : null}
                        
                         </div>
                       </td>
@@ -1766,7 +1768,7 @@ return(<>
               value={availability[day].startMinute}
               name='startMinute'
               className='selecttime'
-              onChange={(e) => handleMinuteChange(e, day)}
+              onKeyUp={(e) => handleMinuteChange(e, day)}
             />
           </div>
           <div className='col-md-1'>to</div>
@@ -1905,14 +1907,14 @@ return(<>
           <input
             type="text"
             className="text-top form-control dates"
-            name="fname"
+            name="startHour"
            value={availability[day].startHour}
            onChange={(e) => handleHourChange(e, day)}
           />
           <input
             type="text"
             className="text-top form-control dates"
-            name="fname"
+            name="startMinute"
             value={availability[day].startMinute}
             onChange={(e) => handleMinuteChange(e, day)}
           />
@@ -1920,14 +1922,14 @@ return(<>
           <input
             type="text"
             className="text-top form-control dates"
-            name="fname"
+            name="endHour"
             value={availability[day].endHour}
             onChange={(e) => handleHourChange(e, day)}
           />
           <input
             type="text"
             className="text-top form-control dates"
-            name="fname"
+            name="endMinute"
             value={availability[day].endMinute}
             onChange={(e) => handleMinuteChange(e, day)}
           />
@@ -1956,7 +1958,7 @@ return(<>
               </a>
             </p>
             <p className="text-center btn-p">
-              <a href="#" className="btn btn-chestnutred" onClick={handleFormOk}>
+              <a href="#" className="btn btn-chestnutred" >
                 set availability
               </a>
             </p>
