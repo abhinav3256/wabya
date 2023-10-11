@@ -4,8 +4,10 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 export default async function handler(req, res) {
   if (req.method === "POST") {
     try { 		
+      const { price } = req.body; // Get price from the request body 		
       const session = await stripe.checkout.sessions.create({
-		// billing_address_collection: "required",   		
+		// billing_address_collection: "required",  
+   
         payment_method_types: ["card"],    
         line_items: [
           {
@@ -14,14 +16,14 @@ export default async function handler(req, res) {
               product_data: {
                 name: "sample item",   
               },
-              unit_amount: 10*100,	
+              unit_amount: price *100,	
             },
             quantity: 1,
           },
         ],
         mode: "payment",		 		
-        success_url: `${req.headers.origin}/client/checkout/success`,		
-        cancel_url: `${req.headers.origin}/client/checkout/cancel`,  					
+        success_url: `${req.headers.origin}/client/success`,		
+        cancel_url: `${req.headers.origin}/client/cancel`,  					
       });
 
       res.status(200).json({ sessionId: session.id });

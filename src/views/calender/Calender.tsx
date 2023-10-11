@@ -100,6 +100,32 @@ const options = {
   // ]
 };
 
+
+
+
+const getCurrentWeek = () => {
+  const today = new Date();
+  const currentDay = today.getDay();
+  const startOfWeek = new Date(today);
+  startOfWeek.setDate(today.getDate() - currentDay);
+
+  const daysOfWeek = [];
+  for (let i = 0; i < 7; i++) {
+    const day = new Date(startOfWeek);
+    day.setDate(startOfWeek.getDate() + i);
+    daysOfWeek.push(day);
+  }
+
+  return daysOfWeek;
+};
+
+const formatDay = (date) => {
+  const dayNames = ['su', 'mo', 'tu', 'we', 'th', 'fr', 'sa'];
+  const dayIndex = date.getDay();
+  return dayNames[dayIndex];
+};
+
+
 const Calender = () => {
 
     // ** States
@@ -1381,6 +1407,7 @@ var interval = "45";
 
   //    }, [meetingClientJoinedData]);
 
+  const daysOfWeek = getCurrentWeek();
 
   
   return (
@@ -1808,7 +1835,7 @@ return(<>
     </section> 
 
 
-  <section className="user-detail-mobile">
+  {/* <section className="user-detail-mobile">
     <div className="container">
       <div className="row">
         <div className="col-12">
@@ -1821,10 +1848,10 @@ return(<>
               <a href="#">join</a>
               <a href="#">dismiss</a>
             </div>
-          </div> */}
+          </div> 
           <div className="client-name mrb-50">
             <div className="info-name mrb-10">
-              {/* <h2 className="text-center">calendar show </h2> */}
+              {/* <h2 className="text-center">calendar show </h2> 
               <Calendar  />
 
       
@@ -1968,15 +1995,107 @@ return(<>
               </a>
             </p>
           </div>
-          {/*/ button-info */}
+         
         </div>
-        {/*/ col-sm */}
+       
+      </div>
+     
+    </div>
+  </section> */}
+  {/*/ tag wrap */}
+
+
+
+
+
+
+  
+  <section className="calendar-mobile user-detail-mobile">
+    <div className="container">
+      <div className="row align-items-center calendar-profile">
+        <div className="col-8 left-top">
+          <h2>
+            hello <br />
+            coach name
+          </h2>
+        </div>
+        <div className="col-4 right-top">
+          <figure>
+            <img src="../../images/coash-01.png" />
+          </figure>
+        </div>
+      </div>
+      <div className="row">
+        <div className="col-12">
+          <div className="calendar-weeksheet">
+
+          {daysOfWeek.map((day, index) => (
+        <div className="col-weeksheet" key={index}>
+          <span>{day.getDate()}</span>
+          <span>{formatDay(day)}</span>
+        </div>
+      ))}
+            
+          </div>
+          {/*/ calendar-weeksheet */}
+          <div className="calendar-timesheet">
+            <div className="row">
+              <div className="col-3 timesheet-left">
+                <ul>
+                  <li>08:00</li>
+                  <li>10:00</li>
+                  <li>12:00</li>
+                  <li>14:00</li>
+                  <li>16:00</li>
+                </ul>
+              </div>
+              <div className="col-9 timesheet-right">
+                <div className="timesheet-fix">
+                  <h3>client name</h3>
+                  <p>
+                    <i className="fa fa-clock-o" aria-hidden="true" /> 08 : 00 -
+                    09 : 00
+                  </p>
+                </div>
+                <div className="timesheet-fix">
+                  <h3>client name</h3>
+                  <p>
+                    <i className="fa fa-clock-o" aria-hidden="true" /> 11 : 00 -
+                    12 : 00
+                  </p>
+                </div>
+              </div>
+            </div>
+            {/*/ row */}
+          </div>
+          {/*/ calendar-timesheet */}
+          <div className="calendar-btns">
+            <p className="btn-p">
+              <a href="#" className="btn btn-lightgreen">
+                sync calendar
+              </a>
+            </p>
+            <p className="btn-p">
+              <a href="#" className="btn btn-orange">
+                my availability
+              </a>
+            </p>
+            <p className="btn-p">
+              <a href="#" className="btn btn-darkblue">
+                schedule session
+              </a>
+            </p>
+          </div>
+        </div>
+        {/*/ cl-coll */}
       </div>
       {/*/ row */}
     </div>
   </section>
-  {/*/ tag wrap */}
+  {/*/ coach-feedback */}
 </>
+
+
 
 
   )

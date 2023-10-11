@@ -620,6 +620,15 @@ function test(){
   //console.log('abc');
 }
 
+const buyMore = (event) => {
+  // Your logic for buyMore function
+
+  // Redirect to /client/checkout
+  console.log(event.target);
+  localStorage.setItem('price', event.target.getAttribute("data-price"));
+  router.push('/client/checkout');
+};
+
 const addNewRequest = async (event :  any) =>{
 event.preventDefault();
 const addButton = event.target;
@@ -3035,7 +3044,7 @@ var myArr=new Date(data.meetingDate).toLocaleDateString().split('/');
                               </button>
                               <div className="tooltiptext">
                                 <p>{data.plan_desc}</p>
-                                <button className="btn buy-req btnn" onClick={addNewRequest}>
+                                <button className="btn buy-req btnn" data-price={data.bundle_price} onClick={data.plan_id === clientPlanId ? buyMore : addNewRequest}>
                                   {" "}
                                   {data.plan_id === clientPlanId ? 'Buy Again' : 'Requested'}
                                 </button>
@@ -3046,14 +3055,14 @@ var myArr=new Date(data.meetingDate).toLocaleDateString().split('/');
 
          { data.plan_id == requestPlanId ?
 
-                            <button  data-plan-id={data.plan_id} className="btn btnn buy-pro buyagain-btn" onClick={addNewRequest}>
+                            <button  data-plan-id={data.plan_id} data-price={data.bundle_price} className="btn btnn buy-pro buyagain-btn"  onClick={data.plan_id === clientPlanId ? buyMore : addNewRequest}>
                               {" "} 
                               {data.plan_id === clientPlanId ? 'Buy Again' : 'Requested'}
                             </button>
 
 
                 :
-                <button  data-plan-id={data.plan_id} className={`btn btnn buy-pro  ${data.plan_id === clientPlanId ? 'buyagain-btn' : ''}`} onClick={addNewRequest}>
+                <button  data-plan-id={data.plan_id} data-price={data.bundle_price} className={`btn btnn buy-pro  ${data.plan_id === clientPlanId ? 'buyagain-btn' : ''}`} onClick={data.plan_id === clientPlanId ? buyMore : addNewRequest}>
                 {" "}
                 {data.plan_id === clientPlanId ? 'Buy Again' : 'Request'}
               </button>
@@ -3890,11 +3899,11 @@ const timeRemaining = Math.floor((meetingDate - currentTime) / 60000);
           </div>
           <p className="text-center btn-p mrb-30">
           { data.plan_id == requestPlanId ?
-            <a href="#" data-plan-id={data.plan_id} className="btn btn-chestnutred" onClick={addNewRequest}>
+            <a href="#" data-plan-id={data.plan_id} data-price={data.bundle_price} className="btn btn-chestnutred"  onClick={data.plan_id === clientPlanId ? buyMore : addNewRequest}>
             {data.plan_id === clientPlanId ? 'Buy Again' : 'Requested'}
             </a>: 
 
-<a href="#" data-plan-id={data.plan_id} className="btn btn-chestnutred" onClick={addNewRequest}>
+<a href="#" data-plan-id={data.plan_id} data-price={data.bundle_price} className="btn btn-chestnutred"  onClick={data.plan_id === clientPlanId ? buyMore : addNewRequest}>
 {data.plan_id === clientPlanId ? 'Buy Again' : 'Request'}
 </a> }
           </p>

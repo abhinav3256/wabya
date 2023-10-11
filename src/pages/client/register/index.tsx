@@ -16,6 +16,7 @@ import emailjs from '@emailjs/browser';
 // ** MUI Components
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
+import { Alert } from '@mui/material'
 
 
 import TextField from '@mui/material/TextField'
@@ -41,6 +42,7 @@ import * as Yup from "yup";
 // material ui icons
 import EyeOutline from 'mdi-material-ui/EyeOutline'
 import EyeOffOutline from 'mdi-material-ui/EyeOffOutline'
+import { sendMail } from "../../../services/sendMail";  
 
 // ** Styled Components
 const Card = styled(MuiCard)<CardProps>(({ theme }) => ({
@@ -57,8 +59,32 @@ const RegisterPage = () => {
 
   const router = useRouter()
   const [visible, setVisible] = useState<boolean>(false);
+  const [termChecked, settermChecked] = useState(false);
+  const [termMsg, setTermMsg] = useState(false);
+  const [planId, setplanId] = useState('');
 
+  
+  const [successMsg, setsuccessMsg] = useState(false);
+  const handleCheckboxClick = () => {
+    settermChecked(!termChecked);
+  };
 
+  useEffect(() => {
+    // Try to get the value from localStorage
+    try {
+      const storedValue = localStorage.getItem('planId');
+     
+      // Update state with the value if it exists
+      if (storedValue) {
+        setplanId(storedValue);
+      }
+
+    
+    } catch (error) {
+      // Handle potential errors accessing localStorage here
+      console.error('Error accessing localStorage:', error);
+    }
+  }, []);
   const initialValues = {
     clientName: "",
     clientEmail: "",
@@ -72,8 +98,17 @@ const RegisterPage = () => {
     clientRePassword: "",
     gender:"",
     
+    
 
   }
+
+
+
+  async function sendMailFunc (email,content,$subject){   
+    let response = await sendMail(email,$subject,content);   
+  
+    console.log('response',response);
+  } 
 
   //  yup form validation
   const signUpSchema = Yup.object({
@@ -85,14 +120,21 @@ const RegisterPage = () => {
     clientLanguage: Yup.string().required("Language field is required"),
     // clientApi: Yup.string().required("Cal API key field is required"),
     // clientUsername: Yup.string().required("Cal Username field is required"),
-    clientPassword: Yup.string().min(6).required("Password field is required"),
-    clientRePassword: Yup.string().min(6).required("Confirm Password field is required"),
+    clientPassword: Yup.string()
+    .matches(
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+      "Password must be at least 8 characters with one uppercase letter, one lowercase letter, one number, and one special character"
+    )
+    .required("Password field is required"),
+  clientRePassword: Yup.string().oneOf([Yup.ref("clientPassword"), null], "Passwords must match")
+    .required("Confirm Password field is required"),
+    
   });
 
   // formik form validates
 
   const { values, errors, touched, handleBlur, handleChange, handleSubmit } = useFormik({
-
+    
     initialValues : initialValues,
     validationSchema : signUpSchema,
     validateOnMount: false,
@@ -100,14 +142,21 @@ const RegisterPage = () => {
     validateOnChange: false,
 
     onSubmit: async (values, action) => {
+
+      console.log('here');
       setConfirmMsg(false);
       setEmailExist(false);
+      setTermMsg(false);
+if(termChecked != true){
+  setTermMsg(true);
+}
+else{
 if(values.clientPassword == values.clientRePassword){
       if(await countData(values.clientEmail.toLowerCase()) == 0){
       console.log(
         "🚀 ~ file: index.tsx ~ line 81 ~ Registration ~ values",
         values,
-
+       
           addDoc(clientRef, {
             client_name: values.clientName,
             client_country : values.clientCountry,
@@ -119,11 +168,18 @@ if(values.clientPassword == values.clientRePassword){
             client_api : String(),
             client_uname : String(), 
             client_uid : Number(),
-            assign_coach_id:coachData[randomNo].coach_id,
-            plan_id:planData[0].plan_id,
+            // assign_coach_id:coachData[randomNo].coach_id,
+            plan_id:planId,
+            coach_prefer:selectedGender,
+            coaching_before:selectedcoachingBefore,
+            prefer_time:selectedpreferMeet,
+            my_mind:commaSeparatedValues,
            
           })
-            .then(() => {
+            .then((docRef) => {
+              const docId = docRef.id;
+    localStorage.setItem('clientRegisteredId', docId);
+
       //         const emailParams = {
       //           service_id: 'service_48nilue',
       //           template_id: 'template_3uazkzk',
@@ -135,15 +191,118 @@ if(values.clientPassword == values.clientRePassword){
       //             // Add other form fields as needed
       //           }
       //         };
-              emailjs.sendForm('service_48nilue', 'template_3uazkzk', emailParams, 'bHrOxc3becdFqRykK')
-      .then((result) => {
-         // console.log(result.text);
-          toast.success('Client registered successfully')
-          router.push('/client/login')
-      }, (error) => {
-          console.log(error.text);
-      });
+      //         emailjs.sendForm('service_48nilue', 'template_3uazkzk', emailParams, 'bHrOxc3becdFqRykK')
+      // .then((result) => {
+      //    // console.log(result.text);
+      //     toast.success('Client registered successfully')
+      //     router.push('/client/login')
+      // }, (error) => {
+      //     console.log(error.text);
+      // });
              
+
+      const logoUrl = 'https://wabya.com/images/logo-new.png';
+      const msg = `
+      <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+      <html xmlns="http://www.w3.org/1999/xhtml">
+         <head>
+            <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title>Wabya</title>
+            <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap" rel="stylesheet">
+            <style type="text/css">
+               body{padding-top: 0 !important; padding-bottom: 0 !important; padding-top: 0 !important; padding-bottom: 0 !important; margin:0 !important; width: 100% !important; -webkit-text-size-adjust: 100% !important; -ms-text-size-adjust: 100% !important; -webkit-font-smoothing: antialiased !important; font-size:14px; line-height:22px; font-family: 'Lato', sans-serif; font-weight:400;}
+            </style>
+         </head>
+         <body paddingwidth="0" paddingheight="0"  style="" offset="0" toppadding="0" leftpadding="0">
+         <div style="display:table; width:600px !important; margin: 0 auto; background: #fff; padding:20px;">
+            <table width="600" border="0" cellspacing="0" cellpadding="0" class="tableContent bgBody" align="center" style='width: 600px; display: block;'>
+               <tbody>
+                  <tr>
+                     <table class="MainContainer" width="600" cellspacing="0" cellpadding="0" border="0" bgcolor="#ece6d5" align="center" style='width: 600px; -webkit-border-radius: 15px; -moz-border-radius: 15px; border-radius: 15px;'>
+                        <tbody style=''>
+      <tr>
+                              <td colspan="2"><div style="text-align: center; margin:35px 0 0" class="contentLogo"><a href="https://www.#.com"><img src="${logoUrl}" width="200px" alt="" border="0" style=""></a></div></td>
+                           </tr>
+                           <tr>
+                              <td>
+                                 <div style="padding:0 30px;  position: relative; z-index: 2;line-height: 22px;font-family: 'Lato', sans-serif;font-weight: 600;text-align: center;">
+          
+      <p style="font-size: 18px; text-align: center; color: #864985;">Thank you for registering with us. We are excited to have you on board!</p>
+    
+      <hr style="border: 1px solid #1c686b;">
+      <p style="font-size: 14px; color: #242424; text-align: center;">Thank you,<br>Wabya Team</p>
+       </div>  
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </tr>
+               </tbody>
+            </table>
+       </div>
+         </body>
+      </html>
+`;
+    sendMailFunc('abhinavkumar3256@gmail.com',msg,'Registration Confirmation'); 
+
+
+
+
+    
+    const adminmsg = `
+    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    <html xmlns="http://www.w3.org/1999/xhtml">
+       <head>
+          <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+          <meta name="viewport" content="width=device-width, initial-scale=1">
+          <title>Wabya</title>
+          <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap" rel="stylesheet">
+          <style type="text/css">
+             body{padding-top: 0 !important; padding-bottom: 0 !important; padding-top: 0 !important; padding-bottom: 0 !important; margin:0 !important; width: 100% !important; -webkit-text-size-adjust: 100% !important; -ms-text-size-adjust: 100% !important; -webkit-font-smoothing: antialiased !important; font-size:14px; line-height:22px; font-family: 'Lato', sans-serif; font-weight:400;}
+          </style>
+       </head>
+       <body paddingwidth="0" paddingheight="0"  style="" offset="0" toppadding="0" leftpadding="0">
+       <div style="display:table; width:600px !important; margin: 0 auto; background: #fff; padding:20px;">
+          <table width="600" border="0" cellspacing="0" cellpadding="0" class="tableContent bgBody" align="center" style='width: 600px; display: block;'>
+             <tbody>
+                <tr>
+                   <table class="MainContainer" width="600" cellspacing="0" cellpadding="0" border="0" bgcolor="#ece6d5" align="center" style='width: 600px; -webkit-border-radius: 15px; -moz-border-radius: 15px; border-radius: 15px;'>
+                      <tbody style=''>
+    <tr>
+                            <td colspan="2"><div style="text-align: center; margin:35px 0 0" class="contentLogo"><a href="https://www.#.com"><img src="${logoUrl}" width="200px" alt="" border="0" style=""></a></div></td>
+                         </tr>
+                         <tr>
+                            <td>
+                               <div style="padding:0 30px;  position: relative; z-index: 2;line-height: 22px;font-family: 'Lato', sans-serif;font-weight: 600;text-align: center;">
+                             
+                               <p style="font-size: 18px; text-align: center; color: #864985;">Hello Admin,</p>
+                               <p style="font-size: 18px; text-align: center; color: #864985;">A new user has registered on our platform.</p>
+                               <p style="font-size: 18px; text-align: center; color: #864985;">Here are the user's details:</p>
+     
+   
+                               <p style="font-size: 16px; text-align: center; margin:0 0 20px;color: #242424;">Name: ${values.clientName} </p>
+    <p style="font-size: 16px; text-align: center; margin:0 0 20px;color: #242424;">Email: ${values.clientEmail.toLowerCase()} </p>
+  
+    <hr style="border: 1px solid #1c686b;">
+    <p style="font-size: 14px; color: #242424; text-align: center;">Thank you,<br>Wabya Team</p>
+     </div>  
+                            </td>
+                         </tr>
+                      </tbody>
+                   </table>
+                </tr>
+             </tbody>
+          </table>
+     </div>
+       </body>
+    </html>
+`;
+  sendMailFunc('abhinavkumar3256@gmail.com',adminmsg,'Registration Confirmation'); 
+
+
+setsuccessMsg(true);
+
             })
             .catch((err) => {
               console.error(err);
@@ -158,7 +317,10 @@ if(values.clientPassword == values.clientRePassword){
         }else{
           setConfirmMsg(true);
         }
+
+      }
     },
+
 
 
 
@@ -168,6 +330,8 @@ console.log(
   "🚀 ~ file: index.tsx ~ line 90 ~ Registration ~ errors",
   errors
 );
+
+
 
 const clientRef = collection(database, 'client_user');
 
@@ -179,6 +343,20 @@ const [planData, setplanData] = useState([]);
 const [randomNo, setrandomNo] = useState(0);
 const [confirmMsg, setConfirmMsg] = useState(false);
 const [emailExist, setEmailExist] = useState(false);
+
+
+
+useEffect(() => {
+  if (successMsg == true) {
+    // Wait for 3 seconds before redirecting to the pricing page
+    const redirectTimeout = setTimeout(() => {
+      router.push('/frontend/coaching-session/'); // Redirect to the pricing page
+    }, 3000);
+
+    // Clear the timeout if the component is unmounted
+    return () => clearTimeout(redirectTimeout);
+  }
+}, [successMsg, router]);
 
   // coach data fetch
   const getCoachData = async () => {
@@ -335,6 +513,7 @@ console.log('test');
 
 
   const [selectMind, setselectMind] = useState(['family']);
+  const [commaSeparatedValues, setCommaSeparatedValues] = useState('');
 
   const handleMind = (event) => {
    // setselectMind(event.target.value);
@@ -347,6 +526,15 @@ console.log('test');
     setselectMind([...selectMind, event.target.value]);
    }
   };
+
+
+  useEffect(() => {
+    // Create a comma-separated string from selectMind array
+    const commaSeparatedString = selectMind.join(',');
+    setCommaSeparatedValues(commaSeparatedString);
+  
+    // You can perform additional actions with the commaSeparatedString here if needed
+  }, [selectMind]); // Run this effect whenever selectMind changes
 
   return (
 //     <Box className='content-center'>
@@ -642,12 +830,8 @@ console.log('test');
                                   onChange={handleChange}
                   />
                 </div>
-                {
-                             errors.clientName && touched.clientName ?
-         (
-              <p className="form-error" >*{errors.clientName}</p>
-            ) : null
-          }
+        
+          {errors.clientName && touched.clientName && <Alert severity='error' style={{ margin :'0 0 20px 20px'}}>{errors.clientName}</Alert>}
                 <div className="col-sm-12 form-group">
                   <input
                     className="form-control"
@@ -670,12 +854,15 @@ console.log('test');
 ))}
                   </select>
                 </div>
-                {
+                {/* {
                 errors.clientCountry && touched.clientCountry ?
                 (
                   <p className="form-error">*{errors.clientCountry}</p>
                 ) : null
-              }
+              } */}
+
+{errors.clientCountry && touched.clientCountry && <Alert severity='error' style={{ margin :'0 0 20px 20px'}}>{errors.clientCountry}</Alert>}
+            
              
                 <div className="col-sm-12 form-group">
                 <input
@@ -689,12 +876,10 @@ console.log('test');
               onChange={handleChange}
               onBlur={handleBlur}
             />
-              {
-                errors.clientZone && touched.clientZone ?
-                (
-                  <p className="form-error" style={{'marginLeft':'-10px','marginTop':'15px'}}>*{errors.clientZone}</p>
-                ) : null
-              }
+             
+
+{errors.clientZone && touched.clientZone && <Alert severity='error' style={{ margin :'15px 0 8px 5px',width:'70%'}}>{errors.clientZone}</Alert>}
+      
                 </div>
                 <div className="col-sm-12 form-group mrb-10">
                   <div className="input-group">
@@ -850,12 +1035,17 @@ console.log('test');
                   />
                 </div>
 
-                {
+                {/* {
                 errors.clientEmail && touched.clientEmail ?
                 (
                   <p className="form-error">*{errors.clientEmail}</p>
                 ) : null
-              }
+              } */}
+
+{errors.clientEmail && touched.clientEmail  && <Alert severity='error' style={{ margin :'0 0 20px 20px'}}>{errors.clientEmail}</Alert>}
+{emailExist  && <Alert severity='error' style={{ margin :'0 0 20px 20px'}}>*Email Already Exist</Alert>}
+   
+              
                 <div className="col-sm-12 form-group">
                   <input
                     className="form-control"
@@ -867,12 +1057,14 @@ console.log('test');
                   />
                 </div>
 
-                {
+                {/* {
                 errors.clientPassword && touched.clientPassword ?
                 (
                   <p className="form-error">*{errors.clientPassword}</p>
                 ) : null
-              }
+              } */}
+   {errors.clientPassword && touched.clientPassword  && <Alert severity='error' style={{ margin :'0 0 20px 20px'}}>{errors.clientPassword}</Alert>}
+             
                 <div className="col-sm-12 form-group">
                   <input
                     className="form-control"
@@ -883,25 +1075,33 @@ console.log('test');
                     placeholder="retype password"
                   />
                 </div>
-                {
+                {/* {
                 errors.clientRePassword && touched.clientRePassword ?
                 (
                   <p className="form-error">*{errors.clientRePassword}</p>
                 ) : null
-              }
+              } */}
 
-{
+{errors.clientRePassword && touched.clientRePassword && <Alert severity='error' style={{ margin :'0 0 20px 20px'}}>{errors.clientRePassword}</Alert>}
+ 
+
+{/* {
                 confirmMsg ?
                 (
                   <p className="form-error">*Both Password Should be Match</p>
                 ) : null
-              }
+              } */}
 
-              {  emailExist ?
+{confirmMsg  && <Alert severity='error' style={{ margin :'0 0 20px 20px'}}>*Both Password Should be Match</Alert>}
+            
+
+              {/* {  emailExist ?
                 (
                   <p className="form-error">*Email Already Exist</p>
                 ) : null
-              }
+              } */}
+
+          
                 <div className="col-sm-12 form-group">
                   <p className="mrb-0">
                     * required for login for your free session.
@@ -917,6 +1117,8 @@ console.log('test');
                       type="checkbox"
                       className="custom-control-input"
                       id="accept"
+                      checked={termChecked}
+                      onClick={handleCheckboxClick}
                     />
                     <label
                       className="custom-control-label ml-2"
@@ -925,10 +1127,16 @@ console.log('test');
                       i accept the <u>terms of service</u>
                     </label>
                   </div>
+
+
                 </div>
+{termMsg}
+                {termMsg && <Alert severity='error' style={{ margin :'0 0 20px 20px'}}>Please Accept Terms & Condition</Alert>}
+                {successMsg  && <Alert severity='success' style={{ margin :'15px 0 8px 5px',width:'97%'}}>Registration Successfully... Redirecting to Schedule your Discovery Session...</Alert>}          
                 <div className="col-sm-12 form-group text-center mrb-40">
                   <input className="btn" defaultValue="login" type="submit" />
                 </div>
+                 
               </form>
             </div>
             {/*/ inner-info */}

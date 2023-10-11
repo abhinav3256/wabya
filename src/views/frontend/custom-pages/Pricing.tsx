@@ -56,6 +56,15 @@ const Pricing = () => {
     setIsThankModal(false);
   };
 
+  const storePlan = (e) => {
+    e.preventDefault();
+    const planId = event.target.getAttribute('data-id');
+    localStorage.setItem('planId', planId);
+    console.log('here');
+
+    router.push('/client/register');
+  };
+
   const thankModal = () => {
     setIsModalVisible(false)
     setIsThankModal(true)
@@ -468,7 +477,7 @@ enquire
                     <li> <img src='../images/shape-04.png' alt=''/> Pay as you go: <strong> £40</strong></li>
                     <li> <img src='../images/shape-04.png' alt=''/> Bundle: <strong> £210 for 6</strong> sessions</li>
               </ul>
-            <p className="btn-wrap"><Link href="/client/register"><a className="btn">select</a></Link></p>
+            <p className="btn-wrap"><Link href="/client/register" ><a className="btn" onClick={storePlan} data-id="6ZpZd4IrzORGQfyu0IqT">select</a></Link></p>
             </div>
           </div>
 
@@ -484,7 +493,7 @@ enquire
                     <li> <img src='../images/shape-04.png' alt=''/> Pay as you go: <strong> £65</strong></li>
                     <li> <img src='../images/shape-04.png' alt=''/> Bundle: <strong> £360 for 6</strong> sessions</li>
               </ul>
-            <p className="btn-wrap"><Link href="/client/register"><a className="btn">select</a></Link></p>
+            <p className="btn-wrap"><Link href="/client/register" ><a className="btn" onClick={storePlan} data-id="sH2iLHtr5PWg3gdSjIIn">select</a></Link></p>
             </div>
           </div>
 

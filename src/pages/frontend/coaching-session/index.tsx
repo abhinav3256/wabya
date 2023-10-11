@@ -21,16 +21,19 @@ import { Modal } from "antd";
 import Calendar from "react-calendar";
 import EyeOutline from 'mdi-material-ui/EyeOutline'
 import EyeOffOutline from 'mdi-material-ui/EyeOffOutline'
+import { Alert } from '@mui/material'
+import { sendMail } from "../../../services/sendMail";  
 
 const CoachSessionBasic = () => {
 
-  const [isTrue, setIsTrue] = useState(false)
+  const [isTrue, setIsTrue] = useState(true)
   const [isThankModal, setIsThankModal] = useState(false)
   const coachRef = collection(database, 'coaches_user');
 const planRef = collection(database, 'admin_plans');
 const [coachData, setCoachData] = useState([]);
 const [randomNo, setrandomNo] = useState(0);
 const clientRef = collection(database, 'client_user');
+
 const [planData, setplanData] = useState([]);
 const [coachId, setcoachId] = useState(0);
 
@@ -49,6 +52,8 @@ const [clientRepassMsg, setsetClientRePassMsg] = useState('');
 
 const [meetingDateMsg, setMeetingDateMsg] = useState('');
 
+const [existErr, setExistErr] = useState('');
+const [meetingSuccessMsg, setmeetingSuccessMsg] = useState('');
 const [meetingTimeMsg, setMeetingTimeMsg] = useState('');
 
 const [isShow, setisShow] = useState(true);
@@ -120,6 +125,16 @@ const [modal_action, setmodal_action] = useState("");
   
   const [BookedId, setBookedId] = useState();
   const [next, setNext] = useState(false);
+  const [planId, setplanId] = useState('');
+  const [clientRegisteredId, setclientRegisteredId] = useState('');
+
+
+  async function sendMailFunc (email,content,$subject){   
+    let response = await sendMail(email,$subject,content);   
+  
+    console.log('response',response);
+  }  
+
 
 
   function addMinutes(time, minutes) {
@@ -185,6 +200,20 @@ const [modal_action, setmodal_action] = useState("");
    
   };
 
+
+  useEffect(() => {
+    // Try to get the value from localStorage
+    try {
+      const storedValue = localStorage.getItem('clientRegisteredId');
+      // Update state with the value if it exists
+      if (storedValue) {
+        setclientRegisteredId(storedValue);
+      }
+    } catch (error) {
+      // Handle potential errors accessing localStorage here
+      console.error('Error accessing localStorage:', error);
+    }
+  }, []);
 
   useEffect(() => {
    
@@ -294,10 +323,10 @@ const getAllPlans = async () => {
 
         
         
-        if(coachData.length > 0){
+        // if(coachData.length > 0){
          
-        setcoachId(coachData[randomNo].coach_id)
-        }
+        // setcoachId(coachData[randomNo].coach_id)
+        // }
     
       }, [randomNo])
 
@@ -308,7 +337,7 @@ const getAllPlans = async () => {
       }, [BookedId]);
       useEffect(() => {
         if (userAddedId != "") {
-          scheduleNext();
+        //  scheduleNext();
         }
       }, [userAddedId]);
 
@@ -352,9 +381,24 @@ const getAllPlans = async () => {
 
 
 
+        const countDiscoveySes = async () => {
+    console.log('test');
+        const queryDoc = query(meetingRef, where('clientId', '==', clientRegisteredId),where('isDiscoverySession', '==', 1));
+    let count_data=0
+        await getDocs(queryDoc).then(response => {
+          console.log(response.docs.length); 
+          count_data=response.docs.length;
+        })
+        console.log(count_data);
+        return count_data;
+      }
+
+
+
         // formik form validates
         const onSubmit = async (event) => {
 
+          console.log('i am here');
           console.log(event.target);
 
           setClientMsg('');
@@ -363,35 +407,37 @@ const getAllPlans = async () => {
           setsetClientRePassMsg('');
           setMeetingDateMsg('');
           setTermlMsg('');
+          setmeetingSuccessMsg('');
+          setExistErr('');
 
           let err=0;
  
-         if(client_name ==''){
-          setClientMsg('Client Name is Required');
-          err=err+1;
+        //  if(client_name ==''){
+        //   setClientMsg('Client Name is Required');
+        //   err=err+1;
 
-         }
+        //  }
 
-         if(isAccept == false){
-          setTermlMsg('Please Accept This');
-          err=err+1;
+        //  if(isAccept == false){
+        //   setTermlMsg('Please Accept This');
+        //   err=err+1;
 
-         }
+        //  }
 
-         if(client_email ==''){
-          setClientEmailMsg('Client Email is Required');
-          err=err+1;
-         }
+        //  if(client_email ==''){
+        //   setClientEmailMsg('Client Email is Required');
+        //   err=err+1;
+        //  }
 
-         if(client_password ==''){
-          setClientPassMsg('Client Password is Required');
-          err=err+1;
-         }
+        //  if(client_password ==''){
+        //   setClientPassMsg('Client Password is Required');
+        //   err=err+1;
+        //  }
 
-         if(client_repassword ==''){
-          setsetClientRePassMsg('Client Confirm Password is Required');
-          err=err+1;
-         }
+        //  if(client_repassword ==''){
+        //   setsetClientRePassMsg('Client Confirm Password is Required');
+        //   err=err+1;
+        //  }
 
 
          if(meetingdate =='' || meetingtime ==''){
@@ -404,33 +450,40 @@ const getAllPlans = async () => {
 
          if(err == 0){
 
-          if(await countData(client_email.toLowerCase()) == 0){
+
+          if(await countDiscoveySes() == 0){
+          scheduleNext();
+          }
+          else{
+            setExistErr('Discovery Session Already Exist');
+          }
+          // if(await countData(client_email.toLowerCase()) == 0){
           
       
-                addDoc(clientRef, {
-                  client_name: client_name,
-                  client_email : client_email,
-                  client_password : client_password,
-                  assign_coach_id:coachId,
-                  plan_id:planData[0].plan_id,
+                // addDoc(clientRef, {
+                //   client_name: client_name,
+                //   client_email : client_email,
+                //   client_password : client_password,
+                //   assign_coach_id:coachId,
+                //   plan_id:planData[0].plan_id,
                  
-                })
-                  .then((docRef) => {
-                    const docId = docRef.id;
-                      setUserAddedId(docId)
-                    console.log('done');
-                    toast.success('Client registered successfully')
-                    //router.push('/client/login')
-                  })
-                  .catch((err) => {
-                    console.error(err);
-                  })
+                // })
+                //   .then((docRef) => {
+                //     const docId = docRef.id;
+                //       setUserAddedId(docId)
+                //     console.log('done');
+                //     toast.success('Client registered successfully')
+                //     //router.push('/client/login')
+                //   })
+                //   .catch((err) => {
+                //     console.error(err);
+                //   })
       
           
            
-                }else{
-                  toast.error('Email Already Registerd')
-                }
+                // }else{
+                //   toast.error('Email Already Registerd')
+                // }
            
           
 
@@ -446,7 +499,7 @@ const getAllPlans = async () => {
   
           addDoc(meetRef, {
             meetingId: BookedId,
-            clientId: userAddedId,
+            clientId: clientRegisteredId,
             coachId: coachId,
           //  coach_name: coachesCalName,
             meetingDate: meetingdate,
@@ -457,9 +510,22 @@ const getAllPlans = async () => {
             meetingName:meetingName,
             meetingPrivacy:meetingPrivacy,
             meetingCreatedAt:meetingCreatedAt,
+            isDiscoverySession:1,
             status: "true",
           });
   console.log('working');
+
+  const client_id = clientRegisteredId;
+  const fieldToEdit = doc(database, 'client_user', client_id);
+  updateDoc(fieldToEdit, {
+    isDiscoverySessionAdded: 1
+  })
+  .then(() => {
+    
+  })
+  .catch((err) => {
+    //console.log(err);
+  })
   
       // setNext(true);
     };
@@ -570,6 +636,72 @@ const getAllPlans = async () => {
       }
 
       //console.log(data);
+
+     // setmeetingSuccessMsg('Discovery Session Added');
+
+
+    setIsThankModal(true);
+
+
+      const logoUrl = 'https://wabya.com/images/logo-new.png';
+      const msg = `
+      <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+      <html xmlns="http://www.w3.org/1999/xhtml">
+         <head>
+            <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title>Wabya</title>
+            <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap" rel="stylesheet">
+            <style type="text/css">
+               body{padding-top: 0 !important; padding-bottom: 0 !important; padding-top: 0 !important; padding-bottom: 0 !important; margin:0 !important; width: 100% !important; -webkit-text-size-adjust: 100% !important; -ms-text-size-adjust: 100% !important; -webkit-font-smoothing: antialiased !important; font-size:14px; line-height:22px; font-family: 'Lato', sans-serif; font-weight:400;}
+            </style>
+         </head>
+         <body paddingwidth="0" paddingheight="0"  style="" offset="0" toppadding="0" leftpadding="0">
+         <div style="display:table; width:600px !important; margin: 0 auto; background: #fff; padding:20px;">
+            <table width="600" border="0" cellspacing="0" cellpadding="0" class="tableContent bgBody" align="center" style='width: 600px; display: block;'>
+               <tbody>
+                  <tr>
+                     <table class="MainContainer" width="600" cellspacing="0" cellpadding="0" border="0" bgcolor="#ece6d5" align="center" style='width: 600px; -webkit-border-radius: 15px; -moz-border-radius: 15px; border-radius: 15px;'>
+                        <tbody style=''>
+      <tr>
+                              <td colspan="2"><div style="text-align: center; margin:35px 0 0" class="contentLogo"><a href="https://www.#.com"><img src="${logoUrl}" width="200px" alt="" border="0" style=""></a></div></td>
+                           </tr>
+                           <tr>
+                              <td>
+                                 <div style="padding:0 30px;  position: relative; z-index: 2;line-height: 22px;font-family: 'Lato', sans-serif;font-weight: 600;text-align: center;">
+          <p style="color: #3498db;text-align: center;font-size: 36px;">Meeting Scheduled!</p>
+      <p style="font-size: 18px; text-align: center; color: #864985;">Your meeting  has been Schedule. We are looking forward to seeing you there!</p>
+      <p style="font-size: 16px; text-align: center; margin:0 0 10px;color: #242424;">Date: ${meetingdate}</p>
+      <p style="font-size: 16px; text-align: center; margin:0 0 20px;color: #242424;">Time: ${meetingtime} - ${meetingendtime}</p>
+      <hr style="border: 1px solid #1c686b;">
+      <p style="font-size: 14px; color: #242424; text-align: center;">Thank you,<br>Wabya Team</p>
+       </div>  
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </tr>
+               </tbody>
+            </table>
+       </div>
+         </body>
+      </html>
+`;
+    sendMailFunc('abhinavkumar3256@gmail.com',msg,'Meeting Scheduled');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     } catch (err) {
       setbookingLoad(false);
       setbookingError(true);
@@ -654,6 +786,8 @@ const getAllPlans = async () => {
                 <div className="time-btn"><button className="btn" onClick={scheduleNewSes}>select an available time</button></div>
                 </div>
 {/* scheduleNewSes */}
+
+<div className="hidden">
                 <div className="col-sm-12 date-time mrb-30">
                   <h3>fill in your details</h3>
                 </div>
@@ -700,14 +834,18 @@ const getAllPlans = async () => {
                   <p className='bookErr'>{TermMsg}</p>
                 </div>
                 </div>
+                </div>
               </form>
               </div> {/* <!--/ session-form --> */}
 	          </div>
-
+            {meetingDateMsg &&  <Alert severity='error' style={{ margin :'0 0 20px 0',width:'70%'}}>{meetingDateMsg}</Alert>}        
+            {meetingSuccessMsg &&  <Alert severity='success' style={{ margin :'0 0 20px 0',width:'70%'}}>{meetingSuccessMsg}</Alert>}        
+            {existErr &&  <Alert severity='error' style={{ margin :'0 0 20px 0',width:'70%'}}>{existErr}</Alert>}                  
             <div className="row">
               <div className="col-sm-12 bottom">
-              <p className='bookErr'>{meetingDateMsg}</p>
-                
+              {/* <p className='bookErr'>{meetingDateMsg}</p> */}
+
+              
                 <p><button className="btn" onClick={onSubmit}>book my session</button></p>
               </div> {/* <!--/ col-sm --> */}
             </div> {/* <!--/ row --> */}
@@ -806,7 +944,7 @@ const getAllPlans = async () => {
           width={1100}
         >
                 <div className="history-modal">
-                  <h4>New Booking</h4>
+                  <h4>Discovery Session</h4>
                 </div>
 
                 <div className="reschedule-zone">
