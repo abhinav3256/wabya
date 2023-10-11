@@ -626,6 +626,7 @@ const buyMore = (event) => {
   // Redirect to /client/checkout
   console.log(event.target);
   localStorage.setItem('price', event.target.getAttribute("data-price"));
+  localStorage.setItem('buy_plan_id', event.target.getAttribute("data-plan-id"));
   router.push('/client/checkout');
 };
 

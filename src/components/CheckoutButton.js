@@ -21,15 +21,20 @@ const CheckoutButton = () => {
   const router = useRouter();
 
   const [price, setPrice] = useState(0);
+
+  const [plan_id, setPlanId] = useState('');
   const [showPayForm, setShowPayForm] = useState(false);
+  const [doc_id, setDocId] = useState('');
   useEffect(() => {
     // Try to get the value from localStorage
     try {
       const storedValue = localStorage.getItem('price');
+      const storedValue2 = localStorage.getItem('buy_plan_id');
      
       // Update state with the value if it exists
-      if (storedValue) {
+      if (storedValue && storedValue2) {
         setPrice(storedValue);
+        setPlanId(storedValue2);
       }
 
     
@@ -43,7 +48,7 @@ const CheckoutButton = () => {
     setShowPayForm(false);
     if(price != 0){
   addDoc(requestRef, {
-    plan_id: 'gdfhjh',
+    plan_id: plan_id,
    
    client_id:sessionStorage.getItem("userId"),
    status:'pending',
@@ -51,8 +56,8 @@ const CheckoutButton = () => {
 
 
   })
-    .then(() => {
-      
+    .then((docref) => {
+      setDocId(docref.id);
      
      // Re-enable the button and remove loading state
   setShowPayForm(true);
@@ -74,6 +79,9 @@ const CheckoutButton = () => {
         },
         body: JSON.stringify({
           price: price, // Send the price ID to the server
+          plan_id: plan_id,
+          doc_id:doc_id,
+          client_id:sessionStorage.getItem("userId"),
         }),
       });
 

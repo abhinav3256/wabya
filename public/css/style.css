@@ -1997,6 +1997,17 @@ img.tree-image {
 :where(.css-diro6f).ant-modal-root .ant-modal-centered .unavailable-modal{top: -150px;}
 #searchForm .btn-search{display: none !important;}
 
+
+.payment-successful{position:relative; margin:0; padding: 30px 15px 30px; z-index:1; text-align:center;}
+  .payment-successful h2{color: #ef7655; font-size:30px; font-weight:700; margin:0 0 15px;}
+  .payment-successful h3{color: #0e2540; font-size:20px; font-weight:500;}
+  .payment-successful .check{margin: 45px 0; position:relative;}
+  .payment-successful .check:before, .payment-successful .check:after{content:''; background: #75c3a8; -webkit-border-radius: 100%; -moz-border-radius: 100%; border-radius: 100%; color:#fff; font-weight:500; font-size: 30px; margin: 0 0 30px; height: 100px; width: 100px; position:absolute; left: 0; right: 0; margin: 0 auto; top: -14px; opacity: 0.6;}
+  .payment-successful .check:after{content:''; height: 130px; width: 130px; top: -30px; opacity: 0.2;}
+  .payment-successful .check i{background: #75c3a8; -webkit-border-radius: 100%; -moz-border-radius: 100%; border-radius: 100%; color:#fff; font-weight:500; font-size: 30px; height: 70px; width: 70px; line-height: 70px; position:relative; z-index:2;}
+  .payment-successful .check.close i{background: #ff0000;}
+  .payment-successful .check.close:before, .payment-successful .check.close:after{content:''; background: #ff0000;}
+  .payment-successful .check.close:before{opacity: 0.4;}
     /** Smartphones **/
 @media (min-width: 320px) and (max-width: 481px) {
 	

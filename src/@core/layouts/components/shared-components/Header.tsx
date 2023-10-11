@@ -51,7 +51,7 @@ const Header = () => {
 
     <>
     {
-      router.pathname === '/client/dashboard' || router.pathname === '/client/change-password' || router.pathname.startsWith('/client/joinvideo/') ?
+         router.pathname === '/client/failed' || router.pathname === '/client/checkout' || router.pathname === '/client/success' || router.pathname === '/client/dashboard' || router.pathname === '/client/change-password' || router.pathname.startsWith('/client/joinvideo/') ?
       (
         <>
         <header className='admin-header client-header custom-class header-desktop'>
