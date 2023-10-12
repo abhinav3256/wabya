@@ -1856,7 +1856,7 @@ footer.layout-footer p { color: #ece6d3; }
   #choose_type:checked{background: #1d696c; border: 6px solid #fff;}
 
 .contact-wrap{padding: 100px 0 160px; position:relative;}
-.contact-wrap::after{content: ""; position: absolute; height: 150px; width: 230px; bottom: 0; left: 6%; background-image: url(../images/shape-04.png); background-repeat: no-repeat; background-position: top center; background-attachment: scroll; background-size: cover;}
+.contact-wrap::after{content: ""; position: absolute; height: 150px; width: 155px; bottom: 5px; left: 6%; background-image: url(../images/shape-04.png); background-repeat: no-repeat; background-position: top center; background-attachment: scroll; background-size: cover;}
   .contact-wrap h2{color: #0f2540; font-size: 85px; margin: 0 0 25px; padding: 0;}
   .contact-wrap h2 span{display: block; font-size: 18px; text-transform: lowercase; margin: 0 0 15px 7px; color: #00555b; letter-spacing: 2px; font-weight: 800;}
   .contact-wrap .left{padding:0 10% 0 15px;}
@@ -2088,7 +2088,7 @@ img.tree-image {
    .faq-sec .accordion-button{font-size: 16px; padding: 15px 0 0;}
    .faq-sec .accordion-button::after{height: 34px; width: 34px;}
 
-   .contact-wrap::after{height: 105px; width: 160px;}
+   .contact-wrap::after{height: 105px; width: 109px;}
    .contact-wrap h2{font-size: 40px;}
    .contact-wrap .right{padding: 30px 15px 0;}
 
