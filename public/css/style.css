@@ -846,7 +846,7 @@ padding: 25px 40px;
 .client-dashboard .banner-et .padd-right{ float: right;}
 .client-dashboard .banner-et .table{ border-top: 1px solid #0f2540; }
 .client-dashboard .table-coach p{ letter-spacing: 2px; font-weight: 400;}
-.client-dashboard .table-coach .table-pad td{padding-bottom: 30px; vertical-align: middle;}
+.client-dashboard .table-coach .table-pad td{/*padding-bottom: 30px;*/ padding: 5px 5px 30px !important; vertical-align: middle;}
 .td-two {
   text-align: center;
   }
