@@ -45,7 +45,7 @@ class CustomDocument extends Document {
 
           {/* <!-- Custom Fonts --> */}
           <link href='/font-awesome/css/font-awesome.min.css' rel='stylesheet' type='text/css'/>
-          <script src="https://code.jquery.com/jquery-latest.min.js" type="text/javascript" async></script>
+          <script src="https://code.jquery.com/jquery-latest.min.js" type="text/javascript" ></script>
 	        <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" rel="stylesheet" media="all"/>
         </Head>
         <body>

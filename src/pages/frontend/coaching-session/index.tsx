@@ -3,7 +3,7 @@ import { ReactNode, useState,useEffect } from 'react'
 
 // ** Next Imports
 import Link from 'next/link'
-
+import { useRouter } from 'next/router'
 // import header & footer files
 import Header from 'src/views/frontend/layouts/Header'
 import Footer from 'src/views/frontend/layouts/Footer'
@@ -25,7 +25,7 @@ import { Alert } from '@mui/material'
 import { sendMail } from "../../../services/sendMail";  
 
 const CoachSessionBasic = () => {
-
+  const router = useRouter()
   const [isTrue, setIsTrue] = useState(true)
   const [isThankModal, setIsThankModal] = useState(false)
   const coachRef = collection(database, 'coaches_user');
@@ -135,6 +135,26 @@ const [modal_action, setmodal_action] = useState("");
     console.log('response',response);
   }  
 
+  useEffect(() => {
+    // Try to get the value from localStorage
+    try {
+      const storedValue = localStorage.getItem('clientRegisteredId');
+     
+      // Update state with the value if it exists
+      if (storedValue) {
+        setclientRegisteredId(storedValue);
+      }
+else{
+  console.log('i am here in localstorage');
+  router.push('/frontend/pricing');
+}
+    
+    } catch (error) {
+      // Handle potential errors accessing localStorage here
+      console.error('Error accessing localStorage:', error);
+      router.push('/frontend/pricing');
+    }
+  }, []);
 
 
   function addMinutes(time, minutes) {
@@ -201,19 +221,7 @@ const [modal_action, setmodal_action] = useState("");
   };
 
 
-  useEffect(() => {
-    // Try to get the value from localStorage
-    try {
-      const storedValue = localStorage.getItem('clientRegisteredId');
-      // Update state with the value if it exists
-      if (storedValue) {
-        setclientRegisteredId(storedValue);
-      }
-    } catch (error) {
-      // Handle potential errors accessing localStorage here
-      console.error('Error accessing localStorage:', error);
-    }
-  }, []);
+ 
 
   useEffect(() => {
    
@@ -695,11 +703,16 @@ const getAllPlans = async () => {
 
 
 
+    localStorage.removeItem('clientRegisteredId');
 
 
 
+    const redirectTimeout = setTimeout(() => {
+      router.push('/client/login/'); // Redirect to the pricing page
+    }, 3000);
 
-
+    // Clear the timeout if the component is unmounted
+    return () => clearTimeout(redirectTimeout);
 
 
 

@@ -6,6 +6,8 @@ import { EmailOff, InformationOutline } from "mdi-material-ui"
 import { Alert } from '@mui/material'
 import emailjs from '@emailjs/browser';
 import { sendMail } from "../../../services/sendMail"; 
+import {app, database} from '../../../../firebaseConfig'
+import { collection, addDoc, getDocs, doc, updateDoc, deleteDoc } from 'firebase/firestore'
 
 const Pricing = () => {
   const form1 = useRef();
@@ -13,7 +15,7 @@ const Pricing = () => {
   const [isModalVisible, setIsModalVisible] = useState(false)
   const [isThankModal, setIsThankModal] = useState(false)
   const [isShown, setIsShown] = useState(false);
-
+  const databaseRef = collection(database, 'admin_plans');
   const [name, setName] = useState('');
 
   const [surname, setSurname] = useState('');
@@ -33,6 +35,19 @@ const Pricing = () => {
   const [message, setErrorMsg] = useState(false);
   const [isAccept, setisAccept] = useState(false);
   const [TermMsg, setTermlMsg] = useState('');
+  const [fireData, setFireData] = useState([]);
+
+
+  const getData = async () => {
+    await getDocs(databaseRef)
+      .then((response) => {
+        setFireData(response.docs.map((data) => {
+          return { ...data.data(), plan_id: data.id }
+        }))
+      })
+  }
+
+
   const handleCheckboxClick = () => {
     setisAccept((isAccept) => !isAccept);
   };
@@ -468,14 +483,14 @@ enquire
             <div className="inner two-box">
               <h3>novice </h3>
               <ul>
-                <li> <img src='../images/shape-04.png' alt=''/> This is a newly-accredited coach</li>
-                  <li> <img src='../images/shape-04.png' alt=''/>  Good place to start if you’ve never been coached</li>
-                  <li> <img src='../images/shape-04.png' alt=''/> Pick this if you’re on a budget.</li>
+                <li> <img src='../../images/shape-04.png' alt=''/> This is a newly-accredited coach</li>
+                  <li> <img src='../../images/shape-04.png' alt=''/>  Good place to start if you’ve never been coached</li>
+                  <li> <img src='../../images/shape-04.png' alt=''/> Pick this if you’re on a budget.</li>
 
                   <br /><strong>Prices per session</strong>
-                    <li> <img src='../images/shape-04.png' alt=''/> First session: <strong>FREE</strong></li>
-                    <li> <img src='../images/shape-04.png' alt=''/> Pay as you go: <strong> £40</strong></li>
-                    <li> <img src='../images/shape-04.png' alt=''/> Bundle: <strong> £210 for 6</strong> sessions</li>
+                    <li> <img src='../../images/shape-04.png' alt=''/> First session: <strong>FREE</strong></li>
+                    <li> <img src='../../images/shape-04.png' alt=''/> Pay as you go: <strong> £40</strong></li>
+                    <li> <img src='../../images/shape-04.png' alt=''/> Bundle: <strong> £210 for 6</strong> sessions</li>
               </ul>
             <p className="btn-wrap"><Link href="/client/register" ><a className="btn" onClick={storePlan} data-id="6ZpZd4IrzORGQfyu0IqT">select</a></Link></p>
             </div>
@@ -485,13 +500,13 @@ enquire
             <div className="inner three-box">
               <h3>experienced</h3>
               <ul>
-                <li> <img src='../images/shape-04.png' alt=''/> This coach has more than 100 client sessions under their belt.</li>
-                <li> <img src='../images/shape-04.png' alt=''/> Pick this if you’re familiar with coaching</li>
-                <li> <img src='../images/shape-04.png' alt=''/> Pick this if budget isn’t a concern</li>
+                <li> <img src='../../images/shape-04.png' alt=''/> This coach has more than 100 client sessions under their belt.</li>
+                <li> <img src='../../images/shape-04.png' alt=''/> Pick this if you’re familiar with coaching</li>
+                <li> <img src='../../images/shape-04.png' alt=''/> Pick this if budget isn’t a concern</li>
                  <br /> <strong>Prices per session</strong>
-                <li> <img src='../images/shape-04.png' alt=''/> First session: <strong>FREE</strong></li>
-                    <li> <img src='../images/shape-04.png' alt=''/> Pay as you go: <strong> £65</strong></li>
-                    <li> <img src='../images/shape-04.png' alt=''/> Bundle: <strong> £360 for 6</strong> sessions</li>
+                <li> <img src='../../images/shape-04.png' alt=''/> First session: <strong>FREE</strong></li>
+                    <li> <img src='../../images/shape-04.png' alt=''/> Pay as you go: <strong> £65</strong></li>
+                    <li> <img src='../../images/shape-04.png' alt=''/> Bundle: <strong> £360 for 6</strong> sessions</li>
               </ul>
             <p className="btn-wrap"><Link href="/client/register" ><a className="btn" onClick={storePlan} data-id="sH2iLHtr5PWg3gdSjIIn">select</a></Link></p>
             </div>

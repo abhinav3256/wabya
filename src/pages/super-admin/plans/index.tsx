@@ -22,6 +22,7 @@ const AddPlan = () => {
   const [bundle_price, setBundlePrice] = useState('');
   const [total_session, setTotalSession] = useState(0);
   const [free_session, setFreeSession] = useState(0);
+  const [bg_color, setBgColor] = useState('');
   useEffect(() => {
     let token = sessionStorage.getItem('Token')
     getData()
@@ -69,7 +70,7 @@ const AddPlan = () => {
   }
 
   // edit record
-  const getID = (plan_id, plan_name, plan_desc,payg_price,bundle_price,total_session,free_session) => {
+  const getID = (plan_id, plan_name, plan_desc,payg_price,bundle_price,total_session,free_session,bg_color) => {
     setID(plan_id)
     setPlanName(plan_name)
     setPlanDesc(plan_desc)
@@ -78,6 +79,7 @@ const AddPlan = () => {
     setIsUpdate(true)
     setTotalSession(total_session)
     setFreeSession(free_session)
+    setBgColor(bg_color)
 
     
   }
@@ -92,6 +94,7 @@ const AddPlan = () => {
       payg_price:payg_price,
       total_session:total_session,
       free_session:free_session,
+      bg_color:bg_color,
     })
     .then(() => {
       toast.success('Data updated successfully!')
@@ -178,7 +181,15 @@ const AddPlan = () => {
                     </div>
                   </div>
 
-
+                 
+                  <div className="row">
+                    <div className="col-sm-12">
+                      <label>Background Color:</label>
+                    </div>
+                    <div className="col-sm-12">
+                        <input type="color" name="bg_color" id="bg_color" className='form-control' onChange={(event) => setBgColor(event.target.value)} value={bg_color} />
+                    </div>
+                  </div>
                  
 
 
@@ -238,7 +249,7 @@ const AddPlan = () => {
                           <td>{data.plan_desc}</td>
                           <td>
 
-                              <button className='btn btn-edit'  onClick={() => getID(data.plan_id, data.plan_name, data.plan_desc, data.payg_price, data.bundle_price,data.total_session,data.free_session)}>
+                              <button className='btn btn-edit'  onClick={() => getID(data.plan_id, data.plan_name, data.plan_desc, data.payg_price, data.bundle_price,data.total_session,data.free_session,data.bg_color)}>
                                 <i className='fa fa-pencil'></i>
                               </button>
 

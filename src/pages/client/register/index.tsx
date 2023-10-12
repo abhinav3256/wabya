@@ -184,8 +184,10 @@ if(values.clientPassword == values.clientRePassword){
            
           })
             .then((docRef) => {
+
               const docId = docRef.id;
     localStorage.setItem('clientRegisteredId', docId);
+    localStorage.removeItem('planId');
 
       //         const emailParams = {
       //           service_id: 'service_48nilue',
