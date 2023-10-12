@@ -127,7 +127,7 @@ const [modal_action, setmodal_action] = useState("");
   const [next, setNext] = useState(false);
   const [planId, setplanId] = useState('');
   const [clientRegisteredId, setclientRegisteredId] = useState('');
-
+  const today = new Date();
 
   async function sendMailFunc (email,content,$subject){   
     let response = await sendMail(email,$subject,content);   
@@ -749,6 +749,17 @@ const getAllPlans = async () => {
 
   const timeslotDone = () => {
     setismodalShow(false);
+    setTimeout(() => {
+      const buttonElement = document.getElementById('myButton');
+    
+      // Scroll to the button element
+      if (buttonElement) {
+        buttonElement.scrollIntoView({
+          behavior: 'smooth', // You can adjust the scrolling behavior (smooth or instant)
+          block: 'start', // Align the top of the element with the top of the viewport
+        });
+      }
+    }, 1000); // 2000 milliseconds = 2 seconds
   };
   const showModalOk = () => {
     setismodalShow(false);
@@ -802,7 +813,7 @@ const getAllPlans = async () => {
             <div className="row mrb-60">
               <div className="col-sm-12 session-form">
                 <form>
-                <div className="col-sm-12 date-time mrb-60">
+                <div className="col-sm-12 date-time">
                   <h3>select your date & time</h3>
                 <div className="time-btn"><button className="btn" id="myButton" onClick={scheduleNewSes}>select an available time</button></div>
                 </div>
@@ -812,7 +823,7 @@ const getAllPlans = async () => {
                 <div className="col-sm-12 date-time mrb-30">
                   <h3>fill in your details</h3>
                 </div>
-
+     
                 <div className="col-sm-6 form-group"><input className="form-control" name="client_name" value={client_name}
               onChange={onChange} placeholder="name"/><p className='bookErr'>{clientMsg}</p></div>
 
@@ -869,7 +880,18 @@ const getAllPlans = async () => {
               {meetingdate &&  <p className='selected-date'>Date : {meetingdate}</p>}
 
               {meetingtime &&  <p className='selected-time'>Time : {meetingtime}</p>}
-                <p><button className="btn" onClick={onSubmit}>book my session</button></p>
+                <p>
+
+                {meetingdate && meetingtime ? (
+        <button className="btn" onClick={onSubmit}>
+          book my session
+        </button>
+      ) : (
+        <button className="btn" disabled>
+          book my session
+        </button>
+      )}
+                </p>
               </div> {/* <!--/ col-sm --> */}
             </div> {/* <!--/ row --> */}
 
@@ -989,7 +1011,7 @@ const getAllPlans = async () => {
                     <div className="col-sm-6">
                       <div className="resc-cal">
                         <h5>select a date &amp; time</h5>
-                        <Calendar onChange={getTimeslots} value={date} />
+                        <Calendar onChange={getTimeslots} value={date} minDate={today} />
                         <h5>time zone</h5>
                         {/* <p>{coachesCalTimezone}</p> */}
                       </div>
@@ -1030,9 +1052,19 @@ const getAllPlans = async () => {
                             <div className="btn btn-time"> Loading...</div>
                           ) : null}
                         </div>
-                        <button className="btn btn-next" onClick={timeslotDone}>
+
+                        {meetingdate && meetingtime ? (
+        <button className="btn btn-next" onClick={timeslotDone}>
+        next <i className="fa fa-arrow-right"></i>
+      </button>
+      ) : (
+        <button className="btn btn-next" disabled>
+        next <i className="fa fa-arrow-right"></i>
+      </button>
+      )}
+                        {/* <button className="btn btn-next" onClick={timeslotDone}>
                           next <i className="fa fa-arrow-right"></i>
-                        </button>
+                        </button> */}
                         {/* scheduleNext */}
                         {bookingLoad ? <p>Loading, Please Wait...</p> : null}
 

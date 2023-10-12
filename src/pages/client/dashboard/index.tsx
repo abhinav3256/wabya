@@ -260,7 +260,7 @@ const Dashboard = () => {
   const [savedMsg, setsavedMsg] = useState("");
 
   const [viewProfile, setviewProfile] = useState(false);
-
+  const today = new Date();
 
 
 
@@ -2338,7 +2338,7 @@ const year = today.getFullYear();
                 <div className="col-sm-6">
                   <div className="resc-cal">
                     <h5>select a date &amp; time</h5>
-                    <Calendar onChange={setDate} value={date} />
+                    <Calendar onChange={setDate} value={date} minDate={today} />
                     <h5>time zone</h5>
                     <p>GMT, London Time</p>
                   </div>
@@ -2532,7 +2532,7 @@ const year = today.getFullYear();
                     <div className="col-sm-6">
                       <div className="resc-cal">
                         <h5>select a date &amp; time</h5>
-                        <Calendar onChange={getTimeslots} value={date} />
+                        <Calendar onChange={getTimeslots} value={date} minDate={today} />
                         <h5>time zone</h5>
                         <p>{coachesCalTimezone}</p>
                       </div>
@@ -3409,7 +3409,7 @@ var myArr=new Date(data.meetingDate).toLocaleDateString().split('/');
                     <div className="col-sm-6">
                       <div className="resc-cal">
                         <h5>select a date &amp; time</h5>
-                        <Calendar onChange={getTimeslots} value={date} />
+                        <Calendar onChange={getTimeslots} value={date} minDate={today} />
                         <h5>time zone</h5>
                         <p>{coachesCalTimezone}</p>
                       </div>
