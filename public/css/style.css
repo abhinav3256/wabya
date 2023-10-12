@@ -680,7 +680,7 @@ h4{color:#f79632;}
   font-size: 14px;
   font-weight: 400;
 }
-#calendar-wrap .table-calendar .blue-event{background: #0f2540; color: rgb(248, 243, 231); padding: 25px 5px; border-radius: 20px; text-transform: capitalize; letter-spacing: 2px;  height: 200px; }
+#calendar-wrap .table-calendar .blue-event{background: #0f2540; color: rgb(248, 243, 231); padding: 25px 15px; border-radius: 20px; text-transform: capitalize; letter-spacing: 2px;  height: 200px; }
 #calendar-wrap .table-calendar .blue-event small{font-size: 12px;
   letter-spacing: 1px; text-align: left;}
 #calendar-wrap .table-calendar .blue-event p{text-align: left;}
