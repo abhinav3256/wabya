@@ -1607,7 +1607,7 @@ footer.layout-footer p { color: #ece6d3; }
   .coaching-journey .cj-coll{margin: 0 0 30px; padding:0 50px;}
   .coaching-journey .cj-coll:nth-child(3) .inner{background:#f79632;}
   .coaching-journey .cj-coll:nth-child(4) .inner{background:#1d696c;}
-  .coaching-journey .inner{position: relative; border-radius: 30px; background: #6dc1a4; height: 100%; padding: 45px 40px 30px; color: #ece6d3;}
+  .coaching-journey .inner{position: relative; border-radius: 30px; background: #6dc1a4; height: 100%; padding: 45px 40px 30px; color: #fff/*#ece6d3*/;}
   .coaching-journey .inner h3{color:#ece6d3; font-size: 30px; position: relative; margin: 0 0 15px;}
   .coaching-journey .inner p{margin: 0 0 15px; text-align:left;}
 
