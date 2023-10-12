@@ -270,7 +270,7 @@ const [modal_action, setmodal_action] = useState("");
           console.log(response.docs.length);
           setCoachData(
             response.docs.map(data => {
-              return { ...data.data(), coach_id: data.id }
+              return { ...data.data(), coach_idd: data.id }
             })
           )
         })
@@ -297,7 +297,7 @@ const getAllPlans = async () => {
 
         getCoachData();
     
-        getAllPlans();
+      //  getAllPlans();
     
     
       }, [])
@@ -305,13 +305,13 @@ const getAllPlans = async () => {
       useEffect(() => {
     
     
-        console.log(coachData);
+        console.log('coachData',coachData);
 
 
         
         setrandomNo(Math.floor(Math.random() * (coachData.length - 0 + 1)) + 0);
          
-       // setcoachId(coachData[randomNo].coach_id)
+        setcoachId(coachData[0].coach_idd)
     
       }, [coachData])
 
@@ -323,10 +323,10 @@ const getAllPlans = async () => {
 
         
         
-        // if(coachData.length > 0){
+        if(coachData.length > 0){
          
-        // setcoachId(coachData[randomNo].coach_id)
-        // }
+       // setcoachId(coachData[0].coach_id)
+        }
     
       }, [randomNo])
 
@@ -518,7 +518,8 @@ const getAllPlans = async () => {
   const client_id = clientRegisteredId;
   const fieldToEdit = doc(database, 'client_user', client_id);
   updateDoc(fieldToEdit, {
-    isDiscoverySessionAdded: 1
+    isDiscoverySessionAdded: 1,
+    assign_coach_id:coachId,
   })
   .then(() => {
     
