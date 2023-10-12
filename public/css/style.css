@@ -2616,7 +2616,7 @@ button{font-family: Gothic A1 !important;}
 
 .session-history{position: relative; margin: 0; padding: 0 0 15px; z-index: 1;}
    .session-history .container{padding: 0;}
-   .session-history:before{content: ""; position: absolute; height: 20px; width: 80px; right: 10px; bottom: 0; background-image: url(../images/session-shape-01.png); background-repeat: no-repeat; background-position: center 0; background-attachment: scroll; background-size: cover;}
+   .session-history:before{content: ""; position: absolute; height: 27px; width: 28px; right: 10px; bottom: 0; background-image: url(../images/session-shape-01.png); background-repeat: no-repeat; background-position: center 0; background-attachment: scroll; background-size: cover;}
    .session-history .session-inner{padding: 0 0 10px;}
    .session-history .session-inner .row{background: #f7f0e4; -webkit-border-radius: 10px; -moz-border-radius: 10px; border-radius: 10px; color: #0f2540; position: relative; padding: 10px 10px 1px; font-size: 12px; margin: 0 0 15px;}
    .session-history .session-inner .row > *{padding: 0 5px;}
