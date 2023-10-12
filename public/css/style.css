@@ -1543,7 +1543,7 @@ footer.layout-footer p { color: #ece6d3; }
   .coach-btn .btn:after{content: ''; position: absolute; height: 100%; left: 0; top: 0; width: 0%; -webkit-transition: all .3s; -moz-transition: all .3s; -o-transition: all .3s; transition: all .3s; background-color: #f69532 !important; z-index: -1;}
   .coach-btn .btn:hover:after{width: 100%;}
   .wg-1{margin:0 0 30px;}
-  .wg-1 h4{color:#ece6d3; font-size:22px; min-height: 60px; margin:0; padding: 0; position:relative;}
+  .wg-1 h4{color:#ece6d3; /*font-size:22px; min-height: 60px;*/ font-size:15px; min-height: 40px; letter-spacing: -0.5px; margin:0; padding: 0; position:relative;}
   .wg-1 p{text-align:left;}
   .wg-1 ul{margin:0; padding:0;}
   .wg-1 ul li{list-style:none; position:relative; margin: 0 0 5px; padding: 0 0 5px;}
