@@ -30,7 +30,7 @@ const CoachSessionBasic = () => {
   const [isThankModal, setIsThankModal] = useState(false)
   const coachRef = collection(database, 'coaches_user');
 const planRef = collection(database, 'admin_plans');
-const [coachData, setCoachData] = useState([]);
+const [coachData, setCoachData] = useState(null);
 const [randomNo, setrandomNo] = useState(0);
 const clientRef = collection(database, 'client_user');
 
@@ -270,7 +270,7 @@ const [modal_action, setmodal_action] = useState("");
           console.log(response.docs.length);
           setCoachData(
             response.docs.map(data => {
-              return { ...data.data(), coach_id: data.id }
+              return { ...data.data(), coach_idd: data.id }
             })
           )
         })
@@ -297,21 +297,23 @@ const getAllPlans = async () => {
 
         getCoachData();
     
-        getAllPlans();
+      //  getAllPlans();
     
     
       }, [])
     
       useEffect(() => {
     
+        if(coachData != null){
     
-        console.log(coachData);
+        console.log('coachData',coachData);
 
 
         
         setrandomNo(Math.floor(Math.random() * (coachData.length - 0 + 1)) + 0);
          
-       // setcoachId(coachData[randomNo].coach_id)
+        setcoachId(coachData[0].coach_idd);
+        }
     
       }, [coachData])
 
@@ -323,10 +325,10 @@ const getAllPlans = async () => {
 
         
         
-        // if(coachData.length > 0){
+        if(coachData != null){
          
-        // setcoachId(coachData[randomNo].coach_id)
-        // }
+       // setcoachId(coachData[0].coach_id)
+        }
     
       }, [randomNo])
 
@@ -518,7 +520,8 @@ const getAllPlans = async () => {
   const client_id = clientRegisteredId;
   const fieldToEdit = doc(database, 'client_user', client_id);
   updateDoc(fieldToEdit, {
-    isDiscoverySessionAdded: 1
+    isDiscoverySessionAdded: 1,
+    assign_coach_id:coachId,
   })
   .then(() => {
     
@@ -751,8 +754,26 @@ const getAllPlans = async () => {
     setismodalShow(false);
   };
   const showModalCancel = () => {
-    setismodalShow(false);
+    setismodalShow(false);// Find the button element by its id
+
+    setTimeout(() => {
+    const buttonElement = document.getElementById('myButton');
+  
+    // Scroll to the button element
+    if (buttonElement) {
+      buttonElement.scrollIntoView({
+        behavior: 'smooth', // You can adjust the scrolling behavior (smooth or instant)
+        block: 'start', // Align the top of the element with the top of the viewport
+      });
+    }
+  }, 1000); // 2000 milliseconds = 2 seconds
   };
+  
+  
+  
+  
+  
+  
 
   const showModal = () => {
     setismodalShow(true);
@@ -783,7 +804,7 @@ const getAllPlans = async () => {
                 <form>
                 <div className="col-sm-12 date-time mrb-60">
                   <h3>select your date & time</h3>
-                <div className="time-btn"><button className="btn" onClick={scheduleNewSes}>select an available time</button></div>
+                <div className="time-btn"><button className="btn" id="myButton" onClick={scheduleNewSes}>select an available time</button></div>
                 </div>
 {/* scheduleNewSes */}
 
@@ -845,7 +866,9 @@ const getAllPlans = async () => {
               <div className="col-sm-12 bottom">
               {/* <p className='bookErr'>{meetingDateMsg}</p> */}
 
-              
+              {meetingdate &&  <p className='selected-date'>Date : {meetingdate}</p>}
+
+              {meetingtime &&  <p className='selected-time'>Time : {meetingtime}</p>}
                 <p><button className="btn" onClick={onSubmit}>book my session</button></p>
               </div> {/* <!--/ col-sm --> */}
             </div> {/* <!--/ row --> */}

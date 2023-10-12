@@ -236,7 +236,7 @@ const Dashboard = () => {
   const [clientTotalSession, setclientTotalSession] = useState("");
 
   const [clientCompletedSession, setclientCompletedSession] = useState("");
-
+  const [clientRemainingSession, setclientRemainingSession] = useState("");
   const [clientFirebaseId, setclientFirebaseId] = useState("");
 
   const [BookedId, setBookedId] = useState();
@@ -1254,6 +1254,7 @@ const getMeetingSession = async () => {
       setclientPlanId(client.plan_id);
       setclientTotalSession(client.total_session);
       setclientCompletedSession(client.completedSession);
+      setclientRemainingSession(client.remainingSession);
       setcoachesFirebaseId(client.assign_coach_id);
       getFiles();
      // fetchCoach();
@@ -3259,41 +3260,45 @@ var myArr=new Date(data.meetingDate).toLocaleDateString().split('/');
           <h3 className="mrb-20">history</h3>
           <div className="session-info">
 
-          {meetingSession.map((session, index) =>{
-  // Convert the Unix timestamp to a readable time for each session
-  const timestamp = session.meeting_start_time.seconds * 1000; // Convert seconds to milliseconds
-  const date = new Date(timestamp);
-  const readableTime = date.toLocaleTimeString(); 
+          {meetingSession.length === 0 ? (
+  <p>No session history</p>
+) : (
+  meetingSession.map((session, index) => {
+    // Convert the Unix timestamp to a readable time for each session
+    const timestamp = session.meeting_start_time.seconds * 1000; // Convert seconds to milliseconds
+    const date = new Date(timestamp);
+    const readableTime = date.toLocaleTimeString();
 
-  const readableDate = date.toLocaleDateString(); 
+    const readableDate = date.toLocaleDateString();
 
-  return (
-            <div className="session-inner">
-              <div className="row">
-                <div className="col-3">
-                  <p>
-                    <b>session {index + 1}</b>
-                  </p>
-                </div>
-                <div className="col-3">
-                  <p>{ readableDate} </p>
-                </div>
-                <div className="col-3">
-                  <p>{readableTime}</p>
-                </div>
-                <div className="col-3">
-                  <p>{mycoach ? mycoach[0].coach_name : null }</p>
-                </div>
-              </div>
-              {/*/ row */}
-              <p className="session-btn">
-                <a href="#" className="btn btn-darkgreen">
-                  download notes
-                </a>
-              </p>
-            </div>
-           );
-          })}
+    return (
+      <div className="session-inner" key={index}>
+        <div className="row">
+          <div className="col-3">
+            <p>
+              <b>session {index + 1}</b>
+            </p>
+          </div>
+          <div className="col-3">
+            <p>{readableDate} </p>
+          </div>
+          <div className="col-3">
+            <p>{readableTime}</p>
+          </div>
+          <div className="col-3">
+            <p>{mycoach ? mycoach[0].coach_name : null}</p>
+          </div>
+        </div>
+        {/*/ row */}
+        <p className="session-btn">
+          <a href="#" className="btn btn-darkgreen">
+            download notes
+          </a>
+        </p>
+      </div>
+    );
+  })
+)}
            
            
           </div>
@@ -3849,7 +3854,7 @@ const timeRemaining = Math.floor((meetingDate - currentTime) / 60000);
         <div className="meeting-reminder">
           <div className="info">
             <div className="title">upcoming meeting reminder </div>
-            <p>{timeRemain} minutes: coach name</p>
+            <p>{timeRemain} minutes: {mycoach ? mycoach[0].coach_name : null }</p>
           </div>
           <div className="meeting-link">
             <a href="#">join</a>
@@ -3888,11 +3893,12 @@ const timeRemaining = Math.floor((meetingDate - currentTime) / 60000);
           <h4 className="mrb-15">my plan</h4>
           
           {fireData.map((data) => {
+            
                   return (
                     <>
           <div className={` ${data.plan_id === clientPlanId ? 'remaining-info mrb-20' : 'probono-text mrb-20'}`}>
             <h3>
-            {data.plan_name}  {data.plan_id === clientPlanId ?<span>{parseInt(clientTotalSession) - parseInt(clientCompletedSession)}/{clientTotalSession} remaining</span>: null}
+            {data.plan_name}  {data.plan_id === clientPlanId ?<span>{ clientRemainingSession}/{clientTotalSession} remaining</span>: null}
             </h3>
             <p>
             {data.plan_desc}

@@ -78,11 +78,15 @@ const RegisterPage = () => {
       if (storedValue) {
         setplanId(storedValue);
       }
-
+else{
+  console.log('i am here in localstorage');
+  router.push('/frontend/pricing');
+}
     
     } catch (error) {
       // Handle potential errors accessing localStorage here
       console.error('Error accessing localStorage:', error);
+      router.push('/frontend/pricing');
     }
   }, []);
   const initialValues = {
@@ -169,7 +173,7 @@ if(values.clientPassword == values.clientRePassword){
             client_uname : String(), 
             client_uid : Number(),
             // assign_coach_id:coachData[randomNo].coach_id,
-            plan_id:'',
+            plan_id:planId,
             prefer_plan_id:planId,
             coach_prefer:selectedGender,
             coaching_before:selectedcoachingBefore,
