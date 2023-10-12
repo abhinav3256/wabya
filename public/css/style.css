@@ -3162,6 +3162,7 @@ button{font-family: Gothic A1 !important;}
    .calendar-mobile .calendar-btns .btn-orange{background:#f17c5d;}
    .pricing-wrap .inner{padding: 30px 30px 30px;}
    
+   .journey-wrap form{display:block;}
    .journey-wrap h2{font-size:40px;}
    .journey-wrap h2 span{font-size: 16px; letter-spacing: 1px;}
    .journey-wrap .row{margin: 0 -15px;}
