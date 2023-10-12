@@ -3163,6 +3163,7 @@ button{font-family: Gothic A1 !important;}
    .journey-wrap h2{font-size:40px;}
    .journey-wrap h2 span{font-size: 16px; letter-spacing: 1px;}
    .journey-wrap .row{margin: 0 -15px;}
+   .journey-wrap .bottom .btn{font-size: 18px; padding: 15px 30px; letter-spacing: 2px;}
   
 }
 
@@ -3280,6 +3281,9 @@ button{font-family: Gothic A1 !important;}
    .center-arrow span{font-size: 14px; padding: 0 5px; margin: 0 5px;}
    .center-arrow{position: absolute; top: 13px; left: 40px; letter-spacing: 0; text-align: center; right: 40px;}
    .timesheet-resources .fi-coll{width: 50%;}
+   
+   .journey-wrap h2{font-size:65px;}
+   .journey-wrap .row{margin: 0 -15px;}
 
 }
 
