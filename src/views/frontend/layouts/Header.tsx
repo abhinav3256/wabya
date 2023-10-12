@@ -46,6 +46,8 @@ const Header = () => {
 	
 
 	setmenuCollapse(false);
+	setlogindropdown(false);
+	setsignupdropdown(false);
 	console.log('route changed');
  // 1 second delay
   }, [router.pathname])
