@@ -667,7 +667,7 @@ setend_time_minute(parts2[1])
                   <input
                     type="text"
                     className="form-control"
-                    placeholder='Phone' name='pro_timezone' id='pro_timezone' value={proTimeZone} onChange={event => setTimeZone(event.target.value)}
+                    placeholder='Timezone' name='pro_timezone' id='pro_timezone' value={proTimeZone} onChange={event => setTimeZone(event.target.value)}
                   />
                 </li>
                 <li className="col-12">

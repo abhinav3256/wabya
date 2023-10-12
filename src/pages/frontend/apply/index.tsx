@@ -147,11 +147,11 @@ err=err+1;
         coach_language: String(),
         coach_about: String(),
         coach_bio: String(),
-        coach_profile: String(),
+        coach_profile: 'https://firebasestorage.googleapis.com/v0/b/wabya-45dba.appspot.com/o/coach%2Fprofile%2Fdefault-pic.png?alt=media&token=e8f166da-9d52-4c00-a978-60669f3a0929&_gl=1*3mksep*_ga*MTIzMzY1Njg1LjE2OTA4MDU4Nzg.*_ga_CW55HF8NVT*MTY5NzEwMzk4Ni45Mi4xLjE2OTcxMDcyNTIuMjkuMC4w',
         coach_uid : Number(),
       })
         .then(() => {
-        setsuccess('Coach Added');
+        setsuccess('Registered Successfully');
         //  router.push('/pages/login')
         })
         .catch((err) => {
@@ -202,27 +202,27 @@ err=err+1;
 
           <div className="inner">
           <form ref={form1}>
-            <div className="col-sm-6 form-group"><input className="form-control" name="name" value={name}  placeholder="name" onChange={(event) => setName(event.target.value)}/> {nameErr && <Alert severity='error' style={{ margin :'0 0 20px 0'}}>{nameErr}</Alert>}</div>
+            <div className="col-sm-6 form-group"><input className="form-control" name="name" value={name}  placeholder="name" onChange={(event) => setName(event.target.value)}/> {nameErr && <Alert severity='error' style={{ margin :'10px 0 20px 0'}}>{nameErr}</Alert>}</div>
 
           <div className="col-sm-6 form-group"><input className="form-control" name="name" value={surname} placeholder="surname" onChange={(event) => setSurname(event.target.value)}/></div>
-          <div className="col-sm-6 form-group"><input className="form-control" name="email" value={email} placeholder="email" onChange={(event) => setEmail(event.target.value)}/> {emailErr && <Alert severity='error' style={{ margin :'0 0 20px 0'}}>{emailErr}</Alert>}
-                              <p className="form-error3"> {validEmailErr} </p></div>
-          <div className="col-sm-6 form-group"><input className="form-control" name="mobile" placeholder="mobile number" value={mobile} onChange={(event) => setmobile(event.target.value)}/> {mobileErr && <Alert severity='error' style={{ margin :'0 0 20px 0'}}>{mobileErr}</Alert>}</div>
-          <div className="col-sm-6 form-group"><textarea className="form-control" placeholder="a bit about me" value={msg} onChange={(event) => setmsg(event.target.value)}></textarea>  {msgErr && <Alert severity='error' style={{ margin :'0 0 20px 0'}}>{msgErr}</Alert>}
-          {msgLenErr && <Alert severity='error' style={{ margin :'0 0 20px 0'}}>{msgLenErr}</Alert>}</div>
+          <div className="col-sm-6 form-group"><input className="form-control" name="email" value={email} placeholder="email" onChange={(event) => setEmail(event.target.value)}/> {emailErr && <Alert severity='error' style={{ margin :'10px 0 20px 0'}}>{emailErr}</Alert>}
+          {validEmailErr && <Alert severity='error' style={{ margin :'10px 0 20px 0'}}>{validEmailErr}</Alert>}</div>
+          <div className="col-sm-6 form-group"><input className="form-control" name="mobile" placeholder="mobile number" value={mobile} onChange={(event) => setmobile(event.target.value)}/> {mobileErr && <Alert severity='error' style={{ margin :'10px 0 20px 0'}}>{mobileErr}</Alert>}</div>
+          <div className="col-sm-6 form-group"><textarea className="form-control" placeholder="a bit about me" value={msg} onChange={(event) => setmsg(event.target.value)}></textarea>  {msgErr && <Alert severity='error' style={{ margin :'10px 0 20px 0'}}>{msgErr}</Alert>}
+          {msgLenErr && <Alert severity='error' style={{ margin :'10px 0 20px 0'}}>{msgLenErr}</Alert>}</div>
 
 
-                              <div className="col-sm-6 form-group"><input type="password" className="form-control" name="pass" placeholder="password" value={pass} onChange={(event) => setpass(event.target.value)}/> {passErr && <Alert severity='error' style={{ margin :'0 0 20px 0'}}>{passErr}</Alert>}</div>                   
+                              <div className="col-sm-6 form-group"><input type="password" className="form-control" name="pass" placeholder="password" value={pass} onChange={(event) => setpass(event.target.value)}/> {passErr && <Alert severity='error' style={{ margin :'10px 0 20px 0'}}>{passErr}</Alert>}</div>                   
           <div className="col-sm-6 form-group"></div>
           <div className="col-sm-12 form-group">
               <div className="custom-control custom-checkbox">
               <input type="checkbox" className="custom-control-input" id="accept" onClick={handleCheckboxChange}/>
               <small><strong>I have graduated from an ICF, EMCC or AC-accredited coaching programme</strong></small>
-              {TermMsg && <Alert severity='error' style={{ margin :'0 0 20px 0'}}>{TermMsg}</Alert>}
+              {TermMsg && <Alert severity='error' style={{ margin :'10px 0 20px 0'}}>{TermMsg}</Alert>}
             </div>
             </div>
           <div className="col-sm-12 form-group"><input className="btn" value="submit" type="button"  onClick={onSubmit}/></div>
-          {success && <Alert severity='success' style={{ margin :'0 0 20px 0'}}>{success}</Alert>}
+          {success && <Alert severity='success' style={{ margin :'10px 0 20px 0'}}>{success}</Alert>}
          
           </form>
           </div>

@@ -367,8 +367,10 @@ const year = today.getFullYear();
           </div>
           </div>
           
-          <div class="file-info-inner">
-            <div class="row">
+          {allFiles.length > 0 ? (
+            <>
+          <div className="file-info-inner">
+            <div className="row">
           {allFiles.map((myfile, index) => {
 
             var file_name=myfile.fileName
@@ -438,8 +440,15 @@ const year = today.getFullYear();
 
          
 
-          </div> {/* <!--/ row --> */}
+          </div> 
+          </>
+)
+
+: (
+  <h4 className='text-center'>No data available</h4>
+)}
           </div> {/* <!--/ file-scroll --> */}
+          
           </div> {/* <!--/ file-info --> */}
         </div> {/* <!--/ right --> */}
 
@@ -473,9 +482,11 @@ const year = today.getFullYear();
                 />
               </form>
             </div>
+            {allFiles.length > 0 ? (
             <div className="file-list">
               <div className="file-list-scroll">
-              {allFiles.map((myfile, index) => {
+             
+             { allFiles.map((myfile, index) => {
 
 var file_name=myfile.fileName
 
@@ -535,7 +546,10 @@ else{
 
                );
               
-            })
+            }
+            
+            
+            )
           }
 
                 
@@ -543,6 +557,11 @@ else{
               </div>
               {/*/ file-list-scroll */}
             </div>
+            )
+
+            : (
+              <h4 className='text-center'>No data available</h4>
+            )}
             {/*/ file-list */}
           </div>
         </div>

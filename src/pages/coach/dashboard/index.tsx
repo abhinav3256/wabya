@@ -294,7 +294,7 @@ useEffect(() => {
                 <li className="col-6">
                   <span className="bold">email:</span>{" "}
                   <span>
-                    <a href="mailto:name@gmail.com">name@gmail.com</a>
+                    <a href="#">{coach.coach_email}</a>
                   </span>
                 </li>
                 <li className="col-6">
