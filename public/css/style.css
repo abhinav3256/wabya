@@ -1806,6 +1806,7 @@ footer.layout-footer p { color: #ece6d3; }
   .journey-wrap form .custom-checkbox #accept{width: 2.3em; height: 2.3em; background: #fff; border-radius: 10px; vertical-align: middle; border: 1px solid #ddd;  outline: none; cursor: pointer; margin: 0 10px 0 0;}
   .journey-wrap form .custom-checkbox a{color: #1b1b1b; text-decoration:underline;}
   .journey-wrap form .custom-checkbox a:hover{color: #1d696c;}
+  .journey-wrap .MuiAlert-standardError{max-width: 290px !important; margin: 0 auto 20px !important; width: auto !important;}
 
 .work-together{padding: 100px 0 70px; position:relative;}
   .work-together::after{content: ""; position: absolute; height: 245px; width: 250px; bottom: 12%; right: 5%; background-image: url(../images/shape-08.png); background-repeat: no-repeat; background-position: top center; background-attachment: scroll; background-size: cover;}
@@ -3158,6 +3159,10 @@ button{font-family: Gothic A1 !important;}
    .calendar-mobile .timesheet-fix p{margin:0; letter-spacing:1px;}
    .calendar-mobile .calendar-btns .btn-orange{background:#f17c5d;}
    .pricing-wrap .inner{padding: 30px 30px 30px;}
+   
+   .journey-wrap h2{font-size:40px;}
+   .journey-wrap h2 span{font-size: 16px; letter-spacing: 1px;}
+   .journey-wrap .row{margin: 0 -15px;}
   
 }
 
