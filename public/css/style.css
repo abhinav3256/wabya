@@ -2977,7 +2977,7 @@ button{font-family: Gothic A1 !important;}
   font-weight: 700;
 }
 .cal-time .btn-time{background: #f6efe3; font-weight: 400; font-size: 14px; text-shadow: none; text-transform: uppercase; letter-spacing: 2px; box-shadow: none; border: 1px solid #0f2540; min-width: inherit; text-align: center!important; border-radius: 20px; margin: 16px auto; padding: 10px 20px 10px; position: relative; z-index: 2; display: block; color: #0f2540;}
-.cal-time .btn-time:focus, .cal-time .btn-time:hover, .cal-time .btn-time:visited{background: #f6efe3 !important; border: 1px solid #0f2540 !important; color: #0f2540 !important;}
+.cal-time .btn-time:focus, .cal-time .btn-time:hover, .cal-time .btn-time:visited{background: #f6efe3 !important; border: 1px solid #0f2540 !important; color: #fff !important;}
 .session-history-modal .table-sess th {
   border-right: 1px solid #0f2540;
   padding: 7px 5px;
@@ -3163,7 +3163,10 @@ button{font-family: Gothic A1 !important;}
    .journey-wrap h2{font-size:40px;}
    .journey-wrap h2 span{font-size: 16px; letter-spacing: 1px;}
    .journey-wrap .row{margin: 0 -15px;}
-   .journey-wrap .bottom .btn{font-size: 18px; padding: 15px 30px; letter-spacing: 2px;}
+   .journey-wrap .bottom .btn{font-size: 18px; padding: 15px 30px; letter-spacing: 1px;}
+   .journey-wrap .date-time .btn{letter-spacing: 1px;}
+   .journey-wrap .selected-date{padding: 0 !important;}
+   .journey-wrap .date-time{margin-bottom: 0 !important;}
   
 }
 
