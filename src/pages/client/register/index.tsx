@@ -169,11 +169,14 @@ if(values.clientPassword == values.clientRePassword){
             client_uname : String(), 
             client_uid : Number(),
             // assign_coach_id:coachData[randomNo].coach_id,
-            plan_id:planId,
+            plan_id:'',
+            prefer_plan_id:planId,
             coach_prefer:selectedGender,
             coaching_before:selectedcoachingBefore,
             prefer_time:selectedpreferMeet,
             my_mind:commaSeparatedValues,
+            total_session:'0',
+            remainingSession:'0',
            
           })
             .then((docRef) => {
