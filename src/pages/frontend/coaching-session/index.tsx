@@ -31,6 +31,8 @@ const CoachSessionBasic = () => {
   const coachRef = collection(database, 'coaches_user');
 const planRef = collection(database, 'admin_plans');
 const [coachData, setCoachData] = useState(null);
+
+const [coachFilterData, setcoachFilterData] = useState(null);
 const [randomNo, setrandomNo] = useState(0);
 const clientRef = collection(database, 'client_user');
 
@@ -127,6 +129,7 @@ const [modal_action, setmodal_action] = useState("");
   const [next, setNext] = useState(false);
   const [planId, setplanId] = useState('');
   const [clientRegisteredId, setclientRegisteredId] = useState('');
+  const [coach_prefer, setcoach_prefer] = useState('');
   const [client_detail, setclient_detail] = useState(null);
   const today = new Date();
 
@@ -191,6 +194,34 @@ if(clientRegisteredId != ''){
 
 
   }, [clientRegisteredId]);
+
+
+  useEffect(() => {
+    if(client_detail != null){
+    console.log(client_detail);
+    setcoach_prefer(client_detail[0].coach_prefer);
+   // setclient_remaining_ses(client_detail[0].remainingSession);
+    }
+     }, [client_detail]);
+
+
+     useEffect(() => {
+      if(coach_prefer != ''){
+      console.log(client_detail);
+     // setcoach_prefer(client_detail[0].coach_prefer);
+     // setclient_remaining_ses(client_detail[0].remainingSession);
+
+     const filterData=filterCoachByGender(coachData,coach_prefer);
+     console.log('filterData',filterData)
+     setcoachFilterData(filterData);
+
+     if(filterData.length == 1){
+      //assign coach
+     }else{
+      //next step
+     }
+      }
+       }, [coach_prefer]);
 
 
   function addMinutes(time, minutes) {
@@ -304,7 +335,11 @@ if(clientRegisteredId != ''){
    setSelectedPlan(new_plan_id)
   }
 
+  const filterCoachByGender = (data, gender) => {
+    return data.filter(coach => coach.coach_gender === gender);
+  };
 
+  
    // coach data fetch
    const getCoachData = async () => {
     console.log('test');

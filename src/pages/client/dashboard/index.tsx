@@ -3104,7 +3104,7 @@ var myArr=new Date(data.meetingDate).toLocaleDateString().split('/');
         <div className="plans-content">
           <span>current plan :</span>
           <a href="" className="btn btn-lightgreen">
-            experienced
+            novice
           </a>
         </div>
         <div className="plans-content">
@@ -3959,13 +3959,13 @@ const timeRemaining = Math.floor((meetingDate - currentTime) / 60000);
         <div className="session-info mrb-50">
           <h4 className="mrb-15">my plan</h4>
 
-          <div className="new-plans" style={{  display: "none" }}>
+          <div className="new-plans">
     <div className="row">
       <div className="col-sm-6 left mrb-10">
         <div className="plans-content">
           <span>current plan :</span>
           <a href="" className="btn btn-lightgreen">
-            experienced
+            novice
           </a>
         </div>
         <div className="plans-content">
@@ -4009,7 +4009,7 @@ const timeRemaining = Math.floor((meetingDate - currentTime) / 60000);
     {/*/ row */}
   </div>
           
-          {fireData.map((data) => {
+          {/* {fireData.map((data) => {
             
                   return (
                     <>
@@ -4033,7 +4033,7 @@ const timeRemaining = Math.floor((meetingDate - currentTime) / 60000);
           </p>
           </>
                   );
-                })}
+                })} */}
 
        
          
