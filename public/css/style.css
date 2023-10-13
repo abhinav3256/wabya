@@ -3193,10 +3193,11 @@ button{font-family: Gothic A1 !important;}
    .journey-wrap .selected-date{padding: 0 !important;}
    .journey-wrap .date-time{margin-bottom: 0 !important;}
    
-   .new-plans .plans-content{display: block; gap: 0; margin: 0 0 20px;}
+   .new-plans{padding: 10px 0 20px;}
+   .new-plans .plans-content{display: block; gap: 0; margin: 0 0 10px;}
    .new-plans .btn{width: 100% !important;}
    .new-plans .plans-list ul{margin: 0; padding: 0 !important; display: block; gap: 0;}
-   .new-plans .plans-list ul li{padding: 0 0 30px !important; list-style: none !important;}
+   .new-plans .plans-list ul li{padding: 0 0 10px !important; list-style: none !important;}
   
 }
 
