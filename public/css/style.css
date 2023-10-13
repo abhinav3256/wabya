@@ -2011,6 +2011,24 @@ img.tree-image {
   .payment-successful .check.close i{background: #ff0000;}
   .payment-successful .check.close:before, .payment-successful .check.close:after{content:''; background: #ff0000;}
   .payment-successful .check.close:before{opacity: 0.4;}
+
+
+
+
+  .new-plans{text-align:left; position:relative;}
+  .new-plans .btn{width:auto;}
+  .new-plans .plans-list ul{margin:0; padding:0; display:flex; gap: 30px;}
+  .new-plans .plans-list ul li{list-style:none; margin:0; padding:0; justify-content: center;}
+  .new-plans .plans-list ul li .btn{padding: 12px 20px 10px;}
+  .new-plans .plans-content{display:flex; gap: 30px; align-items: center; margin:0 0 20px;}
+  .new-plans .plans-content .btn{min-width: 180px;}
+  .new-plans .plans-sessions .btn{min-width: 180px;}
+
+
+
+
+
+
     /** Smartphones **/
 @media (min-width: 320px) and (max-width: 481px) {
 	

@@ -127,6 +127,7 @@ const [modal_action, setmodal_action] = useState("");
   const [next, setNext] = useState(false);
   const [planId, setplanId] = useState('');
   const [clientRegisteredId, setclientRegisteredId] = useState('');
+  const [client_detail, setclient_detail] = useState(null);
   const today = new Date();
 
   async function sendMailFunc (email,content,$subject){   
@@ -134,6 +135,32 @@ const [modal_action, setmodal_action] = useState("");
   
     console.log('response',response);
   }  
+
+
+  
+  const getClientDetail = async () => {
+    
+  
+    const queryDoc = query(clientRef, where("__name__", "==", clientRegisteredId));
+  
+    try {
+      const querySnapshot = await getDocs(queryDoc);
+  
+      const clients = querySnapshot.docs.map((data) => {
+        return { ...data.data(), client_id: data.id };
+      });
+      setclient_detail(clients);
+
+  
+      // Now you can access the length of the meetings array
+    //   const numberOfMeetings = meetings.length;
+  
+    //   return numberOfMeetings;
+    } catch (error) {
+      console.error("Error getting client: ", error);
+   //   return 0; // Return 0 if there was an error
+    }
+  };
 
   useEffect(() => {
     // Try to get the value from localStorage
@@ -155,6 +182,15 @@ else{
       router.push('/frontend/pricing');
     }
   }, []);
+
+
+  useEffect(() => {
+if(clientRegisteredId != ''){
+  getClientDetail();
+}
+
+
+  }, [clientRegisteredId]);
 
 
   function addMinutes(time, minutes) {
@@ -245,7 +281,7 @@ else{
    setarray1(timeslots);
    
    
-     }, [meetingByDate]);
+     }, [meetingByDate]); 
 
   const calDiv = (e) =>{
     e.preventDefault();

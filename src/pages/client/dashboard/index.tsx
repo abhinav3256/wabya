@@ -3022,6 +3022,66 @@ var myArr=new Date(data.meetingDate).toLocaleDateString().split('/');
           </div>
         </div>
 
+
+
+
+        
+  <div className="new-plans" style={{ width: 775, display: "none" }}>
+    <div className="row">
+      <div className="col-sm-6 left mrb-10">
+        <div className="plans-content">
+          <span>current plan :</span>
+          <a href="" className="btn btn-lightgreen">
+            experienced
+          </a>
+        </div>
+        <div className="plans-content">
+          <span>journey type </span>
+          <a href="" className="btn btn-thulian-pink">
+            pay as you
+          </a>
+        </div>
+      </div>
+      <div className="col-sm-6 right mrb-30">
+        <div className="plans-sessions">
+          <p className="text-right">sessions remaning: 4</p>
+          <p className="text-right">
+            <a href="" className="btn btn-darkgreen">
+              {" "}
+              pay as you
+            </a>
+          </p>
+        </div>
+      </div>
+      <div className="plans-list col-sm-12">
+        <ul>
+          <li>
+            <a href="" className="btn btn-darkgreen">
+              change Plan
+            </a>
+          </li>
+          <li>
+            <a href="" className="btn btn-chestnutred">
+              change country type
+            </a>
+          </li>
+          <li>
+            <a href="" className="btn btn-maroon">
+              update my billing information
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    {/*/ row */}
+  </div>
+  {/*/ new-plans */}
+
+
+
+
+
+
         <div className="client-plans">
           <div className="row">
             <div className="col-sm-7">

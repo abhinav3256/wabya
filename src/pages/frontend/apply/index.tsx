@@ -222,7 +222,7 @@ err=err+1;
         coach_api : String(),
         coach_uname : String(),
         coach_language: String(),
-        coach_about: String(),
+        coach_about: msg,
         coach_bio: String(),
         coach_profile: 'https://firebasestorage.googleapis.com/v0/b/wabya-45dba.appspot.com/o/coach%2Fprofile%2Fdefault-pic.png?alt=media&token=e8f166da-9d52-4c00-a978-60669f3a0929&_gl=1*3mksep*_ga*MTIzMzY1Njg1LjE2OTA4MDU4Nzg.*_ga_CW55HF8NVT*MTY5NzEwMzk4Ni45Mi4xLjE2OTcxMDcyNTIuMjkuMC4w',
         coach_uid : Number(),
@@ -288,7 +288,7 @@ err=err+1;
           <div className="col-sm-6 form-group"><input className="form-control" name="email" value={email} placeholder="email" onChange={(event) => setEmail(event.target.value)}/> {emailErr && <Alert severity='error' style={{ margin :'10px 0 20px 0'}}>{emailErr}</Alert>}
           {validEmailErr && <Alert severity='error' style={{ margin :'10px 0 20px 0'}}>{validEmailErr}</Alert>}
           
-          {emailExist  && <Alert severity='error' style={{ margin :'0 0 20px 20px'}}>*Email Already Exist</Alert>}
+          {emailExist  && <Alert severity='error' style={{ margin :'10 0 20px 0'}}>*Email Already Exist</Alert>}
           </div>
           <div className="col-sm-6 form-group"><input className="form-control" name="mobile" placeholder="mobile number" value={mobile} onChange={(event) => setmobile(event.target.value)}/> {mobileErr && <Alert severity='error' style={{ margin :'10px 0 20px 0'}}>{mobileErr}</Alert>}</div>
          
@@ -330,8 +330,8 @@ onChange={handleGender}
   
                   
 
-<option value="Female" selected={coachGender === 'male'}> Female</option>
-<option value="Male" selected={coachGender === 'male'}> Male</option>
+<option value="female" selected={coachGender === 'female'}> Female</option>
+<option value="male" selected={coachGender === 'male'}> Male</option>
 
                   </select>
                   {genderErr && <Alert severity='error' style={{ margin :'10px 0 20px 0'}}>{genderErr}</Alert>}      
@@ -352,7 +352,10 @@ onChange={handleGender}
               <div className="custom-control custom-checkbox">
               <input type="checkbox" className="custom-control-input" id="accept" onClick={handleCheckboxChange}/>
               <small><strong>I have graduated from an ICF, EMCC or AC-accredited coaching programme</strong></small>
+
+              <div className="col-sm-6 form-group">
               {TermMsg && <Alert severity='error' style={{ margin :'10px 0 20px 0'}}>{TermMsg}</Alert>}
+              </div>
             </div>
             </div>
           <div className="col-sm-12 form-group"><input className="btn" value="submit" type="button"  onClick={onSubmit}/></div>
