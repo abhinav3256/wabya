@@ -12,7 +12,8 @@ import Footer from 'src/views/frontend/layouts/Footer'
 import BlankLayout from 'src/@core/layouts/BlankLayout'
 import emailjs from '@emailjs/browser';
 import { Alert } from '@mui/material'
-import { collection, addDoc} from 'firebase/firestore'
+import { collection, addDoc ,where, query,startAt,limit,orderBy,getDocs} from 'firebase/firestore'
+
 import { app, database } from '../../../../firebaseConfig'
 import country_data from '../../../@core/utils/all-countries'
 
@@ -33,7 +34,7 @@ const ApplyWabyaBasic = () => {
 
   const [pass, setpass] = useState('');
 
-  const [coachGender, setcoachGender] = useState('');
+  const [coachGender, setcoachGender] = useState('female');
 
 
   const [nameErr, setnameErr] = useState('');
@@ -56,6 +57,19 @@ const ApplyWabyaBasic = () => {
   const coachesRef = collection(database, 'coaches_user');
 
   const [country_sel, setcountry_sel] = useState('');
+  const [emailExist, setEmailExist] = useState(false);
+
+     // coach data fetch
+     const countData = async (client_em:string) => {
+      console.log('test');
+          const queryDoc = query(coachesRef, where('coach_email', '==', client_em));
+      let count_data=0
+          await getDocs(queryDoc).then(response => {
+            console.log(response.docs.length); 
+            count_data=response.docs.length;
+          })
+          return count_data;
+        }
 
 
   const getLanguagesOfSelectedCountry = () => {
@@ -97,7 +111,7 @@ const handleGender = (event) => {
     setIsThankModal(false)
   }
   
-  const onSubmit = (event) => {
+  const onSubmit = async (event) => {
     event.preventDefault();
     let err=0;
     setnameErr('');
@@ -111,6 +125,7 @@ const handleGender = (event) => {
     setcountryErr('');
     settimezoneErr('');
     setgenderErr('');
+    setEmailExist(false);
 
 
    
@@ -195,7 +210,7 @@ err=err+1;
       // }, (error) => {
       //     console.log(error.text);
       // });
-
+      if(await countData(email.toLowerCase()) == 0){
       addDoc(coachesRef, {
         coach_name: email.toLowerCase(),
         coach_country : country_sel,
@@ -219,6 +234,9 @@ err=err+1;
         .catch((err) => {
           console.error(err);
         })
+      }else{
+        setEmailExist(true);
+      }
     }
     else{
       console.log('error');
@@ -268,7 +286,10 @@ err=err+1;
 
           <div className="col-sm-6 form-group"><input className="form-control" name="name" value={surname} placeholder="surname" onChange={(event) => setSurname(event.target.value)}/></div>
           <div className="col-sm-6 form-group"><input className="form-control" name="email" value={email} placeholder="email" onChange={(event) => setEmail(event.target.value)}/> {emailErr && <Alert severity='error' style={{ margin :'10px 0 20px 0'}}>{emailErr}</Alert>}
-          {validEmailErr && <Alert severity='error' style={{ margin :'10px 0 20px 0'}}>{validEmailErr}</Alert>}</div>
+          {validEmailErr && <Alert severity='error' style={{ margin :'10px 0 20px 0'}}>{validEmailErr}</Alert>}
+          
+          {emailExist  && <Alert severity='error' style={{ margin :'0 0 20px 20px'}}>*Email Already Exist</Alert>}
+          </div>
           <div className="col-sm-6 form-group"><input className="form-control" name="mobile" placeholder="mobile number" value={mobile} onChange={(event) => setmobile(event.target.value)}/> {mobileErr && <Alert severity='error' style={{ margin :'10px 0 20px 0'}}>{mobileErr}</Alert>}</div>
          
          
@@ -293,7 +314,7 @@ err=err+1;
           <input className="form-control" name='clientTimeZone'
               id='clientZone'
               
-             
+             placeholder='Timezone'
               value={selectedCountryTimezone}
                readOnly /> 
 
