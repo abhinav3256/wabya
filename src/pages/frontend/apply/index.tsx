@@ -14,6 +14,7 @@ import emailjs from '@emailjs/browser';
 import { Alert } from '@mui/material'
 import { collection, addDoc} from 'firebase/firestore'
 import { app, database } from '../../../../firebaseConfig'
+import country_data from '../../../@core/utils/all-countries'
 
 const ApplyWabyaBasic = () => {
   const form1 = useRef();
@@ -32,6 +33,8 @@ const ApplyWabyaBasic = () => {
 
   const [pass, setpass] = useState('');
 
+  const [coachGender, setcoachGender] = useState('');
+
 
   const [nameErr, setnameErr] = useState('');
   const [surnameErr, setsurnameErr] = useState('');
@@ -39,6 +42,11 @@ const ApplyWabyaBasic = () => {
   const [mobileErr, setemobileErr] = useState('');
   const [msgErr, setmsgErr] = useState('');
   const [passErr, setpassErr] = useState('');
+
+  const [countryErr, setcountryErr] = useState('');
+  const [timezoneErr, settimezoneErr] = useState('');
+  const [genderErr, setgenderErr] = useState('');
+
   const [msgLenErr, setmsgLenErr] = useState('');
   const [validEmailErr, setvalidEmailErr] = useState('');
   const [message, setErrorMsg] = useState(false);
@@ -46,6 +54,40 @@ const ApplyWabyaBasic = () => {
   const [TermMsg, setTermlMsg] = useState('');
   const [success, setsuccess] = useState('');
   const coachesRef = collection(database, 'coaches_user');
+
+  const [country_sel, setcountry_sel] = useState('');
+
+
+  const getLanguagesOfSelectedCountry = () => {
+    const selectedCountry = country_data.find(country => country.country === country_sel);
+    if (selectedCountry) {
+      return selectedCountry.languages;
+    }
+    return [];
+  };
+
+  const getTimeZoneOfSelectedCountry = () => {
+   const selectedCountry = country_data.find(country => country.country === country_sel);
+   if (selectedCountry) {
+     return selectedCountry.timezone;
+   }
+   return '';
+ };
+
+  const selectedCountryLanguages = getLanguagesOfSelectedCountry();
+  const selectedCountryTimezone = getTimeZoneOfSelectedCountry();
+
+  const handleChangeCountry = (event) => {
+    setcountry_sel(event.target.value);
+    
+}
+
+
+const handleGender = (event) => {
+
+  setcoachGender(event.target.value);
+}
+
 
   const thankModal = () => {
     setIsThankModal(true)
@@ -66,6 +108,9 @@ const ApplyWabyaBasic = () => {
     setTermlMsg('');
     setmsgLenErr('');
     setvalidEmailErr('');
+    setcountryErr('');
+    settimezoneErr('');
+    setgenderErr('');
 
 
    
@@ -83,6 +128,22 @@ err=err+1;
             setemobileErr('Mobile Field is Required');
             err=err+1;
                 }
+
+
+                if(country_sel == ""){
+                  setcountryErr('Country Field is Required');
+                  err=err+1;
+                      }
+
+                      if(selectedCountryTimezone == ""){
+                        settimezoneErr('Timezone Field is Required');
+                        err=err+1;
+                            }
+
+                            if(coachGender == ""){
+                              setgenderErr('Gender Field is Required');
+                              err=err+1;
+                                  }
 
                 if(pass == ""){
                   setpassErr('Password Field is Required');
@@ -137,11 +198,12 @@ err=err+1;
 
       addDoc(coachesRef, {
         coach_name: email.toLowerCase(),
-        coach_country : String(),
+        coach_country : country_sel,
         coach_email : email.toLowerCase(),
         coach_password : pass,
         coach_phone : Number(mobile),
-        coach_timezone : String(),
+        coach_timezone : selectedCountryTimezone,
+        coach_gender : coachGender,
         coach_api : String(),
         coach_uname : String(),
         coach_language: String(),
@@ -208,11 +270,62 @@ err=err+1;
           <div className="col-sm-6 form-group"><input className="form-control" name="email" value={email} placeholder="email" onChange={(event) => setEmail(event.target.value)}/> {emailErr && <Alert severity='error' style={{ margin :'10px 0 20px 0'}}>{emailErr}</Alert>}
           {validEmailErr && <Alert severity='error' style={{ margin :'10px 0 20px 0'}}>{validEmailErr}</Alert>}</div>
           <div className="col-sm-6 form-group"><input className="form-control" name="mobile" placeholder="mobile number" value={mobile} onChange={(event) => setmobile(event.target.value)}/> {mobileErr && <Alert severity='error' style={{ margin :'10px 0 20px 0'}}>{mobileErr}</Alert>}</div>
-          <div className="col-sm-6 form-group"><textarea className="form-control" placeholder="a bit about me" value={msg} onChange={(event) => setmsg(event.target.value)}></textarea>  {msgErr && <Alert severity='error' style={{ margin :'10px 0 20px 0'}}>{msgErr}</Alert>}
+         
+         
+          <div className="col-sm-6 form-group">   <select className="form-control select"  name='clientCountry'
+  id='clientCountry'
+  
+  
+  value={country_sel}
+  onChange={handleChangeCountry}>
+    <option>Select Country</option>
+                  {country_data.map((country, index) => (
+<option value= {country.country}> {country.country}</option>
+))}
+                  </select>
+                  {countryErr && <Alert severity='error' style={{ margin :'10px 0 20px 0'}}>{countryErr}</Alert>}    
+          </div>
+
+
+
+          <div className="col-sm-6 form-group">
+
+          <input className="form-control" name='clientTimeZone'
+              id='clientZone'
+              
+             
+              value={selectedCountryTimezone}
+               readOnly /> 
+
+{timezoneErr && <Alert severity='error' style={{ margin :'10px 0 20px 0'}}>{timezoneErr}</Alert>}     
+          </div>
+
+          <div className="col-sm-6 form-group">   <select className="form-control select"  name='clientGender'
+  id='clientGender'
+onChange={handleGender}
+  
+  
+  >
+  
+                  
+
+<option value="Female" selected={coachGender === 'male'}> Female</option>
+<option value="Male" selected={coachGender === 'male'}> Male</option>
+
+                  </select>
+                  {genderErr && <Alert severity='error' style={{ margin :'10px 0 20px 0'}}>{genderErr}</Alert>}      
+          </div>
+         
+         
+       
+
+
+                              <div className="col-sm-6 form-group"><input type="password" className="form-control" name="pass" placeholder="password" value={pass} onChange={(event) => setpass(event.target.value)}/> {passErr && <Alert severity='error' style={{ margin :'10px 0 20px 0'}}>{passErr}</Alert>}</div>     
+
+
+                              <div className="col-sm-6 form-group"><textarea className="form-control" placeholder="a bit about me" value={msg} onChange={(event) => setmsg(event.target.value)}></textarea>  {msgErr && <Alert severity='error' style={{ margin :'10px 0 20px 0'}}>{msgErr}</Alert>}
           {msgLenErr && <Alert severity='error' style={{ margin :'10px 0 20px 0'}}>{msgLenErr}</Alert>}</div>
 
-
-                              <div className="col-sm-6 form-group"><input type="password" className="form-control" name="pass" placeholder="password" value={pass} onChange={(event) => setpass(event.target.value)}/> {passErr && <Alert severity='error' style={{ margin :'10px 0 20px 0'}}>{passErr}</Alert>}</div>                   
           <div className="col-sm-6 form-group"></div>
           <div className="col-sm-12 form-group">
               <div className="custom-control custom-checkbox">
