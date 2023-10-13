@@ -2014,7 +2014,7 @@ img.tree-image {
 
 .new-plans{text-align:left; position:relative;}
 .new-plans .btn{width:auto;}
-.new-plans .plans-list ul{margin:0; padding:0; display:flex; gap: 30px; justify-content: center;}
+.new-plans .plans-list ul{margin:0; padding:0; display:flex; gap: 30px; justify-content: start;}
 .new-plans .plans-list ul li{list-style:none; margin:0; padding:0;}
 .new-plans .plans-list ul li .btn{padding: 12px 20px 10px;}
 .new-plans .plans-content{display:flex; gap: 30px; align-items: center; margin:0 0 20px;}
