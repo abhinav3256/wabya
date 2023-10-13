@@ -624,7 +624,9 @@ const buyMore = (event) => {
   // Your logic for buyMore function
 
   // Redirect to /client/checkout
+  event.preventDefault();
   console.log(event.target);
+
   localStorage.setItem('price', event.target.getAttribute("data-price"));
   localStorage.setItem('buy_plan_id', event.target.getAttribute("data-plan-id"));
   router.push('/client/checkout');
@@ -3026,56 +3028,7 @@ var myArr=new Date(data.meetingDate).toLocaleDateString().split('/');
 
 
         
-  <div className="new-plans" style={{ width: 775, display: "none" }}>
-    <div className="row">
-      <div className="col-sm-6 left mrb-10">
-        <div className="plans-content">
-          <span>current plan :</span>
-          <a href="" className="btn btn-lightgreen">
-            experienced
-          </a>
-        </div>
-        <div className="plans-content">
-          <span>journey type </span>
-          <a href="" className="btn btn-thulian-pink">
-            pay as you
-          </a>
-        </div>
-      </div>
-      <div className="col-sm-6 right mrb-30">
-        <div className="plans-sessions">
-          <p className="text-right">sessions remaning: 4</p>
-          <p className="text-right">
-            <a href="" className="btn btn-darkgreen">
-              {" "}
-              pay as you
-            </a>
-          </p>
-        </div>
-      </div>
-      <div className="plans-list col-sm-12">
-        <ul>
-          <li>
-            <a href="" className="btn btn-darkgreen">
-              change Plan
-            </a>
-          </li>
-          <li>
-            <a href="" className="btn btn-chestnutred">
-              change country type
-            </a>
-          </li>
-          <li>
-            <a href="" className="btn btn-maroon">
-              update my billing information
-            </a>
-          </li>
-        </ul>
-      </div>
-    </div>
-    {/*/ row */}
-  </div>
-  {/*/ new-plans */}
+
 
 
 
@@ -3088,7 +3041,7 @@ var myArr=new Date(data.meetingDate).toLocaleDateString().split('/');
               <h3>my plan</h3>
               <div className="divider-bottom"></div>
 
-              <form
+              {/* <form
                 noValidate
                 autoComplete="off"
                 onSubmit={(e) => e.preventDefault()}
@@ -3142,7 +3095,61 @@ var myArr=new Date(data.meetingDate).toLocaleDateString().split('/');
                     </a>
                   </Link>
                 </div>
-              </form>
+              </form> */}
+
+
+<div className="new-plans">
+    <div className="row">
+      <div className="col-sm-6 left mrb-10">
+        <div className="plans-content">
+          <span>current plan :</span>
+          <a href="" className="btn btn-lightgreen">
+            experienced
+          </a>
+        </div>
+        <div className="plans-content">
+          <span>journey type </span>
+          <a href="" className="btn btn-thulian-pink">
+            pay as you
+          </a>
+        </div>
+      </div>
+      <div className="col-sm-6 right mrb-30">
+        <div className="plans-sessions">
+          <p className="text-right">sessions remaning: {clientRemainingSession}</p>
+          <p className="text-right">
+            <a href="" className="btn btn-darkgreen" data-plan-id="6ZpZd4IrzORGQfyu0IqT" data-price='210' onClick={buyMore}>
+              {" "}
+              buy more
+            </a>
+          </p>
+        </div>
+      </div>
+      <div className="plans-list col-sm-12">
+        <ul>
+          <li>
+            <a href="" className="btn btn-darkgreen" data-plan-id="sH2iLHtr5PWg3gdSjIIn"  onClick={addNewRequest} >
+            {'sH2iLHtr5PWg3gdSjIIn' === requestPlanId ? 'Change Plan' : 'Requested'}
+            </a>
+          </li>
+          <li>
+            <a href="" className="btn btn-chestnutred" data-plan-id="6ZpZd4IrzORGQfyu0IqT" data-price='210' onClick={buyMore}>
+              change journey type
+            </a>
+          </li>
+          <li>
+            <a href="" className="btn btn-maroon" onClick={showUpdateBilling}>
+              update my billing information
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    {/*/ row */}
+  </div>
+  {/*/ new-plans */}
+
+
             </div>
             <div className="col-sm-5">
               <figure>
@@ -3951,6 +3958,56 @@ const timeRemaining = Math.floor((meetingDate - currentTime) / 60000);
         </div>
         <div className="session-info mrb-50">
           <h4 className="mrb-15">my plan</h4>
+
+          <div className="new-plans" style={{  display: "none" }}>
+    <div className="row">
+      <div className="col-sm-6 left mrb-10">
+        <div className="plans-content">
+          <span>current plan :</span>
+          <a href="" className="btn btn-lightgreen">
+            experienced
+          </a>
+        </div>
+        <div className="plans-content">
+          <span>journey type </span>
+          <a href="" className="btn btn-thulian-pink">
+            pay as you
+          </a>
+        </div>
+      </div>
+      <div className="col-sm-6 right mrb-30">
+        <div className="plans-sessions">
+          <p className="text-right">sessions remaning: {clientRemainingSession}</p>
+          <p className="text-right">
+            <a href="" className="btn btn-darkgreen" data-plan-id="6ZpZd4IrzORGQfyu0IqT" data-price='210' onClick={buyMore}>
+              {" "}
+              buy more
+            </a>
+          </p>
+        </div>
+      </div>
+      <div className="plans-list col-sm-12">
+        <ul>
+          <li>
+            <a href="" className="btn btn-darkgreen" data-plan-id="sH2iLHtr5PWg3gdSjIIn"  onClick={addNewRequest} >
+            {'sH2iLHtr5PWg3gdSjIIn' === requestPlanId ? 'Change Plan' : 'Requested'}
+            </a>
+          </li>
+          <li>
+            <a href="" className="btn btn-chestnutred" data-plan-id="6ZpZd4IrzORGQfyu0IqT" data-price='210' onClick={buyMore}>
+              change journey type
+            </a>
+          </li>
+          <li>
+            <a href="" className="btn btn-maroon" onClick={showUpdateBilling}>
+              update my billing information
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    {/*/ row */}
+  </div>
           
           {fireData.map((data) => {
             

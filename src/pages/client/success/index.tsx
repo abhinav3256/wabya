@@ -252,6 +252,7 @@ export default function Success() {
                 useEffect(() => {
                     if(plan_detail != null){
                     
+                      console.log('plan_detail',plan_detail);
                         setplan_total_ses(plan_detail[0].total_session)
                      getClientDetail();
                     }
