@@ -184,7 +184,7 @@ const Calender = () => {
   const meetingRef = collection(database, "meeting");
   const clientRef = collection(database, "client_user");
 
-  const [bookedTimeslot, setbookedTimeslot] = useState([{isCoachAccept:"",meet_idd:"",starttime:"",endtime:"",title:"",date:"",clientName:"",clientEmail:""}]);
+  const [bookedTimeslot, setbookedTimeslot] = useState([{isCoachAccept:"",isCoachCancel:"",meet_idd:"",starttime:"",endtime:"",title:"",date:"",clientName:"",clientEmail:""}]);
   const [meeting, setMeeting] = useState([]);
 
   const [meetingClientJoinedData, setmeetingClientJoinedData] =useState([]);
@@ -1122,7 +1122,7 @@ var interval = "45";
       let month_ = new Date(meeting[meetId].meetingDate).getMonth();
       let year_ = new Date(meeting[meetId].meetingDate).getFullYear();
 
-       busySchedule.push({ clientName:meeting[meetId].client_name,clientEmail:meeting[meetId].client_email,isCoachAccept:meeting[meetId].isCoachAccept,meet_idd: meeting[meetId].meeting_id,starttime: meeting[meetId].meetingTime, endtime: meeting[meetId].meetingEndTime, title:meeting[meetId].meetingName,date:date_,month:month_,year:year_});
+       busySchedule.push({ isCoachCancel:meeting[meetId].isCoachCancel,clientName:meeting[meetId].client_name,clientEmail:meeting[meetId].client_email,isCoachAccept:meeting[meetId].isCoachAccept,meet_idd: meeting[meetId].meeting_id,starttime: meeting[meetId].meetingTime, endtime: meeting[meetId].meetingEndTime, title:meeting[meetId].meetingName,date:date_,month:month_,year:year_});
 
 
         }
@@ -1164,6 +1164,51 @@ var interval = "45";
    console.log('testinnnnn  dhh vhn');
    console.log(busySchedule);
    }, [meeting]);
+
+
+
+   const cancelMeet = (meet_iddd,clientName,clientEmail,meet_date,meet_day,meet_month,meeting_start_time,meeting_end_time) => {
+    console.log(meet_iddd);
+    console.log(clientName);
+    console.log(clientEmail);
+    const fieldToEdit2 = doc(database, 'meeting', meet_iddd);
+
+    updateDoc(fieldToEdit2, {
+      isCoachCancel:1
+     
+    })
+    .then(() => {
+      const msg = `
+      <div style="background-color: #f9f9f9; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+          <h1 style="color: #e74c3c; text-align: center;">Meeting Cancelled</h1>
+          <p style="font-size: 18px; text-align: center;">We regret to inform you that the following meeting has been cancelled:</p>
+          <p style="font-size: 16px; text-align: center;">Date: ${meet_date} ${meet_month} ${meet_day}<br>Time: ${meeting_start_time} - ${meeting_end_time}</p>
+          <hr style="border: 1px solid #e74c3c;">
+          <p style="font-size: 14px; color: #888; text-align: center;">We apologize for any inconvenience caused.<br>Thank you,<br>Wabya Team</p>
+      </div>
+  `;
+      sendMailFunc('abhinavkumar3256@gmail.com',msg);  
+      getMeeting();
+  
+     
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+   }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
    
    const rejectMeet = (meet_iddd,clientName,clientEmail,meet_date,meet_day,meet_month,meeting_start_time,meeting_end_time) => {
@@ -1617,7 +1662,7 @@ var interval = "45";
               // });
 
 
-              const matchingTimeslot = bookedTimeslot.find(({clientEmail,meet_idd,isCoachAccept, starttime, endtime,title,date,clientName }) => timeslot >= starttime && timeslot < endtime && index2 < 7 && nextSevenDay[index2].date == date);
+              const matchingTimeslot = bookedTimeslot.find(({clientEmail,meet_idd,isCoachAccept,isCoachCancel, starttime, endtime,title,date,clientName }) => timeslot >= starttime && timeslot < endtime && index2 < 7 && nextSevenDay[index2].date == date);
 
 const isBetween = !!matchingTimeslot; // will be true if matchingTimeslot is truthy, false otherwise
 
@@ -1628,6 +1673,7 @@ const clientName = matchingTimeslot && matchingTimeslot.clientName;
 const clientEmail = matchingTimeslot && matchingTimeslot.clientEmail;
 const meet_iddd = matchingTimeslot && matchingTimeslot.meet_idd;
 const isCoachAccept_ = matchingTimeslot && matchingTimeslot.isCoachAccept;
+const isCoachCancel_ = matchingTimeslot && matchingTimeslot.isCoachCancel;
 if(isBetween)
 
 
@@ -1635,11 +1681,13 @@ if(isBetween)
 return(<>
   <td>
                      <div className="blue-event">
-                          <p><span>{ matchingStarttime} - {matchingEndtime} </span> </p>
+                           <p><span>{ matchingStarttime} - {matchingEndtime} </span> </p>
 
-                       <small>Client :  Client</small>
+                      
 
-                       {isCoachAccept_ == undefined && isCoachAccept_ !== 1 ? (
+                       <p className='calendar-clientname'>Client :  Client</p> 
+
+                       {/* {isCoachAccept_ == undefined && isCoachAccept_ !== 1 ? (
   <p>
     <u onClick={() => acceptMeet(meet_iddd,clientName,clientEmail,nextSevenDay[index2].date,nextSevenDay[index2].day,nextSevenDay[index2].month,matchingStarttime,matchingEndtime)}>Accept</u>
   </p>
@@ -1653,13 +1701,26 @@ return(<>
 
                        {isCoachAccept_ == undefined && isCoachAccept_ !== 0 ? (
   <p>
-    <u onClick={() => rejectMeet(meet_iddd,clientName,clientEmail,nextSevenDay[index2].date,nextSevenDay[index2].day,nextSevenDay[index2].month,matchingStarttime,matchingEndtime)}>Reject</u>
+    <u onClick={() => rejectMeet(meet_iddd,clientName,clientEmail,nextSevenDay[index2].date,nextSevenDay[index2].day,nextSevenDay[index2].month,matchingStarttime,matchingEndtime)}>Reject  {isCoachCancel_}</u>
   </p>
 ) : null}
 
 {isCoachAccept_ !== undefined && isCoachAccept_ == 0 ? (
   <p>
     Rejected
+      </p>
+) : null} */} 
+
+
+{isCoachCancel_ != undefined && isCoachCancel_ !== 1 ? (
+  <p className='calendar-clientcanel'>
+    <u onClick={() => cancelMeet(meet_iddd,clientName,clientEmail,nextSevenDay[index2].date,nextSevenDay[index2].day,nextSevenDay[index2].month,matchingStarttime,matchingEndtime)}>Cancel</u>
+  </p>
+) : null}
+
+{isCoachCancel_ !== undefined && isCoachCancel_ == 1 ? (
+  <p className='calendar-clientcanel'>
+    Cancelled
       </p>
 ) : null}
                        

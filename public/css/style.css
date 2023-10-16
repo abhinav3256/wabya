@@ -2031,6 +2031,9 @@ img.tree-image {
 .new-plans .btn.btn-chestnutred{background:#ef7655;}
 .new-plans .btn.btn-thulian-pink{background:#d37aa5;}
 .new-plans .btn.btn-darkblue{background:#0f2540;}
+
+.calendar-clientcanel{text-align: center !important;}
+.calendar-clientname{text-align: center !important; letter-spacing: 1px; font-size: 12px;}
   
   
 /** Smartphones **/

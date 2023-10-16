@@ -197,6 +197,9 @@ const Dashboard = () => {
 
   const [mycoach, setMyCoach] = useState(null);
   const [myplan, setMyPlan] = useState(null);
+  const [myplanName, setMyPlanName] = useState("");
+  const [changeplanId, setChangePlanId] = useState("");
+  const [changeplanPrice, setchangeplanPrice] = useState("");
   const [coachesCalApiKey, setcoachesCalApiKey] = useState("");
   const [coachesFirebaseId, setcoachesFirebaseId] = useState("");
   
@@ -1046,11 +1049,11 @@ const getMeetingSession = async () => {
     }
 
     // const token = sessionStorage.getItem('Token')
-    getData();
+   
     getCoachData();
     getMeeting();
     getHelpText();
-
+    getData();
 
    
     if (coachesCalApiKey) {
@@ -1268,6 +1271,34 @@ const getMeetingSession = async () => {
     //         router.push('/pages/login')
     //     }
   }, [client]);
+
+
+  useEffect(() => {
+    if (clientPlanId !='') {
+      //console.log('ne wplan ');
+      console.log('clientPlanId',clientPlanId)
+
+fetchMyPlan();
+    }
+
+   
+
+  }, [clientPlanId]);
+
+  useEffect(() => {
+    if (myplan !=null) {
+      //console.log('ne wplan ');
+      console.log('myplan',myplan)
+
+setMyPlanName(myplan[0].plan_name);
+ //getData();
+    }
+
+   
+
+  }, [myplan]);
+  
+
 
 
 
@@ -3104,11 +3135,11 @@ var myArr=new Date(data.meetingDate).toLocaleDateString().split('/');
         <div className="plans-content">
           <span>current plan :</span>
           <a href="" className="btn btn-lightgreen">
-            novice
+            {myplanName}
           </a>
         </div>
         <div className="plans-content">
-          <span>journey type </span>
+          <span>journey type : </span>
           <a href="" className="btn btn-thulian-pink">
             pay as you
           </a>
@@ -3965,11 +3996,11 @@ const timeRemaining = Math.floor((meetingDate - currentTime) / 60000);
         <div className="plans-content">
           <span>current plan :</span>
           <a href="" className="btn btn-lightgreen">
-            novice
+            {myplanName}
           </a>
         </div>
         <div className="plans-content">
-          <span>journey type </span>
+          <span>journey type :</span>
           <a href="" className="btn btn-thulian-pink">
             pay as you
           </a>
