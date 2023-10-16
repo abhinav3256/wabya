@@ -164,8 +164,14 @@ const Calender = () => {
     const [coach, setCoach] = useState(null);
     const [coachId,setCoachId]=useState();
     const [coachesCalUsername, setcoachesCalUsername] = useState("");
+    const [myData, setMydata] = useState(null);
     const [isFormShow, setisFormShow] = useState(false);
     const [isSyncFormShow, setisSyncFormShow] = useState(false);
+
+    const [selectDateMob, setSelectDateMob] = useState(new Date().toISOString().split('T')[0]);
+
+    const [checkedDateMob, setCheckedDateMob] = useState();
+    let m = 0;
 
      /// For Testing
   //const [apiUrl, setapiUrl] = useState("https://api.cal.dev/");
@@ -184,23 +190,32 @@ const Calender = () => {
   const meetingRef = collection(database, "meeting");
   const clientRef = collection(database, "client_user");
 
-  const [bookedTimeslot, setbookedTimeslot] = useState([{isCoachAccept:"",isCoachCancel:"",meet_idd:"",starttime:"",endtime:"",title:"",date:"",clientName:"",clientEmail:""}]);
+  const [bookedTimeslot, setbookedTimeslot] = useState([{meetingDate:"",isCoachAccept:"",isCoachCancel:"",meet_idd:"",starttime:"",endtime:"",title:"",date:"",clientName:"",clientEmail:""}]);
   const [meeting, setMeeting] = useState([]);
 
   const [meetingClientJoinedData, setmeetingClientJoinedData] =useState([]);
 
 
   const [availability, setAvailability] = useState({
-    mon: { startHour: '09', startMinute: '00', endHour: '13', endMinute: '00' },
-    tue: { startHour: '09', startMinute: '00', endHour: '13', endMinute: '00' },
-    wed: { startHour: '09', startMinute: '00', endHour: '13', endMinute: '00' },
-    thu: { startHour: '09', startMinute: '00', endHour: '13', endMinute: '00' },
-    fri: { startHour: '09', startMinute: '00', endHour: '13', endMinute: '00' },
-    sat: { startHour: '09', startMinute: '00', endHour: '13', endMinute: '00' }
+    mon: { startHour: '09', startMinute: '00', endHour: '17', endMinute: '00' },
+    tue: { startHour: '09', startMinute: '00', endHour: '17', endMinute: '00' },
+    wed: { startHour: '09', startMinute: '00', endHour: '17', endMinute: '00' },
+    thu: { startHour: '09', startMinute: '00', endHour: '17', endMinute: '00' },
+    fri: { startHour: '09', startMinute: '00', endHour: '17', endMinute: '00' },
+    sat: { startHour: '09', startMinute: '00', endHour: '17', endMinute: '00' },
+    sun: { startHour: '09', startMinute: '00', endHour: '17', endMinute: '00' }
   });
 
+  // const handleHourChange = (event,day) => {
+  //   const value = parseInt(event.target.value, 10);
+  //   //const end_value = parseInt(end_time_hour, 10);
+  //   const endvalue = value + 1
+   
+  //       setAvailability({ 'mon':{startHour:value}});
+  //     }
 
- 
+    
+  
 
   const handleHourChange = (e, day) => {
     console.log('working');
@@ -244,7 +259,7 @@ const Calender = () => {
     const { name, value } = e.target;
     console.log(e.target);
     const numericValue = parseInt(e.target.value, 10);
-    const sanitizedValue = Math.max(0, Math.min(numericValue, 59));
+    const sanitizedValue = Math.max(0, Math.min(59, numericValue));
     console.log(name,value);
     const updatedAvailability = {
       ...availability,
@@ -279,7 +294,7 @@ const Calender = () => {
     // Handle form submission logic here
   };
 
-  const days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
+  const days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat','sun'];
 
   useEffect(() => {
 
@@ -339,30 +354,30 @@ const getMyMeeting = async () => {
  }
 
  useEffect(() => {
-  // if (myAvailability) {
-  //   const updatedAvailability = { ...availability };
-  //   myAvailability.forEach((myData) => {
-  //     const { day, startHour, startMinute, endHour, endMinute } = myData;
-  //     updatedAvailability[day] = {
-  //       startHour: startHour.padStart(2, '0'),
-  //       startMinute: startMinute.padStart(2, '0'),
-  //       endHour: endHour.padStart(2, '0'),
-  //       endMinute: endMinute.padStart(2, '0')
-  //     };
-  //   });
-  //   setAvailability(updatedAvailability);
+  if (myAvailability) {
+    const updatedAvailability = { ...availability };
+    myAvailability.forEach((myData) => {
+      const { day, startHour, startMinute, endHour, endMinute } = myData;
+      updatedAvailability[day] = {
+        startHour: startHour.padStart(2, '0'),
+        startMinute: startMinute.padStart(2, '0'),
+        endHour: endHour.padStart(2, '0'),
+        endMinute: endMinute.padStart(2, '0')
+      };
+    });
+    setAvailability(updatedAvailability);
     
-  //   console.log('my availability');
-  //   console.log(myAvailability);
-  //   console.log(updatedAvailability);
+    console.log('my availability');
+    console.log(myAvailability);
+    console.log(updatedAvailability);
 
-  //   myAvailability.forEach((myData) => {
-  //     const { day, startHour } = myData;
-  //     if (updatedAvailability[day]) {
-  //       console.log(`Start Hour for ${day}: ${updatedAvailability[day].startHour}`);
-  //     }
-  //   });
-  // }
+    myAvailability.forEach((myData) => {
+      const { day, startHour } = myData;
+      if (updatedAvailability[day]) {
+        console.log(`Start Hour for ${day}: ${updatedAvailability[day].startHour}`);
+      }
+    });
+  }
 }, [myAvailability]);
 
 
@@ -391,7 +406,7 @@ useEffect(() => {
 
           if (coachDoc.exists()) {
             setCoach(coachDoc.data());
-            console.log(coachDoc.data());
+            console.log('coach data',coachDoc.data());
             setcoachesCalApiKey(coachDoc.data().coach_api);
             setcoachesCalUsername(coachDoc.data().coach_uname);
 
@@ -401,7 +416,7 @@ useEffect(() => {
         };
         fetchCoach();
         getMyMeeting();
-      //  getMyAvailability();
+       getMyAvailability();
       }
 
 
@@ -1017,7 +1032,7 @@ getClientData();
       console.log(userDoc.data());
 
  var data=userDoc.data();
-
+ setMydata(data);
  console.log('here i am')
  console.log(data)
       console.log('here i am')
@@ -1122,7 +1137,7 @@ var interval = "45";
       let month_ = new Date(meeting[meetId].meetingDate).getMonth();
       let year_ = new Date(meeting[meetId].meetingDate).getFullYear();
 
-       busySchedule.push({ isCoachCancel:meeting[meetId].isCoachCancel,clientName:meeting[meetId].client_name,clientEmail:meeting[meetId].client_email,isCoachAccept:meeting[meetId].isCoachAccept,meet_idd: meeting[meetId].meeting_id,starttime: meeting[meetId].meetingTime, endtime: meeting[meetId].meetingEndTime, title:meeting[meetId].meetingName,date:date_,month:month_,year:year_});
+       busySchedule.push({ meetingDate:meeting[meetId].meetingDate,isCoachCancel:meeting[meetId].isCoachCancel,clientName:meeting[meetId].client_name,clientEmail:meeting[meetId].client_email,isCoachAccept:meeting[meetId].isCoachAccept,meet_idd: meeting[meetId].meeting_id,starttime: meeting[meetId].meetingTime, endtime: meeting[meetId].meetingEndTime, title:meeting[meetId].meetingName,date:date_,month:month_,year:year_});
 
 
         }
@@ -1206,7 +1221,42 @@ var interval = "45";
 
 
 
+   const handleDateClick = (day) => {
+    const inputDateString = day;
+    const inputDate = new Date(inputDateString);
+    const year = inputDate.getFullYear();
+    const month = String(inputDate.getMonth() + 1).padStart(2, '0');
+    const day_ = String(inputDate.getDate()).padStart(2, '0');
+    const formattedDate = `${year}-${month}-${day_}`;
 
+setSelectDateMob(formattedDate);
+console.log(formattedDate);
+m=0;
+  };
+
+  useEffect(() => {
+
+   
+    if(selectDateMob !=''){
+      const inputDateString = selectDateMob;
+    const inputDate = new Date(inputDateString);
+    const year = inputDate.getFullYear();
+    const month = String(inputDate.getMonth() + 1).padStart(2, '0');
+    const day_ = String(inputDate.getDate()).padStart(2, '0');
+   
+    setCheckedDateMob(parseInt(day_));
+
+  }
+
+
+
+
+}, [selectDateMob])
+
+  const formatDate = (date) => {
+    const options = { day: '2-digit', weekday: 'short' };
+    return new Intl.DateTimeFormat('en-US', options).format(date);
+  };
 
 
 
@@ -1278,7 +1328,7 @@ var interval = "45";
 
    const updateSchedule = (e) => {
     e.preventDefault();
-  
+  console.log('here we');
     // Convert availability object to an array of objects with day information
     const availabilityData = Object.entries(availability).map(([day, data]) => ({
       day: day, // Include the day information
@@ -1896,6 +1946,96 @@ return(<>
     </section> 
 
 
+
+
+    <Modal
+          centered
+          className="unavailable-modal avbl-modal-mobile"
+          visible={isFormShow}
+          onOk={handleFormOk}
+          onCancel={handleFormCancel}
+          width={800}
+          height={1000}
+          footer={[]}
+         
+        >
+    
+<div className="standard-availability">
+  <div className="info">
+    <div className="title">
+      {" "}
+      <i className="fa fa-calendar-o" /> standard availability
+    </div>
+  </div>
+
+ 
+  <div className="availability-form">
+    <div className="main-para">standard weekly availability</div>
+    <div className="main-subpara">
+      you can customise each day at the next step
+    </div>
+    <form action="" id="submit-av">
+      <div className="row">
+
+      {days.map((day) => (
+        <div className="col-sm-12 form-group">
+          <span>{day}:</span>
+          <input
+            type="number"
+            className="text-top form-control dates"
+            name="startHour"
+           value={availability[day].startHour}
+           onChange={(e) => handleHourChange(e, day)}
+          />
+          <input
+            type="number"
+            className="text-top form-control dates"
+            name="startMinute"
+            value={availability[day].startMinute}
+            onChange={(e) => handleMinuteChange(e, day)}
+          />
+          <span>to</span>
+          <input
+            type="number"
+            className="text-top form-control dates"
+            name="endHour"
+            value={availability[day].endHour}
+            onChange={(e) => handleHourChange(e, day)}
+          />
+          <input
+            type="number"
+            className="text-top form-control dates"
+            name="endMinute"
+            value={availability[day].endMinute}
+            onChange={(e) => handleMinuteChange(e, day)}
+          />
+        </div>
+          ))}
+       
+       
+    
+      </div>
+    </form>
+  </div>
+  <div className="close-button">
+    <button className="btn btn-darkgreen btn-close" onClick={updateSchedule}>approve</button>
+  </div>
+
+</div>
+</Modal>
+
+
+
+
+
+
+
+
+
+
+
+
+
   {/* <section className="user-detail-mobile">
     <div className="container">
       <div className="row">
@@ -2077,12 +2217,13 @@ return(<>
         <div className="col-8 left-top">
           <h2>
             hello <br />
-            coach name
+            {myData !== null  && <>{myData.coach_name}</>}
           </h2>
         </div>
         <div className="col-4 right-top">
           <figure>
-            <img src="../../images/coash-01.png" />
+          {myData !== null  && 
+            <img src={myData.coach_profile} />}
           </figure>
         </div>
       </div>
@@ -2091,10 +2232,10 @@ return(<>
           <div className="calendar-weeksheet">
 
           {daysOfWeek.map((day, index) => (
-        <div className="col-weeksheet" key={index}>
-          <span>{day.getDate()}</span>
-          <span>{formatDay(day)}</span>
-        </div>
+         <div className={`col-weeksheet ${day.getDate() === checkedDateMob ? 'highlighted-date' : ''}`}  key={index} onClick={() => handleDateClick(day)}>
+         <span>{day.getDate()}</span>
+         <span>{formatDay(day)}</span>
+       </div>
       ))}
             
           </div>
@@ -2103,28 +2244,56 @@ return(<>
             <div className="row">
               <div className="col-3 timesheet-left">
                 <ul>
-                  <li>08:00</li>
-                  <li>10:00</li>
-                  <li>12:00</li>
-                  <li>14:00</li>
-                  <li>16:00</li>
+                {array1.map((timeslot:string, index:number) => {
+
+let formattedTime = timeslot.slice(0, -3);
+
+
+return(<>
+
+  
+
+         
+
+ 
+
+
+  
+                  <li>{formattedTime}</li>
+                  </>)
+
+
+})}
                 </ul>
               </div>
               <div className="col-9 timesheet-right">
-                <div className="timesheet-fix">
-                  <h3>client name</h3>
-                  <p>
-                    <i className="fa fa-clock-o" aria-hidden="true" /> 08 : 00 -
-                    09 : 00
-                  </p>
-                </div>
-                <div className="timesheet-fix">
-                  <h3>client name</h3>
-                  <p>
-                    <i className="fa fa-clock-o" aria-hidden="true" /> 11 : 00 -
-                    12 : 00
-                  </p>
-                </div>
+
+              {
+ 
+
+  bookedTimeslot.map((item, index) => {
+    // Check if the item's meeting date matches the selected date
+    if (item.meetingDate === selectDateMob) {
+      m = m + 1; // Increment the count for each meeting that matches the selected date
+      return (
+        <div key={index} className="timesheet-fix">
+          <h3>{item.clientName}</h3>
+          <p>
+            <i className="fa fa-clock-o" aria-hidden="true" /> {item.starttime} - {item.endtime}
+          </p>
+        </div>
+      );
+    }
+    return null; // Return null for items with different meeting dates
+  })
+}
+
+{m === 0 ? <div className="timesheet-fix"><h3>No Meeting Found</h3></div> : null}
+
+
+
+      
+            
               </div>
             </div>
             {/*/ row */}

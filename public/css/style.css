@@ -2034,7 +2034,7 @@ img.tree-image {
 
 .calendar-clientcanel{text-align: center !important;}
 .calendar-clientname{text-align: center !important; letter-spacing: 1px; font-size: 12px;}
-  
+ .highlighted-date{background-color: #6dc1a4;} 
   
 /** Smartphones **/
 @media (min-width: 320px) and (max-width: 481px) {
@@ -2593,7 +2593,10 @@ button{font-family: Gothic A1 !important;}
   .login-wrap form .btn:hover, .login-wrap form .btn:active{background: #1d696c; color: #fff; -webkit-transition: background 0.5s ease-in-out, color 0.5s ease-in-out; transition: background 0.5s ease-in-out, color 0.5s ease-in-out;}
   .login-wrap form .custom-checkbox #accept{width: 25px; height: 25px; background: #fff; border-radius: 10px; vertical-align: middle; border: 1px solid #ddd;  outline: none; cursor: pointer; margin: 0 10px 0 0;}
   .login-wrap .reg-text{margin: 10px 0 0; text-align:center;}
-.unavailable-modal{height: 200px !important;}
+/* .unavailable-modal{height: 200px !important; top: 364px;
+  left: 67px;} */
+  .unavailable-modal{ top: 364px;
+    left: 67px;}
 .available-form{padding: 50px 0 20px !important;}
 .btn-unavailable{background: #6cc3a5;color: white;}
 .rem-un{margin-top: 20px;}
