@@ -513,6 +513,7 @@ function toggleProfile() {
           meetingPrivacy:meetingPrivacy,
           meetingCreatedAt:meetingCreatedAt,
           isCoachCancel:'0',
+          isNotified:0,
           status: "true",
           meetingstatus: "wait",
         });

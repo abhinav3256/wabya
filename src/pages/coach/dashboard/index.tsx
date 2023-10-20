@@ -49,6 +49,32 @@ const Dashboard = () => {
 }, [coachId])
 
 
+
+
+
+const updateNotified = async (meet_id: any) =>{
+  console.log('notified',meet_id);
+  let a=0;
+
+ 
+
+  
+ 
+
+
+
+  const userDocRef = doc(collection(database, 'meeting'), meet_id);
+
+  const updatedData = {
+    isNotified:1
+  };
+  await updateDoc(userDocRef, updatedData);
+ // editAdmin();
+  
+}
+
+
+
 const handleChange = async () =>{
   console.log(accept_new_client);
   let a=0;
@@ -144,7 +170,7 @@ useEffect(() => {
 
    getMeeting();
    getScheduleMeeting();
-  }, 1000000); // 10 seconds
+  }, 100000); // 10 seconds
 
   //Cleanup function to clear interval when component unmounts
 return () => clearInterval(intervalId);
@@ -179,7 +205,7 @@ return () => clearInterval(intervalId);
 
 {scheduleMeeting.length > 0 ? scheduleMeeting.map((meet, index) => (
 
-index == 0 ?(
+
 <div className='row coach-dash-desktop' key={index}>
 <div className='col-sm-12'>
 <div className='client-reminder'>
@@ -187,7 +213,8 @@ index == 0 ?(
   New Meeting Schedule 
   {/* <span>45 minutes : Coach Name</span> */}
 </p>
-<div className='dismiss'>
+<div className='dismiss' onClick={() => updateNotified(meet.meet_id)}>
+
 
   {/* <h5><Link href={`/coach/coach-video-call/${meet.meeting_id}`}>Join</Link></h5> */}
   <hr />
@@ -196,7 +223,7 @@ index == 0 ?(
 </div>
 </div>
 </div> 
-) :null 
+
 )) : null}
 
 
