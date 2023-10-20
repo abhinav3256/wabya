@@ -115,15 +115,15 @@ const getMeeting = async () => {
  }
 useEffect(() => {
   console.log('abc'); 
-//   const intervalId = setInterval(() => {
-//   //  Call your function here
-//    console.log('Function called!');
+  const intervalId = setInterval(() => {
+  //  Call your function here
+   console.log('Function called!');
 
-//    getMeeting();
-//   }, 10000); // 10 seconds
+   getMeeting();
+  }, 20000); // 10 seconds
 
-//   //Cleanup function to clear interval when component unmounts
-// return () => clearInterval(intervalId);
+  //Cleanup function to clear interval when component unmounts
+return () => clearInterval(intervalId);
   
 }, []);
 

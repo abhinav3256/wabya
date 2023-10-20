@@ -87,7 +87,7 @@ const VideoCallPage = () => {
       console.log(client);
       console.log(client.remainingSession);
 
-      if(client.remainingSession > 5){
+      if(client.remainingSession > 0 || client.isDiscoverySessionAdded == 1){
         setisSessionAvbl(true);
       }
       }
