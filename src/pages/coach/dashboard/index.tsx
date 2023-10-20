@@ -21,6 +21,8 @@ const Dashboard = () => {
 
   const [accept_new_client,setAcceptNewUser]=useState(0);
   const [meeting, setMeeting] = useState([]);
+
+  const [scheduleMeeting, setScheduleMeeting] = useState([]);
   useEffect(() => {
 
     const coachId = sessionStorage.getItem('coachId')
@@ -113,6 +115,27 @@ const getMeeting = async () => {
  
  
  }
+
+
+ const getScheduleMeeting = async () => {
+
+  console.log('testtt');
+  const coachId = sessionStorage.getItem('coachId');
+  const meetingSessionCollection = collection(database, 'meeting');
+  const queryDoc = query(meetingSessionCollection, where("coachId", "==", coachId), where("isNotified", "==", 0));
+
+    await getDocs(queryDoc).then((response) => {
+      setScheduleMeeting(
+        response.docs.map((data) => {
+          console.log(data.data());
+          return { ...data.data(), meet_id: data.id };
+        })
+      );
+    });
+   
+ 
+ 
+ }
 useEffect(() => {
   console.log('abc'); 
   const intervalId = setInterval(() => {
@@ -120,7 +143,8 @@ useEffect(() => {
    console.log('Function called!');
 
    getMeeting();
-  }, 20000); // 10 seconds
+   getScheduleMeeting();
+  }, 1000000); // 10 seconds
 
   //Cleanup function to clear interval when component unmounts
 return () => clearInterval(intervalId);
@@ -150,6 +174,32 @@ return () => clearInterval(intervalId);
   </div> 
  ) :null 
 )) : null}
+
+
+
+{scheduleMeeting.length > 0 ? scheduleMeeting.map((meet, index) => (
+
+index == 0 ?(
+<div className='row coach-dash-desktop' key={index}>
+<div className='col-sm-12'>
+<div className='client-reminder'>
+<p>
+  New Meeting Schedule 
+  {/* <span>45 minutes : Coach Name</span> */}
+</p>
+<div className='dismiss'>
+
+  {/* <h5><Link href={`/coach/coach-video-call/${meet.meeting_id}`}>Join</Link></h5> */}
+  <hr />
+  <h6>dismiss</h6>
+</div>
+</div>
+</div>
+</div> 
+) :null 
+)) : null}
+
+
 
     {
       coach ?

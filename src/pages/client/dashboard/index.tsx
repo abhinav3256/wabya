@@ -1080,7 +1080,7 @@ const getMeetingSession = async () => {
   const getMeeting = async () => {
     const userId = sessionStorage.getItem("userId");
 
-    const queryDoc = query(meetingRef, where("clientId", "==", userId),where("meetingApiCreated", "==", true));
+    const queryDoc = query(meetingRef, where("clientId", "==", userId),where("meetingApiCreated", "==", true),where("isCoachCancel", "==", 0));
 
     await getDocs(queryDoc).then((response) => {
       setMeeting(
@@ -1921,7 +1921,7 @@ const year = today.getFullYear();
           <div className="col-sm-8 left">
             <div className="banner-text">
               <h2>
-                <span>we are because you are</span>welcome{" "}
+                <span>we are because you are</span>Welcome{" "}
                 {client ? <> {clientFirebaseFirstName} </> : null}
               </h2>
             </div>
@@ -3966,7 +3966,7 @@ const timeRemaining = Math.floor((meetingDate - currentTime) / 60000);
 })}
         <div className="client-name mrb-50">
           <div className="info-name mrb-10">
-            <h2>welcome  {client ? <> {clientFirebaseFirstName} </> : null}</h2>
+            <h2>Welcome  {client ? <> {clientFirebaseFirstName} </> : null}</h2>
             <img src="../../images/clients-01.png" alt="" />
           </div>
           <p className="btn-p text-center">

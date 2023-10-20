@@ -195,7 +195,7 @@ console.log(currentDate);
             <h2> {!clientData ? null : clientData.client_name} <span>{!clientData ? null : clientData.status}</span></h2>
           <div className="right-area">
             <p><a href="#" className="btn">Join Call</a></p>
-            <p><Link href='/client-resources' passHref><a className="btn btn-resources">Resources</a></Link></p>
+            <p><Link href='/coach/client-resources' passHref><a className="btn btn-resources">Resources</a></Link></p>
           </div>
           </div>
         </div>

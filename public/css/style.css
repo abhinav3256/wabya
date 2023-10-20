@@ -752,7 +752,7 @@ padding: 25px 40px;
 .client-dashboard .banner-text h2 span {
   display: block;
   font-size: 18px;
-  text-transform: lowercase;
+  /* text-transform: lowercase; */
   margin: 0 0 15px;
   color: #106166;
   letter-spacing: 2px;

@@ -10,7 +10,7 @@ const ClientResources = () => {
         <div className="row">
 
         <div className="col-sm-2 left mrb-30">
-          <figure><img src="../images/clients-01.png" alt=""/></figure>
+          <figure><img src="../../images/clients-01.png" alt=""/></figure>
         </div>
 
         <div className="col-sm-10 right mrb-30">
