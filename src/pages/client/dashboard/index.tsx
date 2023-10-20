@@ -1080,7 +1080,7 @@ const getMeetingSession = async () => {
   const getMeeting = async () => {
     const userId = sessionStorage.getItem("userId");
 
-    const queryDoc = query(meetingRef, where("clientId", "==", userId),where("meetingApiCreated", "==", true),where("isCoachCancel", "==", 0));
+    const queryDoc = query(meetingRef, where("clientId", "==", userId),where("meetingApiCreated", "==", true),where("isCoachCancel", "==", '0'));
 
     await getDocs(queryDoc).then((response) => {
       setMeeting(
