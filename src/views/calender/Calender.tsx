@@ -1528,7 +1528,7 @@ m=0;
 
 
           <div className="timesheet-carousel">
-          {/* <OwlCarousel options={options}> */}
+          <OwlCarousel options={options}>
 
           { forloops.map((floop, index) => {
             let i=(index)*7;
@@ -1549,7 +1549,7 @@ m=0;
             }
 
           })}
-          {/* </OwlCarousel> */}
+          </OwlCarousel>
           </div>
 
 
