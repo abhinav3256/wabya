@@ -593,6 +593,13 @@ const getAllPlans = async () => {
             meetingCreatedAt:meetingCreatedAt,
             isDiscoverySession:1,
             status: "true",
+            isCoachCancel: '0',
+          
+            isNotified:0,
+            
+            meetingstatus: "wait",
+            isMeetingStarted: 0,
+          isMeetingEnd: 0,
           });
   console.log('working');
 
@@ -601,6 +608,7 @@ const getAllPlans = async () => {
   updateDoc(fieldToEdit, {
     isDiscoverySessionAdded: 1,
     assign_coach_id:coachId,
+    isDiscoverySessionDone:0,
   })
   .then(() => {
     

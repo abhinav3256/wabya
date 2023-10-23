@@ -164,10 +164,70 @@ const VideoCallPage = () => {
  // }, [router.query.id, iframeLoaded,client]);
 }, [isSessionAvbl]);
 
+async function updateMeetingEnd() {
+  const collectionRef = collection(database, "meeting");
+  const q = query(collectionRef, where("meetingName", "==", router.query.id));
+
+
+  
+  
+  try {
+
+    const clientId = sessionStorage.getItem('userId');
+    const fieldToEdit = doc(database, "client_user", clientId);
+    updateDoc(fieldToEdit, {
+      isDiscoverySessionDone:1
+      
+      // ...
+    });
+
+
+    const querySnapshot = await getDocs(q);
+    
+    querySnapshot.forEach(async (doce) => {
+      const fieldToEdit = doc(database, "meeting", doce.id);
+      await updateDoc(fieldToEdit, {
+        isMeetingStarted: 1,
+        isMeetingEnd: 1,
+        // ... other fields you want to update
+      });
+    });
+
+    console.log("Documents updated successfully!");
+  } catch (error) {
+    console.error("Error updating documents: ", error);
+  }
+}
+
+async function updateMeetingDocument() {
+  const collectionRef = collection(database, "meeting");
+  const q = query(collectionRef, where("meetingName", "==", router.query.id));
+  
+  try {
+    const querySnapshot = await getDocs(q);
+    
+    querySnapshot.forEach(async (doce) => {
+      const fieldToEdit = doc(database, "meeting", doce.id);
+      await updateDoc(fieldToEdit, {
+        isMeetingStarted: 1,
+        isMeetingEnd: 0,
+        // ... other fields you want to update
+      });
+    });
+
+    console.log("Documents updated successfully!");
+  } catch (error) {
+    console.error("Error updating documents: ", error);
+  }
+}
   useEffect(() => {
    console.log('meetId');
    console.log(meetId);
    console.log(videoId);
+
+   if(meetId != ''){
+    updateMeetingDocument();
+   }
   }, [meetId]);
 
   useEffect(() => {
@@ -204,6 +264,9 @@ const VideoCallPage = () => {
             setmeetId(docRef.id);
           console.log('testtt');
           mId=docRef.id;
+
+
+       
   
           // addDoc(logRef, {
           //   meeting_user_id: clientIds,
@@ -241,7 +304,9 @@ updateDoc(update, {
   client_leave: 'yes',
   client_end_time: unixTimestamp,
   meeting_end:'yes',
+  
 })
+updateMeetingEnd();
  
 
 
@@ -249,6 +314,9 @@ updateDoc(update, {
       });
     }
   }, [callObject]);
+
+
+
 
   return (
     <>

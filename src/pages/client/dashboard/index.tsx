@@ -198,6 +198,11 @@ const Dashboard = () => {
   const [mycoach, setMyCoach] = useState(null);
   const [myplan, setMyPlan] = useState(null);
   const [myplanName, setMyPlanName] = useState("");
+
+  const [mypreferplan, setMyPreferPlan] = useState(null);
+  const [mypreferplanName, setmypreferplanName] = useState("");
+
+
   const [changeplanId, setChangePlanId] = useState("");
   const [changeplanPrice, setchangeplanPrice] = useState("");
   const [coachesCalApiKey, setcoachesCalApiKey] = useState("");
@@ -235,11 +240,12 @@ const Dashboard = () => {
   const [clientFirebaseFirstName, setclientFirebaseFirstName] = useState("");
   const [clientFirebaseEmail, setclientFirebaseEmail] = useState("");
   const [clientPlanId, setclientPlanId] = useState("");
-
+  const [clientPreferPlanId, setclientPreferPlanId] = useState("");
   const [clientTotalSession, setclientTotalSession] = useState("");
 
   const [clientCompletedSession, setclientCompletedSession] = useState("");
   const [clientRemainingSession, setclientRemainingSession] = useState("");
+  const [clientIsDiscoveryDone, setclientIsDiscoveryDone] = useState(-1);
   const [clientFirebaseId, setclientFirebaseId] = useState("");
 
   const [BookedId, setBookedId] = useState();
@@ -516,6 +522,8 @@ function toggleProfile() {
           isNotified:0,
           status: "true",
           meetingstatus: "wait",
+          isMeetingStarted: 0,
+        isMeetingEnd: 0,
         });
 
 
@@ -1081,7 +1089,7 @@ const getMeetingSession = async () => {
   const getMeeting = async () => {
     const userId = sessionStorage.getItem("userId");
 
-    const queryDoc = query(meetingRef, where("clientId", "==", userId),where("meetingApiCreated", "==", true),where("isCoachCancel", "==", '0'));
+    const queryDoc = query(meetingRef, where("clientId", "==", userId),where("meetingApiCreated", "==", true),where("isCoachCancel", "==", '0'),where("isMeetingEnd", "==", 0));
 
     await getDocs(queryDoc).then((response) => {
       setMeeting(
@@ -1158,7 +1166,9 @@ const getMeetingSession = async () => {
    // const myplanRef = doc(collection(database, "admin_plans"), coachesFirebaseId);
     // const coachDoc = await getDoc(coachRef);
 
+    
     const queryDoc = query(planRef, where("__name__", "==", clientPlanId));
+   
 
     await getDocs(queryDoc).then((response) => {
       setMyPlan(
@@ -1178,6 +1188,34 @@ const getMeetingSession = async () => {
     
    
   };
+
+
+  const fetchPreferPlan = async () => {
+    // const myplanRef = doc(collection(database, "admin_plans"), coachesFirebaseId);
+     // const coachDoc = await getDoc(coachRef);
+ 
+     
+     const queryDoc = query(planRef, where("__name__", "==", clientPreferPlanId));
+    
+ 
+     await getDocs(queryDoc).then((response) => {
+       setMyPreferPlan(
+         response.docs.map((data) => {
+           //console.log(data);
+           return { ...data.data(), plan_id: data.id };
+         })
+       );
+     });
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+     
+    
+   };
 
 
   // get all meeting data
@@ -1259,10 +1297,13 @@ const getMeetingSession = async () => {
       setclientFirebaseEmail(client.client_email);
       //setcoachesCalUsername(client.assign_coach_uname);
       setclientPlanId(client.plan_id);
+      setclientPreferPlanId(client.prefer_plan_id);
       setclientTotalSession(client.total_session);
       setclientCompletedSession(client.completedSession);
       setclientRemainingSession(client.remainingSession);
+      setclientIsDiscoveryDone(client.isDiscoverySessionDone);
       setcoachesFirebaseId(client.assign_coach_id);
+      
       getFiles();
      // fetchCoach();
     }
@@ -1288,6 +1329,18 @@ fetchMyPlan();
   }, [clientPlanId]);
 
   useEffect(() => {
+    if (clientPreferPlanId !='') {
+      //console.log('ne wplan ');
+      console.log('prefer plan id',clientPreferPlanId)
+
+fetchPreferPlan();
+    }
+
+   
+
+  }, [clientPreferPlanId]);
+
+  useEffect(() => {
     if (myplan !=null) {
       //console.log('ne wplan ');
       console.log('myplan',myplan)
@@ -1300,6 +1353,18 @@ setMyPlanName(myplan[0].plan_name);
 
   }, [myplan]);
   
+  useEffect(() => {
+    if (mypreferplan !=null) {
+      //console.log('ne wplan ');
+      console.log('mypreferplan',mypreferplan)
+
+setmypreferplanName(mypreferplan[0].plan_name);
+ //getData();
+    }
+
+   
+
+  }, [mypreferplan]);
 
 
 
@@ -3131,56 +3196,72 @@ var myArr=new Date(data.meetingDate).toLocaleDateString().split('/');
               </form> */}
 
 
-<div className="new-plans">
+
+{clientIsDiscoveryDone === 0 ? (
+  <div className="new-plans">
     <div className="row">
-      <div className="col-sm-6 left mrb-10">
-        <div className="plans-content">
-          <span>current plan :</span>
-          <a href="" className="btn btn-lightgreen">
-            {myplanName}
-          </a>
-        </div>
-        <div className="plans-content">
-          <span>journey type : </span>
-          <a href="" className="btn btn-thulian-pink">
-            pay as you
-          </a>
-        </div>
-      </div>
-      <div className="col-sm-6 right mrb-30">
-        <div className="plans-sessions">
-          <p className="text-right">sessions remaning: {clientRemainingSession}</p>
-          <p className="text-right">
-            <a href="" className="btn btn-darkgreen" data-plan-id="6ZpZd4IrzORGQfyu0IqT" data-price='210' onClick={buyMore}>
-              {" "}
-              buy more
-            </a>
-          </p>
-        </div>
-      </div>
-      <div className="plans-list col-sm-12">
-        <ul>
-          <li>
-            <a href="" className="btn btn-darkgreen" data-plan-id="sH2iLHtr5PWg3gdSjIIn"  onClick={addNewRequest} >
-            {'sH2iLHtr5PWg3gdSjIIn' === requestPlanId ? 'Change Plan' : 'Requested'}
-            </a>
-          </li>
-          <li>
-            <a href="" className="btn btn-chestnutred" data-plan-id="6ZpZd4IrzORGQfyu0IqT" data-price='210' onClick={buyMore}>
-              change journey type
-            </a>
-          </li>
-          <li>
-            <a href="" className="btn btn-maroon" onClick={showUpdateBilling}>
-              update my billing information
-            </a>
-          </li>
-        </ul>
+      <div className="col-sm-12 left mrb-10">
+        Complete Your Discovery Session to Select Your Plan.
       </div>
     </div>
     {/*/ row */}
   </div>
-  {/*/ new-plans */}
+) : (
+  <>
+    <div className="new-plans">
+      <div className="row">
+        <div className="col-sm-6 left mrb-10">
+          <div className="plans-content">
+            <span> {myplanName ? "current plan :" : "prefer  plan :"}</span>
+            <a href="" className="btn btn-lightgreen">
+            {myplanName ? myplanName : mypreferplanName}
+
+            </a>
+          </div>
+          <div className="plans-content">
+            <span>journey type : </span>
+            <a href="" className="btn btn-thulian-pink">
+                {myplanName ? "pay as you go" : "-"}
+            </a>
+          </div>
+        </div>
+        <div className="col-sm-6 right mrb-30">
+          <div className="plans-sessions">
+            <p className="text-right">sessions remaining: {clientRemainingSession}</p>
+            <p className="text-right">
+              <a href="" className="btn btn-darkgreen" data-plan-id={clientPlanId ? clientPlanId : clientPreferPlanId} data-price='210' onClick={buyMore}>
+              {myplanName ? "Buy More" : "Buy"}
+
+              </a>
+            </p>
+          </div>
+        </div>
+        <div className="plans-list col-sm-12">
+          <ul>
+            <li>
+              <a href="" className="btn btn-darkgreen" data-plan-id={clientPlanId ? clientPlanId : clientPreferPlanId}  onClick={addNewRequest} >
+                {'sH2iLHtr5PWg3gdSjIIn' === requestPlanId ? 'Change Plan' : 'Requested'}
+              </a>
+            </li>
+            <li>
+              <a href="" className="btn btn-chestnutred" data-plan-id={clientPlanId ? clientPlanId : clientPreferPlanId} data-price='210' onClick={buyMore}>
+                 {myplanName ? " change journey type" : "-"}
+              </a>
+            </li>
+            <li>
+              <a href="" className="btn btn-maroon" onClick={showUpdateBilling}>
+                update my billing information
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      {/*/ row */}
+    </div>
+  </>
+)}
+
+ 
 
 
             </div>
@@ -3992,6 +4073,17 @@ const timeRemaining = Math.floor((meetingDate - currentTime) / 60000);
         <div className="session-info mrb-50">
           <h4 className="mrb-15">my plan</h4>
 
+          {clientIsDiscoveryDone === 0 ? (
+  <div className="new-plans">
+    <div className="row">
+      <div className="col-sm-12 mrb-10">
+        Complete Your Discovery Session to Select Your Plan.
+      </div>
+    </div>
+    {/*/ row */}
+  </div>
+) : (
+  <>
           <div className="new-plans">
     <div className="row">
       <div className="col-sm-6 left mrb-10">
@@ -4012,7 +4104,7 @@ const timeRemaining = Math.floor((meetingDate - currentTime) / 60000);
         <div className="plans-sessions">
           <p className="text-right">sessions remaning: {clientRemainingSession}</p>
           <p className="text-right">
-            <a href="" className="btn btn-darkgreen" data-plan-id="6ZpZd4IrzORGQfyu0IqT" data-price='210' onClick={buyMore}>
+            <a href="" className="btn btn-darkgreen" data-plan-id={clientPlanId ? clientPlanId : clientPreferPlanId} data-price='210' onClick={buyMore}>
               {" "}
               buy more
             </a>
@@ -4022,12 +4114,12 @@ const timeRemaining = Math.floor((meetingDate - currentTime) / 60000);
       <div className="plans-list col-sm-12">
         <ul>
           <li>
-            <a href="" className="btn btn-darkgreen" data-plan-id="sH2iLHtr5PWg3gdSjIIn"  onClick={addNewRequest} >
+            <a href="" className="btn btn-darkgreen" data-plan-id={clientPlanId ? clientPlanId : clientPreferPlanId}  onClick={addNewRequest} >
             {'sH2iLHtr5PWg3gdSjIIn' === requestPlanId ? 'Change Plan' : 'Requested'}
             </a>
           </li>
           <li>
-            <a href="" className="btn btn-chestnutred" data-plan-id="6ZpZd4IrzORGQfyu0IqT" data-price='210' onClick={buyMore}>
+            <a href="" className="btn btn-chestnutred" data-plan-id={clientPlanId ? clientPlanId : clientPreferPlanId} data-price='210' onClick={buyMore}>
               change journey type
             </a>
           </li>
@@ -4041,7 +4133,9 @@ const timeRemaining = Math.floor((meetingDate - currentTime) / 60000);
     </div>
     {/*/ row */}
   </div>
-          
+  </>
+)}
+
           {/* {fireData.map((data) => {
             
                   return (

@@ -70,7 +70,7 @@ const updateNotified = async (meet_id: any) =>{
   };
   await updateDoc(userDocRef, updatedData);
  // editAdmin();
-  
+ getScheduleMeeting();
 }
 
 
@@ -170,7 +170,7 @@ useEffect(() => {
 
    getMeeting();
    getScheduleMeeting();
-  }, 100000); // 10 seconds
+  }, 10000); // 10 seconds
 
   //Cleanup function to clear interval when component unmounts
 return () => clearInterval(intervalId);
