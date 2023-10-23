@@ -609,6 +609,7 @@ const getAllPlans = async () => {
     isDiscoverySessionAdded: 1,
     assign_coach_id:coachId,
     isDiscoverySessionDone:0,
+    isNotified:0,
   })
   .then(() => {
     

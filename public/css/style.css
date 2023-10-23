@@ -2689,6 +2689,30 @@ button{font-family: Gothic A1 !important;}
 
 .react-calendar__month-view__days{min-height: 252px;}
 
+.notification-desktop{margin-top: 10px !important;margin-bottom: 10px !important; align-items: center;
+  gap: 0px;
+  padding-right: 10px; background: #d37aa5 !important;}
+
+  .notification-desktop .dismiss{
+    border: none !important;
+    background: #f69532;
+    width: 27px;
+    height: 27px;
+    text-align: center;
+    color: #fff;
+    border-radius: 20px;
+    font-size: 13px;
+    line-height: 27px;
+    cursor: pointer;
+
+  }
+
+  .notification-desktop a{
+    color: #0f2540;
+    font-weight: 700;
+    text-decoration: underline;
+  }
+
 @media (min-width: 320px) and (max-width: 767px) {
   
    .header{border-top: 3px solid #ec2397;}
@@ -2769,6 +2793,17 @@ button{font-family: Gothic A1 !important;}
   .user-detail-mobile .meeting-reminder .meeting-link{display: flex; align-content: center; border-top: 1px solid #0e2540;}
   .user-detail-mobile .meeting-reminder .meeting-link a{color: #0e2540; display: block; font-weight: 700; padding: 10px 0; border-right: 1px solid #0e2540; width: 50%;}
   .user-detail-mobile .meeting-reminder .meeting-link a:last-child{border-right: 0;}
+
+
+  .coach-dash-mobile .meeting-reminder{background: #d37aa5; text-align: center; margin:0 0 30px; color: #0e2540; -webkit-border-radius: 20px; -moz-border-radius: 20px; border-radius: 20px; -webkit-box-shadow: 0 4px 4px 0 #cbbcae; box-shadow: 0 4px 4px 0 #cbbcae;}
+  .coach-dash-mobile .meeting-reminder .info{padding: 17px 15px 0;}
+  .coach-dash-mobile .meeting-reminder .info p{margin: 0 0 10px; text-align: center;}
+  .coach-dash-mobile .meeting-reminder .title{color: #0e2540; font-weight:700; font-size: 18px; margin: 0 0 5px;}
+  .coach-dash-mobile .meeting-reminder .meeting-link{display: flex; align-content: center; border-top: 1px solid #0e2540;justify-content: center;}
+  .coach-dash-mobile .meeting-reminder .meeting-link a{color: #0e2540; display: block; font-weight: 700; padding: 10px 0; border-right: 1px solid #0e2540; width: 50%;}
+  .coach-dash-mobile .meeting-reminder .meeting-link a:last-child{border-right: 0;}
+
+
   .user-detail-mobile .client-name{position: relative; margin:0 0 30px;}
   .user-detail-mobile .client-name .info-name{display: flex; align-items: start; gap: 30px; justify-content: space-between;}
   .user-detail-mobile .client-name h2{color: #0e2540; font-weight:800; font-size: 36px; margin: 0 0 5px;}
@@ -2859,9 +2894,9 @@ button{font-family: Gothic A1 !important;}
   .clients-listing .client-filter .form-check .checkbox{padding: 5px 0; font-weight:700;}
   .clients-listing .client-filter .form-check .checkbox input[type="checkbox"]{margin: 0 10px 0 0;}
 
-  .user-detail{position:relative; margin:0; padding: 60px 15px 30px; z-index:1;}
+  .user-detail{position:relative; margin:0; padding: 30px 15px 30px; z-index:1;}
   .user-detail.new-user-profile-edit{padding-bottom: 80px;}
-  .user-profile{background:#faf4e8; font-size:12px; -webkit-border-radius:30px; -moz-border-radius:30px; border-radius:30px; color:#0f2540; position: relative; padding:30px 25px 10px; font-size:12px;} 
+  .user-profile{background:#faf4e8; font-size:12px; -webkit-border-radius:30px; -moz-border-radius:30px; border-radius:30px; color:#0f2540; position: relative; padding:30px 25px 10px; font-size:12px;margin-top: 40px;} 
   .user-profile .accepting-info{position:relative; margin:0 0 10px; align-items: center; display: flex; justify-content: space-between;}
   .user-profile .accepting-info span{display: block; font-weight:700; font-size:14px; padding:0 15px 0 0; text-transform: lowercase;
     letter-spacing: 0px;}

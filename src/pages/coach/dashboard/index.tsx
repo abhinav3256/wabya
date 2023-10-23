@@ -8,7 +8,8 @@ import { collection, doc, updateDoc, getDoc,getDocs,where,query } from 'firebase
 
 import { useFormik } from 'formik';
 import {ref, uploadBytesResumable, getDownloadURL } from "firebase/storage"
-
+import MeetingReminder from '../../../components/MeetingRemainder';
+import MeetingReminderMobile from '../../../components/MeetingRemainderMobile';
 
 // ** MUI Components
 
@@ -23,6 +24,7 @@ const Dashboard = () => {
   const [meeting, setMeeting] = useState([]);
 
   const [scheduleMeeting, setScheduleMeeting] = useState([]);
+  const [newClient, setnewClient] = useState([]);
   useEffect(() => {
 
     const coachId = sessionStorage.getItem('coachId')
@@ -50,6 +52,26 @@ const Dashboard = () => {
 
 
 
+const updateNewClientNotified = async (c_id: any) =>{
+  console.log('notified',c_id);
+  let a=0;
+
+ 
+
+  
+ 
+
+
+
+  const userDocRef = doc(collection(database, 'client_user'), c_id);
+
+  const updatedData = {
+    isNotified:1
+  };
+  await updateDoc(userDocRef, updatedData);
+ // editAdmin();
+ getNewClient();
+}
 
 
 const updateNotified = async (meet_id: any) =>{
@@ -143,6 +165,26 @@ const getMeeting = async () => {
  }
 
 
+ const getNewClient = async () => {
+
+  console.log('testtt');
+  const coachId = sessionStorage.getItem('coachId');
+  const meetingSessionCollection = collection(database, 'client_user');
+  const queryDoc = query(meetingSessionCollection, where("assign_coach_id", "==", coachId), where("isNotified", "==", 0));
+
+    await getDocs(queryDoc).then((response) => {
+      setnewClient(
+        response.docs.map((data) => {
+          console.log(data.data());
+          return { ...data.data(), c_id: data.id };
+        })
+      );
+    });
+   
+ 
+ 
+ }
+
  const getScheduleMeeting = async () => {
 
   console.log('testtt');
@@ -170,6 +212,7 @@ useEffect(() => {
 
    getMeeting();
    getScheduleMeeting();
+   getNewClient();
   }, 10000); // 10 seconds
 
   //Cleanup function to clear interval when component unmounts
@@ -179,52 +222,13 @@ return () => clearInterval(intervalId);
 
   return (
     <>
-      {meeting.length > 0 ? meeting.map((meet, index) => (
-
-        index == 0 ?(
-  <div className='row coach-dash-desktop' key={index}>
-    <div className='col-sm-12'>
-      <div className='client-reminder'>
-        <p>
-          Meeting Started 
-          {/* <span>45 minutes : Coach Name</span> */}
-        </p>
-        <div className='dismiss'>
-       
-          <h5><Link href={`/coach/coach-video-call/${meet.meeting_id}`}>Join</Link></h5>
-          <hr />
-          {/* <h6>dismiss</h6> */}
-        </div>
-      </div>
-    </div>
-  </div> 
- ) :null 
-)) : null}
-
-
-
-{scheduleMeeting.length > 0 ? scheduleMeeting.map((meet, index) => (
-
-
-<div className='row coach-dash-desktop' key={index}>
-<div className='col-sm-12'>
-<div className='client-reminder'>
-<p>
-  New Meeting Schedule 
-  {/* <span>45 minutes : Coach Name</span> */}
-</p>
-<div className='dismiss' onClick={() => updateNotified(meet.meet_id)}>
-
-
-  {/* <h5><Link href={`/coach/coach-video-call/${meet.meeting_id}`}>Join</Link></h5> */}
-  <hr />
-  <h6>dismiss</h6>
-</div>
-</div>
-</div>
-</div> 
-
-)) : null}
+  <MeetingReminderMobile
+        meeting={meeting}
+        newClient={newClient}
+        scheduleMeeting={scheduleMeeting}
+        updateNewClientNotified={updateNewClientNotified}
+        updateNotified={updateNotified}
+      />
 
 
 
@@ -322,6 +326,18 @@ return () => clearInterval(intervalId);
   <section className="user-detail coach-dash-mobile">
     <div className="container">
       <div className="row">
+
+  
+
+
+
+<MeetingReminder
+        meeting={meeting}
+        newClient={newClient}
+        scheduleMeeting={scheduleMeeting}
+        updateNewClientNotified={updateNewClientNotified}
+        updateNotified={updateNotified}
+      />
         <div className="col-12">
        { coach ?
       (

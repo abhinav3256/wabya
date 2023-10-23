@@ -2,7 +2,7 @@ import axios from "axios";
 export const sendMail = async (to_mail,sub,msg) => {
   try {
     let request = await axios
-      .post("https://wabya-dev-site.netlify.app/api/mail", {           
+      .post("/api/mail", {           
         email: to_mail,	    		  
         subject: sub,     
         message: msg,   		  
