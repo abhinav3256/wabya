@@ -165,7 +165,7 @@ if(values.clientPassword == values.clientRePassword){
             client_name: values.clientName,
             client_country : values.clientCountry,
             client_email : values.clientEmail.toLowerCase(),
-            client_language : values.clientLanguage,
+            client_language : String(),
             client_password : values.clientPassword,
             client_phone : Number(values.clientPhone),
             client_zone : values.clientZone,

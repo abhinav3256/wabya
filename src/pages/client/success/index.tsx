@@ -27,6 +27,7 @@ export default function Success() {
     
     const [plan_detail, setplan_detail] = useState(null);
     const [new_plan_id, setnew_plan_id] = useState('');
+    const [new_journey_type, setnew_journey_type] = useState('');
     const payments = collection(database, "payments");
         // get all meeting data
 
@@ -125,6 +126,7 @@ export default function Success() {
         plan_id:new_plan_id,
         remainingSession: client_remaining_update_ses,
         total_session: client_total_update_ses,
+        journey_type:new_journey_type,
       })
       .then(() => {
        
@@ -237,7 +239,9 @@ export default function Success() {
             console.log(payment_detail);
 
             if(payment_detail != null){
+              setnew_journey_type(payment_detail[0].journey_type)
             setnew_plan_id(payment_detail[0].plan_id)
+           
             }
             
             }, [payment_detail]);

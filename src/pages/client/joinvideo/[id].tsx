@@ -256,6 +256,7 @@ async function updateMeetingDocument() {
           client_leave: 'no',
           meeting_end:'no',
           coachJoined:'no',
+          client_journey_type:client.journey_type,
          
         })
           .then((docRef) => {

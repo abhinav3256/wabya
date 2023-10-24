@@ -240,6 +240,7 @@ const Dashboard = () => {
   const [clientFirebaseFirstName, setclientFirebaseFirstName] = useState("");
   const [clientFirebaseEmail, setclientFirebaseEmail] = useState("");
   const [clientPlanId, setclientPlanId] = useState("");
+  const [clientJourneyType, setclientJourneyType] = useState("");
   const [clientPreferPlanId, setclientPreferPlanId] = useState("");
   const [clientTotalSession, setclientTotalSession] = useState("");
 
@@ -1297,12 +1298,14 @@ const getMeetingSession = async () => {
       setclientFirebaseEmail(client.client_email);
       //setcoachesCalUsername(client.assign_coach_uname);
       setclientPlanId(client.plan_id);
+      setclientJourneyType(client.journey_type);
       setclientPreferPlanId(client.prefer_plan_id);
       setclientTotalSession(client.total_session);
       setclientCompletedSession(client.completedSession);
       setclientRemainingSession(client.remainingSession);
       setclientIsDiscoveryDone(client.isDiscoverySessionDone);
       setcoachesFirebaseId(client.assign_coach_id);
+
       
       getFiles();
      // fetchCoach();
@@ -3221,7 +3224,7 @@ var myArr=new Date(data.meetingDate).toLocaleDateString().split('/');
           <div className="plans-content">
             <span>journey type : </span>
             <a href="" className="btn btn-thulian-pink">
-                {myplanName ? "pay as you go" : "-"}
+            {clientJourneyType ? clientJourneyType : '-'}
             </a>
           </div>
         </div>
@@ -4096,7 +4099,7 @@ const timeRemaining = Math.floor((meetingDate - currentTime) / 60000);
         <div className="plans-content">
           <span>journey type :</span>
           <a href="" className="btn btn-thulian-pink">
-            pay as you
+          {clientJourneyType ? clientJourneyType : '-'}
           </a>
         </div>
       </div>

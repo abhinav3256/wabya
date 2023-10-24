@@ -17,10 +17,10 @@ const stripePromise = loadStripe(
   process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
 );
 
-const CheckoutButton = () => {
+const CheckoutButton = ({price,journey_type}) => {
   const router = useRouter();
 
-  const [price, setPrice] = useState(0);
+ // const [price, setPrice] = useState(0);
 
   const [plan_id, setPlanId] = useState('');
   const [showPayForm, setShowPayForm] = useState(false);
@@ -33,7 +33,7 @@ const CheckoutButton = () => {
      
       // Update state with the value if it exists
       if (storedValue && storedValue2) {
-        setPrice(storedValue);
+        //setPrice(storedValue);
         setPlanId(storedValue2);
       }
 
@@ -53,6 +53,7 @@ const CheckoutButton = () => {
    client_id:sessionStorage.getItem("userId"),
    status:'pending',
    price:price,
+   journey_type:journey_type,
 
 
   })
