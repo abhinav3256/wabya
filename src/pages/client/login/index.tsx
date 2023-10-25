@@ -65,6 +65,8 @@ const ClientLoginPage = () => {
 
     const handleLogin = async (event) => {
       event.preventDefault();
+      localStorage.removeItem('clientRegisteredId');
+      setError(null);
 console.log('working');
       try {
         // Check if the user exists in the database
@@ -116,9 +118,15 @@ console.log('working');
 
         // Check if the password is correct
         const user = querySnapshot.docs[0].data();
+        
         if (user.client_password !== password) {
           setError('Incorrect password');
           throw new Error('Incorrect password');
+        }
+        if (user.isDiscoverySessionAdded !== 1) {
+          setError('Please add Your Discovery Session, Redicting you to add Discovery Session');
+          localStorage.setItem('clientRegisteredId',querySnapshot.docs[0].id);
+          throw new Error('Please add Your Discovery Session, Redicting you to add Discovery Session');
         }
 
         // Set the user ID as a session variable
@@ -133,6 +141,17 @@ console.log('working');
       }
     };
 
+    useEffect(() => {
+      if (error == 'Please add Your Discovery Session, Redicting you to add Discovery Session') {
+        // Wait for 3 seconds before redirecting to the pricing page
+        const redirectTimeout = setTimeout(() => {
+          router.push('/frontend/coaching-session/'); // Redirect to the pricing page
+        }, 3000);
+    
+        // Clear the timeout if the component is unmounted
+        return () => clearTimeout(redirectTimeout);
+      }
+    }, [error]);
 
   return (
 <>

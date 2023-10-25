@@ -191,7 +191,7 @@ const Header = () => {
 					  <ul className="dropdown-menu" style={{ display: signupdropdown ? 'block' : 'none' }}>
 
 						<li>
-						  <Link href='/client/register' passHref>
+						  <Link href='/frontend/pricing' passHref>
 							<a className='dropdown-item' onClick={setsignups}>Client</a>
 						  </Link>
 						</li>

@@ -1789,7 +1789,29 @@ setmypreferplanName(mypreferplan[0].plan_name);
 
   
   useEffect(() => {
-   
+    // Get the current time
+    let now = new Date();
+    let currentHours = now.getHours();
+    let currentMinutes = now.getMinutes();
+
+    // Given date and time in Indian Standard Time (IST)
+const givenDate =date;
+
+// Convert the given date and time to South Africa Standard Time (SAST)
+const saTimeZone = 'Africa/Johannesburg';
+const saFormattedDate = givenDate.toLocaleString('en-US', { timeZone: saTimeZone });
+
+console.log(`Given date and time in IST: ${givenDate}`);
+console.log(`Converted date and time in SAST: ${saFormattedDate}`);
+    let currentTime=`00:00:00`;
+    if(date.getDate() == now.getDate() && date.getFullYear() == now.getFullYear() && date.getMonth() == now.getMonth()){
+    currentTime = `${currentHours}:${currentMinutes < 10 ? '0' : ''}${currentMinutes}:00`;
+    }else{
+      currentTime = `00:00:00`;
+    }
+    console.log(date.getDate(),date.getFullYear(),date.getMonth());
+console.log(now.getDate(),now.getFullYear(),now.getMonth());
+    console.log('terrr');
     if(mycoach != null){
       if(mycoach[0].start_time){
  var starttime = mycoach[0].start_time;
@@ -1810,17 +1832,25 @@ if(mycoach[0].start_time){
         var endtime = "17:00:00";
       }
 //var endtime = "17:00:00";
-var timeslots = [starttime];
 
+if (starttime >= currentTime) {
+var timeslots = [starttime];
+}else{
+  var timeslots = [];
+}
 //console.log(meetingByDate);
 
 while (starttime < endtime) {
 
   starttime = addMinutes(starttime, interval); 
-
+  if (starttime >= currentTime) {
   if(starttime < endtime){
+    
+      console.log(currentTime);
+
   if(!isReserved(starttime)){
   timeslots.push(starttime);
+  }
   }
 }
   settimeslot_load(false);
