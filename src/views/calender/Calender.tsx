@@ -1735,7 +1735,7 @@ return(<>
 
                       
 
-                       <p className='calendar-clientname'>Client :  Client</p> 
+                       <p className='calendar-clientname'>Client :  {clientName}</p> 
 
                        {/* {isCoachAccept_ == undefined && isCoachAccept_ !== 1 ? (
   <p>

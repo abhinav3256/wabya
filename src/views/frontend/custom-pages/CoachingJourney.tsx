@@ -25,7 +25,157 @@ const CoachingJourney = () => {
             </div>
 
           <div className="col-sm-6 right">
-            <figure><img src="../../images/img-06.png" alt=""/></figure>
+            {/* <figure><img src="../../images/img-06.png" alt=""/></figure> */}
+
+            <div className="maping-sec">
+ <div className="row">
+   <div className="col-sm-3">
+      <div className="info">
+         <figure>
+            <>
+            <img src="../../images/coach13.png" alt="image" />
+            <figcaption>
+               <h4> let's uncover and transform your beliefs to serve your purpose</h4>
+               <img src="../../images/coach13-s.png" className='solid-img' alt="image"
+                  />
+            </figcaption>
+            </>
+         </figure>
+      </div>
+   </div>
+   <div className="col-sm-3">
+      <div className="info">
+         <figure>
+            {/* <img src="" alt="image" /> */}
+            <figcaption></figcaption>
+         </figure>
+      </div>
+   </div>
+   <div className="col-sm-3">
+      <div className="info">
+         <figure>
+            <>
+            <img src="../../images/coaches-banner-Desktop-2.png" alt="image" />
+            <figcaption>
+               <h4>your personal development and wellness are my priorities</h4>
+               <img src="../../images/coaches-banner-Desktop-2-solid.png" className='solid-img' alt="image"
+                  />
+            </figcaption>
+            </>
+         </figure>
+      </div>
+   </div>
+   <div className="col-sm-3">
+      <div className="info">
+         <figure>
+            {/* <img src="../images/fb1_03.png" alt="image" /> */}
+            <figcaption></figcaption>
+         </figure>
+      </div>
+   </div>
+</div>
+<div className='row'>
+   <div className="col-sm-3">
+      <div className="info">
+         <figure>
+            <>
+            <img src="../../images/coaches-banner-Desktop-3.png" alt="image" />
+            <figcaption>
+               <h4>you have the answers- i'm here to help you uncover them</h4>
+               <img src="../../images/coaches-banner-Desktop-3-solid.png" className='solid-img' alt="image"
+                  />
+            </figcaption>
+            </>
+         </figure>
+      </div>
+   </div>
+   <div className="col-sm-3">
+      <div className="info">
+         <figure>
+            {/* <img src="" alt="image" /> */}
+            <figcaption></figcaption>
+         </figure>
+      </div>
+   </div>
+   <div className="col-sm-3">
+      <div className="info">
+         <figure>
+         <img src="../../images/coaches-banner-Desktop-7.png" alt="image" />
+            <figcaption>
+               <h4>your unique gifts are the path to your authentic self</h4>
+               <img src="../../images/coaches-banner-Desktop-7-solid.png" className='solid-img' alt="image"
+                  />
+            </figcaption>
+         </figure>
+      </div>
+   </div>
+   <div className="col-sm-3">
+      <div className="info">
+         <figure>
+            {/* <img src="../images/yl1_03solid.png" alt="image" /> */}
+            <figcaption></figcaption>
+         </figure>
+      </div>
+   </div>
+</div>
+
+<div className="row">
+   <div className="col-sm-3">
+      <div className="info">
+         <figure>
+            <>
+            <img src="../../images/coaches-banner-Desktop-4.png" alt="image" />
+            <figcaption>
+               <h4>greater self-awareness promotes a more fulfilling life</h4>
+               <img src="../../images/coaches-banner-Desktop-4-solid.png" className='solid-img' alt="image"
+                  />
+            </figcaption>
+            </>
+         </figure>
+      </div>
+   </div>
+   <div className="col-sm-3">
+      <div className="info">
+      <figure>
+            <>
+            <img src="../../images/coach12.png" alt="image" />
+            <figcaption>
+               <h4>let’s harness your differences to realise your full potential</h4>
+               <img src="../../images/coach12-s.png" className='solid-img' alt="image"
+                  />
+            </figcaption>
+            </>
+         </figure>
+      </div>
+   </div>
+   <div className="col-sm-3">
+      <div className="info">
+         <figure>
+            <>
+            <img src="../../images/coaches-banner-Desktop-6.png" alt="image" />
+            <figcaption>
+               <h4>helping you give meaning to your professional and personal life</h4>
+               <img src="../../images/coaches-banner-Desktop-6-solid.png" className='solid-img' alt="image"
+                  />
+            </figcaption>
+            </>
+         </figure>
+      </div>
+   </div>
+   <div className="col-sm-3">
+      <div className="info">
+         <figure>
+         <img src="../../images/coaches-banner-Desktop-8.png" alt="image" />
+            <figcaption>
+               <h4>let's turn your choices into actions that lead to reaching your goals</h4>
+               <img src="../../images/coaches-banner-Desktop-8solid.png" className='solid-img' alt="image"
+                  />
+            </figcaption>
+         </figure>
+      </div>
+   </div>
+</div>
+</div>
             </div>
 
           </div> {/* <!-- row --> */}
@@ -65,7 +215,7 @@ const CoachingJourney = () => {
         </div>
       </section> {/* <!--/ coaching-journey --> */}
 
-      <section className="philosophy">
+      {/* <section className="philosophy">
         <div className="container">
           <div className="row">
             <div className="col-sm-12">
@@ -87,7 +237,9 @@ const CoachingJourney = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
+
+      
     </>
   )
 }

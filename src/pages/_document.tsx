@@ -54,7 +54,7 @@ class CustomDocument extends Document {
           {/* <!-- Bootstrap Core JavaScript --> */}
           <script src="/js/bootstrap.bundle.min.js" async></script>
           <script src="/js/owl.carousel.min.js" async></script>
-          <script src="/js/jquery.twentytwenty.js" async></script>
+          {/* <script src="/js/jquery.twentytwenty.js" async></script> */}
           <script src="/js/jquery.event.move.js" async></script>
           <script type="text/javascript" src="/js/script.js" async></script>
           <script type="text/javascript" src="/js/header.js" async></script>

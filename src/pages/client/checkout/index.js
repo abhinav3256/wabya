@@ -134,7 +134,7 @@ if(plan_detail != null){
                         <input type='radio' className='' onClick={handleJourneyType} name='journey_type' value="bundle" checked={journey_type === "bundle"}></input> Bundle                        
                     </div> 
                     <div className="col-sm-2">
-                        <input type='radio' className='' onClick={handleJourneyType} name='journey_type' value="payg" checked={journey_type === "payg"}></input> Payg                        
+                        <input type='radio' className='' onClick={handleJourneyType} name='journey_type' value="payg" checked={journey_type === "payg"}></input> PayG                      
                     </div>                     
                   </div>
                 

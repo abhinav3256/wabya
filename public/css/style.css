@@ -2713,6 +2713,40 @@ button{font-family: Gothic A1 !important;}
     text-decoration: underline;
   }
 
+  .maping-sec .row{margin: 0 !important;}
+  .maping-sec .col-sm-3{padding: 0 !important;}
+  .maping-sec .info h4 {
+    color: #fff !important;
+    position: relative !important;
+    z-index: 2 !important;
+    font-size: 15px !important;
+  }
+  .maping-sec .info figure{position: relative; margin: 0;}
+.maping-sec .info figcaption {
+   position: absolute;
+  left: 0;
+  top: 0;
+  text-align: center;
+ width: 100%;
+  padding: 20px;
+  opacity: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+   bottom: 0;
+   right: 0;
+  flex-wrap: wrap;
+  }
+.maping-sec .info figcaption .solid-img {
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0.7;
+}
+
+.maping-sec .info:hover figcaption {
+  opacity: 1;
+}
 @media (min-width: 320px) and (max-width: 767px) {
   
    .header{border-top: 3px solid #ec2397;}
@@ -2739,6 +2773,19 @@ button{font-family: Gothic A1 !important;}
    .client-pass-mobile form{position:relative;}
    .user-detail-mobile{display: block;}
    .user-details-desktop{display: none;}
+
+
+   .maping-sec .info h4 {
+   
+    font-size: 6px;
+  }
+
+  .maping-sec{margin: 0 0 30px;}
+.maping-sec .row{display: flex !important;}
+.maping-sec .col-sm-3{width: 25%;}
+
+
+
    .react-calendar__tile abbr{width: 30px; height: 30px; line-height: 30px; font-size: 13px;}
    .reschedule-zone .resc-cal{border-left: 0; height: 100%; padding-left: 0;}
    .reschedule-zone .col-sm-6{padding: 0 5px;}

@@ -126,7 +126,7 @@ else{
     // clientUsername: Yup.string().required("Cal Username field is required"),
     clientPassword: Yup.string()
     .matches(
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{8,}$/,
       "Password must be at least 8 characters with one uppercase letter, one lowercase letter, one number, and one special character"
     )
     .required("Password field is required"),
@@ -151,6 +151,7 @@ else{
       setConfirmMsg(false);
       setEmailExist(false);
       setTermMsg(false);
+      
 if(termChecked != true){
   setTermMsg(true);
 }
@@ -980,7 +981,7 @@ console.log('test');
                 </div>
                 <div className="col-sm-12 form-group mrb-10">
                   <div className="input-group pastel">
-                    <label className="label">what’s on myc mind * :</label>
+                    <label className="label">what’s on my mind * :</label>
                     <div className="p-t-10">
                       <label className="radio-container mrb-r">
                         <input type="checkbox" name="mind" value="family"
@@ -1062,7 +1063,7 @@ console.log('test');
                                   type='password'
                                   value={values.clientPassword}
                                   onChange={handleChange}
-                    placeholder="create password*"
+                    placeholder="create password"
                   />
                 </div>
 

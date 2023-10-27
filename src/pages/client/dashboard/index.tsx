@@ -894,7 +894,7 @@ const getMeetingSession = async () => {
   const queryDoc = query(
     meetingSessionCollection,
     where('client_id', '==', clientId),
-    where('client_leave', '==', 'no')
+    where('meeting_end', '==', 'yes')
   );
 
   try {
@@ -2020,7 +2020,7 @@ const year = today.getFullYear();
           <div className="col-sm-8 left">
             <div className="banner-text">
               <h2>
-                <span>we are because you are</span>Welcome{" "}
+                <span>we are because you are</span>welcome{" "}
                 {client ? <> {clientFirebaseFirstName} </> : null}
               </h2>
             </div>
@@ -2224,8 +2224,8 @@ const year = today.getFullYear();
                     <input type="hidden" name="name" value={client.client_name}/>
                     <input type="hidden" name="email" value={mycoach ? mycoach[0].coach_email : null }/>
                   </div>
-                  {ShowCoachErr ?  <b>Message Can't be Empty </b> : null }
-                  {ShowEmailSuccess ?  <b style={{'color':'green'}}>Message Send. </b> : null }
+                  {ShowCoachErr ?  <b>message can't be empty </b> : null }
+                  {ShowEmailSuccess ?  <b style={{'color':'green'}}>message sent. </b> : null }
                   <div className="two-button">
                     <button className="btn btn-send btn-primary" style={{'marginTop':'20px'}} onClick={sendCoachMsg}>send</button>
                    
@@ -3273,7 +3273,7 @@ var myArr=new Date(data.meetingDate).toLocaleDateString().split('/');
           <ul>
             <li>
               <a href="" className="btn btn-darkgreen" data-plan-id={clientPlanId ? clientPlanId : clientPreferPlanId}  onClick={addNewRequest} >
-                {'sH2iLHtr5PWg3gdSjIIn' === requestPlanId ? 'Change Plan' : 'Requested'}
+                {'6ZpZd4IrzORGQfyu0IqT' === requestPlanId ? 'Change Plan' : 'Requested'}
               </a>
             </li>
             <li>
@@ -4081,7 +4081,7 @@ const timeRemaining = Math.floor((meetingDate - currentTime) / 60000);
 })}
         <div className="client-name mrb-50">
           <div className="info-name mrb-10">
-            <h2>Welcome  {client ? <> {clientFirebaseFirstName} </> : null}</h2>
+            <h2>welcome  {client ? <> {clientFirebaseFirstName} </> : null}</h2>
             <img src="../../images/clients-01.png" alt="" />
           </div>
           <p className="btn-p text-center">
@@ -4148,7 +4148,7 @@ const timeRemaining = Math.floor((meetingDate - currentTime) / 60000);
         <ul>
           <li>
             <a href="" className="btn btn-darkgreen" data-plan-id={clientPlanId ? clientPlanId : clientPreferPlanId}  onClick={addNewRequest} >
-            {'sH2iLHtr5PWg3gdSjIIn' === requestPlanId ? 'Change Plan' : 'Requested'}
+            {'6ZpZd4IrzORGQfyu0IqT' === requestPlanId ? 'Change Plan' : 'Requested'}
             </a>
           </li>
           <li>

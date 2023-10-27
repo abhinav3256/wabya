@@ -13,8 +13,8 @@ import {
   where,
   query,
 } from "firebase/firestore";
-
-
+import { Numeric0CircleOutline } from 'mdi-material-ui';
+import DataTable from '../../components/Datatable';
 
 
 function getCurrentMonthWeeks(year, month) {
@@ -74,6 +74,27 @@ function getWeekRange(startDate, endDate) {
   return `${startMonth} ${startDay} - ${endMonth} ${endDay}`;
 }
 
+function getDatesBetweenRange(weekRange) {
+  const [startMonth, startDay, _, endMonth, endDay] = weekRange
+    .replace(/,/g, '') // Remove commas
+    .split(' '); // Split the string into an array of words
+
+  const startDate = new Date(`${startMonth} ${startDay}, ${new Date().getFullYear()}`);
+  const endDate = new Date(`${endMonth} ${endDay}, ${new Date().getFullYear()}`);
+
+  const datesArray = [];
+  let currentDate = startDate;
+
+  while (currentDate <= endDate) {
+    datesArray.push(new Date(currentDate));
+    currentDate.setDate(currentDate.getDate() + 1);
+  }
+
+  return datesArray;
+}
+
+
+
 function generateDayLabels(startDate) {
   const dayLabels = [];
   for (let i = 0; i < 7; i++) {
@@ -93,7 +114,8 @@ const Timesheet = () => {
   const currentDate = new Date();
   const [activeWeekIndex, setActiveWeekIndex] = useState(0);
   const weekRanges = [];
-
+  const [meetingSession, setMeetingSession] = useState([]);
+  const [datesArray, setdatesArray] = useState([]);
   // Calculate the start of the current week (always starting on Monday)
   const currentWeekStart = new Date(currentDate);
   currentWeekStart.setDate(currentWeekStart.getDate() - currentDate.getDay() + 1);
@@ -147,11 +169,17 @@ const Timesheet = () => {
     // Calculate day labels whenever activeWeekIndex changes
     const activeWeekStartDate = new Date(weekRanges[activeWeekIndex].split(' - ')[0]);
     setDayLabels(generateDayLabels(activeWeekStartDate));
+
+    console.log(weekRanges[activeWeekIndex],'week range');
+setdatesArray(getDatesBetweenRange(weekRanges[activeWeekIndex]));
+  
   }, [activeWeekIndex]);
   useEffect(() => {
     // Update weeks whenever the currentMonth or currentYear changes
     const updatedWeeks = getCurrentMonthWeeks(currentYear, currentMonth);
     setWeeks(updatedWeeks);
+    console.log(currentYear,'current year');
+    console.log(currentMonth,'current month');
   }, [currentYear, currentMonth]);
 
   useEffect(() => {
@@ -163,6 +191,7 @@ console.log('abc');
         router.push('/client/login')
     }else{
       getClients();
+      getMeetingSession();
       console.log(client);
     }
 }, [])
@@ -178,6 +207,37 @@ console.log('abc');
         );
       });
   }
+
+
+  const getMeetingSession = async () => {
+
+    //console.log('testtt');
+    
+    const coachId = sessionStorage.getItem('coachId');
+    const meetingSessionCollection = collection(database, 'meetingSession');
+    const queryDoc = query(
+      meetingSessionCollection,
+      where('coach_id', '==', coachId),
+      where('meeting_end', '==', 'yes')
+    );
+  
+    try {
+      const response = await getDocs(queryDoc);
+      const sessionsData = response.docs.map((data) => {
+        console.log(data.data());
+        return { ...data.data(), meet_id: data.id };
+      });
+      setMeetingSession(sessionsData);
+    } catch (error) {
+      console.error(error);
+    }
+   
+   
+   }
+
+   let probonoCount=0;
+   let noviceCount =0;
+   let experiencedCount=0;
   return (
     <> 
       <section className='timesheet timesheet-desktop'>
@@ -224,7 +284,7 @@ console.log('abc');
                   <div className='table-responsive'>
                     <table className='table table-border'>
                       <tr>
-                        <td>
+                        {/* <td>
                           <div className='first'>
                             <p>
                               2 <span>hours</span>
@@ -259,34 +319,74 @@ console.log('abc');
                               $ <span>000.00</span>
                             </p>
                           </div>
-                        </td>
-                        <td>
-                          <div className='third'>
-                            <p>
-                              1 <span>hour</span>
-                            </p>
-                            <p>
-                              $ <span>000.00</span>
-                            </p>
-                          </div>
-                          <div className='first'>
-                            <p>
-                              2 <span>hours</span>
-                            </p>
-                            <p>
-                              $ <span>000.00</span>
-                            </p>
-                          </div>
-                          <div className='second'>
-                            <p>
-                              2 <span>hours</span>
-                            </p>
-                            <p>
-                              $ <span>000.00</span>
-                            </p>
-                          </div>
-                        </td>
-                        <td>
+                        </td> */}
+
+
+{meetingSession.map((m_session, index) => {
+  const timestampInSeconds = m_session.meeting_date.seconds;
+
+  const date = new Date(timestampInSeconds * 1000); // Convert seconds to milliseconds
+  
+  const options = { year: 'numeric', month: 'long', day: 'numeric' };
+  const formattedDate = date.toLocaleDateString(undefined, options);
+
+  const date_=date.getDate();
+  //console.log(formattedDate);
+  
+  //console.log(formattedDate);
+return (
+  <></>
+
+)
+})}
+{datesArray.map((d_arr, index) => {
+    const dateObject = new Date(d_arr); // Replace this with your actual Date object
+
+    // Convert the Date object to a string
+    const dateString = dateObject.getDate();
+    const monthString = dateObject.getMonth() + 1;
+
+    
+      const probonoCount = meetingSession != null ? meetingSession.filter(meet => meet.client_plan === 'probono' && new Date(meet.meeting_date.seconds * 1000).getDate() == dateString && new Date(meet.meeting_date.seconds * 1000).getMonth() == monthString ).length : 0;
+    
+      const noviceCount = meetingSession != null ? meetingSession.filter(meet => meet.client_plan == 'novice' && new Date(meet.meeting_date.seconds * 1000).getDate() == dateString  ).length : 0;
+    
+
+      const experiencedCount = meetingSession != null ? meetingSession.filter(meet => meet.client_plan == 'experienced' && new Date(meet.meeting_date.seconds & 1000).getDate() == dateString  ).length : 0;
+    
+      return (
+    
+        <td key={index}>
+            <div className='third'>
+                <p>
+                    {probonoCount} {dateString} {monthString} <span>hour</span>
+                </p>
+                <p>
+                    $ <span>000.00</span>
+                </p>
+            </div>
+
+            <div className='first'>
+                <p>
+                    {noviceCount} <span>hours</span>
+                </p>
+                <p>
+                    $ <span>000.00</span>
+                </p>
+            </div>
+
+            <div className='second'>
+                <p>
+                    {experiencedCount} <span>hours</span>
+                </p>
+                <p>
+                    $ <span>000.00</span>
+                </p>
+            </div>
+        </td>
+    );
+})}
+                        {/* <td>
                         <div className="first">
                             <p>3  <span>hours</span></p>
                             <p>$ <span>000.00</span></p>
@@ -319,8 +419,8 @@ console.log('abc');
                               $ <span>000.00</span>
                             </p>
                           </div>
-                        </td>
-                        <td></td>
+                        </td> */}
+                        {/* <td></td> */}
                       </tr>
                       <tr className='week'>
                       {dayLabels.map((dayLabel, index) => (
@@ -408,80 +508,8 @@ console.log('abc');
               </div>
             </div>
 
-            <div className="month-overview">
-              <div className="row">
-                <div className="col-sm-12">
-                  <h2>Month overview</h2>
-                </div>
-                <div className="col-sm-8">
-                <div className="month-overview-table">
-                  <div className="table-responsive">
-                    <table className="table table-month">
-                      <thead>
-                        <tr>
-                          <th>package</th>
-                          <th>hours</th>
-                          <th>earnings</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td className='bundle'>bundle</td>
-                          <td>9 hours</td>
-                          <td>$000.00</td>
-                        </tr>
-                        <tr>
-                          <td className='pay'>pay as you go</td>
-                          <td>18 hours</td>
-                          <td>$000.00</td>
-                        </tr>
-                        <tr>
-                          <td className='probono'>Probono</td>
-                          <td>9 hours</td>
-                          <td>$000.00</td>
-                        </tr>
-                        <tr>
-                          <td colSpan={2}></td>
-                          <td> <strong>Total</strong> <span>$000.00</span></td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                  {/* <div className="row">
-                    <div className="col-sm-4">
-                      <h5>package</h5>
-                    </div>
-                    <div className="col-sm-4"><h5>hours</h5></div>
-                    <div className="col-sm-4"><h5>earnings</h5></div>
-                  </div>
-                  <div className="row">
-                    <div className="col-sm-4"><p><span className='bundle'></span> bundle</p></div>
-                    <div className="col-sm-4"><p>9 hours</p></div>
-                    <div className="col-sm-4"><p>$000.00</p></div>
-                  </div>
-                  <div className="row">
-                    <div className="col-sm-4"><p><span className='pay'></span> pay as you go</p></div>
-                    <div className="col-sm-4"><p>18 hours</p></div>
-                    <div className="col-sm-4"><p>$000.00</p></div>
-                  </div>
-                  <div className="row">
-                    <div className="col-sm-4"><p><span className='probono'></span> Probono</p></div>
-                    <div className="col-sm-4"><p>9 hours</p></div>
-                    <div className="col-sm-4"><p>$000.00</p></div>
-                  </div> */}
-                 </div>
-
-                </div>
-              </div>
-            </div>
-            <div className='timesheet-buttons'>
-              <div className='row'>
-                <div className='col-sm-12'>
-                  <button className='btn btn-five'>view past payslips</button>
-                  <button className='btn btn-four'>query my timesheet</button>
-                </div>
-              </div>
-            </div>
+            <DataTable datesArray={datesArray} meetingSession={meetingSession} />
+     
           </div>
         </div>
       </section>
@@ -654,19 +682,34 @@ console.log('abc');
                     <th>hours</th>
                     <th>earning</th>
                   </tr>
+
+
+                  {datesArray.map((d_arr, index) => {
+    const dateObject = new Date(d_arr); // Replace this with your actual Date object
+
+    // Convert the Date object to a string
+    const dateString = dateObject.getDate();
+    const monthString = dateObject.getMonth();
+const timestampToMatch = dateObject.getTime() / 1000;
+    // Filter meeting sessions based on client_plan
+    const probonoCount = meetingSession != null ? meetingSession.filter(meet => meet.client_plan === 'probono').length : 0;
+    const noviceCount = meetingSession != null ? meetingSession.filter(meet => meet.client_plan === 'novice').length : 0;
+    const experiencedCount = meetingSession != null ? meetingSession.filter(meet => meet.client_plan === 'experienced').length : 0;
+
+                  })}
                   <tr>
-                    <td className="aqua">bundle</td>
-                    <td>9 HOURS</td>
+                    <td className="aqua">probono</td>
+                    <td>{probonoCount} HOURS</td>
                     <td>$000.00</td>
                   </tr>
                   <tr>
-                    <td className="orange">pay as you go</td>
-                    <td>18 HOURS</td>
+                    <td className="orange">novice</td>
+                    <td>{noviceCount} HOURS</td>
                     <td>$000.00</td>
                   </tr>
                   <tr>
-                    <td className="pink">probono</td>
-                    <td>4 HOURS</td>
+                    <td className="pink">experinced</td>
+                    <td>{} HOURS</td>
                     <td>$000.00</td>
                   </tr>
                   <tr>
