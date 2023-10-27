@@ -39,6 +39,8 @@ const clientRef = collection(database, 'client_user');
 const [planData, setplanData] = useState([]);
 const [coachId, setcoachId] = useState(0);
 
+const [coachEmail, setcoachEmail] = useState('');
+
 const [client_name, set_client_name] = useState('');
 const [client_email, set_client_email] = useState('');
 const [client_password, set_client_password] = useState('');
@@ -392,6 +394,7 @@ const getAllPlans = async () => {
         setrandomNo(Math.floor(Math.random() * (coachData.length - 0 + 1)) + 0);
          
         setcoachId(coachData[0].coach_idd);
+        setcoachEmail(coachData[0].coach_email);
         }
     
       }, [coachData])
@@ -778,7 +781,7 @@ const getAllPlans = async () => {
          </body>
       </html>
 `;
-    sendMailFunc('abhinavkumar3256@gmail.com',msg,'Meeting Scheduled');
+    sendMailFunc(coachEmail,msg,'Meeting Scheduled');
 
 
 
