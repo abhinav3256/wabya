@@ -143,7 +143,7 @@ return (
         <div className='row'>
           <div className='col-sm-12'>
             <button className='btn btn-five'>view past payslips</button>
-            <button className='btn btn-four' onClick={convertToCSV}>query my timesheet</button>
+            <button className='btn btn-four' >query my timesheet</button>
           </div>
         </div>
       </div>
