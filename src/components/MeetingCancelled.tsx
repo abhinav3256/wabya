@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link'
-const MeetingCancelled = ({ meetingCancel,updateMeetCancelNotified }) => {
+const MeetingCancelled = ({ cancelMeeting,updateCancelMeet }) => {
   return (
     <>
 
@@ -11,17 +11,18 @@ const MeetingCancelled = ({ meetingCancel,updateMeetCancelNotified }) => {
 
 
 
-{meetingCancel.length > 0 ? meetingCancel.map((meet, index) => (
+{cancelMeeting.length > 0 ? cancelMeeting.map((meet, index) => (
 
 
 <div className='row coach-dash-desktop' key={index}>
 <div className='col-sm-12'>
 <div className='client-reminder notification-desktop'>
 <p>
-Meeting Cancelled.
-{/* <span>45 minutes : Coach Name</span> */}
+Meeting Cancelled by Coach.
+<span>Date : {meet.meetingDate}</span>
+<span>Time : {meet.meetingTime} - {meet.meetingEndTime}</span>
 </p>
-<div className='dismiss' onClick={() => updateMeetCancelNotified(meet.c_id)}>
+<div className='dismiss' onClick={() => updateCancelMeet(meet.c_id)}>
 
 
 {/* <h5><Link href={`/coach/coach-video-call/${meet.meeting_id}`}>Join</Link></h5> */}

@@ -33,6 +33,7 @@ import { AnyAaaaRecord } from "dns";
 import { Video } from "mdi-material-ui";
 import { Clock } from "mdi-material-ui";
 import { ArrowRightCircleOutline } from "mdi-material-ui";
+import MeetingCancelled from "src/components/MeetingCancelled";
 
 const Dashboard = () => {
   const router = useRouter();
@@ -71,6 +72,8 @@ const Dashboard = () => {
   const [selectOption, setSelectOption] = useState(true);
   const [emailOption, setemailOption] = useState(false);
   const [callOption, setcallOption] = useState(false);
+
+  const [cancelMeet, setcancelMeet] = useState([]);
 
   const [CoachUnavailability, setCoachUnavailability] = useState([]);
   const [unavailableId, setUnavailableId] = useState(null);
@@ -430,7 +433,50 @@ function toggleProfile() {
   `;
       sendMailFunc(mycoach[0].coach_email,msg,'Meeting Scheduled');   	
       
-
+      const msg2 = `
+      <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+      <html xmlns="http://www.w3.org/1999/xhtml">
+         <head>
+            <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title>Wabya</title>
+            <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap" rel="stylesheet">
+            <style type="text/css">
+               body{padding-top: 0 !important; padding-bottom: 0 !important; padding-top: 0 !important; padding-bottom: 0 !important; margin:0 !important; width: 100% !important; -webkit-text-size-adjust: 100% !important; -ms-text-size-adjust: 100% !important; -webkit-font-smoothing: antialiased !important; font-size:14px; line-height:22px; font-family: 'Lato', sans-serif; font-weight:400;}
+            </style>
+         </head>
+         <body paddingwidth="0" paddingheight="0"  style="" offset="0" toppadding="0" leftpadding="0">
+         <div style="display:table; width:600px !important; margin: 0 auto; background: #fff; padding:20px;">
+            <table width="600" border="0" cellspacing="0" cellpadding="0" class="tableContent bgBody" align="center" style='width: 600px; display: block;'>
+               <tbody>
+                  <tr>
+                     <table class="MainContainer" width="600" cellspacing="0" cellpadding="0" border="0" bgcolor="#ece6d5" align="center" style='width: 600px; -webkit-border-radius: 15px; -moz-border-radius: 15px; border-radius: 15px;'>
+                        <tbody style=''>
+      <tr>
+                              <td colspan="2"><div style="text-align: center; margin:35px 0 0" class="contentLogo"><a href="https://www.#.com"><img src="${logoUrl}" width="200px" alt="" border="0" style=""></a></div></td>
+                           </tr>
+                           <tr>
+                              <td>
+                                 <div style="padding:0 30px;  position: relative; z-index: 2;line-height: 22px;font-family: 'Lato', sans-serif;font-weight: 600;text-align: center;">
+          <p style="color: #3498db;text-align: center;font-size: 36px;">Meeting ${res_action}!</p>
+      <p style="font-size: 18px; text-align: center; color: #864985;">Your meeting  has been Schedule. We are looking forward to seeing you there!</p>
+      <p style="font-size: 16px; text-align: center; margin:0 0 10px;color: #242424;">Date: ${meetingdate}</p>
+      <p style="font-size: 16px; text-align: center; margin:0 0 20px;color: #242424;">Time: ${meetingtime} - ${meetingendtime}</p>
+      <hr style="border: 1px solid #1c686b;">
+      <p style="font-size: 14px; color: #242424; text-align: center;">Thank you,<br>Wabya Team</p>
+       </div>  
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </tr>
+               </tbody>
+            </table>
+       </div>
+         </body>
+      </html>
+`;
+    sendMailFunc(clientFirebaseEmail,msg2,'Meeting Scheduled');  
 
 
      
@@ -492,7 +538,58 @@ function toggleProfile() {
        </body>
     </html>
 `;
-  sendMailFunc(mycoach[0].coach_email,msg,'Meeting Rescheduled');   
+  sendMailFunc(mycoach[0].coach_email,msg,'Meeting Rescheduled');  
+  
+  
+
+
+
+  const msg2 = `
+    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    <html xmlns="http://www.w3.org/1999/xhtml">
+       <head>
+          <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+          <meta name="viewport" content="width=device-width, initial-scale=1">
+          <title>Wabya</title>
+          <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap" rel="stylesheet">
+          <style type="text/css">
+             body{padding-top: 0 !important; padding-bottom: 0 !important; padding-top: 0 !important; padding-bottom: 0 !important; margin:0 !important; width: 100% !important; -webkit-text-size-adjust: 100% !important; -ms-text-size-adjust: 100% !important; -webkit-font-smoothing: antialiased !important; font-size:14px; line-height:22px; font-family: 'Lato', sans-serif; font-weight:400;}
+          </style>
+       </head>
+       <body paddingwidth="0" paddingheight="0"  style="" offset="0" toppadding="0" leftpadding="0">
+       <div style="display:table; width:600px !important; margin: 0 auto; background: #fff; padding:20px;">
+          <table width="600" border="0" cellspacing="0" cellpadding="0" class="tableContent bgBody" align="center" style='width: 600px; display: block;'>
+             <tbody>
+                <tr>
+                   <table class="MainContainer" width="600" cellspacing="0" cellpadding="0" border="0" bgcolor="#ece6d5" align="center" style='width: 600px; -webkit-border-radius: 15px; -moz-border-radius: 15px; border-radius: 15px;'>
+                      <tbody style=''>
+    <tr>
+                            <td colspan="2"><div style="text-align: center; margin:35px 0 0" class="contentLogo"><a href="https://www.#.com"><img src="${logoUrl}" width="200px" alt="" border="0" style=""></a></div></td>
+                         </tr>
+                         <tr>
+                            <td>
+                               <div style="padding:0 30px;  position: relative; z-index: 2;line-height: 22px;font-family: 'Lato', sans-serif;font-weight: 600;text-align: center;">
+        <p style="color: #3498db;text-align: center;font-size: 36px;">Meeting ${res_action}!</p>
+    <p style="font-size: 18px; text-align: center; color: #864985;">Your meeting  has been Schedule. We are looking forward to seeing you there!</p>
+    <p style="font-size: 16px; text-align: center; margin:0 0 10px;color: #242424;">Date: ${meetingdate}</p>
+    <p style="font-size: 16px; text-align: center; margin:0 0 20px;color: #242424;">Time: ${meetingtime} - ${meetingendtime}</p>
+    <hr style="border: 1px solid #1c686b;">
+    <p style="font-size: 14px; color: #242424; text-align: center;">Thank you,<br>Wabya Team</p>
+     </div>  
+                            </td>
+                         </tr>
+                      </tbody>
+                   </table>
+                </tr>
+             </tbody>
+          </table>
+     </div>
+       </body>
+    </html>
+`;
+  sendMailFunc(clientFirebaseEmail,msg2,'Meeting Rescheduled');  
+
+
     updateMeeting();
     
 
@@ -1117,6 +1214,29 @@ const getMeetingSession = async () => {
     
     }
   }, [coachesCalApiKey, userId]);
+
+
+
+  useEffect(() => {
+    if (userId) {
+    console.log('abc'); 
+    
+    const intervalId = setInterval(() => {
+    //  Call your function here
+     console.log('Function called!');
+     console.log(cancelMeet);
+    getCancelMeet()
+
+    }, 10000); // 10 seconds
+  
+    //Cleanup function to clear interval when component unmounts
+  return () => clearInterval(intervalId);
+  }
+  }, [userId]);
+
+
+
+
   const fetchClient = async () => {
     let userId = sessionStorage.getItem("userId");
     const clientRef = doc(collection(database, "client_user"), userId);
@@ -1480,15 +1600,16 @@ setmypreferplanName(mypreferplan[0].plan_name);
     console.log('testtt');
     const clientId = sessionStorage.getItem('userId');
     const meetingCancelCollection = collection(database, 'meeting');
-    const queryDoc = query(meetingCancelCollection, where("client_user", "==", clientId), where("isNotified", "==", 0),where("isCoachCancel", "==", 1));
+    console.log(clientId);
+    const queryDoc = query(meetingCancelCollection, where("clientId", "==", clientId), where("isCancelNotified", "==", 0),where("isCoachCancel", "==", 1));
   
       await getDocs(queryDoc).then((response) => {
-        // setnewClient(
-        //   response.docs.map((data) => {
-        //     console.log(data.data());
-        //     return { ...data.data(), c_id: data.id };
-        //   })
-        // );
+        setcancelMeet(
+          response.docs.map((data) => {
+            console.log(data.data());
+            return { ...data.data(), c_id: data.id };
+          })
+        );
       });
      
    
@@ -2060,10 +2181,34 @@ const year = today.getFullYear();
       setSelectOption(true);
      }
      
+     const updateCancelMeet = async (c_id: any) =>{
+      console.log('notified',c_id);
+      let a=0;
+    
+     
+    
       
+     
+    
+    
+    
+      const userDocRef = doc(collection(database, 'meeting'), c_id);
+    
+      const updatedData = {
+        isCancelNotified:1
+      };
+      await updateDoc(userDocRef, updatedData);
+     // editAdmin();
+     getCancelMeet();
+    }
       
   return (
     <>
+     <MeetingCancelled
+        cancelMeeting={cancelMeet}
+       updateCancelMeet={updateCancelMeet}
+       
+      />
     <section className="client-dashboard user-details-desktop">
       <div className="container">
         <ToastContainer/>
@@ -2876,6 +3021,9 @@ onClick={handleTimeClick}
 
                           <Video /> Join Video
                         </button> */}
+                         <Link href="#" onClick={showContactCoach}>
+                          <a className="btn btn-coach my-4" onClick={showContactCoach}> contact coach</a>
+                        </Link>
                       </td>
                       <td></td>
                     </tr>
@@ -2886,9 +3034,9 @@ onClick={handleTimeClick}
                       <td>{mycoach ? mycoach[0].coach_name : null }</td>
                       <td></td>
                       <td>
-                        <Link href="#" onClick={showContactCoach}>
+                        {/* <Link href="#" onClick={showContactCoach}>
                           <a className="btn btn-coach" onClick={showContactCoach}> contact coach</a>
-                        </Link>
+                        </Link> */}
                       </td>
                     </tr>
 
@@ -3857,7 +4005,7 @@ onClick={handleTimeClick}
                      <input type="hidden" name="message" value={helpText}/>
                     <input type="hidden" name="name" value={client.client_name}/>
                   </div>
-                  {ShowHelpErr && <Alert message="Message Can't be Empty" className='mt-4' type="error"/> }
+                  {ShowHelpErr && <Alert message="Message Can't be Empty" className='mt-4' style={{'width':'72%'}} type="error"/> }
                   {ShowHelpSuccess && <Alert message="Message Sent" className='mt-4' type="success"/> }
                   <br/>
                   <div className="two-button">

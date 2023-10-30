@@ -1189,7 +1189,8 @@ var interval = "45";
     const fieldToEdit2 = doc(database, 'meeting', meet_iddd);
 
     updateDoc(fieldToEdit2, {
-      isCoachCancel:1
+      isCoachCancel:1,
+      isCancelNotified:0,
      
     })
     .then(() => {

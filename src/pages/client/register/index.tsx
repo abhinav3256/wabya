@@ -254,7 +254,7 @@ if(values.clientPassword == values.clientRePassword){
          </body>
       </html>
 `;
-    sendMailFunc('abhinavkumar3256@gmail.com',msg,'Registration Confirmation'); 
+    sendMailFunc(values.clientEmail,msg,'Registration Confirmation'); 
 
 
 
