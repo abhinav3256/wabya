@@ -7,7 +7,7 @@ export async function sendMail(toEmail,subject,otpText) {
     //   user: process.env.NODEMAILER_EMAIL,
     //   pass: process.env.NODEMAILER_PW,
     // },
-    port: 587,
+    port: 465,
     host: "smtp.gmail.com",
     auth: {
       user: 'abhinav.jha195@gmail.com',
