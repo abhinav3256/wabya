@@ -7,13 +7,13 @@ export async function sendMail(toEmail,subject,otpText) {
     //   user: 'abhinav.jha195@gmail.com',
     //   pass: 'upasoggdoennpvud',
     // },
-    port: 25,
+    port: 465,
     host: "smtp.gmail.com",
     auth: {
       user: 'abhinav.jha195@gmail.com',
       pass: 'upasoggdoennpvud',
     },
-    secure: true,
+    secure: false,
   });
 
   var mailOptions = {
