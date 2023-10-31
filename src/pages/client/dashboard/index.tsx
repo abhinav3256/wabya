@@ -35,14 +35,7 @@ import { Clock } from "mdi-material-ui";
 import { ArrowRightCircleOutline } from "mdi-material-ui";
 import MeetingCancelled from "src/components/MeetingCancelled";
 
-
-
 const Dashboard = () => {
-
-
- 
- 
-
   const router = useRouter();
   const form = useRef();
   const formMobile = useRef();
@@ -67,8 +60,6 @@ const Dashboard = () => {
   const [coachText, setcoachText] = useState('');
   const [ShowCoachErr, setShowCoachErr] = useState(false);
   const [ShowEmailSuccess, setShowEmailSuccess] = useState(false);
-
-  const [NotShowPage, setNotShowPage] = useState(true);
 
   const [ShowBillingSuccess, setShowBillingSuccess] = useState(false);
 
@@ -1187,25 +1178,9 @@ const getMeetingSession = async () => {
   const [allFiles, setAllFiles] = useState([]);
   const [allNewRequest, setallNewRequest] = useState([]);
 
- 
+  
 
   useEffect(() => {
-
-    if(localStorage.getItem("p_url")){
-      setNotShowPage(true);
-    }
-    let p_url=localStorage.getItem("p_url");
-    console.log('working previous url',p_url);
-  
-    localStorage.removeItem('p_url');
-  
-  if(p_url == '/joinvideo'){
-
-  window.location.href='/client/dashboard';
-  }
-
-  setNotShowPage(false);
-
     let userId = sessionStorage.getItem("userId");
     setUserId(userId);
 
@@ -2232,10 +2207,6 @@ const year = today.getFullYear();
       
   return (
     <>
-    {NotShowPage ? ( 
-      <> ...</>
-       ) : ( 
-<>
      <MeetingCancelled
         cancelMeeting={cancelMeet}
        updateCancelMeet={updateCancelMeet}
@@ -3093,15 +3064,15 @@ var myArr=new Date(data.meetingDate).toLocaleDateString().split('/');
                             </td>
                             <td className="td-two">
                             <span>{myArr2[0]}H{myArr2[1]}</span>
-                              <Link
+                              {/* <Link
                                 passHref
                                // href={`videocall/${data.meetingName}`}
                                href={`/client/joinvideo/${data.meetingName}`}
                                 target="_blank"
                                
-                              >
-                                <a className="btn btn-coach">Join Video</a>
-                              </Link>
+                              > */}
+                                <a className="btn btn-coach" href={`/client/joinvideo/${data.meetingName}`}>Join Video</a>
+                              {/* </Link> */}
                                
                             </td>
                             <td className="td-two">
@@ -3144,15 +3115,15 @@ var myArr=new Date(data.meetingDate).toLocaleDateString().split('/');
                             </td>
                             <td className="td-two">
                             {myArr2[0]}H{myArr2[1]}
-                            <Link
+                            {/* <Link
                                 passHref
                                  // href={`videocall/${data.meetingName}`}
                                href={`/client/joinvideo/${data.meetingName}`}
                                 target="_blank"
                                
-                              >
-                                <a className="btn btn-coach">Join Video</a>
-                              </Link>
+                              > */}
+                                <a className="btn btn-coach"  href={`/client/joinvideo/${data.meetingName}`}>Join Video</a>
+                              {/* </Link> */}
                               {/* <Link
                                 passHref
                                 href="#"
@@ -4565,11 +4536,8 @@ const timeRemaining = Math.floor((meetingDate - currentTime) / 60000);
 
 
 
-</>  )}
-  </>
+</>
   );
 };
-
-
 
 export default Dashboard;
