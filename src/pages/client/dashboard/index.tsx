@@ -35,7 +35,14 @@ import { Clock } from "mdi-material-ui";
 import { ArrowRightCircleOutline } from "mdi-material-ui";
 import MeetingCancelled from "src/components/MeetingCancelled";
 
+
+
 const Dashboard = () => {
+
+
+ 
+ 
+
   const router = useRouter();
   const form = useRef();
   const formMobile = useRef();
@@ -60,6 +67,8 @@ const Dashboard = () => {
   const [coachText, setcoachText] = useState('');
   const [ShowCoachErr, setShowCoachErr] = useState(false);
   const [ShowEmailSuccess, setShowEmailSuccess] = useState(false);
+
+  const [NotShowPage, setNotShowPage] = useState(true);
 
   const [ShowBillingSuccess, setShowBillingSuccess] = useState(false);
 
@@ -123,6 +132,7 @@ const Dashboard = () => {
     setClientTimeZone(userDoc.data().client_zone)
   };
 
+ 
 
  
 
@@ -1177,7 +1187,25 @@ const getMeetingSession = async () => {
   const [allFiles, setAllFiles] = useState([]);
   const [allNewRequest, setallNewRequest] = useState([]);
 
+ 
+
   useEffect(() => {
+
+    if(localStorage.getItem("p_url")){
+      setNotShowPage(true);
+    }
+    let p_url=localStorage.getItem("p_url");
+    console.log('working previous url',p_url);
+  
+    localStorage.removeItem('p_url');
+  
+  if(p_url == '/joinvideo'){
+
+  window.location.href='/client/dashboard';
+  }
+
+  setNotShowPage(false);
+
     let userId = sessionStorage.getItem("userId");
     setUserId(userId);
 
@@ -2204,6 +2232,10 @@ const year = today.getFullYear();
       
   return (
     <>
+    {NotShowPage ? ( 
+      <> ...</>
+       ) : ( 
+<>
      <MeetingCancelled
         cancelMeeting={cancelMeet}
        updateCancelMeet={updateCancelMeet}
@@ -4533,8 +4565,11 @@ const timeRemaining = Math.floor((meetingDate - currentTime) / 60000);
 
 
 
-</>
+</>  )}
+  </>
   );
 };
+
+
 
 export default Dashboard;

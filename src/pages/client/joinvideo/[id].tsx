@@ -49,6 +49,8 @@ const VideoCallPage = () => {
     };
     
     useEffect(() => {
+
+      localStorage.setItem('p_url','/joinvideo');
       let userId = sessionStorage.getItem("userId");
       
   
