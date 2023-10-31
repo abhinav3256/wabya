@@ -13,7 +13,7 @@ export async function sendMail(toEmail,subject,otpText) {
       user: 'abhinav.jha195@gmail.com',
       pass: 'upasoggdoennpvud',
     },
-    secure: false,
+    secure: true,
   });
 
   var mailOptions = {
