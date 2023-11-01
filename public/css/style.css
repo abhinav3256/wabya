@@ -2758,6 +2758,8 @@ button{font-family: Gothic A1 !important;}
   color: #f7f0e4;
   float: none;
   }
+
+  .lower-letter{text-transform: lowercase !important;}
 @media (min-width: 320px) and (max-width: 767px) {
   
    .header{border-top: 3px solid #ec2397;}

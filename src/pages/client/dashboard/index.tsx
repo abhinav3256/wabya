@@ -2212,7 +2212,7 @@ const year = today.getFullYear();
        updateCancelMeet={updateCancelMeet}
        
       />
-    <section className="client-dashboard user-details-desktop">
+    <section className="client-dashboard user-details-desktop lower-letter">
       <div className="container">
         <ToastContainer/>
 
@@ -3015,7 +3015,7 @@ onClick={handleTimeClick}
                           className="btn btn-book my-4"
                           onClick={scheduleNewSes}
                         >
-                          Book a new session
+                          book a new session
                         </button>
                       </td>
                      
@@ -3071,7 +3071,7 @@ var myArr=new Date(data.meetingDate).toLocaleDateString().split('/');
                                 target="_blank"
                                
                               > */}
-                                <a className="btn btn-coach" href={`/client/joinvideo/${data.meetingName}`}>Join Video</a>
+                                <a className="btn btn-coach" href={`/client/joinvideo/${data.meetingName}`}>join video</a>
                               {/* </Link> */}
                                
                             </td>
@@ -3122,7 +3122,7 @@ var myArr=new Date(data.meetingDate).toLocaleDateString().split('/');
                                 target="_blank"
                                
                               > */}
-                                <a className="btn btn-coach"  href={`/client/joinvideo/${data.meetingName}`}>Join Video</a>
+                                <a className="btn btn-coach"  href={`/client/joinvideo/${data.meetingName}`}>join video</a>
                               {/* </Link> */}
                               {/* <Link
                                 passHref
@@ -4026,7 +4026,7 @@ onClick={handleTimeClick}
     </section>
 
 
-    <section className="user-detail-mobile">
+    <section className="user-detail-mobile lower-letter">
   <div className="container">
 
   {viewProfile ? (
