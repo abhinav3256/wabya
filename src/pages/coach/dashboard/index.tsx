@@ -236,7 +236,7 @@ return () => clearInterval(intervalId);
       coach ?
       (
           <>
-          <section className="user-profile coach-dash-desktop">
+          <section className="user-profile coach-dash-desktop lower-letter">
             <div className="container">
               <div className="row">
 
