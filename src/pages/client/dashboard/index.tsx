@@ -3463,14 +3463,14 @@ var myArr=new Date(data.meetingDate).toLocaleDateString().split('/');
         <div className="col-sm-6 left mrb-10">
           <div className="plans-content">
             <span> {myplanName ? "current plan :" : "prefer  plan :"}</span>
-            <a href="" className="btn btn-lightgreen">
+            <a href="#" onClick={(e) => { e.preventDefault(); }} className="btn btn-lightgreen">
             {myplanName ? myplanName : mypreferplanName}
 
             </a>
           </div>
           <div className="plans-content">
             <span>journey type : </span>
-            <a href="" className="btn btn-thulian-pink">
+            <a href="#" onClick={(e) => { e.preventDefault(); /* Your custom logic here */ }} className="btn btn-thulian-pink">
             {clientJourneyType ? clientJourneyType : '-'}
             </a>
           </div>
@@ -4339,13 +4339,13 @@ const timeRemaining = Math.floor((meetingDate - currentTime) / 60000);
       <div className="col-sm-6 left mrb-10">
         <div className="plans-content">
           <span>current plan :</span>
-          <a href="#" className="btn btn-lightgreen">
+          <a href="#" onClick={(e) => { e.preventDefault();  }} className="btn btn-lightgreen">
             {myplanName}
           </a>
         </div>
         <div className="plans-content">
           <span>journey type :</span>
-          <a href="#" className="btn btn-thulian-pink">
+          <a href="#" onClick={(e) => { e.preventDefault();  }} className="btn btn-thulian-pink">
           {clientJourneyType ? clientJourneyType : '-'}
           </a>
         </div>
