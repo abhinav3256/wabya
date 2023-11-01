@@ -445,7 +445,7 @@ const year = today.getFullYear();
 )
 
 : (
-  <h4 className='text-center'>No data available</h4>
+  <h4 className='text-center'>no data available</h4>
 )}
           </div> {/* <!--/ file-scroll --> */}
           
@@ -560,7 +560,7 @@ else{
             )
 
             : (
-              <h4 className='text-center'>No data available</h4>
+              <h4 className='text-center'>no data available</h4>
             )}
             {/*/ file-list */}
           </div>

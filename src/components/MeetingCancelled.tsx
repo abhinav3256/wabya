@@ -18,9 +18,9 @@ const MeetingCancelled = ({ cancelMeeting,updateCancelMeet }) => {
 <div className='col-sm-12'>
 <div className='client-reminder notification-desktop'>
 <p>
-Meeting Cancelled by Coach.
-<span>Date : {meet.meetingDate}</span>
-<span>Time : {meet.meetingTime} - {meet.meetingEndTime}</span>
+meeting cancelled by coach.
+<span>date : {meet.meetingDate}</span>
+<span>time : {meet.meetingTime} - {meet.meetingEndTime}</span>
 </p>
 <div className='dismiss' onClick={() => updateCancelMeet(meet.c_id)}>
 

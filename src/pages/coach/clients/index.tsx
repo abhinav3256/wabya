@@ -98,7 +98,7 @@ const getClients = async () => {
 
   return (
     <>
-    <section className='clients-listing client-listing-desktop'>
+    <section className='clients-listing client-listing-desktop lower-letter'>
       <div className='container'>
         <div className='row'>
           <div className='col-sm-12 filter-coll'>
@@ -111,7 +111,7 @@ const getClients = async () => {
                     data-bs-toggle='dropdown'
                     aria-expanded='false'
                   >
-                    Filter Clients
+                    filter clients
                   </button>
                   <ul className='dropdown-menu'>
                     <div className='form-check'>
@@ -216,7 +216,7 @@ const getClients = async () => {
     </section> 
 
 
-<section className="clients-listing client-listing-mobile">
+<section className="clients-listing client-listing-mobile lower-letter">
   <div className="container">
     <div className="row">
       <div className="col-12 filter-coll">
@@ -229,7 +229,7 @@ const getClients = async () => {
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               >
-                Filter Clients
+                filter clients
               </button>
               <ul className="dropdown-menu" style={{}}>
                 <div className="form-check">

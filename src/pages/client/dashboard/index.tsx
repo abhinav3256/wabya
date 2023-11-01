@@ -3721,11 +3721,11 @@ var myArr=new Date(data.meetingDate).toLocaleDateString().split('/');
           </div>
         </div>
         {/*/ row */}
-        <p className="session-btn">
+        {/* <p className="session-btn">
           <a href="#" className="btn btn-darkgreen">
             download notes
           </a>
-        </p>
+        </p> */}
       </div>
     );
   })
@@ -4339,13 +4339,13 @@ const timeRemaining = Math.floor((meetingDate - currentTime) / 60000);
       <div className="col-sm-6 left mrb-10">
         <div className="plans-content">
           <span>current plan :</span>
-          <a href="" className="btn btn-lightgreen">
+          <a href="#" className="btn btn-lightgreen">
             {myplanName}
           </a>
         </div>
         <div className="plans-content">
           <span>journey type :</span>
-          <a href="" className="btn btn-thulian-pink">
+          <a href="#" className="btn btn-thulian-pink">
           {clientJourneyType ? clientJourneyType : '-'}
           </a>
         </div>

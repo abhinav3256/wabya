@@ -13,10 +13,10 @@ index == 0 ?(
 <div className='col-sm-12'>
 <div className='client-reminder notification-desktop'>
 <p>
-  Meeting Started 
+  meeting started 
   {/* <span>45 minutes : Coach Name</span> */}
 </p>
-<p><Link href={`/coach/coach-video-call/${meet.meeting_id}`}>Join</Link></p>
+<p><Link href={`/coach/coach-video-call/${meet.meeting_id}`}>join</Link></p>
 {/* <div className='dismiss'>
 
   
@@ -39,7 +39,7 @@ index == 0 ?(
 <div className='col-sm-12'>
 <div className='client-reminder notification-desktop'>
 <p>
-New Client ({new_c.client_name}) Joined.
+new client ({new_c.client_name}) joined.
 {/* <span>45 minutes : Coach Name</span> */}
 </p>
 <div className='dismiss' onClick={() => updateNewClientNotified(new_c.c_id)}>
@@ -66,7 +66,7 @@ New Client ({new_c.client_name}) Joined.
 <div className='col-sm-12'>
 <div className='client-reminder notification-desktop'>
 <p>
-New Meeting Schedule 
+new meeting schedule 
 {/* <span>45 minutes : Coach Name</span> */}
 </p>
 <div className='dismiss' onClick={() => updateNotified(meet.meet_id)}>

@@ -240,11 +240,11 @@ console.log('abc');
    let experiencedCount=0;
   return (
     <> 
-      <section className='timesheet timesheet-desktop'>
+      <section className='timesheet timesheet-desktop lower-letter'>
         <div className='container'>
           <div className='row'>
             <div className='col-sm-12 mrb-30'>
-              <h2>Weekly Overview</h2>
+              <h2>weekly overview</h2>
             </div>
            <div className='timesheet-carousel'>
       <div className='row'>
@@ -493,7 +493,7 @@ return (
     <tr>
                           <td colSpan={5}></td>
                           <td> <strong>Total</strong></td>
-                          <td>3s hours</td>
+                          <td>35 hours</td>
 
                           <td colSpan={2}></td>
                           <td> <strong>Total</strong> <span>$000.00</span></td>

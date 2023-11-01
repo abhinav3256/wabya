@@ -11,10 +11,10 @@ const MeetingReminder = ({ meeting, newClient, scheduleMeeting, updateNewClientN
           index === 0 ? (
             <div className="meeting-reminder" key={meet.meeting_id}>
               <div className="info">
-                <div className="title">Meeting Started.</div>
+                <div className="title">meeting started.</div>
               </div>
               <div className="meeting-link">
-                <a href={`/coach/coach-video-call/${meet.meeting_id}`}>Join</a>
+                <a href={`/coach/coach-video-call/${meet.meeting_id}`}>join</a>
               </div>
             </div>
           ) : null
@@ -39,13 +39,13 @@ const MeetingReminder = ({ meeting, newClient, scheduleMeeting, updateNewClientN
         scheduleMeeting.map((meet) => (
           <div className="meeting-reminder" key={meet.meet_id}>
             <div className="info">
-              <div className="title">New Meeting Scheduled</div>
+              <div className="title">new meeting scheduled</div>
               <p>10 minutes: client name</p>
             </div>
             <div className="meeting-link">
-              <a href="#">Join</a>
+              <a href="#">join</a>
               <a href="#" onClick={() => updateNotified(meet.meet_id)}>
-                Dismiss
+                dismiss
               </a>
             </div>
           </div>

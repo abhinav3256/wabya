@@ -439,7 +439,7 @@ setend_time_minute(parts2[1])
 
   return (
     <>
-      <section className="edit-profile coach-edit-desktop">
+      <section className="edit-profile coach-edit-desktop lower-letter">
       <div className="container">
         <div className="row">
           <div className="col-sm-12">
@@ -453,7 +453,7 @@ setend_time_minute(parts2[1])
 
               <Box>
                 <ButtonStyled className='btn' component='label' variant='contained' htmlFor='account-settings-upload-image'>
-                  Upload New Photo
+                  upload new photo
                   <input name='pro_image'
                     hidden
                     type='file'
@@ -577,7 +577,7 @@ setend_time_minute(parts2[1])
     </div></div></div></section>
 
 
-<section className="user-detail new-user-profile-edit coach-edit-mobile">
+<section className="user-detail new-user-profile-edit coach-edit-mobile lower-letter">
  
         <div className="user-profile mrb-20">
           <figure>
@@ -587,7 +587,7 @@ setend_time_minute(parts2[1])
           
           <Box>
                 <ButtonStyled className='btn' component='label' variant='contained' htmlFor='account-settings-upload-image'>
-                  Upload New Photo
+                  upload new photo
                   <input name='pro_image'
                     hidden
                     type='file'

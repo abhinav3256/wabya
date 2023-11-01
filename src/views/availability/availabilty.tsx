@@ -340,7 +340,7 @@ console.log(userProfile);
 }, [userProfile]);
   return (
 
-    <section className="client-profile available-form">
+    <section className="client-profile available-form lower-letter">
       <div className="container">
         <div className="row">
 
