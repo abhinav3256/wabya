@@ -18,9 +18,12 @@ import { app, database } from '../../../../firebaseConfig'
 import country_data from '../../../@core/utils/all-countries'
 
 import { sendMail } from "../../../services/sendMail"
+import { Router } from 'mdi-material-ui';
+import { useRouter } from 'next/router';
 
 const ApplyWabyaBasic = () => {
   const form1 = useRef();
+  const router = useRouter()
   const [isThankModal, setIsThankModal] = useState(false)
 
   const [name, setName] = useState('');
@@ -333,6 +336,8 @@ err=err+1;
     </html>
 `;
   sendMailFunc('abhinavkumar3256@gmail.com',adminmsg,'Coach Registration'); 
+  router.push('/coach/login');
+  
         })
         .catch((err) => {
           console.error(err);
@@ -461,8 +466,9 @@ onChange={handleGender}
               </div>
             </div>
             </div>
+            {success && <Alert severity='success' style={{ margin :'10px 0 20px 0'}}>{success}</Alert>}
           <div className="col-sm-12 form-group"><input className="btn" value="submit" type="button"  onClick={onSubmit}/></div>
-          {success && <Alert severity='success' style={{ margin :'10px 0 20px 0'}}>{success}</Alert>}
+          
          
           </form>
           </div>
