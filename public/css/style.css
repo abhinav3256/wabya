@@ -3271,6 +3271,7 @@ button{font-family: Gothic A1 !important;}
    
    .calendar-mobile{position:relative; margin:0; padding: 30px 15px 30px; z-index:1;}
    .calendar-mobile h2{color:#2d394c; font-weight:700;}
+   .calendar-mobile .calendar-profile .img-radius{-webkit-border-radius: 100%; -moz-border-radius: 100%; border-radius: 100%;}
    .calendar-mobile .calendar-weeksheet{display:flex; gap: 1px; margin:0 -5px 20px;}
    .calendar-mobile .calendar-weeksheet .col-weeksheet{color:#2d394c; font-family: 'Gothic A1', sans-serif; font-weight:700; padding: 10px 1px; width: 14.2%; text-align: center; font-size: 14px; position:relative; -webkit-border-radius: 15px; -moz-border-radius: 15px; border-radius: 15px;}
    .calendar-mobile .calendar-weeksheet .col-weeksheet.active{background: #f7f0e5;}
