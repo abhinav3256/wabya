@@ -2905,7 +2905,7 @@ button{font-family: Gothic A1 !important;}
   .notes-list .file-box h4 span{display: block; font-size: 13px; margin: 5px 0 0; font-weight: 500;}
   
   .help-form{position:relative; padding:0 0 30px;}
-  .help-form::before{content: ""; position: absolute; height: 20px; width: 80px; right: -15px; bottom: 0; background-image: url(../images/shape-01.png); background-repeat: no-repeat; background-position: center 0; background-attachment: scroll; background-size: cover;}
+  .help-form::before{content: ""; position: absolute; height: 20px; width: 80px; right: -15px; bottom: 0; background-image: url(../images/shape-04.png); background-repeat: no-repeat; background-position: center 0; background-attachment: scroll; background-size: cover;}
   .help-form h3{color:#0e2540;}
   .help-form form{position:relative; z-index:2; padding:15px 0 0;}
   .help-form form .form-control{background:#fff; border: 0; box-shadow:none; font-weight:700; -webkit-border-radius: 25px; -moz-border-radius: 25px; border-radius: 25px; color: #0b233f; height:44px; padding:6px 40px 6px 15px;}
