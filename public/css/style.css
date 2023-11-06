@@ -2930,6 +2930,8 @@ button{font-family: Gothic A1 !important;}
   .btn.btn-orange{background:#f59633;}
   .btn.btn-lightgreen{background:#6ec1a3;}
   .btn.btn-darkgreen{background:#236a6d;}
+  .btn.btn-darkblue{background:#0e2540;}
+  .btn.btn-darkblue:after{background:#f59633 !important;}
   .btn.btn-chestnutred{background:#ef7655;}
   .btn.btn-thulian-pink{background:#d37aa5;}
 
