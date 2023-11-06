@@ -2844,7 +2844,7 @@ button{font-family: Gothic A1 !important;}
   .header-mobile-coach .menu-head .container-fluid{justify-content: center;}
   .edit-profile-mob{color: white;}
 
-  .user-detail-mobile{padding: 30px 15px 30px;}
+  .user-detail-mobile{padding: 30px 15px 0;}
   .green-background{background-color: green !important;}
   .user-detail-mobile .meeting-reminder{background: #6ec1a3; text-align: center; margin:0 0 30px; color: #0e2540; -webkit-border-radius: 20px; -moz-border-radius: 20px; border-radius: 20px; -webkit-box-shadow: 0 4px 4px 0 #cbbcae; box-shadow: 0 4px 4px 0 #cbbcae;}
   .user-detail-mobile .meeting-reminder .info{padding: 17px 15px 0;}
