@@ -2877,7 +2877,7 @@ button{font-family: Gothic A1 !important;}
   .user-detail-mobile .session-info .remaining-info h3{background: #ef7655; color: #fff; font-size: 18px; padding: 10px 25px; margin: -30px -25px 10px; display: flex; justify-content: space-between; align-items: end; align-content: end; -webkit-border-radius: 30px; -moz-border-radius: 30px; border-radius: 30px;}
   .user-detail-mobile .session-info .remaining-info h3 span{font-weight:400; font-size: 16px;}
   .user-detail-mobile .session-info .probono-text{position: relative; background:#f7f0e4; padding: 20px 20px 10px; margin:0; -webkit-border-radius: 30px; -moz-border-radius: 30px; border-radius: 30px;}
-  .user-detail-mobile .session-info .probono-text h3{border-bottom: 1px solid #0e2540; padding: 0 20px 15px; margin: 0 -20px 15px;}
+  .user-detail-mobile .session-info .probono-text h3{border-bottom: 1px solid #0e2540; color: #0e2540; padding: 0 20px 15px; margin: 0 -20px 15px;}
   
   .notes-list h4{color: #0e2540; font-weight: 800; font-size: 20px; margin: 0 0 5px;}
   .notes-search form{position:relative; z-index:2;}
