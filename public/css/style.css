@@ -659,6 +659,7 @@ h4{color:#f79632;}
   text-transform: uppercase;
   padding: 30px 0;
 }
+
 #calendar-wrap .table-calendar th{border-bottom: 1px solid #0f2540; border-right: 1px solid #0f2540; width: 13.5%;}
 #calendar-wrap .table-calendar th:last-child{border-right: none;}
 #calendar-wrap .table-calendar th:first-child { width: 5.5%; border-left: none; vertical-align: middle; }
