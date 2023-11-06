@@ -2233,8 +2233,8 @@ return(<>
           <div className="calendar-weeksheet">
 
           {daysOfWeek.map((day, index) => (
-         <div className={`col-weeksheet ${day.getDate() === checkedDateMob ? 'highlighted-date' : ''}`}  key={index} onClick={() => handleDateClick(day)}>
-         <span>{day.getDate()}</span>
+         <div className={`col-weeksheet ${day.getDate() === checkedDateMob ? 'active' : ''}`}  key={index} onClick={() => handleDateClick(day)}>
+         {day.getDate()}
          <span>{formatDay(day)}</span>
        </div>
       ))}
