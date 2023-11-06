@@ -3280,7 +3280,15 @@ var myArr=new Date(data.meetingDate).toLocaleDateString().split('/');
         ))
         )}
       </select> */}
-                              <input
+
+      <select className="form-control" onChange={e => setClientLanguage(e.target.value)} value={clientLanguage}>
+
+<option value="english"  >English</option>
+<option value="Afrikaans" >Afrikaans</option>
+<option value="Zulu">Zulu</option>
+<option value="Xhosa">Xhosa</option>
+      </select>
+                              {/* <input
                                 type='text'
                                 name='client_language'
                                 id=''
@@ -3288,7 +3296,7 @@ var myArr=new Date(data.meetingDate).toLocaleDateString().split('/');
                                 placeholder='English; French'
                                 value={clientLanguage}
                                 onChange={e => setClientLanguage(e.target.value)}
-                              />
+                              /> */}
                             </span>
                           </p>
                         </div>

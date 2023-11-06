@@ -2224,7 +2224,7 @@ return(<>
         <div className="col-4 right-top">
           <figure>
           {myData !== null  && 
-            <img src={myData.coach_profile} />}
+            <img className="img-radius" src={myData.coach_profile} />}
           </figure>
         </div>
       </div>
@@ -2233,8 +2233,8 @@ return(<>
           <div className="calendar-weeksheet">
 
           {daysOfWeek.map((day, index) => (
-         <div className={`col-weeksheet ${day.getDate() === checkedDateMob ? 'highlighted-date' : ''}`}  key={index} onClick={() => handleDateClick(day)}>
-         <span>{day.getDate()}</span>
+         <div className={`col-weeksheet ${day.getDate() === checkedDateMob ? 'active' : ''}`}  key={index} onClick={() => handleDateClick(day)}>
+         {day.getDate()}
          <span>{formatDay(day)}</span>
        </div>
       ))}
@@ -2289,7 +2289,7 @@ return(<>
   })
 }
 
-{m === 0 ? <div className="timesheet-fix"><h3>No Meeting Found</h3></div> : null}
+{m === 0 ? <div className="timesheet-fix"><h4>No Meeting Found</h4></div> : null}
 
 
 

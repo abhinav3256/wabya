@@ -175,7 +175,7 @@ const Header = () => {
                             <Link href='/coach/timesheet' passHref>
                               <a className='dropdown-item'>Timesheet</a>
                             </Link>
-                          </li>
+                          </li> 
                      
                           <li>
                             <Link href='/coach/resources' passHref>
@@ -192,6 +192,10 @@ const Header = () => {
                               <a className='dropdown-item' onClick={logout}>Log Out</a>
                           </li>
                         </ul>
+
+
+
+
                       </div>
                     </div>
                   </div>
@@ -228,7 +232,7 @@ const Header = () => {
             {/* <!--/ menu-head --> */}
           </div>
         </header>
-        <header className="header-mobile header-mobile-coach">
+        {/* <header className="header-mobile header-mobile-coach">
   <div className="menu-head">
     <div className="container">
       <nav className="navbar navbar-expand-lg">
@@ -282,10 +286,113 @@ const Header = () => {
         </div>
       </nav>
     </div>
-    {/*/ menu-head */}
+     
   </div>
-  {/*/ container */}
-</header>
+
+</header> */}
+
+
+
+
+
+
+
+
+
+
+
+<>
+  <header className="header-mobile header-mobile-coach">
+    <div className="menu-head">
+      <div className="container">
+        <nav className="navbar navbar-expand-lg">
+          <div className="container-fluid">
+            <a className="navbar-brand" href="index.html">
+              <img src="../../images/admin.png" alt="" />
+            </a>
+            {/*button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button*/}
+            <button
+              className="navbar-toggler"
+              type="button"
+              data-bs-toggle="offcanvas"
+              data-bs-target="#offcanvasExample"
+              aria-controls="offcanvasExample"
+            >
+              <span className="navbar-toggler-icon" />
+            </button>
+            <div
+              className="collapse navbar-collapse"
+              id="navbarSupportedContent"
+            >
+              <ul className="navbar-nav">
+                <li>
+                  <a href="/coach/dashboard">Profile</a>
+                </li>
+                <li>
+                  <a href="/coach/dashboard">Timesheet</a>
+                </li>
+                <li>
+                  <a href="/coach/calendar">Calendar</a>
+                </li>
+                <li>
+                  <a href="/coach/clients">clients</a>
+                </li>
+                <li>
+                  <a href="/coach/dashboard">Resources</a>
+                </li>
+                <li>
+                  <a href="#" onClick={clientLogout}>Log Out</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </div>
+      {/*/ menu-head */}
+    </div>
+    {/*/ container */}
+  </header>
+  <div
+    className="offcanvas offcanvas-start"
+    tabIndex={-1}
+    id="offcanvasExample"
+    aria-labelledby="offcanvasExampleLabel"
+  >
+    <div className="offcanvas-header">
+      <h5 className="offcanvas-title" id="offcanvasExampleLabel" />
+      <button
+        type="button"
+        className="btn-close"
+        data-bs-dismiss="offcanvas"
+        aria-label="Close"
+      />
+    </div>
+    <div className="offcanvas-body">
+      <ul className="navbar-nav">
+      <li>
+                  <a href="/coach/dashboard">Profile</a>
+                </li>
+                <li>
+                  <a href="/coach/dashboard">Timesheet</a>
+                </li>
+                <li>
+                  <a href="/coach/calendar">Calendar</a>
+                </li>
+                <li>
+                  <a href="/coach/clients">clients</a>
+                </li>
+                <li>
+                  <a href="/coach/resources">Resources</a>
+                </li>
+                <li>
+                  <a href="#" onClick={clientLogout}>Log Out</a>
+                </li>
+      </ul>
+    </div>
+    {/*/ offcanvas-body */}
+  </div>
+</>
+
 
         </>
       )
