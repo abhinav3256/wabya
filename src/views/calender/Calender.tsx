@@ -2224,7 +2224,7 @@ return(<>
         <div className="col-4 right-top">
           <figure>
           {myData !== null  && 
-            <img class="img-radius" src={myData.coach_profile} />}
+            <img className="img-radius" src={myData.coach_profile} />}
           </figure>
         </div>
       </div>
