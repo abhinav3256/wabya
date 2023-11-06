@@ -2760,6 +2760,16 @@ button{font-family: Gothic A1 !important;}
   }
 
   .lower-letter{text-transform: lowercase !important;}
+
+
+.offcanvas{background: #0e2540; font-weight:700;}
+  .offcanvas .btn-close{background-image: url(images/close.png); opacity: 1;}
+  .offcanvas ul{margin:0; padding:0;}
+  .offcanvas ul li{list-style: none; margin: 0 0 13px;}
+  .offcanvas ul li a{display: block; color: #ede7d6;}
+  .offcanvas ul li a:hover{color: #fff;}
+  
+
 @media (min-width: 320px) and (max-width: 767px) {
   
    .header{border-top: 3px solid #ec2397;}
