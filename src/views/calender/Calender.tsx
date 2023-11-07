@@ -166,6 +166,7 @@ const Calender = () => {
     const [coachesCalUsername, setcoachesCalUsername] = useState("");
     const [myData, setMydata] = useState(null);
     const [isFormShow, setisFormShow] = useState(false);
+    const [isSesShow, setisSesShow] = useState(false);
     const [isSyncFormShow, setisSyncFormShow] = useState(false);
 
     const [selectDateMob, setSelectDateMob] = useState(new Date().toISOString().split('T')[0]);
@@ -600,6 +601,18 @@ setallWeekDay(next7Days);
   
     const handleFormCancel = () => {
       setisFormShow(false);
+     // setisShowmsg(false);
+    };
+
+
+    const handleSchedule = (e) => {
+      e.preventDefault();
+      setisSesShow(true);
+     // setisShowmsg(false);
+    };
+  
+    const handleScheduleCancel = () => {
+      setisSesShow(false);
      // setisShowmsg(false);
     };
 
@@ -1656,7 +1669,7 @@ m=0;
       </Menu>
                         </Fragment>
 
-                  {/* <button className='btn btn-five'>schedule session</button> */}
+                  <button className='btn btn-five' onClick={handleSchedule}>schedule session</button>
 
               </div>
             </div>
@@ -2300,6 +2313,68 @@ return(<>
             {/*/ row */}
           </div>
           {/*/ calendar-timesheet */}
+
+          <>
+          <Modal
+          centered
+          className="session-modal"
+          visible={isSesShow}
+          onOk={handleSchedule}
+          onCancel={handleScheduleCancel}
+          width={800}
+         
+          footer={[]}
+         
+        >
+  <section className="schedule-session-new">
+    <div className="container">
+      <div className="row">
+        <div className="col-12">
+          <h3 className="mrb-20">schedule a session</h3>
+          <div className="form-group mrb-30">
+            <h4 className="mrb-5">select the date</h4>
+            <Calendar  />
+          </div>
+          {/*/ form-group */}
+          <div className="form-group mrb-30">
+            <h4 className="mrb-5">select the time</h4>
+            <div className="inner">
+              <span>
+                <small>from</small> 09:00
+              </span>
+              <span>
+                <small>to</small> 17:00
+              </span>
+            </div>
+            {/*/ inner */}
+          </div>
+          {/*/ form-group */}
+          <div className="form-group mrb-30">
+            <h4 className="mrb-5">select your client</h4>
+            <select name="cars" className="form-control">
+              <option value="client name">client name</option>
+              <option value="client name">client name</option>
+            </select>
+          </div>
+          {/*/ form-group */}
+          <div className="form-group mrb-30">
+            <h4 className="mrb-5">notes</h4>
+            <textarea className="form-control" defaultValue={""} />
+          </div>
+          {/*/ form-group */}
+          <div className="form-group form-btn">
+            <button className="btn btn-darkblue">save</button>
+          </div>
+        </div>
+        {/*/ cl-coll */}
+      </div>
+      {/*/ row */}
+    </div>
+  </section>
+  </Modal>
+  {/*/ availability */}
+</>
+
           <div className="calendar-btns">
             <p className="btn-p">
               <a href="#" className="btn btn-lightgreen">
@@ -2312,7 +2387,7 @@ return(<>
               </a>
             </p>
             <p className="btn-p">
-              <a href="#" className="btn btn-darkblue">
+              <a href="#" className="btn btn-darkblue" onClick={handleSchedule}>
                 schedule session
               </a>
             </p>

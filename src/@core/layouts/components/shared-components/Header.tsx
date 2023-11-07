@@ -325,23 +325,24 @@ const Header = () => {
               id="navbarSupportedContent"
             >
               <ul className="navbar-nav">
-                <li>
-                  <a href="/coach/dashboard">Profile</a>
-                </li>
-                <li>
-                  <a href="/coach/dashboard">Timesheet</a>
-                </li>
-                <li>
-                  <a href="/coach/calendar">Calendar</a>
+              <li>
+                  <a href="/coach/calendar">calendar</a>
                 </li>
                 <li>
                   <a href="/coach/clients">clients</a>
                 </li>
                 <li>
-                  <a href="/coach/dashboard">Resources</a>
+                  <a href="/coach/dashboard">profile</a>
                 </li>
                 <li>
-                  <a href="#" onClick={clientLogout}>Log Out</a>
+                  <a href="/coach/dashboard">timesheet</a>
+                </li>
+                
+                <li>
+                  <a href="/coach/dashboard">resources</a>
+                </li>
+                <li>
+                  <a href="#" onClick={clientLogout}>logout</a>
                 </li>
               </ul>
             </div>
