@@ -167,29 +167,29 @@ const Header = () => {
                         <ul className='dropdown-menu'>
                           <li>
                             <Link href='/coach/dashboard' passHref>
-                              <a className='dropdown-item'>Profile</a>
+                              <a className='dropdown-item'>profile</a>
                             </Link>
                           </li>
                           
                           <li>
                             <Link href='/coach/timesheet' passHref>
-                              <a className='dropdown-item'>Timesheet</a>
+                              <a className='dropdown-item'>timesheet</a>
                             </Link>
                           </li> 
                      
                           <li>
                             <Link href='/coach/resources' passHref>
-                              <a className='dropdown-item'>Resources</a>
+                              <a className='dropdown-item'>resources</a>
                             </Link>
                           </li>
 
                           <li>
                             <Link href='/coach/availability' passHref>
-                              <a className='dropdown-item'>Unavailability</a>
+                              <a className='dropdown-item'>unavailability</a>
                             </Link>
                           </li>
                           <li>
-                              <a className='dropdown-item' onClick={logout}>Log Out</a>
+                              <a className='dropdown-item' onClick={logout}>logout</a>
                           </li>
                         </ul>
 
@@ -371,22 +371,23 @@ const Header = () => {
     <div className="offcanvas-body">
       <ul className="navbar-nav">
       <li>
-                  <a href="/coach/dashboard">Profile</a>
-                </li>
-                <li>
-                  <a href="/coach/dashboard">Timesheet</a>
-                </li>
-                <li>
-                  <a href="/coach/calendar">Calendar</a>
+                  <a href="/coach/calendar">calendar</a>
                 </li>
                 <li>
                   <a href="/coach/clients">clients</a>
                 </li>
-                <li>
-                  <a href="/coach/resources">Resources</a>
+      <li>
+                  <a href="/coach/dashboard">profile</a>
                 </li>
                 <li>
-                  <a href="#" onClick={clientLogout}>Log Out</a>
+                  <a href="/coach/timesheet">timesheet</a>
+                </li>
+              
+                <li>
+                  <a href="/coach/resources">resources</a>
+                </li>
+                <li>
+                  <a href="#" onClick={clientLogout}>logout</a>
                 </li>
       </ul>
     </div>
