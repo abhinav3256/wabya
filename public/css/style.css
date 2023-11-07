@@ -659,7 +659,6 @@ h4{color:#f79632;}
   text-transform: uppercase;
   padding: 30px 0;
 }
-
 #calendar-wrap .table-calendar th{border-bottom: 1px solid #0f2540; border-right: 1px solid #0f2540; width: 13.5%;}
 #calendar-wrap .table-calendar th:last-child{border-right: none;}
 #calendar-wrap .table-calendar th:first-child { width: 5.5%; border-left: none; vertical-align: middle; }
@@ -1019,8 +1018,8 @@ padding: 25px 40px;
   z-index: 2; margin: 30px 15px 10px 0;
 }
 .client-contact .two-button .btn-send{background: #1d696c; color: #fff;}
-.client-contact .two-button .btn-chat{color: #1d696c; background: #fff;}
-.client-contact .two-button .btn-chat i {font-size: 20px; vertical-align: middle;}
+.client-contact .two-button .btn-chat{color: #1d696c; background: #fff; padding-left: 50px;}
+.client-contact .two-button .btn-chat i{font-size: 32px; vertical-align: middle; position: absolute; left: 10px; top: 4px;}
 .client-contact .coach-resp { padding: 70px 0; border-right: 1px solid #1d696c; }
 .client-contact .coach-resp h5{color: #1d696c; margin-bottom: 7px; letter-spacing: 1px;}
 .client-contact .coach-resp ul {
@@ -1034,7 +1033,7 @@ padding: 25px 40px;
   font-weight: 400;
   letter-spacing: 1px;
 }
-.client-contact .client-help { padding: 20px 0 0 90px; }
+.client-contact .client-help{padding: 20px 0 0 90px;}
 .client-contact .client-help p { letter-spacing: 0.03rem; font-size: 15px; margin: 40px 0; }
 .client-contact .client-help textarea.form-control{border-radius: 20px; width: 72%; padding: 15px 0 0 20px; font-size: 16px; letter-spacing: 1px; font-weight: 700;}
 .client-edit-details .form-control{background: transparent; border: 1px solid #0f2540; height: 32px;
@@ -2776,11 +2775,7 @@ button{font-family: Gothic A1 !important;}
   .schedule-session-new .inner{padding: 13px 20px;}
   .schedule-session-new h4{color: #0e2540; display: block; font-weight: 800; font-size: 14px; margin: 0 0 10px;}
   .schedule-session-new .inner{background: #f7f0e4; padding: 15px 20px 12px; -webkit-border-radius: 10px; -moz-border-radius: 10px; border-radius: 10px; display: flex; align-items: center; justify-content: space-between; position: relative;}
-<<<<<<< HEAD
-  .schedule-session-new .inner:after{content: "\f105"; font-family: FontAwesome; position: absolute; font-size: 30px; right: 0; left: 0; margin: 0 auto; width: 15px; text-align: center; opacity: 0.3; bottom: 25px;}
-=======
   .schedule-session-new .inner:after{content: "\f105"; font-family: FontAwesome; position: absolute; font-size: 30px; right: 0; left: 0; margin: 0 auto; width: 15px; text-align: center; opacity: 0.3; bottom: 17px;}
->>>>>>> 08c0282bcd54d61e826f23f84965901202fedaba
   .schedule-session-new .inner span{display: block; font-weight: 800; color: #0e2540; font-size: 20px;}
   .schedule-session-new .inner span small{font-weight: 600; color: rgba(0, 0, 0, 0.5); display: block; font-size: 14px;}
   .schedule-session-new form{position:relative; z-index:2;}
@@ -3541,7 +3536,7 @@ button{font-family: Gothic A1 !important;}
 .availability-popup.standard-availability .ap3{flex: 0 0 6%; max-width: 6%;} 
 .availability-popup.standard-availability .ap4{display: flex; align-items: center; flex: 0 09%; max-width: 9%;} 
 .availability-popup.standard-availability .ap5{display: flex; align-items: center; flex: 0 0 42%; max-width: 42%;}
-.availability-popup.standard-availability .unavailable{width: auto; min-width: 100%; letter-spacing: 0; padding: 10px 11px 8px; text-transform: capitalize;}
+.availability-popup.standard-availability .unavailable{width: auto; min-width: 100%; letter-spacing: 0; padding: 10px 11px 8px; text-transform: capitalize;
 .availability-popup.standard-availability .close-button{text-align: right;}
 .availability-popup.standard-availability .close-button .btn-close{margin: 0 0 25px; text-transform:uppercase; letter-spacing: 2px; width: auto; min-width: 212px;}
 
