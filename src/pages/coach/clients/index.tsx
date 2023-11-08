@@ -216,7 +216,7 @@ const getClients = async () => {
     </section> 
 
 
-<section className="clients-listing client-listing-mobile lower-letter">
+<section className="clients-listing client-listing-mobile">
   <div className="container">
     <div className="row">
       <div className="col-12 filter-coll">
