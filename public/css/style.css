@@ -1,7 +1,7 @@
 html{overflow-x:hidden;}
 html, body {height: 100%;}
 
-body{background:#ece6d3 !important; font-size: 16px !important; font-family: 'DejaVu Sans' !important; font-weight:400 !important; color: #1b1b1b !important;}
+body{background:#ece6d3 !important; font-size: 16px !important; font-family: 'DejaVu Sans' !important; font-weight:200 !important; color: #1b1b1b !important;}
 
 @font-face {
     font-family: 'DejaVu Sans Condensed';
@@ -410,7 +410,7 @@ h4{color:#f79632;}
   .user-profile .dropdown-toggle{position: relative;}
   .user-profile .dropdown-toggle::after{content: ""; border: 0; position: absolute; background-image: url(../images/arrow-bottom.png); background-repeat: no-repeat; background-attachment: scroll; background-position: center center; background-size: cover; height: 20px; width: 20px; right: 10px !important; top: 7px !important; margin: 0 !important; display: none !important;}
   .user-profile .inner{padding: 0; position: relative; right: 0; top:0;}
-  .user-profile .inner .btn{font-weight:bold; font-size: 14px; text-shadow: none; letter-spacing:2px; background: #f59533 !important; color:#f7f0e4; box-shadow:none; border: 0; min-width: 198px; border-radius: 20px; text-align: center; margin: 0 0 0 0; padding: 9px 20px 8px; position:relative; z-index:2;}
+  .user-profile .inner .btn{font-weight:bold; font-size: 14px; text-shadow: none; letter-spacing: 1px; background: #f59533 !important; color:#f7f0e4; box-shadow:none; border: 0; min-width: 198px; border-radius: 20px; text-align: center; margin: 0 0 0 0; padding: 9px 20px 8px; position:relative; z-index:2;}
   .user-profile ul{margin: 0 !important; padding: 25px 0 10px; border: 0 !important; background: #fff !important; border-radius: 0 0 25px 25px !important; top: -25px !important; z-index: 1;}
   .user-profile ul li{letter-spacing:1.5px; list-style:none; margin:0; padding:0 20px;}
   .user-profile ul li a{color: #0f2540; border-bottom:2px solid transparent !important; padding: 15px 0 5px; font-size: 14px; background-color: transparent; text-transform: uppercase; border: 0; display:block;}
