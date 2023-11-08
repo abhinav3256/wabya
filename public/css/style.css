@@ -531,7 +531,6 @@ h4{color:#f79632;}
   right: 10px;
   top: 3px;
   background: none;
-  font-weight: 400;
   padding: 6px 25px;
   cursor: pointer;
 }
@@ -698,7 +697,7 @@ h4{color:#f79632;}
 .cal-icon p span {
   display: block;
   font-size: 12px;
-  font-weight: 400;
+  font-weight: 200;
 }
 .cal-icon .join {
   border-left: 2px solid #0f2540;
@@ -739,7 +738,7 @@ h4{color:#f79632;}
 #calendar-wrap .table-calendar .green-event p span {
   display: block;
   font-size: 14px;
-  font-weight: 400;
+  font-weight: 200;
 }
 #calendar-wrap .table-calendar .blue-event{background: #0f2540; color: rgb(248, 243, 231); padding: 25px 15px; border-radius: 20px; text-transform: capitalize;   height: 200px; }
 #calendar-wrap .table-calendar .blue-event small{font-size: 12px;
@@ -849,7 +848,6 @@ padding: 25px 40px;
 }
 .client-dashboard .info-basic p span{
     font-size: 15px;
-    font-weight: 400;
     display: block;
     word-break: break-all;
 }
@@ -993,7 +991,6 @@ padding: 25px 40px;
   margin: 0 0 15px;
   }
 .client-plans .btn-bundle span {
-  font-weight: 400;
   font-size: 12px;
   letter-spacing: 1px;
   float: right;
@@ -1001,13 +998,11 @@ padding: 25px 40px;
 }
 .client-plans .btn-probono, .client-plans .btn-payg {
   font-size: 18px;
-  font-weight: 400;
   margin-top: 8px;
   
 }
 .client-plans .update .update-billing {
   color: #0f2540;
-  font-weight: 400;
   margin: 0 15px;
 }
 .client-plans .probono{position: relative;}
@@ -1032,7 +1027,6 @@ padding: 25px 40px;
 .client-plans .tooltiptext p {
   font-size: 14px;
   text-align: left;
-  font-weight: 400;
   letter-spacing: 1px;
   padding-bottom: 10px;
 }
@@ -1231,7 +1225,6 @@ padding: 25px 40px;
 .react-calendar__month-view__weekdays {
   text-align: center;
   text-transform: uppercase;
-  font-weight: 400;
   font-size: 17px;
   
 }
@@ -1333,8 +1326,7 @@ padding: 25px 40px;
   color: #0f2540;
 }
 .meeting-schedule .tick-icon p {
-  font-size: 16px;
-  font-weight: 400; margin-bottom: 30px;
+  font-size: 16px;margin-bottom: 30px;
 }
 .meeting-schedule .meet {
   display: flex;
@@ -1501,13 +1493,13 @@ span.pass-eye {
 
 
 
-footer.layout-footer { padding: 15px 0 15px; color: #ece6d3; font-weight: 400; background: #0f2540;  position: relative; }
+footer.layout-footer { padding: 15px 0 15px; color: #ece6d3; background: #0f2540;  position: relative; }
 footer.layout-footer .footer-content-container { max-width: 97% !important; }
 footer.layout-footer p { color: #ece6d3; }
 
 
 
-.footer{padding:70px 0 20px; color:#ece6d3; font-size:12px; font-weight: 400; background:#0f2540; position:relative;}
+.footer{padding:70px 0 20px; color:#ece6d3; font-size:12px; background:#0f2540; position:relative;}
   .footer .container{max-width: 97%;}
   .footer a{color:#ece6d3;}
   .footer a:hover{color:#f69532;}
@@ -3103,7 +3095,7 @@ color: #fff !important;
   font-size: 12px;
   font-weight: 700;
 }
-.cal-time .btn-time{background: #f6efe3; font-weight: 400; font-size: 14px; text-shadow: none; text-transform: uppercase;  box-shadow: none; border: 1px solid #0f2540; min-width: inherit; text-align: center!important; border-radius: 20px; margin: 16px auto; padding: 10px 20px 10px; position: relative; z-index: 2; display: block; color: #0f2540;}
+.cal-time .btn-time{background: #f6efe3; font-size: 14px; text-shadow: none; text-transform: uppercase;  box-shadow: none; border: 1px solid #0f2540; min-width: inherit; text-align: center!important; border-radius: 20px; margin: 16px auto; padding: 10px 20px 10px; position: relative; z-index: 2; display: block; color: #0f2540;}
 .cal-time .btn-time:focus, .cal-time .btn-time:hover, .cal-time .btn-time:visited{background: #f6efe3 !important; border: 1px solid #0f2540 !important; color: #fff !important;}
 .session-history-modal .table-sess th {
   border-right: 1px solid #0f2540;
