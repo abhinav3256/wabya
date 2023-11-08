@@ -49,7 +49,7 @@ body{background:#ece6d3 !important; font-size: 16px !important; font-family: 'De
         url('../fonts/DejaVuSans.woff2') format('woff2'),
         url('../fonts/DejaVuSans.woff') format('woff'),
         url('../fonts/DejaVuSans.ttf') format('truetype'),
-        url('../onts/DejaVuSans.svg#DejaVuSans') format('svg');
+        url('../fonts/DejaVuSans.svg#DejaVuSans') format('svg');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
