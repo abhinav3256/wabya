@@ -1077,44 +1077,20 @@ padding: 25px 40px;
 .client-contact .two-button .btn-send{background: #1d696c; color: #fff;}
 .client-contact .two-button .btn-chat{color: #1d696c; background: #fff; padding-left: 50px;}
 .client-contact .two-button .btn-chat i{font-size: 32px; vertical-align: middle; position: absolute; left: 10px; top: 4px;}
-.client-contact .coach-resp { padding: 70px 0; border-right: 1px solid #1d696c; }
+.client-contact .coach-resp{padding: 90px 0 70px 0; border-right: 1px solid #1d696c; }
 .client-contact .coach-resp h5{color: #1d696c; margin-bottom: 7px;}
-.client-contact .coach-resp ul {
-  list-style: circle;
-  padding: 0px;
-  margin-left: 15px; margin-bottom: 35px;
-}
-.client-contact .coach-resp ul li {
-  margin-bottom: 5px;
-  font-size: 15px;
-  font-weight: 400;
-  letter-spacing: 1px;
-}
-.client-contact .client-help{padding: 20px 0 0 90px;}
+.client-contact .coach-resp ul{list-style: circle; padding: 0px; margin-left: 15px; margin-bottom: 35px;}
+.client-contact .coach-resp ul li{margin-bottom: 5px; font-size: 15px; font-weight: 400;}
+.client-contact .client-help{padding: 60px 90px 0;}
 .client-contact .client-help p{letter-spacing: 0.03rem; font-size: 15px; margin: 40px 0; }
 .client-contact .client-help textarea.form-control{border-radius: 20px; width: 68%; padding: 15px 0 0 20px; font-size: 16px; font-weight: bold;}
-.client-edit-details .form-control{background: transparent; border: 1px solid #0f2540; height: 32px;
-  margin: 6px 0;}
-
+.client-edit-details .form-control{background: transparent; border: 1px solid #0f2540; height: 32px; margin: 6px 0;}
 
 /* follow instructions */
-.follow-instructions { background: #f8f3e7; padding: 100px 30px 40px; max-width: 700px; display: block;
-  margin: 100px auto; border-radius: 30px; }
-.follow-instructions h3 {
-  color: #0f2540;
-  font-size: 50px;
-  margin: 0 0 40px;
-  display: block;
-  padding: 0;
-  text-align: center;
-}
-.follow-instructions h3 span {
-  display: block;
-  font-size: 18px;
-  text-transform: lowercase;
-  margin: 0 0 15px;
-  color: #f27755;
-}
+.follow-instructions{background: #f8f3e7; padding: 100px 30px 40px; max-width: 700px; display: block;
+  margin: 100px auto; border-radius: 30px;}
+.follow-instructions h3{color: #0f2540; font-size: 50px; margin: 0 0 40px; display: block; padding: 0; text-align: center;}
+.follow-instructions h3 span{display: block; font-size: 18px; text-transform: lowercase; margin: 0 0 15px; color: #f27755;}
 .follow-instructions h3 span a{color: #0f2450;}
 
 /* modal of session history */
