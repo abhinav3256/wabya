@@ -2791,7 +2791,7 @@ button{font-family: Gothic A1 !important;}
   .schedule-session-new .btn.btn-darkblue:after{background:#f59633;}
 
 
-  
+
 @media (min-width: 320px) and (max-width: 767px) {
   
    .header{border-top: 3px solid #ec2397;}
@@ -3303,6 +3303,7 @@ button{font-family: Gothic A1 !important;}
    
    .calendar-mobile{position:relative; margin:0; padding: 30px 15px 30px; z-index:1;}
    .calendar-mobile h2{color:#2d394c; font-weight:700;}
+   .calendar-mobile .calendar-profile .img-radius{-webkit-border-radius: 100%; -moz-border-radius: 100%; border-radius: 100%;}
    .calendar-mobile .calendar-weeksheet{display:flex; gap: 1px; margin:0 -5px 20px;}
    .calendar-mobile .calendar-weeksheet .col-weeksheet{color:#2d394c; font-family: 'Gothic A1', sans-serif; font-weight:700; padding: 10px 1px; width: 14.2%; text-align: center; font-size: 14px; position:relative; -webkit-border-radius: 15px; -moz-border-radius: 15px; border-radius: 15px;}
    .calendar-mobile .calendar-weeksheet .col-weeksheet.active{background: #f7f0e5;}
@@ -3313,6 +3314,7 @@ button{font-family: Gothic A1 !important;}
    .calendar-mobile .calendar-timesheet ul li{color:#677484; font-weight:500; font-size: 12px; margin:0; padding:0 0 25px; list-style:none;}
    .calendar-mobile .timesheet-fix{background: #75c3a8; -webkit-border-radius: 15px; -moz-border-radius: 15px; border-radius: 15px; color:#fff; font-weight:500; font-size: 12px; margin:0 0 30px; padding:10px 10px 5px; list-style:none;}
    .calendar-mobile .timesheet-fix h3{color:#fff; font-weight:700; font-size: 14px; margin:0; padding:0; letter-spacing:1px;}
+   .calendar-mobile .timesheet-fix h4{color:#fff; font-weight: bold; font-size: 14px; margin:0; padding:0 0 3px; letter-spacing:1px;}
    .calendar-mobile .timesheet-fix p{margin:0; letter-spacing:1px;}
    .calendar-mobile .calendar-btns .btn-orange{background:#f17c5d;}
    .pricing-wrap .inner{padding: 30px 30px 30px;}
