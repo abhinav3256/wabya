@@ -907,6 +907,21 @@ const [unavailableId, setUnavailableId] = useState(null);
 const [UnavailableStartSlot, setUnavailableStartSlot] = useState(null);
 const [UnavailableEndSlot, setUnavailableEndSlot] = useState(null);
 const [isUnavailable, setIsUnavailable] = useState(false);
+const [meetingCreatedAt, setmeetingCreatedAt] = useState("");
+
+const [meetingName, setmeetingName] = useState("");
+
+const [meetingLink, setmeetingLink] = useState("");
+
+const [meetingPrivacy, setmeetingPrivacy] = useState("");
+const [meetingApiCreated, setmeetingApiCreated] = useState("");
+
+const [meetingtime, setmeetingtime] = useState("");
+
+const [meetingendtime, setmeetingendtime] = useState("");
+const [selectedTime, setselectedTime]: any = useState();
+
+const [BookedId, setBookedId] = useState();
   // get all meeting data
   const getMeetingByDate = async (todayDate: string) => {
     const coachId = sessionStorage.getItem("coachId");
@@ -921,6 +936,153 @@ const [isUnavailable, setIsUnavailable] = useState(false);
       );
     });
   };
+
+  const scheduleNext = async () => {
+    
+   
+   
+    try {
+      const res = await fetch(
+        "https://api.daily.co/v1/rooms",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization" :"Bearer a2c645d6f0369a165420d8b8b8a24894cfb18c209f1c43f8f2cb5ef35440f0a0",
+          },
+
+        }
+      );
+      const data = await res.json();
+      //console.log(data);
+      setmeetingLink(data.url);
+      setmeetingName(data.name);
+      setmeetingApiCreated(data.api_created);
+      setmeetingPrivacy(data.privacy);
+
+      setmeetingCreatedAt(data.created_at);
+      setBookedId(data.id);
+      if (res.status == 200) {
+      
+
+        setmeetingLink(data.url);
+       
+
+        setBookedId(data.id);
+
+        const logoUrl = 'https://wabya.com/images/logo-new.png';
+        const msg = `
+        <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+        <html xmlns="http://www.w3.org/1999/xhtml">
+           <head>
+              <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+              <meta name="viewport" content="width=device-width, initial-scale=1">
+              <title>Wabya</title>
+              <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap" rel="stylesheet">
+              <style type="text/css">
+                 body{padding-top: 0 !important; padding-bottom: 0 !important; padding-top: 0 !important; padding-bottom: 0 !important; margin:0 !important; width: 100% !important; -webkit-text-size-adjust: 100% !important; -ms-text-size-adjust: 100% !important; -webkit-font-smoothing: antialiased !important; font-size:14px; line-height:22px; font-family: 'Lato', sans-serif; font-weight:400;}
+              </style>
+           </head>
+           <body paddingwidth="0" paddingheight="0"  style="" offset="0" toppadding="0" leftpadding="0">
+           <div style="display:table; width:600px !important; margin: 0 auto; background: #fff; padding:20px;">
+              <table width="600" border="0" cellspacing="0" cellpadding="0" class="tableContent bgBody" align="center" style='width: 600px; display: block;'>
+                 <tbody>
+                    <tr>
+                       <table class="MainContainer" width="600" cellspacing="0" cellpadding="0" border="0" bgcolor="#ece6d5" align="center" style='width: 600px; -webkit-border-radius: 15px; -moz-border-radius: 15px; border-radius: 15px;'>
+                          <tbody style=''>
+        <tr>
+                                <td colspan="2"><div style="text-align: center; margin:35px 0 0" class="contentLogo"><a href="https://www.#.com"><img src="${logoUrl}" width="200px" alt="" border="0" style=""></a></div></td>
+                             </tr>
+                             <tr>
+                                <td>
+                                   <div style="padding:0 30px;  position: relative; z-index: 2;line-height: 22px;font-family: 'Lato', sans-serif;font-weight: 600;text-align: center;">
+            <p style="color: #3498db;text-align: center;font-size: 36px;">Meeting Scheduled!</p>
+        <p style="font-size: 18px; text-align: center; color: #864985;">Your meeting  has been Schedule. We are looking forward to seeing you there!</p>
+        <p style="font-size: 16px; text-align: center; margin:0 0 10px;color: #242424;">Date: ${meetingdate}</p>
+        <p style="font-size: 16px; text-align: center; margin:0 0 20px;color: #242424;">Time: ${meetingtime} - ${meetingendtime}</p>
+        <hr style="border: 1px solid #1c686b;">
+        <p style="font-size: 14px; color: #242424; text-align: center;">Thank you,<br>Wabya Team</p>
+         </div>  
+                                </td>
+                             </tr>
+                          </tbody>
+                       </table>
+                    </tr>
+                 </tbody>
+              </table>
+         </div>
+           </body>
+        </html>
+  `;
+      sendMailFunc2(myData.coach_email,msg,'Meeting Scheduled');   	
+      
+      const msg2 = `
+      <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+      <html xmlns="http://www.w3.org/1999/xhtml">
+         <head>
+            <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title>Wabya</title>
+            <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap" rel="stylesheet">
+            <style type="text/css">
+               body{padding-top: 0 !important; padding-bottom: 0 !important; padding-top: 0 !important; padding-bottom: 0 !important; margin:0 !important; width: 100% !important; -webkit-text-size-adjust: 100% !important; -ms-text-size-adjust: 100% !important; -webkit-font-smoothing: antialiased !important; font-size:14px; line-height:22px; font-family: 'Lato', sans-serif; font-weight:400;}
+            </style>
+         </head>
+         <body paddingwidth="0" paddingheight="0"  style="" offset="0" toppadding="0" leftpadding="0">
+         <div style="display:table; width:600px !important; margin: 0 auto; background: #fff; padding:20px;">
+            <table width="600" border="0" cellspacing="0" cellpadding="0" class="tableContent bgBody" align="center" style='width: 600px; display: block;'>
+               <tbody>
+                  <tr>
+                     <table class="MainContainer" width="600" cellspacing="0" cellpadding="0" border="0" bgcolor="#ece6d5" align="center" style='width: 600px; -webkit-border-radius: 15px; -moz-border-radius: 15px; border-radius: 15px;'>
+                        <tbody style=''>
+      <tr>
+                              <td colspan="2"><div style="text-align: center; margin:35px 0 0" class="contentLogo"><a href="https://www.#.com"><img src="${logoUrl}" width="200px" alt="" border="0" style=""></a></div></td>
+                           </tr>
+                           <tr>
+                              <td>
+                                 <div style="padding:0 30px;  position: relative; z-index: 2;line-height: 22px;font-family: 'Lato', sans-serif;font-weight: 600;text-align: center;">
+          <p style="color: #3498db;text-align: center;font-size: 36px;">Meeting Scheduled}!</p>
+      <p style="font-size: 18px; text-align: center; color: #864985;">Your meeting  has been Schedule. We are looking forward to seeing you there!</p>
+      <p style="font-size: 16px; text-align: center; margin:0 0 10px;color: #242424;">Date: ${meetingdate}</p>
+      <p style="font-size: 16px; text-align: center; margin:0 0 20px;color: #242424;">Time: ${meetingtime} - ${meetingendtime}</p>
+      <hr style="border: 1px solid #1c686b;">
+      <p style="font-size: 14px; color: #242424; text-align: center;">Thank you,<br>Wabya Team</p>
+       </div>  
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </tr>
+               </tbody>
+            </table>
+       </div>
+         </body>
+      </html>
+`;
+    sendMailFunc2('abhinav@htlogics.com',msg2,'Meeting Scheduled');  
+
+
+     
+      } else {
+        // setbookingLoad(false);
+        // setbookingError(true);
+      }
+
+      ////console.log(data);
+    } catch (err) {
+      // setbookingLoad(false);
+      // setbookingError(true);
+      ////console.log(err);
+    }
+
+  
+  
+
+    // setNext(true);
+  };
+
+
+
 
 
 const getTimeslots = async (date) => {
@@ -1067,6 +1229,69 @@ const checkAvailability = () => {
   setIsUnavailable(!isDateAvailable);
 };
 
+
+const handleTimeClick = (event: any) => {
+  //console.log(event)
+
+  const selectedIndex = event.target.selectedIndex;
+    const selectedOption = event.target.options[selectedIndex];
+   // const selectedTime = selectedOption.getAttribute('data-time');
+  console.log( selectedOption.getAttribute("data-key"));
+  console.log( selectedOption.getAttribute("data-time"));
+  setmeetingtime(selectedOption.getAttribute('data-time'));
+
+  // selectedTime.splice(0, selectedTime.length);
+  //selectedTime.splice(0, array1.length);
+  setselectedTime(selectedOption.getAttribute('data-key'));
+  //////console.log(meetingdate);
+  ////console.log(meetingtime);
+  var startTime = meetingdate + " " + meetingtime;
+  ////console.log(startTime);
+
+  var newTime = new Date(
+    new Date(
+      "1970/01/01 " + event.target.getAttribute("data-time")
+    ).getTime() +
+      30 * 60000
+  ).toLocaleTimeString("en-UK", {
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false,
+  });
+  ////console.log(newTime);
+  setmeetingendtime(newTime);
+  
+};
+
+const getBookingId = async () => {
+
+
+  const meetRef = collection(database, "meeting");
+
+  addDoc(meetRef, {
+    meetingId: BookedId,
+    clientId: 'oNdFd1dHuzplJCu69LTE',
+    coachId: sessionStorage.getItem("coachId"),
+    coach_name: myData.coach_name,
+    meetingDate: meetingdate,
+    meetingTime: meetingtime,
+    meetingEndTime: ""+meetingendtime+":00",
+    meetingLink: meetingLink,
+    meetingApiCreated:meetingApiCreated,
+    meetingName:meetingName,
+    meetingPrivacy:meetingPrivacy,
+    meetingCreatedAt:meetingCreatedAt,
+    isCoachCancel:'0',
+    isNotified:1,
+    status: "true",
+    meetingstatus: "wait",
+    isMeetingStarted: 0,
+  isMeetingEnd: 0,
+  });
+
+
+// setNext(true);
+};
 
 useEffect(() => {
    
@@ -1512,6 +1737,13 @@ m=0;
       console.log(err);
     })
    }
+
+
+   async function sendMailFunc2 (email,content,$subject){   
+    let response = await sendMail(email,$subject,content);   
+  
+    console.log('response',response);
+  } 
 
    async function sendMailFunc (email,content){   
     let response = await sendMail(email,"sample mail",content);   
@@ -2548,11 +2780,15 @@ return(<>
             <h4 className="mrb-5">select the time</h4>
             <div className="inner">
            
-            <select name="cars" class="form-control">
+            <select name="cars" class="form-control" onChange={handleTimeClick}>
             {array2.map((timeSlot, index) => (
-    index + 1 < array2.length && (
-      <option key={index}>{array2[index]} - {array2[index + 1]}</option>
-    )
+    
+      <option   data-key={index}
+      key={index}
+      data-time={timeSlot}
+     
+      >{timeSlot}</option>
+    
   ))}
                </select>
             </div>
@@ -2577,7 +2813,7 @@ return(<>
           </div>
           {/*/ form-group */}
           <div className="form-group form-btn">
-            <button className="btn btn-darkblue">save</button>
+            <button className="btn btn-darkblue" onClick={scheduleNext}  >save</button>
           </div>
         </div>
         {/*/ cl-coll */}
