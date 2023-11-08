@@ -1041,7 +1041,7 @@ const [BookedId, setBookedId] = useState();
                            <tr>
                               <td>
                                  <div style="padding:0 30px;  position: relative; z-index: 2;line-height: 22px;font-family: 'Lato', sans-serif;font-weight: 600;text-align: center;">
-          <p style="color: #3498db;text-align: center;font-size: 36px;">Meeting Scheduled}!</p>
+          <p style="color: #3498db;text-align: center;font-size: 36px;">Meeting Scheduled!</p>
       <p style="font-size: 18px; text-align: center; color: #864985;">Your meeting  has been Schedule. We are looking forward to seeing you there!</p>
       <p style="font-size: 16px; text-align: center; margin:0 0 10px;color: #242424;">Date: ${meetingdate}</p>
       <p style="font-size: 16px; text-align: center; margin:0 0 20px;color: #242424;">Time: ${meetingtime} - ${meetingendtime}</p>
@@ -1238,7 +1238,7 @@ const handleTimeClick = (event: any) => {
    // const selectedTime = selectedOption.getAttribute('data-time');
   console.log( selectedOption.getAttribute("data-key"));
   console.log( selectedOption.getAttribute("data-time"));
-  setmeetingtime(selectedOption.getAttribute('data-time'));
+  setmeetingtime(selectedOption.getAttribute("data-time"));
 
   // selectedTime.splice(0, selectedTime.length);
   //selectedTime.splice(0, array1.length);
@@ -1250,7 +1250,7 @@ const handleTimeClick = (event: any) => {
 
   var newTime = new Date(
     new Date(
-      "1970/01/01 " + event.target.getAttribute("data-time")
+      "1970/01/01 " + selectedOption.getAttribute("data-time")
     ).getTime() +
       30 * 60000
   ).toLocaleTimeString("en-UK", {
@@ -1739,8 +1739,8 @@ m=0;
    }
 
 
-   async function sendMailFunc2 (email,content,$subject){   
-    let response = await sendMail(email,$subject,content);   
+   async function sendMailFunc2 (email,content,subject){   
+    let response = await sendMail(email,subject,content);   
   
     console.log('response',response);
   } 
@@ -1982,7 +1982,7 @@ m=0;
 
 
           <div className="timesheet-carousel">
-          <OwlCarousel options={options}>
+          {/* <OwlCarousel options={options}> */}
 
           { forloops.map((floop, index) => {
             let i=(index)*7;
@@ -2003,7 +2003,7 @@ m=0;
             }
 
           })}
-          </OwlCarousel>
+          {/* </OwlCarousel> */}
           </div>
 
 
@@ -2109,7 +2109,7 @@ m=0;
       </Menu>
                         </Fragment>
 
-                  <button className='btn btn-five' onClick={handleSchedule}>schedule session</button>
+                  <button className='btn btn-five' >schedule session</button>
 
               </div>
             </div>
@@ -2781,6 +2781,9 @@ return(<>
             <div className="inner">
            
             <select name="cars" class="form-control" onChange={handleTimeClick}>
+            <option value="">
+          Select Time
+        </option>
             {array2.map((timeSlot, index) => (
     
       <option   data-key={index}
@@ -2798,6 +2801,9 @@ return(<>
           <div className="form-group mrb-30">
             <h4 className="mrb-5">select your client</h4>
             <select name="cars" className="form-control">
+            <option value="">
+          Select Client
+        </option>
             {myClient.map((client, index) => (
         <option key={index} value={client.c_id}>
           {client.client_name}
@@ -2813,7 +2819,7 @@ return(<>
           </div>
           {/*/ form-group */}
           <div className="form-group form-btn">
-            <button className="btn btn-darkblue" onClick={scheduleNext}  >save</button>
+            <button className="btn btn-darkblue" onClick={scheduleNext} disabled={!meetingtime && isUnavailable}  >save</button>
           </div>
         </div>
         {/*/ cl-coll */}
@@ -2837,7 +2843,8 @@ return(<>
               </a>
             </p>
             <p className="btn-p">
-              <a href="#" className="btn btn-darkblue" onClick={handleSchedule}>
+              {/* <a href="#" className="btn btn-darkblue" onClick={handleSchedule}> */}
+              <a href="#" className="btn btn-darkblue" >
                 schedule session
               </a>
             </p>
