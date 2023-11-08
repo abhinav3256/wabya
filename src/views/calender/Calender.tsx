@@ -159,9 +159,10 @@ const Calender = () => {
 
     const [forloops, setforloops] = useState([0,1,2,3]);
 
-
+    const [date, setDate] = useState(new Date());
     const router = useRouter()
     const [coach, setCoach] = useState(null);
+    const today = new Date();
     const [coachId,setCoachId]=useState();
     const [coachesCalUsername, setcoachesCalUsername] = useState("");
     const [myData, setMydata] = useState(null);
@@ -183,6 +184,7 @@ const Calender = () => {
 
   const [coachesCalApiKey, setcoachesCalApiKey] = useState("");
   const [array1, setarray1]: any[] = useState([]);
+  const [array2, setarray2]: any[] = useState([]);
   const [clientData, setclientData] = useState([]);
 
   const [myAvailability, setmyAvailability] = useState(null);
@@ -193,6 +195,7 @@ const Calender = () => {
 
   const [bookedTimeslot, setbookedTimeslot] = useState([{meetingDate:"",isCoachAccept:"",isCoachCancel:"",meet_idd:"",starttime:"",endtime:"",title:"",date:"",clientName:"",clientEmail:""}]);
   const [meeting, setMeeting] = useState([]);
+  const [myClient, setMyClient] = useState([]);
 
   const [meetingClientJoinedData, setmeetingClientJoinedData] =useState([]);
 
@@ -354,6 +357,27 @@ const getMyMeeting = async () => {
  
  }
 
+
+ const getMyClient = async () => {
+
+  console.log('testtt');
+  const coachId = sessionStorage.getItem('coachId');
+  const meetingSessionCollection = collection(database, 'client_user');
+  const queryDoc = query(meetingSessionCollection, where("assign_coach_id", "==", coachId));
+
+    await getDocs(queryDoc).then((response) => {
+      setMyClient(
+        response.docs.map((data) => {
+          console.log(data.data());
+          return { ...data.data(), c_id: data.id };
+        })
+      );
+    });
+   
+ 
+ 
+ }
+
  useEffect(() => {
   if (myAvailability) {
     const updatedAvailability = { ...availability };
@@ -418,6 +442,7 @@ useEffect(() => {
         fetchCoach();
         getMyMeeting();
        getMyAvailability();
+       getMyClient();
       }
 
 
@@ -630,131 +655,131 @@ setallWeekDay(next7Days);
 
 /**Get Timeslot */
 
-const getTimeslots = async () => {
+// const getTimeslots_old = async () => {
 
-  var date = new Date(); // current date and time
+//   var date = new Date(); // current date and time
 
-  var tomorrow = new Date(date);
-  tomorrow.setDate(date.getDate() + 1);
-  var todayDate = new Date(tomorrow).toISOString().slice(0, 10);
-
-
-
-  var startTime = "";
-  var endTime = "";
-  const d = date;
-  var selectedDay = date.getDay();
-  //console.log("selected days: " + selectedDay + "");
+//   var tomorrow = new Date(date);
+//   tomorrow.setDate(date.getDate() + 1);
+//   var todayDate = new Date(tomorrow).toISOString().slice(0, 10);
 
 
-  var scheduleId = 62521;
-  var included = 1;
-  setarray1([]);
 
-  try {
-    const res = await fetch(
-      "" +
-        apiUrl +
-        "v1/schedules/" +
-        scheduleId +
-        "?apiKey=" +
-        coachesCalApiKey +
-        "",
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
-    const data = await res.json();
-    // //console.log(res);
-    //console.log(data);
-
-    if (res.status == 200) {
-      //console.log("testing");
-      if (data.schedule.availability.length > 0) {
-        //console.log(data.schedule.availability.length);
-
-        for (
-          let index = 0;
-          index < data.schedule.availability.length;
-          index++
-        ) {
-          const days = data.schedule.availability[index].days;
-          if (days.includes(selectedDay)) {
-            startTime = data.schedule.availability[index].startTime;
-            endTime = data.schedule.availability[index].endTime;
-            let endtimeArr = endTime.split(":");
-            //console.log(endtimeArr[2]);
-
-            if (endtimeArr[2] != "00") {
-              endTime = setCharAt(endTime, 6, "0");
-              endTime = setCharAt(endTime, 7, "0");
-            }
-
-            //console.log(endTime);
-
-            //console.log(startTime);
-            //console.log(endTime);
-            included = 1;
-            break;
-          } else {
-            included = 0;
-          }
-        }
-
-        var timeslots = [startTime];
-        //console.log(coachesEventTimeInterval);
-
-//var interval = coachesEventTimeInterval;
-var interval=90;
-
-        var times = [
-          { start: "10:00:00", end: "10:20:00" },
-          { start: "10:40:00", end: "10:50:00" },
-          { start: "14:00:00", end: "14:15:00" },
-        ];
-
-        while (
-          Date.parse("01/01/2011 " + endTime + "") >
-          Date.parse("01/01/2011 " + startTime + "")
-        ) {
-          //console.log(isBetween); // true
-          startTime = addMinutes(startTime, interval);
-          if (
-            Date.parse("01/01/2011 " + endTime + "") >
-            Date.parse("01/01/2011 " + startTime + "")
-          ) {
-            var isBetween = times.some(({ start, end }) => {
-              return startTime >= start && startTime <= end;
-            });
-
-            var isBetween2 = times.some(({ start, end }) => {
-              return (
-                addMinutes(startTime, interval) > start &&
-                addMinutes(startTime, interval) < end
-              );
-            });
-            if (!isBetween && !isBetween2) {
-              timeslots.push(startTime);
-            }
-          }
-        }
-
-        console.log(timeslots);
-      } else {
-        //console.log("no");
-        //setisShow(false);
-      }
-   //   setarray1(timeslots);
-    }
-  } catch (err) {
-    //console.log(err);
-  }
+//   var startTime = "";
+//   var endTime = "";
+//   const d = date;
+//   var selectedDay = date.getDay();
+//   //console.log("selected days: " + selectedDay + "");
 
 
-};
+//   var scheduleId = 62521;
+//   var included = 1;
+//   setarray1([]);
+
+//   try {
+//     const res = await fetch(
+//       "" +
+//         apiUrl +
+//         "v1/schedules/" +
+//         scheduleId +
+//         "?apiKey=" +
+//         coachesCalApiKey +
+//         "",
+//       {
+//         method: "GET",
+//         headers: {
+//           "Content-Type": "application/json",
+//         },
+//       }
+//     );
+//     const data = await res.json();
+//     // //console.log(res);
+//     //console.log(data);
+
+//     if (res.status == 200) {
+//       //console.log("testing");
+//       if (data.schedule.availability.length > 0) {
+//         //console.log(data.schedule.availability.length);
+
+//         for (
+//           let index = 0;
+//           index < data.schedule.availability.length;
+//           index++
+//         ) {
+//           const days = data.schedule.availability[index].days;
+//           if (days.includes(selectedDay)) {
+//             startTime = data.schedule.availability[index].startTime;
+//             endTime = data.schedule.availability[index].endTime;
+//             let endtimeArr = endTime.split(":");
+//             //console.log(endtimeArr[2]);
+
+//             if (endtimeArr[2] != "00") {
+//               endTime = setCharAt(endTime, 6, "0");
+//               endTime = setCharAt(endTime, 7, "0");
+//             }
+
+//             //console.log(endTime);
+
+//             //console.log(startTime);
+//             //console.log(endTime);
+//             included = 1;
+//             break;
+//           } else {
+//             included = 0;
+//           }
+//         }
+
+//         var timeslots = [startTime];
+//         //console.log(coachesEventTimeInterval);
+
+// //var interval = coachesEventTimeInterval;
+// var interval=90;
+
+//         var times = [
+//           { start: "10:00:00", end: "10:20:00" },
+//           { start: "10:40:00", end: "10:50:00" },
+//           { start: "14:00:00", end: "14:15:00" },
+//         ];
+
+//         while (
+//           Date.parse("01/01/2011 " + endTime + "") >
+//           Date.parse("01/01/2011 " + startTime + "")
+//         ) {
+//           //console.log(isBetween); // true
+//           startTime = addMinutes(startTime, interval);
+//           if (
+//             Date.parse("01/01/2011 " + endTime + "") >
+//             Date.parse("01/01/2011 " + startTime + "")
+//           ) {
+//             var isBetween = times.some(({ start, end }) => {
+//               return startTime >= start && startTime <= end;
+//             });
+
+//             var isBetween2 = times.some(({ start, end }) => {
+//               return (
+//                 addMinutes(startTime, interval) > start &&
+//                 addMinutes(startTime, interval) < end
+//               );
+//             });
+//             if (!isBetween && !isBetween2) {
+//               timeslots.push(startTime);
+//             }
+//           }
+//         }
+
+//         console.log(timeslots);
+//       } else {
+//         //console.log("no");
+//         //setisShow(false);
+//       }
+//    //   setarray1(timeslots);
+//     }
+//   } catch (err) {
+//     //console.log(err);
+//   }
+
+
+// };
 
 
  /* Get Booked Schedule  of Coaches */
@@ -869,6 +894,189 @@ var interval=90;
   console.log(busySchedule); 
   // getTimeslots();
 };
+
+
+const [Month, setMonth] = useState("");
+const [Date_, setDate_] = useState();
+const [Day_, setDay_] = useState("");
+
+const [meetingByDate, setMeetingByDate] = useState([]);
+const [meetingdate, setmeetingdate] = useState("");
+const [CoachUnavailability, setCoachUnavailability] = useState([]);
+const [unavailableId, setUnavailableId] = useState(null);
+const [UnavailableStartSlot, setUnavailableStartSlot] = useState(null);
+const [UnavailableEndSlot, setUnavailableEndSlot] = useState(null);
+const [isUnavailable, setIsUnavailable] = useState(false);
+  // get all meeting data
+  const getMeetingByDate = async (todayDate: string) => {
+    const coachId = sessionStorage.getItem("coachId");
+
+    const queryDoc = query(meetingRef, where("coachId", "==", coachId),where("meetingDate", "==", todayDate));
+
+    await getDocs(queryDoc).then((response) => {
+      setMeetingByDate(
+        response.docs.map((data) => {
+          return { ...data.data(), meeting_id: data.id };
+        })
+      );
+    });
+  };
+
+
+const getTimeslots = async (date) => {
+  
+  
+
+  var tomorrow = new Date(date);
+  tomorrow.setDate(date.getDate() + 1);
+  var todayDate = new Date(tomorrow).toISOString().slice(0, 10);
+
+  //console.log(todayDate);
+
+  getMeetingByDate(todayDate);
+
+  setmeetingdate(todayDate);
+
+  var startTime = "";
+  var endTime = "";
+  const d = date;
+  var selectedDay = date.getDay();
+  ////console.log("selected days: " + selectedDay + "");
+
+  setDate(date);
+  setMonth(date.toLocaleString("default", { month: "long" }));
+  setDate_(date.getDate());
+  setDay_(date.toLocaleDateString("default", { weekday: "long" }));
+
+  var included = 1;
+  setarray2([]);
+
+ 
+
+    // ////console.log(res);
+    ////console.log(data);
+
+
+
+
+
+  //getBookedSchedule();
+};
+
+
+function isReserved(time) {
+  // assume reserved times are stored in an array called 'reservedTimes'
+  for (let i = 0; i < meetingByDate.length; i++) {
+    if (time === meetingByDate[i].meetingTime) {
+      // if the time slot is reserved, return true
+      return true;
+    }
+  }
+  // if the time slot is not reserved, return false
+  return false;
+}
+
+
+useEffect(() => {
+  // Get the current time
+  let now = new Date();
+  let currentHours = now.getHours();
+  let currentMinutes = now.getMinutes();
+
+  // Given date and time in Indian Standard Time (IST)
+const givenDate =date;
+
+// Convert the given date and time to South Africa Standard Time (SAST)
+const saTimeZone = 'Africa/Johannesburg';
+const saFormattedDate = givenDate.toLocaleString('en-US', { timeZone: saTimeZone });
+
+console.log(`Given date and time in IST: ${givenDate}`);
+console.log(`Converted date and time in SAST: ${saFormattedDate}`);
+  let currentTime=`00:00:00`;
+  if(date.getDate() == now.getDate() && date.getFullYear() == now.getFullYear() && date.getMonth() == now.getMonth()){
+  currentTime = `${currentHours}:${currentMinutes < 10 ? '0' : ''}${currentMinutes}:00`;
+  }else{
+    currentTime = `00:00:00`;
+  }
+  console.log(date.getDate(),date.getFullYear(),date.getMonth());
+console.log(now.getDate(),now.getFullYear(),now.getMonth());
+  console.log('terrr');
+  if(myData != null){
+    if(myData.start_time){
+var starttime = myData.start_time;
+    }else{
+      var starttime = "09:00:00";
+    }
+var interval = "45";
+if(myData.start_time){
+var endtime = myData.end_time;
+     }else{
+       var endtime = "17:00:00";
+     }
+
+    }
+    else{
+      var starttime = "09:00:00";
+      var interval = "45";
+      var endtime = "17:00:00";
+    }
+//var endtime = "17:00:00";
+
+if (starttime >= currentTime) {
+var timeslots = [starttime];
+}else{
+var timeslots = [];
+}
+//console.log(meetingByDate);
+
+while (starttime < endtime) {
+
+starttime = addMinutes(starttime, interval); 
+if (starttime >= currentTime) {
+if(starttime < endtime){
+  
+    console.log(currentTime);
+
+if(!isReserved(starttime)){
+timeslots.push(starttime);
+}
+}
+}
+//settimeslot_load(false);
+}
+
+setarray2(timeslots);
+
+
+}, [meetingByDate]);
+ 
+const checkAvailability = () => {
+  const dateString = `${Day_} ${Month} ${Date_}`;
+  const isDateAvailable = CoachUnavailability.find((item) => item.date === dateString);
+//console.log(isDateAvailable);
+  if(isDateAvailable){
+    setUnavailableId(isDateAvailable.un_id);
+    setUnavailableStartSlot(isDateAvailable.startSlot);
+    setUnavailableEndSlot(isDateAvailable.endSlot);
+  }else{
+    setUnavailableId(null);
+    setUnavailableId(null);
+    setUnavailableId(null);
+  }
+  
+  setIsUnavailable(!isDateAvailable);
+};
+
+
+useEffect(() => {
+   
+  checkAvailability();
+   
+ }, [Day_,Month,Date_,CoachUnavailability]);
+
+
+
+
 
 function addMinutes(time, minutes) {
   var date = new Date(
@@ -1542,7 +1750,7 @@ m=0;
 
 
           <div className="timesheet-carousel">
-          <OwlCarousel options={options}>
+          {/* <OwlCarousel options={options}> */}
 
           { forloops.map((floop, index) => {
             let i=(index)*7;
@@ -1563,7 +1771,7 @@ m=0;
             }
 
           })}
-          </OwlCarousel>
+          {/* </OwlCarousel> */}
           </div>
 
 
@@ -2333,18 +2541,20 @@ return(<>
           <h3 className="mrb-20">schedule a session</h3>
           <div className="form-group mrb-30">
             <h4 className="mrb-5">select the date</h4>
-            <Calendar  />
+            <Calendar onChange={getTimeslots} value={date} minDate={today} />
           </div>
           {/*/ form-group */}
           <div className="form-group mrb-30">
             <h4 className="mrb-5">select the time</h4>
             <div className="inner">
-              <span>
-                <small>from</small> 09:00
-              </span>
-              <span>
-                <small>to</small> 17:00
-              </span>
+           
+            <select name="cars" class="form-control">
+            {array2.map((timeSlot, index) => (
+    index + 1 < array2.length && (
+      <option key={index}>{array2[index]} - {array2[index + 1]}</option>
+    )
+  ))}
+               </select>
             </div>
             {/*/ inner */}
           </div>
@@ -2352,9 +2562,13 @@ return(<>
           <div className="form-group mrb-30">
             <h4 className="mrb-5">select your client</h4>
             <select name="cars" className="form-control">
-              <option value="client name">client name</option>
-              <option value="client name">client name</option>
-            </select>
+            {myClient.map((client, index) => (
+        <option key={index} value={client.c_id}>
+          {client.client_name}
+        </option>
+        
+      ))}
+      </select>
           </div>
           {/*/ form-group */}
           <div className="form-group mrb-30">
