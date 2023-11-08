@@ -1,7 +1,7 @@
 html{overflow-x:hidden;}
 html, body {height: 100%;}
 
-body{background:#ece6d3 !important; font-size: 16px !important; font-family: 'DejaVu Sans' !important; font-weight:200 !important; color: #1b1b1b !important;}
+body{background:#ece6d3 !important; font-size: 16px !important; font-family: 'DejaVu Sans' !important; font-weight:400 !important; color: #1b1b1b !important;}
 
 @font-face {
     font-family: 'DejaVu Sans Condensed';
@@ -73,7 +73,7 @@ a:hover, a:focus{color:#0f2540; text-decoration:none;}
 img{max-width:100%; vertical-align:middle;}
 p{line-height:24px; margin:0 0 15px; text-align:justify;}
 
-h1, h2, h3, h4, h5, h6{font-weight: bold; margin:0 0 10px;}
+h1, h2, h3, h4, h5, h6{font-weight: bold; letter-spacing:-2px; margin:0 0 10px;}
 h2{color:#f79632;}
 h3{color:#0f2540;}
 h4{color:#f79632;}
@@ -776,7 +776,7 @@ padding: 25px 40px;
 
 /* client dashboard */
 .client-dashboard {position:relative; margin:0; padding:70px 0 80px; z-index:1;}
-.client-dashboard h2{color:#0f2540; font-size:30px; margin:40px 0; position:relative; text-align: left; letter-spacing: 5px; text-transform: capitalize;}
+.client-dashboard h2{color:#0f2540; font-size:30px; margin:40px 0; position:relative; text-align: left; text-transform: capitalize;}
 .client-reminder {
   float: right;
   background: #6cc3a5;
@@ -803,14 +803,11 @@ padding: 25px 40px;
   padding: 10px 15px 0 15px;
   text-transform: uppercase;
   font-size: 18px;
-  font-weight: 400;
-  letter-spacing: 2px;
 }
 .client-reminder .dismiss h6 {
   font-size: 12px;
   text-align: center;
   color: #f8f3e7;
-  letter-spacing: 1px;
   padding: 10px 2px 0px 0px;
 }
 .client-reminder hr { border: 1px solid #0f2540 !important; margin: 0 !important;}
@@ -820,8 +817,6 @@ padding: 25px 40px;
   /* text-transform: lowercase; */
   margin: 0 0 15px;
   color: #106166;
-  letter-spacing: 2px;
-  font-weight: 800;
 }
 .client-dashboard .banner-text h2{color: #0f2540;
   font-size: 75px;
@@ -855,14 +850,12 @@ padding: 25px 40px;
 }
 .client-dashboard .info-basic p {
   font-size: 18px;
-  font-weight: 700;
-  letter-spacing: 2px;
+  font-weight: bold;
   margin-bottom: 15px;
 }
 .client-dashboard .info-basic p span{
     font-size: 15px;
     font-weight: 400;
-    letter-spacing: 1px;
     display: block;
     word-break: break-all;
 }
@@ -875,11 +868,11 @@ padding: 25px 40px;
   color: #f79632;
 }
 .client-dashboard .banner-et .btn{
-    font-weight: 500;
+    font-weight: bold;
     font-size: 14px;
     text-shadow: none;
     /* text-transform: uppercase; */
-    letter-spacing: 2px;
+    letter-spacing: 0.5px;
     box-shadow: none;
     border: 0;
     min-width: 190px;
@@ -896,8 +889,7 @@ padding: 25px 40px;
 }
 .client-dashboard .banner-et .btn-book{
   color: #0f2540;
-  background: #6dc1a4; font-weight: 700; letter-spacing: 1px;
-}
+  background: #6dc1a4;}
 .client-dashboard .banner-et{width: 77%;}
 .client-dashboard .banner-et .btn-coach {
   background: #1d696c;
@@ -906,12 +898,12 @@ padding: 25px 40px;
   margin-left: 15px;
   }
 .client-dashboard .banner-et .btn-schedule{ background: #d479a5; color: #f7f0e4; float: none;}
-.client-dashboard .banner-et .padd{margin: 20px 0; margin-bottom: 20px;}
+.client-dashboard .banner-et .padd{margin: 20px 0; overflow:hidden;}
 .client-dashboard .banner-et .padd-left{float: left;}
 .client-dashboard .banner-et .padd-right{ float: right;}
 .client-dashboard .banner-et .table{ border-top: 1px solid #0f2540; }
 .client-dashboard .table-coach p{ letter-spacing: 2px; font-weight: 400;}
-.client-dashboard .table-coach .table-pad td{/*padding-bottom: 30px;*/ padding: 5px 5px 30px !important; vertical-align: middle;}
+.client-dashboard .table-coach .table-pad td{/*padding-bottom: 30px;*/ padding: 5px 5px 30px !important; vertical-align: middle; font-weight: 400;}
 .td-two {
   text-align: center;
   }
@@ -1069,10 +1061,10 @@ padding: 25px 40px;
   margin: 50px 0px;
 }
 .client-contact .two-button .btn{
-  font-weight: 600;
+  font-weight: bold;
   font-size: 15px;
   text-shadow: none;
-  letter-spacing: 2px;
+  letter-spacing: 0.5px;
   box-shadow: none;
   border: 0;
   min-width: 100px;
@@ -1086,7 +1078,7 @@ padding: 25px 40px;
 .client-contact .two-button .btn-chat{color: #1d696c; background: #fff; padding-left: 50px;}
 .client-contact .two-button .btn-chat i{font-size: 32px; vertical-align: middle; position: absolute; left: 10px; top: 4px;}
 .client-contact .coach-resp { padding: 70px 0; border-right: 1px solid #1d696c; }
-.client-contact .coach-resp h5{color: #1d696c; margin-bottom: 7px; letter-spacing: 1px;}
+.client-contact .coach-resp h5{color: #1d696c; margin-bottom: 7px;}
 .client-contact .coach-resp ul {
   list-style: circle;
   padding: 0px;
@@ -1099,8 +1091,8 @@ padding: 25px 40px;
   letter-spacing: 1px;
 }
 .client-contact .client-help{padding: 20px 0 0 90px;}
-.client-contact .client-help p { letter-spacing: 0.03rem; font-size: 15px; margin: 40px 0; }
-.client-contact .client-help textarea.form-control{border-radius: 20px; width: 72%; padding: 15px 0 0 20px; font-size: 16px; letter-spacing: 1px; font-weight: 700;}
+.client-contact .client-help p{letter-spacing: 0.03rem; font-size: 15px; margin: 40px 0; }
+.client-contact .client-help textarea.form-control{border-radius: 20px; width: 68%; padding: 15px 0 0 20px; font-size: 16px; font-weight: bold;}
 .client-edit-details .form-control{background: transparent; border: 1px solid #0f2540; height: 32px;
   margin: 6px 0;}
 
@@ -1122,88 +1114,49 @@ padding: 25px 40px;
   text-transform: lowercase;
   margin: 0 0 15px;
   color: #f27755;
-  letter-spacing: 2px;
-  font-weight: 800;
 }
 .follow-instructions h3 span a{color: #0f2450;}
 
-
-
-
 /* modal of session history */
-.session-table h4{color: #0f2540; font-weight: 500; text-transform: uppercase; font-size: 24px; letter-spacing: 2px; text-align: center; margin: 30px 0 40px;}
-.session-table h4 span{display: block; text-transform: lowercase; padding-top: 16px; color: #1d696c; font-size: 16px; font-weight: 500; letter-spacing: 0.05rem; }
+.session-table h4{color: #0f2540; text-transform: uppercase; font-size: 24px; letter-spacing: 2px; text-align: center; margin: 30px 0 40px;}
+.session-table h4 span{display: block; text-transform: lowercase; padding-top: 16px; color: #1d696c; font-size: 16px; letter-spacing: 0.05rem; }
 .table-reschedule .table{--bs-table-border-color: #0f2450 !important; text-align: center;}
-.table-reschedule th { color: #0f2450; font-size: 20px; font-weight: 500; letter-spacing: 1px; }
-.table-reschedule td { font-size: 17px; }
-.table-reschedule .btn { background: #1d696c; color: #fff; font-weight: 600; font-size: 15px;  text-shadow: none; letter-spacing: 2px; box-shadow: none; border: 0; min-width: 100px;  border-radius: 20px; text-align: center; padding: 7px 20px 8px; position: relative; z-index: 2; margin: 2px 0; text-transform: lowercase; }
-.choose-event-type { background: #ece6d35e; border-radius: 30px; padding: 40px 50px; border: 1px solid #0f2450;}
-.event-types { margin: 15px 0; padding: 10px; border-radius: 7px; border: 1px solid #c0c0c0; box-shadow: 0 0 8px 0 #c0c0c0; display: flex; justify-content: space-between; cursor: pointer;}
-.event-types .box-left h5 { color: #0f2450; font-size: 20px; font-weight: 400; }
-.event-types .box-left span { background: #c0c0c063; padding: 7px 5px; font-size: 14px; border-radius: 5px; }
-.event-types .box-right svg { vertical-align: middle; margin-top: 15px; margin-right: 20px; }
+.table-reschedule th{color: #0f2450; font-size: 20px;}
+.table-reschedule td{font-size: 17px;}
+.table-reschedule .btn{background: #1d696c; color: #fff; font-weight: bold; font-size: 15px;  text-shadow: none; letter-spacing: 0.5px; box-shadow: none; border: 0; min-width: 100px;  border-radius: 20px; text-align: center; padding: 7px 20px 8px; position: relative; z-index: 2; margin: 2px 0; text-transform: lowercase; }
+.choose-event-type{background: #ece6d35e; border-radius: 30px; padding: 40px 50px; border: 1px solid #0f2450;}
+.event-types{margin: 15px 0; padding: 10px; border-radius: 7px; border: 1px solid #c0c0c0; box-shadow: 0 0 8px 0 #c0c0c0; display: flex; justify-content: space-between; cursor: pointer;}
+.event-types .box-left h5{color: #0f2450; font-size: 20px;}
+.event-types .box-left span{background: #c0c0c063; padding: 7px 5px; font-size: 14px; border-radius: 5px;}
+.event-types .box-right svg{vertical-align: middle; margin-top: 15px; margin-right: 20px;}
 
-
-
-
-
-.session-history-modal .history-modal { display: flex; flex-direction: row; justify-content: center; }
-.session-history-modal .history-modal h4{color: #0f2540; font-weight: 500; text-transform: uppercase; font-size: 19px; letter-spacing: 2px;}
-.session-history-modal .file-shared { display: flex; flex-direction: row; }
+.session-history-modal .history-modal{display: flex; flex-direction: row; justify-content: center; }
+.session-history-modal .history-modal h4{color: #0f2540; text-transform: uppercase; font-size: 19px;}
+.session-history-modal .file-shared{display: flex; flex-direction: row; }
 .ant-modal-content {background: #fcf5ec !important; border-radius: 25px !important; margin: 20px 0 !important; box-shadow: 0 3px 6px 0px #000 !important; }
 
-.session-history-modal .table-session { background: #ece6d3a8; border-radius: 30px; margin: 50px 0 30px 0; }
-.session-history-modal .table-sess thead td {
-  font-size: 18px;
-  text-transform: uppercase;
-  font-weight: 400;
-  letter-spacing: 2px; text-align: center;
-}
-.session-history-modal .table-sess tbody tr {
-  font-size: 16px;
-  letter-spacing: 2px; text-align: center;
-}
-.session-history-modal .table-sess tbody th {
-  font-size: 19px;
-  letter-spacing: 1px;
-}
-.session-history-modal .table-sess .file-shared figure { width: 25px;  margin-right: 10px; }
-.session-history-modal .table-sess .file-shared div { display: inherit; padding-right: 15px; }
-.session-history-modal .table-sess .file-shared h4 { color: #0f2540; font-size: 13px; text-transform: uppercase; font-weight: 500; }
+.session-history-modal .table-session{background: #ece6d3a8; border-radius: 30px; margin: 50px 0 30px 0; }
+.session-history-modal .table-sess thead td{font-size: 18px; text-transform: uppercase; text-align: center;}
+.session-history-modal .table-sess tbody tr{font-size: 16px;text-align: center;}
+.session-history-modal .table-sess tbody th{font-size: 19px;}
+.session-history-modal .table-sess .file-shared figure{width: 25px;  margin-right: 10px;}
+.session-history-modal .table-sess .file-shared div{display: inherit; padding-right: 15px;}
+.session-history-modal .table-sess .file-shared h4{color: #0f2540; font-size: 13px; text-transform: uppercase;}
 .session-history-modal .table-sess .file-shared h4 span{
     display: block;
-    font-size: 12px;
-    font-weight: 400;
-}
+    font-size: 12px;}
 .session-history-modal .table{border-color: #0f2540 !important;}
 .session-history-modal .table-sess td, .session-history-modal .table-sess th {border-right: 1px solid #0f2540; padding: 20px 7px;}
 .session-history-modal .table-sess td:last-child, .session-history-modal .table-sess th:last-child{border-right: none;}
-.session-history-modal .modall {
-  height: 480px;
-  overflow-x: hidden;
-  overflow-y: scroll; padding: 0 10px; margin: 35px 0;
-}
-.session-history-modal .modall::-webkit-scrollbar { background: transparent; border: 1px solid #0f2540; border-radius: 20px; width: 10px;}
-.session-history-modal .modall::-webkit-scrollbar-thumb{ background: #0f2540; border-radius: 20px;}
-.session-history-modal .ant-modal-footer {
-  display: none;
-}
+.session-history-modal .modall{height: 480px; overflow-x: hidden; overflow-y: scroll; padding: 0 10px; margin: 35px 0;}
+.session-history-modal .modall::-webkit-scrollbar{background: transparent; border: 1px solid #0f2540; border-radius: 20px; width: 10px;}
+.session-history-modal .modall::-webkit-scrollbar-thumb{background: #0f2540; border-radius: 20px;}
+.session-history-modal .ant-modal-footer{display: none;}
 
 /* reschedule session */
-.reschedule-zone {
-  margin: 40px 0;
-}
-.reschedule-zone p {
-  font-size: 18px;
-  letter-spacing: 1px;
-  font-weight: 400;
-  font-family: Gothic A1,sans-serif;
-}
-.reschedule-zone .resc-cal {
-  border-left: 1px solid #0f2540;
-  height: 100%;
-  padding-left: 20px;
-}
+.reschedule-zone{margin: 40px 0;}
+.reschedule-zone p{font-size: 18px;}
+.reschedule-zone .resc-cal{border-left: 1px solid #0f2540; height: 100%; padding-left: 20px;}
 .reschedule-zone .coach-fig figure {
   width: 125px;
   display: block;
@@ -1215,11 +1168,9 @@ padding: 25px 40px;
 .reschedule-zone .coach-fig p, .cal-time p {text-align: center;}
 .cal-time .btn-time {
   background: #f6efe3;
-  font-weight: 400;
   font-size: 15px;
   text-shadow: none;
   text-transform: uppercase;
-  letter-spacing: 2px;
   box-shadow: none;
   border: 1px solid #0f2540;
   min-width: 190px;
@@ -1233,11 +1184,9 @@ padding: 25px 40px;
 }
 .reschedule-zone .btn-next{
   background: #6dc1a4;
-  font-weight: 400;
   font-size: 15px;
   text-shadow: none;
   text-transform: uppercase;
-  letter-spacing: 2px;
   box-shadow: none;
   border: 1px solid #6dc1a4;
   min-width: 190px;
@@ -1263,7 +1212,6 @@ padding: 25px 40px;
   width: 100%;
   max-width: 100%;
   background: transparent;
-  font-family: Gothic A1, sans-serif;
   line-height: 1.125em;
   margin-bottom: 20px;
 }
