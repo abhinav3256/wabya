@@ -2562,8 +2562,6 @@ color: #fff !important;
 .form-error5{color: red !important;font-size: 15px !important;margin: 5px 0 0;}
 .checkbox-err{margin-top: 0px;}
 
-button{font-family: Gothic A1 !important;}
-
 .login-wrap{padding: 120px 0 170px; text-align:center; position:relative;}
   .login-wrap.register-wrap .login-grid{max-width: 700px;}
   .login-wrap .login-grid{margin: 0 auto; max-width: 620px; position:relative;}
