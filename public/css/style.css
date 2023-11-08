@@ -2840,7 +2840,7 @@ button{font-family: Gothic A1 !important;}
   .schedule-session-new .inner{padding: 13px 20px;}
   .schedule-session-new h4{color: #0e2540; display: block; font-weight: 800; font-size: 14px; margin: 0 0 10px;}
   .schedule-session-new .inner{background: #f7f0e4; padding: 15px 20px 12px; -webkit-border-radius: 10px; -moz-border-radius: 10px; border-radius: 10px; display: flex; align-items: center; justify-content: space-between; position: relative;}
-  .schedule-session-new .inner:after{content: "\f105"; font-family: FontAwesome; position: absolute; font-size: 30px; right: 0; left: 0; margin: 0 auto; width: 15px; text-align: center; opacity: 0.3; bottom: 17px;}
+  .schedule-session-new .inner:after{content: ""; font-family: FontAwesome; position: absolute; font-size: 30px; right: 0; left: 0; margin: 0 auto; width: 15px; text-align: center; opacity: 0.3; bottom: 17px;}
   .schedule-session-new .inner span{display: block; font-weight: 800; color: #0e2540; font-size: 20px;}
   .schedule-session-new .inner span small{font-weight: 600; color: rgba(0, 0, 0, 0.5); display: block; font-size: 14px;}
   .schedule-session-new form{position:relative; z-index:2;}
