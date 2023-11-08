@@ -421,7 +421,7 @@ h4{color:#f79632;}
   .user-profile .info-grid p{color:#0f2540; margin: 0 0 30px;}
   .user-profile .info-grid p:last-child{margin-bottom:0;}
   .user-profile .left .info-grid p{font-weight: bold; font-size:18px;}
-  .user-profile .left .info-grid p span{display:block; font-weight:400;}
+  .user-profile .left .info-grid p span{display:block; font-weight:200;}
   .user-profile .left .info-grid p a{color:#0f2540;}
   .user-profile .left .info-grid p a:hover{color:#f79632;}
 
@@ -465,7 +465,7 @@ h4{color:#f79632;}
   .client-profile .info-grid p{color:#0f2540; margin: 0 0 30px;}
   .client-profile .info-grid p:last-child{margin-bottom:0;}
   .client-profile .left .info-grid p{font-weight: bold; font-size:18px;}
-  .client-profile .left .info-grid p span{display:block; font-weight:400;}
+  .client-profile .left .info-grid p span{display:block; font-weight:200;}
   .client-profile .left .info-grid p a{color:#0f2540;}
   .client-profile .left .info-grid p a:hover{color:#f79632;}
 
@@ -787,7 +787,7 @@ padding: 25px 40px;
 }
 .client-reminder p span {
   font-size: 14px;
-  display: block;
+  display: block; font-weight: 200;
 }
 .client-reminder .dismiss {
   border-left: 1px solid #0f2540;
@@ -849,7 +849,7 @@ padding: 25px 40px;
 .client-dashboard .info-basic p span{
     font-size: 15px;
     display: block;
-    word-break: break-all;
+    word-break: break-all; font-weight: 200;
 }
 .client-dashboard .info-basic .left-link{text-align: left;}
 .client-dashboard .left-link a{color: #0f2540; cursor: pointer;}
@@ -1218,145 +1218,44 @@ padding: 25px 40px;
 .react-calendar__navigation button:disabled {
   background-color: #f0f0f0;
 }
-.react-calendar__navigation button:enabled:hover,
-.react-calendar__navigation button:enabled:focus {
-  background-color: #e6e6e6;
-}
-.react-calendar__month-view__weekdays {
-  text-align: center;
-  text-transform: uppercase;
-  font-size: 17px;
-  
-}
-.react-calendar__month-view__weekdays__weekday { padding: 10px 0; }
-.react-calendar__month-view__weekNumbers .react-calendar__tile {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.75em;
-  font-weight: bold;
-}
-.react-calendar__month-view__days__day--weekend {
-  color: #0f2540;
-}
-.react-calendar__month-view__days__day--neighboringMonth {
-  color: #757575;
-}
-.react-calendar__year-view .react-calendar__tile,
-.react-calendar__decade-view .react-calendar__tile,
-.react-calendar__century-view .react-calendar__tile {
-  padding: 1em 0.5em;
-}
-.react-calendar__tile{  background: none;}
-.react-calendar__tile abbr {
-  display: block;
-  width: 55px;
-  height: 55px;
-  line-height: 55px;
-  text-align: center;
-  border-radius: 100%;
-}
-.react-calendar__tile:disabled {
-  background-color: #f0f0f0;
-}
+.react-calendar__navigation button:enabled:hover, .react-calendar__navigation button:enabled:focus{background-color: #e6e6e6;}
+.react-calendar__month-view__weekdays{text-align: center; text-transform: uppercase; font-size: 17px;}
+.react-calendar__month-view__weekdays__weekday{padding: 10px 0;}
+.react-calendar__month-view__weekNumbers .react-calendar__tile{display: flex; align-items: center; justify-content: center; font-size: 0.75em; font-weight: bold;}
+.react-calendar__month-view__days__day--weekend{color: #0f2540;}
+.react-calendar__month-view__days__day--neighboringMonth{color: #757575;}
+.react-calendar__year-view .react-calendar__tile, .react-calendar__decade-view .react-calendar__tile, .react-calendar__century-view .react-calendar__tile{padding: 1em 0.5em;}
+.react-calendar__tile{background: none;}
+.react-calendar__tile abbr{display: block; width: 55px; height: 55px; line-height: 55px; text-align: center; border-radius: 100%;}
+.react-calendar__tile:disabled{background-color: #f0f0f0;}
 .react-calendar__tile:enabled:hover abbr,
-.react-calendar__tile:enabled:focus abbr  {
-  background-color: #0f2540;
-  color: #f7f0e4;
-}
-.react-calendar__tile--now  {
-  background: transparent;
-  color: #0f2540;
-}
-.react-calendar__tile--now:enabled:hover abbr,
-.react-calendar__tile--now:enabled:focus abbr{
-   background: #0f2540;
-  color: #f7f0e4;
-}
-.react-calendar__tile--hasActive {
-  background: #6dc1a4;
-}
+.react-calendar__tile:enabled:focus abbr{background-color: #0f2540; color: #f7f0e4;}
+.react-calendar__tile--now{background: transparent; color: #0f2540;}
+.react-calendar__tile--now:enabled:hover abbr, .react-calendar__tile--now:enabled:focus abbr{background: #0f2540; color: #f7f0e4;}
+.react-calendar__tile--hasActive{background: #6dc1a4;}
 .react-calendar__tile--hasActive:enabled:hover,
-.react-calendar__tile--hasActive:enabled:focus {
-  background: #0f2540;
-}
-.react-calendar__tile--active abbr {
-  background: #6dc1a4;
-  color: #0f2540;
-}
-.react-calendar__tile--active:enabled:hover abbr,
-.react-calendar__tile--active:enabled:focus abbr{
-  background: #0f2540;
-  color: #f7f0e4;
-}
-.react-calendar--selectRange .react-calendar__tile--hover {
-  background-color: red;
-}
-
-.reschedule-zone .cal-time {
-  height:450px;
-  overflow-x: hidden;
-  overflow-y: scroll;
-}
+.react-calendar__tile--hasActive:enabled:focus{background: #0f2540;}
+.react-calendar__tile--active abbr{background: #6dc1a4; color: #0f2540;}
+.react-calendar__tile--active:enabled:hover abbr, .react-calendar__tile--active:enabled:focus abbr{background: #0f2540;color: #f7f0e4;}
+.react-calendar--selectRange .react-calendar__tile--hover{background-color: red;}
+.reschedule-zone .cal-time{height:450px; overflow-x: hidden; overflow-y: scroll;}
 .reschedule-zone .cal-time::-webkit-scrollbar { background: transparent; border: 1px solid #0f2540; border-radius: 20px; width: 10px; }
 .reschedule-zone .cal-time::-webkit-scrollbar-thumb{ background: #0f2540; border-radius: 20px;}
 
-
 /* meeting schedule */
-.meeting-schedule {
-  background: #f6efe3;
-  max-width: 500px;
-  padding: 20px;
-  border-radius: 30px;
-  display: block;
-  margin: 30px auto;
-}
-.meeting-schedule .tick-icon {
-  border-bottom: 1px solid #0f2540; text-align: center; margin-bottom: 30px;
-}
-.meeting-schedule .tick-icon i {
-  border: 1px solid #6dc1a4;
-  padding: 20px;
-  border-radius: 50%;
-  background: #6dc1a4;
-  font-size: 25px;
-  color: #0f2450; margin: 10px 0;
-}
-.meeting-schedule .tick-icon h2 {
-  color: #0f2540;
-}
-.meeting-schedule .tick-icon p {
-  font-size: 16px;margin-bottom: 30px;
-}
-.meeting-schedule .meet {
-  display: flex;
-  flex-direction: row;
-  font-size: 17px; width: 100%;
-}
+.meeting-schedule{background: #f6efe3; max-width: 500px; padding: 20px; border-radius: 30px; display: block; margin: 30px auto;}
+.meeting-schedule .tick-icon {border-bottom: 1px solid #0f2540; text-align: center; margin-bottom: 30px;}
+.meeting-schedule .tick-icon i{border: 1px solid #6dc1a4; padding: 20px; border-radius: 50%; background: #6dc1a4; font-size: 25px; color: #0f2450; margin: 10px 0;}
+.meeting-schedule .tick-icon h2{color: #0f2540;}
+.meeting-schedule .tick-icon p{font-size: 16px;margin-bottom: 30px;}
+.meeting-schedule .meet{display: flex; flex-direction: row; font-size: 17px; width: 100%;}
 .meeting-schedule .left-meet{width: 25%;}
 .meeting-schedule .right-meet{width: 75%;}
-.meeting-schedule .right-meet p span {
-  color: #acacac;
-}
+.meeting-schedule .right-meet p span{color: #acacac;}
 
+.profile-picture{border-radius: 50%; width: 150px; height: 150px; box-shadow: 0 4px 6px 0 rgba(34, 60, 80, .16); transition: all ease-in-out .2s;}
 
-
-
-
-
-.profile-picture {
-  border-radius: 50%;
-  width: 150px;
-  height: 150px;
-  box-shadow: 0 4px 6px 0 rgba(34, 60, 80, .16);
-  transition: all ease-in-out .2s;
-}
-
-.profile-picture:hover {
-  box-shadow: 0 8px 12px 0 rgba(34,60,80,.16);
-}
-
-
+.profile-picture:hover{box-shadow: 0 8px 12px 0 rgba(34,60,80,.16);}
 
 /* client register */
 .form-error {
