@@ -540,7 +540,7 @@ button, input, optgroup, select, textarea{font-family: 'DejaVu Sans' !important;
 /* timesheet page */
 .timesheet{position:relative; margin:0; padding:70px 0 80px; z-index:1;}
 .timesheet .container{max-width:1300px;}
-.timesheet h2{color:#0f2540; font-size:30px; margin:40px 0; position:relative; text-align: left; letter-spacing: 5px; text-transform: lowercase;}
+.timesheet h2{color:#0f2540; font-size:30px; margin:40px 0; position:relative; text-align: left; text-transform: lowercase;}
 .timesheet-carousel { background: rgb(248, 243, 231); height: 50px; border-radius: 20px; position: relative; margin-bottom: 20px;}
 
 /* owl slider */
@@ -577,8 +577,11 @@ button, input, optgroup, select, textarea{font-family: 'DejaVu Sans' !important;
 }
 .center-arrow {
   position: absolute;
-  top: 13px;     left: 27px;
-  letter-spacing: 3px;
+  top: 13px; left: 0;
+  letter-spacing: 0;
+  right: 0;
+  width: 100%;
+  text-align: center;
 }
 .timesheet-buttons {
   margin-bottom: 20px;
@@ -1293,16 +1296,10 @@ span.pass-eye {
 .coaches-list .table-coaches-list .btn-delete{background: #d479a6; color: #f8f3e7;}
 .coaches-list .btn-add-new{ background: #0f2540; color: #f8f3e7; font-weight: bold; font-size: 15px; text-shadow: none; text-transform: uppercase;  box-shadow: none; border: 0; min-width: 190px; text-align: center; border-radius: 20px; margin: 0; padding: 9px 20px 8px; position: relative;  z-index: 2; float: right;}
 
-
-
-
-
-
-
 /* change password */
 .client-password {position:relative; margin:0; padding:70px 0 80px; z-index:1;}
 .client-password h2{color:#0f2540; font-size:30px; margin:40px 0; position:relative; text-align: left; letter-spacing: 5px;}
-.client-password h3{color:#0f2540; font-size:24px; margin:40px 0; position:relative; text-align: left; letter-spacing: 3px;}
+.client-password h3{color:#0f2540; font-size:24px; margin:40px 0; position:relative; text-align: left;}
 .client-password .inner-info {
   background: #f7f0e4;
   border-radius: 20px;
