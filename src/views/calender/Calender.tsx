@@ -1095,7 +1095,7 @@ const [BookedId, setBookedId] = useState();
 const getTimeslots = async (date) => {
   
   
-setmeetingtime('');
+// setmeetingtime('');
   var tomorrow = new Date(date);
   tomorrow.setDate(date.getDate() + 1);
   var todayDate = new Date(tomorrow).toISOString().slice(0, 10);
