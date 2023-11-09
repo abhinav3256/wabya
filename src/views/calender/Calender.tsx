@@ -920,6 +920,9 @@ const [meetingApiCreated, setmeetingApiCreated] = useState("");
 
 const [meetingtime, setmeetingtime] = useState("");
 
+const [meetingclient, setmeetingclient] = useState("");
+
+const [meetingemail, setmeetingemail] = useState("");
 const [meetingendtime, setmeetingendtime] = useState("");
 const [selectedTime, setselectedTime]: any = useState();
 
@@ -1061,7 +1064,7 @@ const [BookedId, setBookedId] = useState();
          </body>
       </html>
 `;
-    sendMailFunc2('abhinav@htlogics.com',msg2,'Meeting Scheduled');  
+    sendMailFunc2(meetingemail,msg2,'Meeting Scheduled');  
 
     setmeetingSuccessMsg('MeetingScheduled');
      
@@ -1092,7 +1095,7 @@ const [BookedId, setBookedId] = useState();
 const getTimeslots = async (date) => {
   
   
-
+setmeetingtime('');
   var tomorrow = new Date(date);
   tomorrow.setDate(date.getDate() + 1);
   var todayDate = new Date(tomorrow).toISOString().slice(0, 10);
@@ -1232,6 +1235,31 @@ const checkAvailability = () => {
   
   setIsUnavailable(!isDateAvailable);
 };
+
+
+const handleClientClick = (event: any) => {
+  //console.log(event)
+
+  const selectedIndex = event.target.selectedIndex;
+    const selectedOption = event.target.options[selectedIndex];
+   // const selectedTime = selectedOption.getAttribute('data-time');
+ 
+  console.log( selectedOption.getAttribute("data-value"));
+  console.log( selectedOption.getAttribute("data-email"));
+  setmeetingclient(selectedOption.getAttribute("data-value"));
+  setmeetingemail(selectedOption.getAttribute("data-email"));
+
+ 
+  
+};
+
+
+
+
+
+
+
+
 
 
 const handleTimeClick = (event: any) => {
@@ -2804,12 +2832,12 @@ return(<>
           {/*/ form-group */}
           <div className="form-group mrb-30">
             <h4 className="mrb-5">select your client</h4>
-            <select name="cars" className="form-control">
-            <option value="">
+            <select name="cars" className="form-control" onChange={handleClientClick}>
+            <option value="" data-value="" data-email="">
           Select Client
         </option>
             {myClient.map((client, index) => (
-        <option key={index} value={client.c_id}>
+        <option key={index} value={client.c_id} data-value={client.c_id} data-email={client.client_email}>
           {client.client_name}
         </option>
         
