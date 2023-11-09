@@ -2476,7 +2476,7 @@ const year = today.getFullYear();
          
          </div>
               <div className="row">
-                <div className="col-md-2">.</div>
+                <div className="col-md-2"> </div>
                 <div className="col-md-8" style={{'marginBottom':'10px','fontSize':'18px', 'display':'none'}}>Coach Email - {mycoach ? mycoach[0].coach_email : null }</div></div>
 
               <div className="row">

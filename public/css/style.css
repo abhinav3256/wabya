@@ -2813,6 +2813,10 @@ button{font-family: Gothic A1 !important;}
   text-transform: inherit;
 }
 
+.Toastify__toast-container--top-right{
+  top:50px !important;
+}
+
 @media (min-width: 320px) and (max-width: 767px) {
   
    .header{border-top: 3px solid #ec2397;}
