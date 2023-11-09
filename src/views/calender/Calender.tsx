@@ -16,6 +16,7 @@ import MuiAvatar, { AvatarProps } from '@mui/material/Avatar'
 import MuiMenuItem, { MenuItemProps } from '@mui/material/MenuItem'
 import Typography, { TypographyProps } from '@mui/material/Typography'
 import Calendar from "react-calendar";
+import { Alert } from '@mui/material'
 
 // ** Icons Imports
 
@@ -173,6 +174,7 @@ const Calender = () => {
     const [selectDateMob, setSelectDateMob] = useState(new Date().toISOString().split('T')[0]);
 
     const [checkedDateMob, setCheckedDateMob] = useState();
+    const [meetingSuccessMsg, setmeetingSuccessMsg] = useState('');
     let m = 0;
 
      /// For Testing
@@ -938,7 +940,7 @@ const [BookedId, setBookedId] = useState();
   };
 
   const scheduleNext = async () => {
-    
+    setmeetingSuccessMsg('');
    
    
     try {
@@ -1061,15 +1063,17 @@ const [BookedId, setBookedId] = useState();
 `;
     sendMailFunc2('abhinav@htlogics.com',msg2,'Meeting Scheduled');  
 
-
+    setmeetingSuccessMsg('MeetingScheduled');
      
       } else {
+        setmeetingSuccessMsg('');
         // setbookingLoad(false);
         // setbookingError(true);
       }
 
       ////console.log(data);
     } catch (err) {
+      setmeetingSuccessMsg('');
       // setbookingLoad(false);
       // setbookingError(true);
       ////console.log(err);
@@ -2109,7 +2113,7 @@ m=0;
       </Menu>
                         </Fragment>
 
-                  <button className='btn btn-five' >schedule session</button>
+                  <button className='btn btn-five' onClick={handleSchedule}>schedule session</button>
 
               </div>
             </div>
@@ -2818,8 +2822,9 @@ return(<>
             <textarea className="form-control" defaultValue={""} />
           </div>
           {/*/ form-group */}
+          {meetingSuccessMsg &&  <Alert severity='success' style={{ margin :'0 0 20px 0',width:'70%'}}>{meetingSuccessMsg}</Alert>} 
           <div className="form-group form-btn">
-            <button className="btn btn-darkblue" onClick={scheduleNext} disabled={!meetingtime && isUnavailable}  >save</button>
+            <button className="btn btn-darkblue schedule-btnn" onClick={scheduleNext}   >save</button>
           </div>
         </div>
         {/*/ cl-coll */}
@@ -2844,7 +2849,7 @@ return(<>
             </p>
             <p className="btn-p">
               {/* <a href="#" className="btn btn-darkblue" onClick={handleSchedule}> */}
-              <a href="#" className="btn btn-darkblue" >
+              <a href="#" className="btn btn-darkblue" onClick={handleSchedule}>
                 schedule session
               </a>
             </p>

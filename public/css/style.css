@@ -2790,7 +2790,28 @@ button{font-family: Gothic A1 !important;}
   .schedule-session-new textarea{height:90px !important;}
   .schedule-session-new .btn.btn-darkblue:after{background:#f59633;}
 
-
+.schedule-btnn{
+  
+  background: #f79632;
+  border: 0;
+  text-decoration: none;
+  border-radius: 30px;
+  font-size: 14px;
+  font-weight: 700;
+  position: relative;
+  z-index: 1;
+  display: inline-block;
+  text-align: center;
+  color: #eae3d1;
+  padding: 12px 11px 10px;
+  letter-spacing: 1px;
+  width: 100%;
+  margin: 0;
+  overflow: hidden;
+  text-shadow: none;
+  box-shadow: none;
+  text-transform: inherit;
+}
 
 @media (min-width: 320px) and (max-width: 767px) {
   
