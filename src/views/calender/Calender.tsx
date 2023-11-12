@@ -170,6 +170,7 @@ const Calender = () => {
     const [isFormShow, setisFormShow] = useState(false);
     const [scheduleSuccess, setscheduleSuccess] = useState(false);
     const [isSesShow, setisSesShow] = useState(false);
+    const [isAvblShow, setisAvblShow] = useState(false);
     const [isSyncFormShow, setisSyncFormShow] = useState(false);
 
     const [selectDateMob, setSelectDateMob] = useState(new Date().toISOString().split('T')[0]);
@@ -741,6 +742,18 @@ setallWeekDay(next7Days);
   
     const handleScheduleCancel = () => {
       setisSesShow(false);
+     // setisShowmsg(false);
+    };
+
+
+    const handleavbl = (e) => {
+      e.preventDefault();
+      setisAvblShow(true);
+     // setisShowmsg(false);
+    };
+  
+    const handleavblCancel = () => {
+      setisAvblShow(false);
      // setisShowmsg(false);
     };
 
@@ -2208,7 +2221,7 @@ m=0;
             <div className='row'>
               <div className='col-sm-12'>
                 {/* <button className='btn btn-two'>sync calendars</button> */}
-                <button className='btn btn-four' >set availability</button>
+                <button className='btn btn-four'  onClick={handleavbl}>set availability</button>
 
                   <Fragment>
 
@@ -2916,7 +2929,7 @@ return(<>
           <Modal
           centered
           className="session-modal"
-          visible={false}
+          visible={isSesShow}
           onOk={handleSchedule}
           onCancel={handleScheduleCancel}
           width={800}
@@ -2998,9 +3011,9 @@ return(<>
 <Modal
           centered
           className="session-modal"
-          visible={isSesShow}
-          onOk={handleSchedule}
-          onCancel={handleScheduleCancel}
+          visible={isAvblShow}
+          onOk={handleavbl}
+          onCancel={handleavblCancel}
           width={800}
          
           footer={[]}
@@ -3189,7 +3202,7 @@ return(<>
               </a>
             </p>
             <p className="btn-p">
-              <a href="#" className="btn btn-orange">
+              <a href="#" className="btn btn-orange" onClick={handleavbl}>
                 my availability
               </a>
             </p>
