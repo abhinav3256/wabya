@@ -510,6 +510,8 @@ const getMyMeeting = async () => {
 }, [myAvailability]);
 
 
+ 
+
 
 
 useEffect(() => {
@@ -1208,16 +1210,27 @@ const [BookedId, setBookedId] = useState();
 
 const getTimeslots = async (date) => {
   
-  
+  console.log(date);
 // setmeetingtime('');
   var tomorrow = new Date(date);
+
+  var t_date = new Date();
+
+  console.log('t date', t_date);
+
+
+if(t_date.getDate() != tomorrow.getDate()){
   tomorrow.setDate(date.getDate() + 1);
+}
+  
+
+
   var todayDate = new Date(tomorrow).toISOString().slice(0, 10);
 
   //console.log(todayDate);
 
   getMeetingByDate(todayDate);
-
+  console.log('today date', todayDate);
   setmeetingdate(todayDate);
 
   var startTime = "";
@@ -1227,6 +1240,7 @@ const getTimeslots = async (date) => {
   ////console.log("selected days: " + selectedDay + "");
 
   setDate(date);
+  console.log('today date nnndhjhg',date);
   setMonth(date.toLocaleString("default", { month: "long" }));
   setDate_(date.getDate());
   setDay_(date.toLocaleDateString("default", { weekday: "long" }));
@@ -1416,7 +1430,7 @@ const getBookingId = async () => {
 
   addDoc(meetRef, {
     meetingId: BookedId,
-    clientId: 'oNdFd1dHuzplJCu69LTE',
+    clientId: meetingclient,
     coachId: sessionStorage.getItem("coachId"),
     coach_name: myData.coach_name,
     meetingDate: meetingdate,
@@ -1435,8 +1449,13 @@ const getBookingId = async () => {
   isMeetingEnd: 0,
   });
 
-
+  // setTimeout(() => {
+  //   window.location.reload();
+  // }, 3000); // 3000 milliseconds = 3 seconds
 // setNext(true);
+
+
+getMeeting();
 };
 
 useEffect(() => {
@@ -1796,7 +1815,7 @@ var interval = "45";
       </div>
   `;
       sendMailFunc('abhinavkumar3256@gmail.com',msg);  
-      getMeeting();
+     
   
      
     })
@@ -2117,7 +2136,11 @@ m=0;
   //    }, [meetingClientJoinedData]);
 
   const daysOfWeek = getCurrentWeek();
-
+  useEffect(() => {
+    if (BookedId) {
+      getBookingId();
+    }
+  }, [BookedId]);
   
   return (
     <>
