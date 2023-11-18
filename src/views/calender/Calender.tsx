@@ -208,13 +208,13 @@ const Calender = () => {
 
 
   const [availability, setAvailability] = useState({
-    mon: { startHour: '09', startMinute: '00', endHour: '17', endMinute: '00',startHour2: '00', startMinute2: '00', endHour2: '00', endMinute2: '00', isMore:false },
-    tue: { startHour: '09', startMinute: '00', endHour: '17', endMinute: '00',startHour2: '00', startMinute2: '00', endHour2: '00', endMinute2: '00', isMore:false },
-    wed: { startHour: '09', startMinute: '00', endHour: '17', endMinute: '00',startHour2: '00', startMinute2: '00', endHour2: '00', endMinute2: '00', isMore:false },
-    thu: { startHour: '09', startMinute: '00', endHour: '17', endMinute: '00',startHour2: '00', startMinute2: '00', endHour2: '00', endMinute2: '00',isMore:false },
-    fri: { startHour: '09', startMinute: '00', endHour: '17', endMinute: '00',startHour2: '00', startMinute2: '00', endHour2: '00', endMinute2: '00', isMore:false },
-    sat: { startHour: '09', startMinute: '00', endHour: '17', endMinute: '00',startHour2: '00', startMinute2: '00', endHour2: '00', endMinute2: '00', isMore:false },
-    sun: { startHour: '09', startMinute: '00', endHour: '17', endMinute: '00',startHour2: '00', startMinute2: '00', endHour2: '00', endMinute2: '00', isMore:false }
+    mon: { startHour: '09', startMinute: '00', endHour: '17', endMinute: '00',startHour2: '00', startMinute2: '00', endHour2: '00', endMinute2: '00', isMore:false, isUnAvbl :false },
+    tue: { startHour: '09', startMinute: '00', endHour: '17', endMinute: '00',startHour2: '00', startMinute2: '00', endHour2: '00', endMinute2: '00', isMore:false,isUnAvbl :false },
+    wed: { startHour: '09', startMinute: '00', endHour: '17', endMinute: '00',startHour2: '00', startMinute2: '00', endHour2: '00', endMinute2: '00', isMore:false, isUnAvbl :false },
+    thu: { startHour: '09', startMinute: '00', endHour: '17', endMinute: '00',startHour2: '00', startMinute2: '00', endHour2: '00', endMinute2: '00',isMore:false,isUnAvbl :false },
+    fri: { startHour: '09', startMinute: '00', endHour: '17', endMinute: '00',startHour2: '00', startMinute2: '00', endHour2: '00', endMinute2: '00', isMore:false,isUnAvbl :false },
+    sat: { startHour: '09', startMinute: '00', endHour: '17', endMinute: '00',startHour2: '00', startMinute2: '00', endHour2: '00', endMinute2: '00', isMore:false,isUnAvbl :false },
+    sun: { startHour: '09', startMinute: '00', endHour: '17', endMinute: '00',startHour2: '00', startMinute2: '00', endHour2: '00', endMinute2: '00', isMore:false,isUnAvbl :false }
   });
 
   // const handleHourChange = (event,day) => {
@@ -286,14 +286,14 @@ const Calender = () => {
       }));
     } else {
       // If changing endHour, ensure it is greater than startHour
-      const startHour = parseInt(availability[day].startHour, 10);
-      const updatedEndHour = sanitizedValue < startHour ? startHour : sanitizedValue;
+      const startHour2 = parseInt(availability[day].startHour2, 10);
+      const updatedEndHour = sanitizedValue < startHour2 ? startHour2 : sanitizedValue;
   
       setAvailability(prevState => ({
         ...prevState,
         [day]: {
           ...prevState[day],
-          endHour: updatedEndHour.toString().padStart(2, '0')
+          endHour2: updatedEndHour.toString().padStart(2, '0')
         }
       }));
     }
@@ -399,6 +399,20 @@ const Calender = () => {
       return updatedAvailability;
     });
   };
+
+
+  const handleIsUnavblToggle = (e,day) => {
+    e.preventDefault();
+    console.log(day);
+    setAvailability((prevAvailability) => {
+      const updatedAvailability = { ...prevAvailability };
+      updatedAvailability[day] = {
+        ...prevAvailability[day],
+        isUnAvbl: !prevAvailability[day].isUnAvbl
+      };
+      return updatedAvailability;
+    });
+  };
   
   useEffect(() => {
 
@@ -482,7 +496,7 @@ const getMyMeeting = async () => {
   if (myAvailability) {
     const updatedAvailability = { ...availability };
     myAvailability.forEach((myData) => {
-      const { day, startHour, startMinute, endHour, endMinute, startHour2, startMinute2, endHour2, endMinute2 } = myData;
+      const { day, startHour, startMinute, endHour, endMinute, startHour2, startMinute2, endHour2, endMinute2, isUnAvbl } = myData;
       updatedAvailability[day] = {
         startHour: startHour.padStart(2, '0'),
         startMinute: startMinute.padStart(2, '0'),
@@ -492,7 +506,8 @@ const getMyMeeting = async () => {
         startMinute2: startMinute2.padStart(2, '0'),
         endHour2: endHour2.padStart(2, '0'),
         endMinute2: endMinute2.padStart(2, '0'),
-        isMore: false
+        isMore: false,
+        isUnAvbl: isUnAvbl,
       };
     });
     setAvailability(updatedAvailability);
@@ -1972,6 +1987,7 @@ m=0;
       startMinute2: data.startMinute2,
       endHour2: data.endHour2,
       endMinute2: data.endMinute2,
+      isUnAvbl: data.isUnAvbl,
       coach_id:coachId,
     }));
   
@@ -2002,6 +2018,7 @@ m=0;
               startMinute2: data.startMinute2,
               endHour2: data.endHour2,
               endMinute2: data.endMinute2,
+              isUnAvbl: data.isUnAvbl,
               coach_id:coachId,
             })
               .then(() => {
@@ -2036,6 +2053,7 @@ m=0;
         startMinute2: data.startMinute2,
         endHour2: data.endHour2,
         endMinute2: data.endMinute2,
+        isUnAvbl:data.isUnAvbl,
         coach_id:coachId,
       
        
@@ -2256,7 +2274,7 @@ m=0;
             <div className='row'>
               <div className='col-sm-12'>
                 {/* <button className='btn btn-two'>sync calendars</button> */}
-                <button className='btn btn-four'  onClick={handleavbl}>set availability</button>
+                <button className='btn btn-four'  onClick={handleStand}>set availability</button>
 
                   <Fragment>
 
@@ -2601,9 +2619,9 @@ return(<>
 
 centered
 className="session-modal unavailable-modal avbl-modal-mobile"
-visible={true}
-onOk={handleSchedule}
-onCancel={handleScheduleCancel}
+visible={isStandShow}
+onOk={handleStand}
+onCancel={handleStandCancel}
 width={800}
 height={1000}
 footer={[]}
@@ -2612,7 +2630,151 @@ footer={[]}
          
         >
     
-<div className="standard-availability">
+
+
+<>
+
+<div className="standard-availability edit-availability availability-popup stand-avbl">
+  <div className="info">
+    <div className="title">
+      {" "}
+      <i className="fa fa-calendar-o" /> edit availability
+    </div>
+  </div>
+  <div className="availability-form availability-form2">
+    <form action="">
+      <div className="month-carousel form-control" style={{display:'none'}}>
+        <div className="item" >
+          <span className="first">jan 01 - 07</span>
+          <span className="last">
+            <i className="fa fa-angle-left" />{" "}
+            <i className="fa fa-angle-right" />
+          </span>
+        </div>
+      </div>
+
+      {days.map((day) => (
+        <>
+      <div className="row">
+        <div className="col-sm-1 ap1">
+          <span>{day}</span>
+        </div>
+        <div className="col-sm-2 ap2">
+          
+          <input
+            type="number"
+            className="text-top form-control dates"
+            name="startHour"
+           value={availability[day].startHour}
+           onChange={(e) => handleHourChange(e, day)}
+           />
+             <input
+            type="number"
+            className="text-top form-control dates"
+            name="startMinute"
+            value={availability[day].startMinute}
+            onChange={(e) => handleMinuteChange(e, day)}
+          />
+        </div>
+        <div className="col-sm-1 ap3">
+          <span className="text-center">to</span>
+        </div>
+        <div className="col-sm-2 ap2">
+        <input
+            type="number"
+            className="text-top form-control dates"
+            name="endHour"
+            value={availability[day].endHour}
+            onChange={(e) => handleHourChange(e, day)}
+          />
+          <input
+            type="number"
+            className="text-top form-control dates"
+            name="endMinute"
+            value={availability[day].endMinute}
+            onChange={(e) => handleMinuteChange(e, day)}
+          />
+        </div>
+        <div className="col-sm-1 ap4">
+
+
+          <section className="sec-plus" onClick={() => handleIsMoreToggle(day)}>+</section>
+        </div>
+        <div className="col-sm-4 ap5 text-right">
+
+        { !availability[day].isUnAvbl ?
+          <button className="btn btn-chestnutred unavailable" onClick={(e) => handleIsUnavblToggle(e,day)}>
+            set day as unavailable
+          </button>
+          : 
+          <button className="btn btn-chestnutred unavailable" onClick={(e) => handleIsUnavblToggle(e,day)}>
+            unavailable
+          </button>
+
+        }
+        </div>
+
+        { availability[day].isMore || availability[day].startHour2 != '00' || availability[day].startMinute2 != '00' || availability[day].endHour2 != '00' || availability[day].endMinute2 != '00' ?
+        <>
+        <div className="col-sm-1 ap1" />
+        <div className="col-sm-2 ap2">
+        <input
+            type="number"
+            className="text-top form-control dates"
+            name="startHour2"
+           value={availability[day].startHour2}
+           onChange={(e) => handleHourChange2(e, day)}
+           />
+             <input
+            type="number"
+            className="text-top form-control dates"
+            name="startMinute2"
+            value={availability[day].startMinute2}
+            onChange={(e) => handleMinuteChange2(e, day)}
+          />
+        </div>
+        <div className="col-sm-1 ap3">
+          <span className="text-center">to</span>
+        </div>
+        <div className="col-sm-2 ap2">
+        <input
+            type="number"
+            className="text-top form-control dates"
+            name="endHour2"
+            value={availability[day].endHour2}
+            onChange={(e) => handleHourChange2(e, day)}
+          />
+          <input
+            type="number"
+            className="text-top form-control dates"
+            name="endMinute2"
+            value={availability[day].endMinute2}
+            onChange={(e) => handleMinuteChange2(e, day)}
+          />
+        </div>
+        <div className="col-sm-1 ap4">
+          {/* <section className="sec-plus" >+</section> */}
+        </div>
+        <div className="col-sm-4 ap5 text-right" />
+
+        </> : null }
+      </div>
+      </>
+          ))}
+      
+    </form>
+  </div>
+  <div className="col-sm-10" >
+  {scheduleSuccess &&  <Alert severity='success' style={{ margin :'0 0 20px 0',width:'100%'}}> Data Saved</Alert> } </div>
+  <div className="close-button">
+    <button className="btn btn-darkgreen btn-close" onClick={updateSchedule}>approve</button>
+  </div>
+</div>
+
+
+
+
+<div className="standard-availability" style={{display:'none'}}>
   <div className="info">
     <div className="title">
       {" "}
@@ -2713,6 +2875,7 @@ footer={[]}
   </div>
 
 </div>
+</>
 </Modal>
 
 
@@ -3087,7 +3250,7 @@ return(<>
 
 <Modal
           centered
-          className="session-modal"
+          className="session-modal "
           visible={isAvblShow}
           onOk={handleavbl}
           onCancel={handleavblCancel}
@@ -3096,7 +3259,7 @@ return(<>
           footer={[]}
          
         >
-         <section className='schedule-session-new'>
+         <section className='schedule-session-new stand-avbl-mobile'>
   <section className="availability-wrap">
     <div className="">
       <div className="row">
@@ -3210,6 +3373,8 @@ return(<>
               onKeyUp={(e) => handleMinuteChange2(e, day)}
             />
             </span>
+
+
 
 
 
