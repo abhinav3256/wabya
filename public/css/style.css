@@ -2846,6 +2846,23 @@ button{font-family: Gothic A1 !important;}
 .availability-wrap .availability-box .inner span.input-edit input{width: 39px; font-size: 13px; padding: 0 3px; letter-spacing: -1px; font-weight: 700;}
 
 .standard-in-num{width: 25%; margin: 20px;}
+.day-unavbl{font-weight: 500;
+  font-size: 15px;
+  text-shadow: none;
+  text-transform: lowercase;
+  letter-spacing: 3px;
+  color: #0f2540;
+  box-shadow: none;
+  border: 0;
+  min-width: 190px;
+  border-radius: 20px;
+  text-align: center;
+  margin: 0 0 0 15px;
+  padding: 9px 20px 8px;
+  position: relative;
+  z-index: 2;
+  background: #f27553;
+}
 @media (min-width: 320px) and (max-width: 767px) {
   
    .header{border-top: 3px solid #ec2397;}

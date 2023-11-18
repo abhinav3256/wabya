@@ -170,6 +170,7 @@ const Calender = () => {
     const [isFormShow, setisFormShow] = useState(false);
     const [scheduleSuccess, setscheduleSuccess] = useState(false);
     const [isSesShow, setisSesShow] = useState(false);
+    const [isStandShow, setisStandShow] = useState(false);
     const [isAvblShow, setisAvblShow] = useState(false);
     const [isSyncFormShow, setisSyncFormShow] = useState(false);
 
@@ -744,6 +745,17 @@ setallWeekDay(next7Days);
   
     const handleScheduleCancel = () => {
       setisSesShow(false);
+     // setisShowmsg(false);
+    };
+
+    const handleStand = (e) => {
+      e.preventDefault();
+      setisStandShow(true);
+     // setisShowmsg(false);
+    };
+  
+    const handleStandCancel = () => {
+      setisStandShow(false);
      // setisShowmsg(false);
     };
 
@@ -2586,14 +2598,17 @@ return(<>
 
 
     <Modal
-          centered
-          className="unavailable-modal avbl-modal-mobile"
-          visible={isFormShow}
-          onOk={handleFormOk}
-          onCancel={handleFormCancel}
-          width={800}
-          height={1000}
-          footer={[]}
+
+centered
+className="session-modal unavailable-modal avbl-modal-mobile"
+visible={true}
+onOk={handleSchedule}
+onCancel={handleScheduleCancel}
+width={800}
+height={1000}
+footer={[]}
+
+     
          
         >
     
@@ -2615,6 +2630,7 @@ return(<>
       <div className="row">
 
       {days.map((day) => (
+        <>
         <div className="col-sm-12 form-group">
           <span>{day}:</span>
           <input
@@ -2646,7 +2662,44 @@ return(<>
             value={availability[day].endMinute}
             onChange={(e) => handleMinuteChange(e, day)}
           />
+          <span>+</span>
+          <button type='button' className='btn btn-four day-unavbl'>set day as unavailable</button>
         </div>
+
+<div className="col-sm-12 form-group">
+
+<input
+  type="number"
+  className="text-top form-control dates"
+  name="startHour"
+ value={availability[day].startHour}
+ onChange={(e) => handleHourChange(e, day)}
+/>
+<input
+  type="number"
+  className="text-top form-control dates"
+  name="startMinute"
+  value={availability[day].startMinute}
+  onChange={(e) => handleMinuteChange(e, day)}
+/>
+<span>to</span>
+<input
+  type="number"
+  className="text-top form-control dates"
+  name="endHour"
+  value={availability[day].endHour}
+  onChange={(e) => handleHourChange(e, day)}
+/>
+<input
+  type="number"
+  className="text-top form-control dates"
+  name="endMinute"
+  value={availability[day].endMinute}
+  onChange={(e) => handleMinuteChange(e, day)}
+/>
+
+</div>
+</>
           ))}
        
        
@@ -2654,6 +2707,7 @@ return(<>
       </div>
     </form>
   </div>
+  {scheduleSuccess &&  <Alert severity='success' style={{ margin :'0 0 20px 0',width:'70%'}}> Data Saved</Alert> }
   <div className="close-button">
     <button className="btn btn-darkgreen btn-close" onClick={updateSchedule}>approve</button>
   </div>
