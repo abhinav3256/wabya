@@ -167,6 +167,7 @@ const Calender = () => {
     const [coachId,setCoachId]=useState();
     const [coachesCalUsername, setcoachesCalUsername] = useState("");
     const [myData, setMydata] = useState(null);
+    const [mySchedule, setmySchedule] = useState([]);
     const [isFormShow, setisFormShow] = useState(false);
     const [scheduleSuccess, setscheduleSuccess] = useState(false);
     const [isSesShow, setisSesShow] = useState(false);
@@ -1047,6 +1048,9 @@ const [Day_, setDay_] = useState("");
 
 const [meetingByDate, setMeetingByDate] = useState([]);
 const [meetingdate, setmeetingdate] = useState("");
+
+const [meetingday, setmeetingday] = useState("");
+
 const [CoachUnavailability, setCoachUnavailability] = useState([]);
 const [unavailableId, setUnavailableId] = useState(null);
 const [UnavailableStartSlot, setUnavailableStartSlot] = useState(null);
@@ -1246,15 +1250,51 @@ const getTimeslots = async (date) => {
   console.log('t date', t_date);
 
 
+  if(tomorrow.getDay() == 0){
+    setmeetingday('sun');
+  }
+  
+if(tomorrow.getDay() == 1){
+  setmeetingday('mon');
+}
+
+
+if(tomorrow.getDay() == 2){
+  setmeetingday('tue');
+}
+if(tomorrow.getDay() == 3){
+  setmeetingday('wed');
+}
+if(tomorrow.getDay() == 4){
+  setmeetingday('thu');
+}
+if(tomorrow.getDay() == 5){
+  setmeetingday('fri');
+}
+
+if(tomorrow.getDay() == 6){
+  setmeetingday('sat');
+}
+
 if(t_date.getDate() != tomorrow.getDate()){
   tomorrow.setDate(date.getDate() + 1);
 }
   
 
+console.log(tomorrow.getDay(),'tommorow');
+
+
+
+
+
+
+
 
   var todayDate = new Date(tomorrow).toISOString().slice(0, 10);
 
   //console.log(todayDate);
+
+
 
   getMeetingByDate(todayDate);
   console.log('today date', todayDate);
@@ -1288,7 +1328,7 @@ if(t_date.getDate() != tomorrow.getDate()){
 };
 
 
-function isReserved(time) {
+function isReserved_old(time) {
   // assume reserved times are stored in an array called 'reservedTimes'
   for (let i = 0; i < meetingByDate.length; i++) {
     if (time === meetingByDate[i].meetingTime) {
@@ -1298,6 +1338,27 @@ function isReserved(time) {
   }
   // if the time slot is not reserved, return false
   return false;
+}
+
+
+function isReserved(time) {
+  // Assume reserved times are stored in an array called 'meetingByDate'
+  for (let i = 0; i < meetingByDate.length; i++) {
+    const reservedStartTime = meetingByDate[i].meetingTime;
+    const reservedEndTime = meetingByDate[i].meetingEndTime;
+
+    if (isTimeWithinRange(time, reservedStartTime, reservedEndTime)) {
+      // If the time slot is reserved, return true
+      return true;
+    }
+  }
+  // If the time slot is not reserved, return false
+  return false;
+}
+
+// Function to check if a given time is within a specified time range
+function isTimeWithinRange(time, startTime, endTime) {
+  return time >= startTime && time <= endTime;
 }
 
 
@@ -1325,26 +1386,71 @@ console.log(`Converted date and time in SAST: ${saFormattedDate}`);
   console.log(date.getDate(),date.getFullYear(),date.getMonth());
 console.log(now.getDate(),now.getFullYear(),now.getMonth());
   console.log('terrr');
-  if(myData != null){
-    if(myData.start_time){
-var starttime = myData.start_time;
-    }else{
-      var starttime = "09:00:00";
-    }
-var interval = "45";
-if(myData.start_time){
-var endtime = myData.end_time;
-     }else{
-       var endtime = "17:00:00";
-     }
 
+  console.log('my avilability', myAvailability);
+//   if(myData != null){
+//     if(myData.start_time){
+// var starttime = myData.start_time;
+//     }else{
+//       var starttime = "09:00:00";
+//     }
+// var interval = "45";
+// if(myData.start_time){
+// var endtime = myData.end_time;
+//      }else{
+//        var endtime = "17:00:00";
+//      }
+
+//     }
+//     else{
+//       var starttime = "09:00:00";
+//       var interval = "45";
+//       var endtime = "17:00:00";
+//     }
+//var endtime = "17:00:00";
+
+
+
+
+
+if(myAvailability && myAvailability.length !=0){
+
+  for (let index = 0; index < myAvailability.length; index++) {
+    
+    if(myAvailability[index].day == meetingday){
+
+
+      if(! myAvailability[index].isUnAvbl){
+
+      var starttime = myAvailability[index].startHour + ":" + myAvailability[index].startMinute + ":00";
+
+      var endtime = myAvailability[index].endHour + ":" + myAvailability[index].endMinute + ":00";
+      }
+      else{
+        var starttime = '';
+        var endtime = '';
+
+      }
+      break;
     }
     else{
       var starttime = "09:00:00";
-      var interval = "45";
       var endtime = "17:00:00";
     }
-//var endtime = "17:00:00";
+    
+  }
+
+  var interval = "45";
+
+
+
+
+  }
+  else{
+    var starttime = "09:00:00";
+    var interval = "45";
+    var endtime = "17:00:00";
+  }
 
 if (starttime >= currentTime) {
 var timeslots = [starttime];
@@ -1618,6 +1724,9 @@ setMeeting(meetings);
 
 
   };
+
+
+
 
   useEffect(() => {
 //  let busySchedule=[];
@@ -2072,6 +2181,8 @@ m=0;
       }
     })
     });
+
+    getMyAvailability();
   };
   
 
