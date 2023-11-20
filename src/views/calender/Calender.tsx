@@ -1434,7 +1434,7 @@ if(myAvailability && myAvailability.length !=0){
       break;
     }
     else{
-      var starttime = "09:00:00";
+      var starttime = "12:00:00";
       var endtime = "17:00:00";
     }
     
@@ -1447,7 +1447,7 @@ if(myAvailability && myAvailability.length !=0){
 
   }
   else{
-    var starttime = "09:00:00";
+    var starttime = "12:00:00";
     var interval = "45";
     var endtime = "17:00:00";
   }
@@ -2745,7 +2745,8 @@ footer={[]}
 
 <>
 
-<div className="standard-availability edit-availability availability-popup stand-avbl">
+<div className="standard-availability edit-availability availability-popup stand-avbl" style={{boxShadow: "none",
+    background: "#fcf5ec"}}>
   <div className="info">
     <div className="title">
       {" "}
