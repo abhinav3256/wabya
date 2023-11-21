@@ -15,6 +15,7 @@ import {
 } from "firebase/firestore";
 import { Numeric0CircleOutline } from 'mdi-material-ui';
 import DataTable from '../../components/Datatable';
+import DataTable2 from '../../components/Datatable2';
 
 
 function getCurrentMonthWeeks(year, month) {
@@ -106,6 +107,33 @@ function generateDayLabels(startDate) {
   }
   return dayLabels;
 }
+
+
+const generateDateRanges = (currentMonth, currentYear) => {
+  const startDate = new Date(currentYear, currentMonth, 1);
+  const endDate = new Date(currentYear, currentMonth + 1, 0);
+  const dateRanges = [];
+
+  let startOfWeek = startDate;
+
+  while (startOfWeek <= endDate) {
+    const endOfWeek = new Date(startOfWeek);
+    endOfWeek.setDate(endOfWeek.getDate() + 6);
+
+    // Ensure the end date is the last day of the month
+    const lastDayOfMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+    endOfWeek.setDate(Math.min(endOfWeek.getDate(), lastDayOfMonth));
+
+    const startDay = startOfWeek.getDate();
+    const endDay = endOfWeek.getDate();
+
+    dateRanges.push(`${startDay} - ${endDay}`);
+
+    startOfWeek.setDate(startOfWeek.getDate() + 7);
+  }
+
+  return dateRanges;
+};
 const Timesheet = () => {
   const router = useRouter()
   const clientRef = collection(database, "client_user");
@@ -115,6 +143,7 @@ const Timesheet = () => {
   const [activeWeekIndex, setActiveWeekIndex] = useState(0);
   const weekRanges = [];
   const [meetingSession, setMeetingSession] = useState([]);
+  
   const [datesArray, setdatesArray] = useState([]);
   // Calculate the start of the current week (always starting on Monday)
   const currentWeekStart = new Date(currentDate);
@@ -151,7 +180,8 @@ const Timesheet = () => {
   ];
 
   const [weeks, setWeeks] = useState(getCurrentMonthWeeks(currentYear, currentMonth));
- 
+ // Get date ranges for the current month
+const weekDateRanges = generateDateRanges(currentMonth, currentYear);
   const activeWeek = weekRanges[activeWeekIndex];
 
   // Calculate the start date for the current active week
@@ -195,6 +225,55 @@ console.log('abc');
       console.log(client);
     }
 }, [])
+
+
+
+// Filter meeting sessions for the selected month
+const filteredMeetingSessions = meetingSession.filter(
+  meet => new Date(meet.meeting_start_time * 1000).getMonth() === currentMonth
+);
+
+
+// Filter meeting sessions for the selected month
+const filteredMeetingSessions2 = (a,b) =>{
+
+
+
+return meetingSession.filter((meet) => {
+
+  const meetingDate = new Date(meet.meeting_start_time * 1000);
+  const meetingMonth = meetingDate.getMonth();
+  const isMatchingMonth = meetingMonth === currentMonth;
+
+  if (!isMatchingMonth) {
+    return false;
+  }
+
+  
+
+  const m_date= meetingDate.getDate();
+
+  if(m_date >= a  && m_date <= b){
+    return true;
+  }
+return false;
+
+
+
+}
+
+);
+
+}
+// Calculate total duration in minutes for the hardcoded "36 HOURS"
+const totalDurationMinutes = filteredMeetingSessions.length * 30; // Assuming 1 meeting session is 30 minutes
+
+// Convert total duration to hours
+const totalDurationHours = totalDurationMinutes / 60;
+
+// Calculate total earnings for the hardcoded "$000.00"
+const totalEarnings = filteredMeetingSessions.length * 20; // Assuming $20 per session
+
 
   const getClients = async () => {
     const queryDoc = query(clientRef, where("assign_coach_id", "==",  sessionStorage.getItem('coachId')));
@@ -462,6 +541,8 @@ return (
                 }
               }}></i></th>
                         </tr>
+
+                     
                         {/* <tr>
                           <th>name</th>
                           <th>07 - 13</th>
@@ -473,29 +554,74 @@ return (
                         </tr> */}
                         <tr>
                         <th>name</th>  
-          {weeks.map((weekHeader, index) => (
+          {/* {weeks.map((weekHeader, index) => (
             <th key={index}>{weekHeader}</th>
-          ))}
+          ))} */}
+
+{weekDateRanges.map((dateRange, index) => (
+        <th key={index}>{dateRange}</th>
+      ))}
         </tr>
                       </thead>
                       <tbody>
-                      {client && client.map((cl, index) => (
-      <tr key={index}>
+                      {client && client.map((cl, index) => {
+      // Filter meeting sessions for the current client and selected month
+
+      
+      const clientMeetings = filteredMeetingSessions2(1,7).filter(
+        meet => meet.client_id === cl.client_id
+      );
+
+      // Calculate total duration in minutes
+      const totalDurationMinutes = clientMeetings.length * 30; // Assuming 1 meeting session is 30 minutes
+
+      // Convert total duration to hours
+      const totalDurationHours = totalDurationMinutes / 60;
+
+      // Calculate earnings at $20 per session
+      const earnings = clientMeetings.length * 20;
+
+      return (
+        <tr key={index}>
         <td className='bundle'>{cl.client_name}</td>
-        <td>2 hours</td>
-        <td>2 hours</td>
-        <td>2 hours</td>
-        <td>2 hours</td>
-        <td>1 hour</td>
-        <td>9 hours</td>
+
+        <td>{`${ (((filteredMeetingSessions2(1,7).filter(
+        meet => meet.client_id === cl.client_id
+      )).length * 30) / 60).toFixed(1)} HOURS`}</td>
+
+<td>{`${ (((filteredMeetingSessions2(8,14).filter(
+        meet => meet.client_id === cl.client_id
+      )).length * 30) / 60).toFixed(1)} HOURS`}</td>
+
+
+<td>{`${ (((filteredMeetingSessions2(15,21).filter(
+        meet => meet.client_id === cl.client_id
+      )).length * 30) / 60).toFixed(1)} HOURS`}</td>
+
+
+
+<td>{`${ (((filteredMeetingSessions2(22,28).filter(
+        meet => meet.client_id === cl.client_id
+      )).length * 30) / 60).toFixed(1)} HOURS`}</td>
+
+
+<td>{`${ (((filteredMeetingSessions2(29,31).filter(
+        meet => meet.client_id === cl.client_id
+      )).length * 30) / 60).toFixed(1)} HOURS`}</td>
+
+       
+       
+        
+        
       </tr>
-    ))}
+    );
+  })}
     <tr>
-                          <td colSpan={5}></td>
+                          <td colSpan={3}></td>
                           <td> <strong>Total</strong></td>
                           <td>35 hours</td>
 
-                          <td colSpan={2}></td>
+                         
                           <td> <strong>Total</strong> <span>$000.00</span></td>
 
                         </tr>
@@ -641,36 +767,65 @@ return (
           </div>
           <div className="client-sec">
             <h2>client overview</h2>
-            <a className="page-link1 prev" href="#" aria-label="Previous">
+            <a className="page-link1 prev" href="#" aria-label="Previous" onClick={(e) => {
+              e.preventDefault();
+                setCurrentMonth((prevMonth) => (prevMonth - 1 + 12) % 12);
+                if (currentMonth === 0) {
+                  setCurrentYear((prevYear) => prevYear - 1);
+                }
+              }}>
               <img src="../../images/timetable-prev.png" alt="" />
             </a>
-            <a className="page-link1 next" href="#" aria-label="Next">
+            <a className="page-link1 next" href="#" aria-label="Next" onClick={(e) => {
+              e.preventDefault();
+                setCurrentMonth((prevMonth) => (prevMonth + 1) % 12);
+                if (currentMonth === 11) {
+                  setCurrentYear((prevYear) => prevYear + 1);
+                }
+              }}>
               <img src="../../images/timetable-next.png" alt="" />
             </a>
             <table className="table">
               <tbody>
                 <tr>
                   <th />
-                  <th colSpan={2}>November</th>
+                  <th colSpan={2}>{" "}
+              {months[currentMonth]}{" "}</th>
                 </tr>
                 <tr>
                   <th>name</th>
                   <th>hours</th>
                   <th>earning</th>
                 </tr>
-                {client && client.map((cl, index) => (
-                <tr>
-                  <td className="aqua">{cl.client_name}</td>
-                  <td>9 HOURS</td>
-                  <td>$000.00</td>
-                </tr>
-                ))}
-               
-                <tr>
-                  <td />
-                  <td>36 HOURS</td>
-                  <td>$000.00</td>
-                </tr>
+                {client && client.map((cl, index) => {
+      // Filter meeting sessions for the current client and selected month
+      const clientMeetings = filteredMeetingSessions.filter(
+        meet => meet.client_id === cl.client_id
+      );
+
+      // Calculate total duration in minutes
+      const totalDurationMinutes = clientMeetings.length * 30; // Assuming 1 meeting session is 30 minutes
+
+      // Convert total duration to hours
+      const totalDurationHours = totalDurationMinutes / 60;
+
+      // Calculate earnings at $20 per session
+      const earnings = clientMeetings.length * 20;
+
+      return (
+        <tr key={index}>
+          <td className="aqua">{cl.client_name}</td>
+          <td>{`${totalDurationHours.toFixed(1)} HOURS`}</td>
+          <td>{`$${earnings.toFixed(2)}`}</td>
+        </tr>
+      );
+    })}
+    {/* Total row */}
+    <tr>
+      <td />
+      <td>{`${totalDurationHours.toFixed(1)} HOURS`}</td>
+      <td>{`$${totalEarnings.toFixed(2)}`}</td>
+    </tr>
               </tbody>
             </table>
             <div className="month-sec">
@@ -684,7 +839,7 @@ return (
                   </tr>
 
 
-                  {datesArray.map((d_arr, index) => {
+                  {/* {datesArray.map((d_arr, index) => {
     const dateObject = new Date(d_arr); // Replace this with your actual Date object
 
     // Convert the Date object to a string
@@ -696,32 +851,77 @@ const timestampToMatch = dateObject.getTime() / 1000;
     const noviceCount = meetingSession != null ? meetingSession.filter(meet => meet.client_plan === 'novice').length : 0;
     const experiencedCount = meetingSession != null ? meetingSession.filter(meet => meet.client_plan === 'experienced').length : 0;
 
-                  })}
-                  <tr>
+                  })} */}
+                  {/* <tr>
                     <td className="aqua">probono</td>
-                    <td>{probonoCount} HOURS</td>
+                    <td>{probonoCount * 0.5 } HOURS</td>
                     <td>$000.00</td>
                   </tr>
                   <tr>
                     <td className="orange">novice</td>
-                    <td>{noviceCount} HOURS</td>
-                    <td>$000.00</td>
+                    <td>{noviceCount * 0.5} HOURS</td>
+                    <td>${noviceCount * 20}</td>
                   </tr>
                   <tr>
                     <td className="pink">experinced</td>
-                    <td>{} HOURS</td>
-                    <td>$000.00</td>
+                    <td>{experiencedCount * 0.5} HOURS</td>
+                    <td>${experiencedCount * 20}</td>
                   </tr>
                   <tr>
                     <td />
                     <td>total</td>
                     <td>$000.00</td>
-                  </tr>
+                  </tr> */}
+
+
+
+
+
+
+
+{datesArray.map((d_arr, index) => {
+const dateObject = new Date(d_arr);
+const dateString = dateObject.getDate();
+const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+const monthString = monthNames[dateObject.getMonth()];
+const timestampToMatch = dateObject.getTime() / 1000; 
+
+const probonoCount = meetingSession != null ? meetingSession.filter(meet => meet.client_plan === 'probono').length : 0;
+const noviceCount = meetingSession != null ? meetingSession.filter(meet => meet.client_plan === 'novice').length : 0;
+const experiencedCount = meetingSession != null ? meetingSession.filter(meet => meet.client_plan === 'experienced').length : 0;
+
+return (
+  index === 0 ? (
+      <>
+          <tr>
+              <td className='bundle'>probono </td>
+              <td>{probonoCount} hours</td>
+              <td>$00.00</td>
+          </tr>
+          <tr>
+              <td className='pay'>novice</td>
+              <td>{noviceCount * 0.5} hours</td>
+              <td>${noviceCount * 20}.00</td>
+          </tr>
+          <tr>
+              <td className='probono'>experienced</td>
+              <td>{experiencedCount * 0.5} hours</td>
+              <td>${experiencedCount * 50}.00</td>
+          </tr>
+          <tr>
+              <td colSpan={2}></td>
+              <td><strong>Total</strong> <span>${(probonoCount * 0) + (noviceCount * 20)  + (experiencedCount * 50)}.00</span></td>
+          </tr>
+      </>
+  ) : null
+);
+})}
+
                 </tbody>
               </table>
             </div>
           </div>
-          <div className="mrb-20 time-table-btn">
+          {/* <div className="mrb-20 time-table-btn">
             <p className="text-center btn-p">
               <a href="#" className="btn btn-lightgreen">
                 view past payslip
@@ -732,7 +932,8 @@ const timestampToMatch = dateObject.getTime() / 1000;
                 query my timesheet
               </a>
             </p>
-          </div>
+          </div> */}
+           <DataTable2 datesArray={datesArray} meetingSession={meetingSession} />
         </div>
         {/*/ col-sm */}
       </div>

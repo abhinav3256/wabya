@@ -2,54 +2,55 @@ import React, { useState } from 'react';
 
 const DataTable = ({ datesArray, meetingSession }) => {
     const [csvData, setCsvData] = useState('');
-
     const convertToCSV = () => {
-        const csvRows = [];
-        csvRows.push("Package,Hours,Earnings"); // Header row
+      const csvRows = [];
+      csvRows.push("Package,Hours,Earnings"); // Header row
     
-        datesArray.forEach((d_arr, index) => {
-            const dateObject = new Date(d_arr);
-            const probonoCount = meetingSession != null ? meetingSession.filter(meet => meet.client_plan === 'probono' ).length : 0;
-            const noviceCount = meetingSession != null ? meetingSession.filter(meet => meet.client_plan === 'novice').length : 0;
-            const experiencedCount = meetingSession != null ? meetingSession.filter(meet => meet.client_plan === 'experienced').length : 0;
+      datesArray.forEach((d_arr, index) => {
+        console.log('Processing date:', d_arr);
     
-            if (index === 0) {
-                const csvRow = `probono, ${probonoCount},$0.00`;
-                csvRows.push(csvRow);
-            }
-            if (index === 1) {
-                const csvRow = `novice, ${noviceCount},$0.00`;
-                csvRows.push(csvRow);
-            }
-
-            if (index === 2) {
-                const csvRow = `experienced, ${experiencedCount},$0.00`;
-                csvRows.push(csvRow);
-            }
-        });
+        const probonoCount = meetingSession != null ? meetingSession.filter(meet => meet.client_plan === 'probono' ).length : 0;
+        const noviceCount = meetingSession != null ? meetingSession.filter(meet => meet.client_plan === 'novice').length : 0;
+        const experiencedCount = meetingSession != null ? meetingSession.filter(meet => meet.client_plan === 'experienced').length : 0;
     
-        // Join rows into a single CSV string
-        const csvString = csvRows.join('\n');
+        console.log('Counts:', probonoCount, noviceCount, experiencedCount);
     
-        // Set the CSV data to state
-        setCsvData(csvString);
+        if (index === 0) {
+          const csvRow = `probono, ${probonoCount * 0.5} hours,$0.0`;
+          csvRows.push(csvRow);
+        } 
+        if (index === 1) {
+          const csvRow = `novice, ${noviceCount * 0.5} hours,$${noviceCount * 20}`;
+          csvRows.push(csvRow);
+        }
+        if (index === 2) {
+          const csvRow = `experienced, ${experiencedCount * 0.5} hours,$${experiencedCount * 50}`;
+          csvRows.push(csvRow);
+        }
+      });
     
-        // Trigger download
-        downloadCSV();
+      // Join rows into a single CSV string
+      const csvString = csvRows.join('\n');
+    
+      // Set the CSV data to state
+      setCsvData(csvString);
+    
+      // Trigger download
+      console.log('Before downloadCSV');
+      downloadCSV();
     };
     
-
     const downloadCSV = () => {
-        const blob = new Blob([csvData], { type: 'text/csv' });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = 'data.csv';
-        document.body.appendChild(a);
-        a.click();
-        window.URL.revokeObjectURL(url);
+      const blob = new Blob([csvData], { type: 'text/csv' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'data.csv';
+      document.body.appendChild(a);
+      a.click();
+      window.URL.revokeObjectURL(url);
     };
-
+    
     return (
         <>
         <div className="month-overview">
@@ -76,7 +77,7 @@ const dateObject = new Date(d_arr);
 const dateString = dateObject.getDate();
 const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 const monthString = monthNames[dateObject.getMonth()];
-const timestampToMatch = dateObject.getTime() / 1000;
+const timestampToMatch = dateObject.getTime() / 1000; 
 
 const probonoCount = meetingSession != null ? meetingSession.filter(meet => meet.client_plan === 'probono').length : 0;
 const noviceCount = meetingSession != null ? meetingSession.filter(meet => meet.client_plan === 'novice').length : 0;
@@ -86,23 +87,23 @@ return (
   index === 0 ? (
       <>
           <tr>
-              <td className='bundle'>bundle </td>
+              <td className='bundle'>probono </td>
               <td>{probonoCount} hours</td>
-              <td>$000.00</td>
+              <td>$00.00</td>
           </tr>
           <tr>
-              <td className='pay'>pay as you go</td>
-              <td>{noviceCount} hours</td>
-              <td>$000.00</td>
+              <td className='pay'>novice</td>
+              <td>{noviceCount * 0.5} hours</td>
+              <td>${noviceCount * 20}.00</td>
           </tr>
           <tr>
-              <td className='probono'>Probono</td>
-              <td>{experiencedCount} hours</td>
-              <td>$000.00</td>
+              <td className='probono'>experienced</td>
+              <td>{experiencedCount * 0.5} hours</td>
+              <td>${experiencedCount * 50}.00</td>
           </tr>
           <tr>
               <td colSpan={2}></td>
-              <td><strong>Total</strong> <span>$000.00</span></td>
+              <td><strong>Total</strong> <span>${(probonoCount * 0) + (noviceCount * 20)  + (experiencedCount * 50)}.00</span></td>
           </tr>
       </>
   ) : null
@@ -142,8 +143,8 @@ return (
       <div className='timesheet-buttons'>
         <div className='row'>
           <div className='col-sm-12'>
-            <button className='btn btn-five'>view past payslips</button>
-            <button className='btn btn-four' >query my timesheet</button>
+            <button className='btn btn-five' >view past payslips</button>
+            <button className='btn btn-four' onClick={convertToCSV}>query my timesheet</button>
           </div>
         </div>
       </div>
