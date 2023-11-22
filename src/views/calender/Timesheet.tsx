@@ -341,6 +341,21 @@ const filteredMeetingSessions3 = (a,b) =>{
   }
 
 
+  // Calculate earnings based on client plan
+const calculateEarnings = (clientPlan) => {
+  const noviceRate = 20; // Rate for novice clients per session
+  const experiencedRate = 50; // Rate for experienced clients per session
+
+  const sessions = filteredMeetingSessions3(1, 31); // Adjust the range as needed
+
+  return sessions.reduce((totalEarnings, meet) => {
+    if (meet.client_plan === clientPlan) {
+      return totalEarnings + (clientPlan === 'novice' ? noviceRate : experiencedRate);
+    }
+
+    return totalEarnings;
+  }, 0);
+};
 
 // Calculate total duration in minutes for the hardcoded "36 HOURS"
 const totalDurationMinutes = filteredMeetingSessions.length * 30; // Assuming 1 meeting session is 30 minutes
@@ -699,7 +714,7 @@ return (
                           <td>{`${ (((filteredMeetingSessions3(1,31)).length * 30) / 60).toFixed(1)} HOURS`}</td>
 
                          
-                          <td> <strong>Total</strong> <span>$000.00</span></td>
+                          <td> <strong>Total</strong> <span>${ calculateEarnings('novice') + calculateEarnings('experienced')}.00</span></td>
 
                         </tr>
                       </tbody>
