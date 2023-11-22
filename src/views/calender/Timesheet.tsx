@@ -108,7 +108,6 @@ function generateDayLabels(startDate) {
   return dayLabels;
 }
 
-
 const generateDateRanges = (currentMonth, currentYear) => {
   const startDate = new Date(currentYear, currentMonth, 1);
   const endDate = new Date(currentYear, currentMonth + 1, 0);
@@ -127,13 +126,47 @@ const generateDateRanges = (currentMonth, currentYear) => {
     const startDay = startOfWeek.getDate();
     const endDay = endOfWeek.getDate();
 
-    dateRanges.push(`${startDay} - ${endDay}`);
+    let range;
+    if (startDay <= 28) {
+      range = `${startDay} - ${endDay}`;
+    } else {
+      range = `${startDay} - ${lastDayOfMonth}`;
+    }
+
+    dateRanges.push(range);
 
     startOfWeek.setDate(startOfWeek.getDate() + 7);
   }
 
   return dateRanges;
 };
+
+
+// const generateDateRanges = (currentMonth, currentYear) => {
+//   const startDate = new Date(currentYear, currentMonth, 1);
+//   const endDate = new Date(currentYear, currentMonth + 1, 0);
+//   const dateRanges = [];
+
+//   let startOfWeek = startDate;
+
+//   while (startOfWeek <= endDate) {
+//     const endOfWeek = new Date(startOfWeek);
+//     endOfWeek.setDate(endOfWeek.getDate() + 6);
+
+//     // Ensure the end date is the last day of the month
+//     const lastDayOfMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+//     endOfWeek.setDate(Math.min(endOfWeek.getDate(), lastDayOfMonth));
+
+//     const startDay = startOfWeek.getDate();
+//     const endDay = endOfWeek.getDate();
+
+//     dateRanges.push(`${startDay} - ${endDay}`);
+
+//     startOfWeek.setDate(startOfWeek.getDate() + 7);
+//   }
+
+//   return dateRanges;
+// };
 const Timesheet = () => {
   const router = useRouter()
   const clientRef = collection(database, "client_user");
@@ -265,6 +298,42 @@ return false;
 );
 
 }
+
+
+// Filter meeting sessions for the selected month
+const filteredMeetingSessions3 = (a,b) =>{
+
+
+
+  return meetingSession.filter((meet) => {
+  
+    const meetingDate = new Date(meet.meeting_start_time * 1000);
+    const meetingMonth = meetingDate.getMonth();
+    const isMatchingMonth = meetingMonth === currentMonth;
+  
+    if (!isMatchingMonth) {
+      return false;
+    }
+  
+    
+  
+    const m_date= meetingDate.getDate();
+  
+    if(m_date >= a  && m_date <= b){
+      return true;
+    }
+  return false;
+  
+  
+  
+  }
+  
+  );
+  
+  }
+
+
+
 // Calculate total duration in minutes for the hardcoded "36 HOURS"
 const totalDurationMinutes = filteredMeetingSessions.length * 30; // Assuming 1 meeting session is 30 minutes
 
@@ -619,7 +688,7 @@ return (
     <tr>
                           <td colSpan={3}></td>
                           <td> <strong>Total</strong></td>
-                          <td>35 hours</td>
+                          <td>{`${ (((filteredMeetingSessions3(1,31)).length * 30) / 60).toFixed(1)} HOURS`}</td>
 
                          
                           <td> <strong>Total</strong> <span>$000.00</span></td>
