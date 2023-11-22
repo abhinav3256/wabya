@@ -1,5 +1,15 @@
 import React, { useState } from 'react';
 
+
+function isSameMonth(date, targetMonth, targetYear) {
+  const meetingDate = new Date(date);
+  return (
+    meetingDate.getMonth() === targetMonth &&
+    meetingDate.getFullYear() === targetYear
+  );
+}
+
+
 const DataTable = ({ datesArray, meetingSession }) => {
     const [csvData, setCsvData] = useState('');
     const convertToCSV = () => {
@@ -79,9 +89,17 @@ const monthNames = ["January", "February", "March", "April", "May", "June", "Jul
 const monthString = monthNames[dateObject.getMonth()];
 const timestampToMatch = dateObject.getTime() / 1000; 
 
-const probonoCount = meetingSession != null ? meetingSession.filter(meet => meet.client_plan === 'probono').length : 0;
-const noviceCount = meetingSession != null ? meetingSession.filter(meet => meet.client_plan === 'novice').length : 0;
-const experiencedCount = meetingSession != null ? meetingSession.filter(meet => meet.client_plan === 'experienced').length : 0;
+const currentMonth = new Date().getMonth();
+const currentYear = new Date().getFullYear();
+
+const probonoCount = meetingSession != null ? meetingSession.filter(meet => meet.client_plan === 'probono' && isSameMonth(meet.meeting_start_time, currentMonth, currentYear)).length : 0;
+const noviceCount = meetingSession != null ? meetingSession.filter(meet => meet.client_plan === 'novice' && isSameMonth(meet.meeting_start_time, currentMonth, currentYear)).length : 0;
+const experiencedCount = meetingSession != null ? meetingSession.filter(meet => meet.client_plan === 'experienced' && isSameMonth(meet.meeting_start_time, currentMonth, currentYear)).length : 0;
+
+
+// const probonoCount = meetingSession != null ? meetingSession.filter(meet => meet.client_plan === 'probono').length : 0;
+// const noviceCount = meetingSession != null ? meetingSession.filter(meet => meet.client_plan === 'novice').length : 0;
+// const experiencedCount = meetingSession != null ? meetingSession.filter(meet => meet.client_plan === 'experienced').length : 0;
 
 return (
   index === 0 ? (
