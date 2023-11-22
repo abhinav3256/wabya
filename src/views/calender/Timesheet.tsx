@@ -916,7 +916,8 @@ return (
     <tr>
       <td />
       <td>{`${totalDurationHours.toFixed(1)} HOURS`}</td>
-      <td>{`$${totalEarnings.toFixed(2)}`}</td>
+      {/* <td>{`$${totalEarnings.toFixed(2)}`}</td> */}
+      <td>${ calculateEarnings('novice') + calculateEarnings('experienced')}.00</td>
     </tr>
               </tbody>
             </table>
