@@ -26,15 +26,15 @@ const DataTable = ({ datesArray, meetingSession }) => {
         console.log('Counts:', probonoCount, noviceCount, experiencedCount);
     
         if (index === 0) {
-          const csvRow = `probono, ${probonoCount * 0.5} hours,$0.0`;
+          const csvRow = `probono, ${probonoCount * 0.5} hours,£0.0`;
           csvRows.push(csvRow);
         } 
         if (index === 1) {
-          const csvRow = `novice, ${noviceCount * 0.5} hours,$${noviceCount * 20}`;
+          const csvRow = `novice, ${noviceCount * 0.5} hours,£${noviceCount * 20}`;
           csvRows.push(csvRow);
         }
         if (index === 2) {
-          const csvRow = `experienced, ${experiencedCount * 0.5} hours,$${experiencedCount * 50}`;
+          const csvRow = `experienced, ${experiencedCount * 0.5} hours,£${experiencedCount * 50}`;
           csvRows.push(csvRow);
         }
       });
@@ -107,21 +107,21 @@ return (
           <tr>
               <td className='bundle'>probono </td>
               <td>{probonoCount} hours</td>
-              <td>$00.00</td>
+              <td>£00.00</td>
           </tr>
           <tr>
               <td className='pay'>novice</td>
               <td>{noviceCount * 0.5} hours</td>
-              <td>${noviceCount * 20}.00</td>
+              <td>£{noviceCount * 20}.00</td>
           </tr>
           <tr>
               <td className='probono'>experienced</td>
               <td>{experiencedCount * 0.5} hours</td>
-              <td>${experiencedCount * 50}.00</td>
+              <td>£{experiencedCount * 50}.00</td>
           </tr>
           <tr>
               <td colSpan={2}></td>
-              <td><strong>Total</strong> <span>${(probonoCount * 0) + (noviceCount * 20)  + (experiencedCount * 50)}.00</span></td>
+              <td><strong>Total</strong> <span>£{(probonoCount * 0) + (noviceCount * 20)  + (experiencedCount * 50)}.00</span></td>
           </tr>
       </>
   ) : null

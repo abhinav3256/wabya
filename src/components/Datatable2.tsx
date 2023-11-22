@@ -17,15 +17,15 @@ const DataTable2 = ({ datesArray, meetingSession }) => {
         console.log('Counts:', probonoCount, noviceCount, experiencedCount);
     
         if (index === 0) {
-          const csvRow = `probono, ${probonoCount * 0.5} hours,$0.0`;
+          const csvRow = `probono, ${probonoCount * 0.5} hours,£0.0`;
           csvRows.push(csvRow);
         } 
         if (index === 1) {
-          const csvRow = `novice, ${noviceCount * 0.5} hours,$${noviceCount * 20}`;
+          const csvRow = `novice, ${noviceCount * 0.5} hours,£${noviceCount * 20}`;
           csvRows.push(csvRow);
         }
         if (index === 2) {
-          const csvRow = `experienced, ${experiencedCount * 0.5} hours,$${experiencedCount * 50}`;
+          const csvRow = `experienced, ${experiencedCount * 0.5} hours,£${experiencedCount * 50}`;
           csvRows.push(csvRow);
         }
       });

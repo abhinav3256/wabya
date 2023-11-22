@@ -533,7 +533,7 @@ return (
                     {probonoCount} {dateString} {monthString} <span>hour</span>
                 </p>
                 <p>
-                    $ <span>000.00</span>
+                £ <span>000.00</span>
                 </p>
             </div>
 
@@ -542,7 +542,7 @@ return (
                     {noviceCount} <span>hours</span>
                 </p>
                 <p>
-                    $ <span>000.00</span>
+                £ <span>000.00</span>
                 </p>
             </div>
 
@@ -551,7 +551,7 @@ return (
                     {experiencedCount} <span>hours</span>
                 </p>
                 <p>
-                    $ <span>000.00</span>
+                £ <span>000.00</span>
                 </p>
             </div>
         </td>
@@ -714,7 +714,7 @@ return (
                           <td>{`${ (((filteredMeetingSessions3(1,31)).length * 30) / 60).toFixed(1)} HOURS`}</td>
 
                          
-                          <td> <strong>Total</strong> <span>${ calculateEarnings('novice') + calculateEarnings('experienced')}.00</span></td>
+                          <td> <strong>Total</strong> <span>£{ calculateEarnings('novice') + calculateEarnings('experienced')}.00</span></td>
 
                         </tr>
                       </tbody>
@@ -785,71 +785,71 @@ return (
                     <td>
                       <div className="box">
                         <span>2 h</span>
-                        <span>$0 0 0</span>
+                        <span>£0 0 0</span>
                       </div>
                       <div className="box">
                         <span>4 h</span>
-                        <span>$0 0 0</span>
+                        <span>£0 0 0</span>
                       </div>
                     </td>
                     <td>
                       <div className="box">
                         <span>2 h</span>
-                        <span>$0 0 0</span>
+                        <span>£0 0 0</span>
                       </div>
                       <div className="box">
                         <span>4 h</span>
-                        <span>$0 0 0</span>
+                        <span>£0 0 0</span>
                       </div>
                     </td>
                     <td>
                       <div className="box">
                         <span>2 h</span>
-                        <span>$0 0 0</span>
+                        <span>£0 0 0</span>
                       </div>
                       <div className="box">
                         <span>4 h</span>
-                        <span>$0 0 0</span>
+                        <span>£0 0 0</span>
                       </div>
                     </td>
                     <td>
                       <div className="box">
                         <span>2 h</span>
-                        <span>$0 0 0</span>
+                        <span>£0 0 0</span>
                       </div>
                       <div className="box">
                         <span>4 h</span>
-                        <span>$0 0 0</span>
+                        <span>£0 0 0</span>
                       </div>
                     </td>
                     <td>
                       <div className="box">
                         <span>2 h</span>
-                        <span>$0 0 0</span>
+                        <span>£0 0 0</span>
                       </div>
                       <div className="box">
                         <span>4 h</span>
-                        <span>$0 0 0</span>
+                        <span>£0 0 0</span>
                       </div>
                     </td>
                     <td>
                       <div className="box">
                         <span>2 h</span>
-                        <span>$0 0 0</span>
+                        <span>£0 0 0</span>
                       </div>
                       <div className="box">
                         <span>2 h</span>
-                        <span>$0 0 0</span>
+                        <span>£0 0 0</span>
                       </div>
                     </td>
                     <td>
                       <div className="box">
                         <span>2 h</span>
-                        <span>$0 0 0</span>
+                        <span>£0 0 0</span>
                       </div>
                       <div className="box">
                         <span>4 h</span>
-                        <span>$0 0 0</span>
+                        <span>£0 0 0</span>
                       </div>
                     </td>
                   </tr>
@@ -908,7 +908,7 @@ return (
         <tr key={index}>
           <td className="aqua">{cl.client_name}</td>
           <td>{`${totalDurationHours.toFixed(1)} HOURS`}</td>
-          <td>{`$${earnings.toFixed(2)}`}</td>
+          <td>{`${earnings.toFixed(2)}`}</td>
         </tr>
       );
     })}
@@ -917,7 +917,7 @@ return (
       <td />
       <td>{`${totalDurationHours.toFixed(1)} HOURS`}</td>
       {/* <td>{`$${totalEarnings.toFixed(2)}`}</td> */}
-      <td>${ calculateEarnings('novice') + calculateEarnings('experienced')}.00</td>
+      <td>£{ calculateEarnings('novice') + calculateEarnings('experienced')}.00</td>
     </tr>
               </tbody>
             </table>
@@ -1000,21 +1000,21 @@ return (
           <tr>
               <td className='bundle'>probono </td>
               <td>{probonoCount} hours</td>
-              <td>$00.00</td>
+              <td>£00.00</td>
           </tr>
           <tr>
               <td className='pay'>novice</td>
               <td>{noviceCount * 0.5} hours</td>
-              <td>${noviceCount * 20}.00</td>
+              <td>£{noviceCount * 20}.00</td>
           </tr>
           <tr>
               <td className='probono'>experienced</td>
               <td>{experiencedCount * 0.5} hours</td>
-              <td>${experiencedCount * 50}.00</td>
+              <td>£{experiencedCount * 50}.00</td>
           </tr>
           <tr>
               <td colSpan={2}></td>
-              <td><strong>Total</strong> <span>${(probonoCount * 0) + (noviceCount * 20)  + (experiencedCount * 50)}.00</span></td>
+              <td><strong>Total</strong> <span>£{(probonoCount * 0) + (noviceCount * 20)  + (experiencedCount * 50)}.00</span></td>
           </tr>
       </>
   ) : null
