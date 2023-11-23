@@ -15,7 +15,7 @@ import Footer from 'src/views/frontend/layouts/Footer'
 import BlankLayout from 'src/@core/layouts/BlankLayout'
 
 const options = {
-  items: 1,
+  items: 3,
   loop: true,
   nav: true,
   rewind: true,
@@ -44,7 +44,7 @@ const Home = () => {
               <p>The truth is that you are the only expert on yourself in the whole, wide world.</p>
               <p>Coaching leverages this fact to help you move towards that ideal state - whatever it may be.</p>
               <p>So don’t delay: start exploring what matters to you by booking your free discovery session today.</p>
-              <p><Link href="/frontend/coaching-session"><a className="btn">book a free coaching session</a></Link></p>
+              <p><Link href="/frontend/coaching-session"><a className="btn"><u>book a free coaching session</u></a></Link></p>
             </div>
           </div>
             </div>

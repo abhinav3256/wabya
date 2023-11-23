@@ -65,7 +65,7 @@ const Header = () => {
 		    <ul className="navbar-nav">
 			  <li className={router.pathname == "/" ? "active" : ""}><Link href="/"><a>home</a></Link></li>
 			  <li className={router.pathname == "/frontend/about" ? "about-active" : ""}><Link href="/frontend/about">about us</Link></li>
-			  <li className={router.pathname == "/frontend/coaching-journey" ? "coaching-active" : ""}><Link href="/frontend/coaching-journey">coaching journey</Link></li>
+			  <li className={router.pathname == "/frontend/coaching-journey" ? "coaching-active" : ""}><Link href="/frontend/coaching-journey">about coaching</Link></li>
 			  <li className={router.pathname == "/frontend/pricing" ? "pricing-active" : ""}><Link href="/frontend/pricing">pricing</Link></li>
 			  <li className={router.pathname == "/frontend/faq" ? "pricing-active" : ""}><Link href="/frontend/faq">FAQ</Link></li>
 			  <li className={router.pathname == "/frontend/contact" ? "contact-active" : ""}><Link className="scroll" href="/frontend/contact">contact</Link></li>
@@ -186,7 +186,7 @@ const Header = () => {
 						aria-expanded='false'
 						onClick={setsignups}
 					  >
-					 Signup
+					 sign up
 					  </button>
 					  <ul className="dropdown-menu" style={{ display: signupdropdown ? 'block' : 'none' }}>
 

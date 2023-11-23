@@ -186,17 +186,21 @@ const Timesheet = () => {
   const [meetingSession, setMeetingSession] = useState([]);
   
   const [datesArray, setdatesArray] = useState([]);
-  // Calculate the start of the current week (always starting on Monday)
   const currentWeekStart = new Date(currentDate);
   currentWeekStart.setDate(currentWeekStart.getDate() - currentDate.getDay() + 1);
-
-  for (let i = 1; i < 7; i++) {
+  
+  // Move to the start of the week 4 weeks ago
+  currentWeekStart.setDate(currentWeekStart.getDate() - 28);
+  
+  // const weekRanges = [];
+  
+  for (let i = 0; i < 4; i++) {
     const weekStart = new Date(currentWeekStart);
     const weekEnd = new Date(weekStart);
     weekEnd.setDate(weekStart.getDate() + 6);
-
+  
     weekRanges.push(getWeekRange(weekStart, weekEnd));
-
+  
     // Move to the next week
     currentWeekStart.setDate(currentWeekStart.getDate() + 7);
   }
