@@ -818,7 +818,7 @@ padding: 25px 40px;
     letter-spacing: 2px;
     box-shadow: none;
     border: 0;
-    min-width: 190px;
+    min-width: 180px;
     text-align: center!important;
     border-radius: 20px;
     margin: 0;
@@ -835,6 +835,9 @@ padding: 25px 40px;
   background: #6dc1a4; font-weight: 700; letter-spacing: 1px;
 }
 .client-dashboard .banner-et{width: 77%;}
+.client-dashboard .banner-et th .btn-coach {
+  margin-left: 0;
+}
 .client-dashboard .banner-et .btn-coach {
   background: #1d696c;
  color: #f7f0e4;
@@ -1403,7 +1406,7 @@ padding: 25px 40px;
 span.pass-eye {
   position: absolute;
   right: 10%;
-  margin-top: 15px; cursor: pointer;
+  margin-top: 5px; cursor: pointer;
 }
 .text-pass{position: relative;}
 
@@ -1435,7 +1438,7 @@ span.pass-eye {
 /* change password */
 .client-password {position:relative; margin:0; padding:70px 0 80px; z-index:1;}
 .client-password h2{color:#0f2540; font-size:30px; margin:40px 0; position:relative; text-align: left; letter-spacing: 5px;}
-.client-password h3{color:#0f2540; font-size:24px; margin:40px 0; position:relative; text-align: left; letter-spacing: 3px;}
+.client-password h3{color:#0f2540; font-size:24px; margin:0 0 40px; position:relative; text-align: left; letter-spacing: 3px;}
 .client-password .inner-info {
   background: #f7f0e4;
   border-radius: 20px;
@@ -3030,7 +3033,7 @@ button{font-family: Gothic A1 !important;}
 
   .user-detail-mobile .client-name{position: relative; margin:0 0 30px;}
   .user-detail-mobile .client-name .info-name{display: flex; align-items: start; gap: 30px; justify-content: space-between;}
-  .user-detail-mobile .client-name h2{color: #0e2540; font-weight:800; font-size: 36px; margin: 0 0 5px;}
+  .user-detail-mobile .client-name h2{color: #0e2540;  font-size: 36px; margin: 0 0 5px;}
   .user-detail-mobile .client-name img{-webkit-border-radius: 100%; -moz-border-radius: 100%; border-radius: 100%; width: 75px; margin: 0 5px 0 0; border: 3px solid #fff;}
   .user-detail-mobile h4{color: #0e2540; font-weight:800; font-size: 20px; margin: 0 0 5px;}
   .user-detail-mobile .session-info h3{color: #296c6f; font-size: 20px;}

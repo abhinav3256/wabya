@@ -194,7 +194,7 @@ const Timesheet = () => {
   
   // const weekRanges = [];
   
-  for (let i = 0; i < 4; i++) {
+  for (let i = 0; i < 5; i++) {
     const weekStart = new Date(currentWeekStart);
     const weekEnd = new Date(weekStart);
     weekEnd.setDate(weekStart.getDate() + 6);
@@ -524,17 +524,17 @@ return (
     
       const probonoCount = meetingSession != null ? meetingSession.filter(meet => meet.client_plan === 'probono' && new Date(meet.meeting_date.seconds * 1000).getDate() == dateString && new Date(meet.meeting_date.seconds * 1000).getMonth() == monthString ).length : 0;
     
-      const noviceCount = meetingSession != null ? meetingSession.filter(meet => meet.client_plan == 'novice' && new Date(meet.meeting_date.seconds * 1000).getDate() == dateString  ).length : 0;
+      const noviceCount = meetingSession != null ? meetingSession.filter(meet => meet.client_plan == 'novice' && new Date(meet.meeting_start_time.seconds * 1000).getDate() == dateString  ).length : 0;
     
 
-      const experiencedCount = meetingSession != null ? meetingSession.filter(meet => meet.client_plan == 'experienced' && new Date(meet.meeting_date.seconds & 1000).getDate() == dateString  ).length : 0;
+      const experiencedCount = meetingSession != null ? meetingSession.filter(meet => meet.client_plan == 'experienced' && new Date(meet.meeting_start_time.seconds & 1000).getDate() == dateString  ).length : 0;
     
       return (
     
         <td key={index}>
             <div className='third'>
                 <p>
-                    {probonoCount} {dateString} {monthString} <span>hour</span>
+                    {probonoCount}  <span>hour</span>
                 </p>
                 <p>
                 £ <span>000.00</span>
@@ -543,16 +543,21 @@ return (
 
             <div className='first'>
                 <p>
-                    {noviceCount} <span>hours</span>
+                    {`${ (((filteredMeetingSessions2(dateString,dateString).filter(
+        meet => meet.client_plan === 'novice'
+      )).length * 30) / 60).toFixed(1)}`} <span>hours</span>
                 </p>
                 <p>
                 £ <span>000.00</span>
                 </p>
             </div>
 
+
             <div className='second'>
                 <p>
-                    {experiencedCount} <span>hours</span>
+                {`${ (((filteredMeetingSessions2(dateString,dateString).filter(
+        meet => meet.client_plan === 'experienced'
+      )).length * 30) / 60).toFixed(1)}`} <span>hours</span>
                 </p>
                 <p>
                 £ <span>000.00</span>

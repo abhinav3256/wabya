@@ -118,9 +118,10 @@ const EditProfile = () => {
       <div className="container">
         <div className="row">
           <div className="col-sm-12">
-            <h3>edit my password:</h3>
+            {/* <h3>edit my password:</h3> */}
             <div className="row">
               <div className="col-sm-7">
+              <h3>edit my password:</h3>
                 <div className='inner-info'>
                 <form noValidate autoComplete='off' onSubmit={e => e.preventDefault()} className='form-password'>
                   
