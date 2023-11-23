@@ -3010,16 +3010,16 @@ onClick={handleTimeClick}
                 <table className="table table-coach">
                   <tbody>
                     <tr>
-                      <td colSpan={2}>
+                      <th>
                         <button
                           className="btn btn-book my-4"
                           onClick={scheduleNewSes}
                         >
                           book a new session
                         </button>
-                      </td>
-                     
-                      <td>
+                      </th>
+                      <th></th>
+                      <th>
                         {/* <button className='btn btn-coach' onClick={videoSession}>
 
                           <Video /> Join Video
@@ -3027,8 +3027,8 @@ onClick={handleTimeClick}
                          <Link href="#" onClick={showContactCoach}>
                           <a className="btn btn-coach my-4" onClick={showContactCoach}> contact coach</a>
                         </Link>
-                      </td>
-                      <td></td>
+                      </th>
+                     
                     </tr>
                     <tr>
                        {/* <td>

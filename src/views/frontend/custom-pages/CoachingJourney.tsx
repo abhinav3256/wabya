@@ -215,7 +215,7 @@ const CoachingJourney = () => {
         </div>
       </section> {/* <!--/ coaching-journey --> */}
 
-      {/* <section className="philosophy">
+      <section className="philosophy">
         <div className="container">
           <div className="row">
             <div className="col-sm-12">
@@ -237,7 +237,7 @@ const CoachingJourney = () => {
             </div>
           </div>
         </div>
-      </section> */}
+      </section>
 
       
     </>
