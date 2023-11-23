@@ -44,7 +44,7 @@ const Home = () => {
               <p>The truth is that you are the only expert on yourself in the whole, wide world.</p>
               <p>Coaching leverages this fact to help you move towards that ideal state - whatever it may be.</p>
               <p>So don’t delay: start exploring what matters to you by booking your free discovery session today.</p>
-              <p><Link href="/frontend/coaching-session"><a className="btn"><u>book a free coaching session</u></a></Link></p>
+              <p><Link href="/frontend/coaching-session"><a className="btn">book a free coaching session</a></Link></p>
             </div>
           </div>
             </div>
@@ -64,7 +64,7 @@ const Home = () => {
 
           <div className="col-sm-12 tw-coll">
             <div className="inner">
-              <h2>1. book your free coaching session</h2>
+              <h2>1. <u>book your free coaching session</u></h2>
               <p>This is also known as a discovery session. You'll need to select your coach, and a day / time that works for you. </p>
               <h2>2. meet your coach</h2>
               <p>You'll discuss what you would like to achieve from your coaching journey.
