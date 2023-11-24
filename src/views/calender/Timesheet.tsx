@@ -447,8 +447,8 @@ const totalEarnings = filteredMeetingSessions.length * 20; // Assuming $20 per s
             <div className='timesheet-buttons'>
               <div className='row'>
                 <div className='col-sm-12'>
-                  <button className='btn btn-one'>PAYG</button>
-                  <button className='btn btn-two'>Bundle</button>
+                  <button className='btn btn-one'>Experienced</button>
+                  <button className='btn btn-two'>Novice</button>
                   <button className='btn btn-three'>Probono</button>
                 </div>
               </div>

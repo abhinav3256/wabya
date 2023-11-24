@@ -2729,7 +2729,7 @@ return(<>
     <Modal
 
 centered
-className="session-modal unavailable-modal avbl-modal-mobile"
+className="session-modal unavailable-modal avbl-modal-mobile new-modall"
 visible={isStandShow}
 onOk={handleStand}
 onCancel={handleStandCancel}
