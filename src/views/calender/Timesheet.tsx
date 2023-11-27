@@ -300,19 +300,34 @@ const [currentWeek, setCurrentWeek] = useState(0);
 //   return Array.from({ length: 7 }, (_, index) => weekStart + index <= lastDateOfMonth ? weekStart + index : null);
 // };
 
+// const getWeekDates = () => {
+//   const firstDayOfMonth = new Date(currentYear2, currentMonth2, 1);
+//   const startDay = firstDayOfMonth.getDay(); // Starting from 0 (Sunday) to 6 (Saturday)
+//   const lastDateOfMonth = new Date(currentYear2, currentMonth2 + 1, 0).getDate();
+
+//   let weekStart = currentWeek * 7 - startDay + 1;
+//   weekStart = Math.max(1, weekStart);
+//   weekStart = Math.min(weekStart, lastDateOfMonth);
+
+//   const weekEnd = Math.min(weekStart + 6, lastDateOfMonth);
+
+//   return Array.from({ length: 7 }, (_, index) => (weekStart + index) <= lastDateOfMonth ? weekStart + index : null);
+// };
+
 const getWeekDates = () => {
   const firstDayOfMonth = new Date(currentYear2, currentMonth2, 1);
-  const startDay = firstDayOfMonth.getDay(); // Corrected this line
+  const startDay = firstDayOfMonth.getDay(); // Starting from 0 (Sunday) to 6 (Saturday)
   const lastDateOfMonth = new Date(currentYear2, currentMonth2 + 1, 0).getDate();
 
-  let weekStart = currentWeek * 7 - startDay + 1;
+  let weekStart = currentWeek * 7 - (startDay - 1) + 1; // Adjusted this line
   weekStart = Math.max(1, weekStart);
-  weekStart = Math.min(weekStart, lastDateOfMonth - 6);
+  weekStart = Math.min(weekStart, lastDateOfMonth);
 
   const weekEnd = Math.min(weekStart + 6, lastDateOfMonth);
 
   return Array.from({ length: 7 }, (_, index) => (weekStart + index) <= lastDateOfMonth ? weekStart + index : null);
 };
+
 
 
 
