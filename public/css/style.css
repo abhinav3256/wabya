@@ -1852,7 +1852,7 @@ footer.layout-footer p { color: #ece6d3; }
   .faq-sec .accordion-button{color: #0f2540; background: none; box-shadow:none; font-size: 30px; font-weight:600; padding: 25px 0 0;}
   .faq-sec .accordion-button:not(.collapsed){color: #0f2540; background:none; border-radius:0 !important;}
   .faq-sec .accordion-button:focus{border-color: var(--bs-accordion-btn-focus-border-color); outline: 0; box-shadow:none;}
-  .faq-sec .accordion-button::after{background-image: url(../images/plus.png); border: 0; background-color:#ccc6b3; height: 44px; width: 44px; -webkit-border-radius: 100%; -moz-border-radius: 100%; border-radius: 100%; background-position: center center; background-size: 50%;}
+  .faq-sec .accordion-button::after{background-image: url(../images/plus.png); border: 0; background-color:white; height: 44px; width: 44px; -webkit-border-radius: 100%; -moz-border-radius: 100%; border-radius: 100%; background-position: center center; background-size: 50%;}
   .accordion-button:not(.collapsed)::after{background-image: url(../images/minus.png); transform: var(--bs-accordion-btn-icon-transform); background-color:#d47aa6;}
   .faq-sec .accordion-item{border: 0; margin: 0 0 20px; padding: 0 25px 15px; background: #f8f3e7; -webkit-border-radius: 25px; -moz-border-radius: 25px; border-radius: 25px;}
   .faq-sec .accordion-body{padding:5px 10% 20px 0;}
