@@ -475,7 +475,7 @@ h4{color:#f79632;}
 /* timesheet page */
 .timesheet{position:relative; margin:0; padding:70px 0 80px; z-index:1;}
 .timesheet .container{max-width:1300px;}
-.timesheet h2{color:#0f2540; font-size:30px; margin:40px 0; position:relative; text-align: left; letter-spacing: 5px; text-transform: capitalize;}
+.timesheet h2{color:#0f2540; font-size:30px; margin:40px 0; position:relative; text-align: left; letter-spacing: 5px; text-transform: lowercase;}
 .timesheet-carousel { background: rgb(248, 243, 231); height: 50px; border-radius: 20px; position: relative; margin-bottom: 20px;}
 
 .week th{ text-align: center; text-transform: capitalize;}
