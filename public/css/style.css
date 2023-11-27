@@ -3036,7 +3036,7 @@ button{font-family: Gothic A1 !important;}
   .user-detail-mobile .client-name .info-name{display: flex; align-items: start; gap: 30px; justify-content: space-between;}
   .user-detail-mobile .client-name h2{color: #0e2540;  font-size: 36px; margin: 0 0 5px;}
   .user-detail-mobile .client-name img{-webkit-border-radius: 100%; -moz-border-radius: 100%; border-radius: 100%; width: 75px; margin: 0 5px 0 0; border: 3px solid #fff;}
-  .user-detail-mobile h4{color: #0e2540; font-weight:800; font-size: 20px; margin: 0 0 5px;}
+  .user-detail-mobile h4{color: #0e2540; font-weight:700; font-size: 20px; margin: 0 0 5px;}
   .user-detail-mobile .session-info h3{color: #296c6f; font-size: 20px;}
   .user-detail-mobile .session-info ul{margin:0; padding:0 0 0 15px;}
   .user-detail-mobile .session-info ul li{margin:0; padding:0 0 5px; list-style: circle;}
