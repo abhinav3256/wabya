@@ -164,7 +164,7 @@ h4{color:#f79632;}
   .profile-button .inner .btn{font-weight:400; font-size: 14px; text-shadow: none; background: #0f2540 !important; color:#f7f0e4; box-shadow:none; border: 0; min-width: 160px; border-radius: 20px; text-align: left; margin: 0 0 0 0; padding: 8px 20px;}
   .profile-button ul{margin:0 !important; padding:0 0 10px; background: none !important; border: 0 !important;}
   .profile-button ul li{letter-spacing:1.5px; list-style:none; margin:0; padding:0 20px;}
-  .profile-button ul li a{color: #0f2540; border-bottom:2px solid transparent !important; padding: 15px 0 5px; font-size: 14px; background-color: transparent; text-transform: uppercase; border: 0; display:block;}
+  .profile-button ul li a{color: #0f2540; border-bottom:2px solid transparent !important; padding: 15px 0 5px; font-size: 14px; background-color: transparent; text-transform: lowercase; border: 0; display:block;}
   .profile-button ul li a:hover{color: #0f2540 !important; border-color:#0f2540 !important; background:none !important;}
   .profile-button ul li i{display: inline-block; margin-right: 10px; margin-left: 0; font-size: 15px; vertical-align: middle; color: #888; -webkit-transition: .35s; -o-transition: .35s; transition: .35s;}
 
