@@ -869,71 +869,71 @@ return (
                   <tr>
                     <td>
                       <div className="box">
-                        <span>2 h</span>
+                        <span>0 h</span>
                         <span>£0 0 0</span>
                       </div>
                       <div className="box">
-                        <span>4 h</span>
-                        <span>£0 0 0</span>
-                      </div>
-                    </td>
-                    <td>
-                      <div className="box">
-                        <span>2 h</span>
-                        <span>£0 0 0</span>
-                      </div>
-                      <div className="box">
-                        <span>4 h</span>
+                        <span>0 h</span>
                         <span>£0 0 0</span>
                       </div>
                     </td>
                     <td>
                       <div className="box">
-                        <span>2 h</span>
+                        <span>0 h</span>
                         <span>£0 0 0</span>
                       </div>
                       <div className="box">
-                        <span>4 h</span>
-                        <span>£0 0 0</span>
-                      </div>
-                    </td>
-                    <td>
-                      <div className="box">
-                        <span>2 h</span>
-                        <span>£0 0 0</span>
-                      </div>
-                      <div className="box">
-                        <span>4 h</span>
+                        <span>0 h</span>
                         <span>£0 0 0</span>
                       </div>
                     </td>
                     <td>
                       <div className="box">
-                        <span>2 h</span>
+                        <span>0 h</span>
                         <span>£0 0 0</span>
                       </div>
                       <div className="box">
-                        <span>4 h</span>
-                        <span>£0 0 0</span>
-                      </div>
-                    </td>
-                    <td>
-                      <div className="box">
-                        <span>2 h</span>
-                        <span>£0 0 0</span>
-                      </div>
-                      <div className="box">
-                        <span>2 h</span>
+                        <span>0 h</span>
                         <span>£0 0 0</span>
                       </div>
                     </td>
                     <td>
                       <div className="box">
-                        <span>2 h</span>
+                        <span>0 h</span>
                         <span>£0 0 0</span>
                       </div>
                       <div className="box">
-                        <span>4 h</span>
+                        <span>0 h</span>
+                        <span>£0 0 0</span>
+                      </div>
+                    </td>
+                    <td>
+                      <div className="box">
+                        <span>0 h</span>
+                        <span>£0 0 0</span>
+                      </div>
+                      <div className="box">
+                        <span>0 h</span>
+                        <span>£0 0 0</span>
+                      </div>
+                    </td>
+                    <td>
+                      <div className="box">
+                        <span>0 h</span>
+                        <span>£0 0 0</span>
+                      </div>
+                      <div className="box">
+                        <span>0 h</span>
+                        <span>£0 0 0</span>
+                      </div>
+                    </td>
+                    <td>
+                      <div className="box">
+                        <span>0 h</span>
+                        <span>£0 0 0</span>
+                      </div>
+                      <div className="box">
+                        <span>0 h</span>
                         <span>£0 0 0</span>
                       </div>
                     </td>
