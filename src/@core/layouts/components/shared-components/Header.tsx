@@ -183,11 +183,11 @@ const Header = () => {
                             </Link>
                           </li>
 
-                          <li>
+                          {/* <li>
                             <Link href='/coach/availability' passHref>
                               <a className='dropdown-item'>unavailability</a>
                             </Link>
-                          </li>
+                          </li> */}
                           <li>
                               <a className='dropdown-item' onClick={logout}>logout</a>
                           </li>

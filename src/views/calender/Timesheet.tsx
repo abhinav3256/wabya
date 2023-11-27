@@ -218,8 +218,16 @@ const Timesheet = () => {
   };
 
   const [currentYear, setCurrentYear] = useState(currentDate.getFullYear());
+  const [currentYear2, setCurrentYear2] = useState(currentDate.getFullYear());
   const [currentMonth, setCurrentMonth] = useState(currentDate.getMonth());
+  const [currentMonth2, setCurrentMonth2] = useState(currentDate.getMonth());
   const months = [
+    'January', 'February', 'March', 'April', 'May', 'June',
+    'July', 'August', 'September', 'October', 'November', 'December'
+  ];
+
+
+  const months2 = [
     'January', 'February', 'March', 'April', 'May', 'June',
     'July', 'August', 'September', 'October', 'November', 'December'
   ];
@@ -279,6 +287,37 @@ const filteredMeetingSessions = meetingSession.filter(
 );
 
 
+const [currentWeek, setCurrentWeek] = useState(0);
+
+// const getWeekDates = () => {
+//   const firstDayOfMonth = new Date(currentYear2, currentMonth2, 1);
+//   const startDay = (firstDayOfMonth.getDay() - 1 + 7) % 7; // Adjust for Sunday being index 0
+//   const lastDateOfMonth = new Date(currentYear2, currentMonth2 + 1, 0).getDate();
+
+//   const weekStart = currentWeek * 7 - startDay + 1;
+//   const weekEnd = weekStart + 6;
+
+//   return Array.from({ length: 7 }, (_, index) => weekStart + index <= lastDateOfMonth ? weekStart + index : null);
+// };
+
+const getWeekDates = () => {
+  const firstDayOfMonth = new Date(currentYear2, currentMonth2, 1);
+  const startDay = firstDayOfMonth.getDay(); // Corrected this line
+  const lastDateOfMonth = new Date(currentYear2, currentMonth2 + 1, 0).getDate();
+
+  let weekStart = currentWeek * 7 - startDay + 1;
+  weekStart = Math.max(1, weekStart);
+  weekStart = Math.min(weekStart, lastDateOfMonth - 6);
+
+  const weekEnd = Math.min(weekStart + 6, lastDateOfMonth);
+
+  return Array.from({ length: 7 }, (_, index) => (weekStart + index) <= lastDateOfMonth ? weekStart + index : null);
+};
+
+
+
+
+const weekDates = getWeekDates();
 // Filter meeting sessions for the selected month
 const filteredMeetingSessions2 = (a,b) =>{
 
@@ -751,12 +790,25 @@ return (
           <div className="table-heading">
             <div className="info">
               <h2>weekly overview</h2>
-              <p>October</p>
+              <p>{" "}
+              {months2[currentMonth2]}{" "}</p>
               <div className="indicator-btn">
-                <a className="page-link1" href="#" aria-label="Previous">
+                <a className="page-link1" href="#" aria-label="Previous" onClick={(e) => {
+              e.preventDefault();
+                setCurrentMonth2((prevMonth) => (prevMonth - 1 + 12) % 12);
+                if (currentMonth2 === 0) {
+                  setCurrentYear2((prevYear) => prevYear - 1);
+                }
+              }}>
                   <img src="../../images/timetable-prev.png" alt="" />
                 </a>
-                <a className="page-link1" href="#" aria-label="Next">
+                <a className="page-link1" href="#" aria-label="Next" onClick={(e) => {
+              e.preventDefault();
+                setCurrentMonth2((prevMonth) => (prevMonth + 1 + 12) % 12);
+                if (currentMonth2 === 11) {
+                  setCurrentYear2((prevYear) => prevYear + 1);
+                }
+              }}>
                   <img src="../../images/timetable-next.png" alt="" />
                 </a>
               </div>
@@ -765,10 +817,32 @@ return (
           <div className="time-table-sec">
             <div className="info">
               <a className="page-link1" href="#" aria-label="Previous">
-                <img src="../../images/timetable-prev.png" alt="" />
+                <img src="../../images/timetable-prev.png" alt=""onClick={(e) => {
+        e.preventDefault();
+        if (currentWeek === 0) {
+          setCurrentMonth2((prevMonth) => (prevMonth - 1 + 12) % 12);
+          if (currentMonth2 === 0) {
+            setCurrentYear2((prevYear) => prevYear - 1);
+          }
+          setCurrentWeek(4);
+        } else {
+          setCurrentWeek((prevWeek) => prevWeek - 1);
+        }
+      }}/>
               </a>
               <a className="page-link1" href="#" aria-label="Next">
-                <img src="../../images/timetable-next.png" alt="" />
+                <img src="../../images/timetable-next.png" alt=""   onClick={(e) => {
+        e.preventDefault();
+        if (currentWeek === 4) {
+          setCurrentMonth2((prevMonth) => (prevMonth + 1) % 12);
+          if (currentMonth2 === 11) {
+            setCurrentYear2((prevYear) => prevYear + 1);
+          }
+          setCurrentWeek(0);
+        } else {
+          setCurrentWeek((prevWeek) => prevWeek + 1);
+        }
+      }} />
               </a>
               <table className="table">
                 <tbody>
@@ -781,15 +855,17 @@ return (
                     <th>FRI</th>
                     <th>SAT</th>
                   </tr>
+                  
+            
                   <tr>
-                    <td>1</td>
-                    <td>2</td>
-                    <td>3</td>
-                    <td>4</td>
-                    <td>5</td>
-                    <td>6</td>
-                    <td>7</td>
-                  </tr>
+      {weekDates.map((day, index) => (
+        <td key={index}>
+          {day != null ? day : ''}
+        </td>
+      ))}
+    </tr>
+        
+          
                   <tr>
                     <td>
                       <div className="box">
