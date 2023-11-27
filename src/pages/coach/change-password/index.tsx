@@ -220,7 +220,7 @@ className='form-control' onClick={(e) => handleClick(e)} value={repeatPassword} 
   <div className="container">
     <div className="row">
       <div className="col-12">
-        <h3 className="mrb-20">edit my password</h3>
+        <h3 className="mrb-20">edit my password:</h3>
         <form>
 
         <div className="close-back"><a href="/coach/dashboard"><i class="fa fa-times" aria-hidden="true"></i></a></div>
