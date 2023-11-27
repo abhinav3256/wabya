@@ -323,7 +323,7 @@ h4{color:#f79632;}
   .user-profile .inner-info{background:#f7f0e4; -webkit-border-radius:20px; -moz-border-radius:20px; border-radius:20px; color:#0f2540; position: relative; margin: 0 0 30px 100px; display: flex; justify-content: space-between; align-items: center; align-content: end;}
   .user-profile .inner-info figure{position: absolute; left:-100px; bottom:0; margin:0; max-width:270px; -webkit-border-radius: 100%; -moz-border-radius: 100%; border-radius: 100%; border: 5px solid #fff;}
   .user-profile .inner-info figure img{-webkit-border-radius: 100%; -moz-border-radius: 100%; border-radius: 100%;}
-  .user-profile h2{color: #0f2540; font-size: 30px; position: relative; margin: 0; letter-spacing: 5px; padding: 0 0 0 18%;}
+  .user-profile h2{color: #0f2540; font-size: 30px; position: relative; margin: 0; letter-spacing: 5px; padding: 0 0 0 18%; text-transform: capitalize !important;}
   .user-profile .right-area{position:relative; padding:15px;}
   .user-profile .accepting-info{position:relative; margin:0 0 10px; display: flex;}
   .user-profile .accepting-info span{display: block; text-transform: lowercase; letter-spacing:2px; font-size:14px;}
