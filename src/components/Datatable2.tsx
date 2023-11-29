@@ -28,6 +28,10 @@ const DataTable2 = ({ datesArray, meetingSession }) => {
           const csvRow = `experienced, ${experiencedCount * 0.5} hours, £ ${experiencedCount * 50}`;
           csvRows.push(csvRow);
         }
+        if (index === 3) {
+            const csvRow = `, Total,  £${(probonoCount * 0) + (noviceCount * 20)  + (experiencedCount * 50)}.00`;
+            csvRows.push(csvRow);
+          }
       });
     
       // Join rows into a single CSV string
@@ -42,7 +46,7 @@ const DataTable2 = ({ datesArray, meetingSession }) => {
     };
     
     const downloadCSV = () => {
-      const blob = new Blob([csvData], { type: 'text/csv' });
+      const blob = new Blob([csvData], { type: 'text/csv;charset=utf-8;' });
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
