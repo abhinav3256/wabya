@@ -19,12 +19,14 @@ import DataTable2 from '../../components/Datatable2';
 
 
 function isSameMonth(date, targetMonth, targetYear) {
-  const meetingDate = new Date(date);
+  const meetingDate = new Date(date.seconds * 1000); // Assuming 'seconds' is a Unix timestamp
+  console.log('date', meetingDate.getMonth()); // Adding 1 to get the correct month
+  console.log('target month', targetMonth); // Adding 1 to get the correct month
   return (
-    meetingDate.getMonth() == targetMonth &&
-    meetingDate.getFullYear() == targetYear
+    meetingDate.getMonth() == targetMonth 
   );
 }
+
 
 function getCurrentMonthWeeks(year, month) {
   const firstDayOfMonth = new Date(year, month, 1);

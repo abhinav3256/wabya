@@ -1,14 +1,21 @@
 import React, { useState } from 'react';
 
 
+// function isSameMonth(date, targetMonth, targetYear) {
+//   const meetingDate = new Date(date);
+//   return (
+//     meetingDate.getMonth() === targetMonth &&
+//     meetingDate.getFullYear() === targetYear
+//   );
+// }
 function isSameMonth(date, targetMonth, targetYear) {
-  const meetingDate = new Date(date);
+  const meetingDate = new Date(date.seconds * 1000); // Assuming 'seconds' is a Unix timestamp
+  console.log('date', meetingDate.getMonth() + 1); // Adding 1 to get the correct month
   return (
-    meetingDate.getMonth() === targetMonth &&
+    meetingDate.getMonth() === targetMonth && // Adjusting for zero-based index
     meetingDate.getFullYear() === targetYear
   );
 }
-
 
 const DataTable = ({ datesArray, meetingSession }) => {
     const [csvData, setCsvData] = useState('');
