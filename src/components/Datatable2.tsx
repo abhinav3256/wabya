@@ -28,10 +28,13 @@ const DataTable2 = ({ datesArray, meetingSession }) => {
           const csvRow = `experienced, ${experiencedCount * 0.5} hours, £ ${experiencedCount * 50}`;
           csvRows.push(csvRow);
         }
-        if (index === 3) {
-            const csvRow = `, Total,  £${(probonoCount * 0) + (noviceCount * 20)  + (experiencedCount * 50)}.00`;
-            csvRows.push(csvRow);
-          }
+         // Calculate and add the Total row if index is 3
+  if (index === 3) {
+    const totalAmount = (probonoCount * 0) + (noviceCount * 20) + (experiencedCount * 50);
+    const formattedTotal = new Intl.NumberFormat('en-GB', { style: 'currency', currency: 'GBP' }).format(totalAmount);
+    const csvRow = `,Total,${formattedTotal}`;
+    csvRows.push(csvRow);
+  }
       });
     
       // Join rows into a single CSV string
@@ -42,19 +45,37 @@ const DataTable2 = ({ datesArray, meetingSession }) => {
     
       // Trigger download
       console.log('Before downloadCSV');
-      downloadCSV();
+      downloadCSV(csvString);
     };
     
-    const downloadCSV = () => {
-      const blob = new Blob([csvData], { type: 'text/csv;charset=utf-8;' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = 'data.csv';
-      document.body.appendChild(a);
-      a.click();
-      window.URL.revokeObjectURL(url);
-    };
+    // const downloadCSV = () => {
+    //   const blob = new Blob([csvData], { type: 'text/csv;charset=utf-8;' });
+    //   const url = URL.createObjectURL(blob);
+    //   const a = document.createElement('a');
+    //   a.href = url;
+    //   a.download = 'data.csv';
+    //   document.body.appendChild(a);
+    //   a.click();
+    //   window.URL.revokeObjectURL(url);
+    // };
+
+    const downloadCSV = (csvData) => {
+        // Convert CSV string to Blob with UTF-8 encoding
+        const blob = new Blob([new Uint8Array([0xEF, 0xBB, 0xBF]), csvData], { type: 'text/csv;charset=utf-8;' });
+      
+        // Create a download link
+        const a = document.createElement('a');
+        a.href = window.URL.createObjectURL(blob);
+        a.download = 'data.csv';
+      
+        // Append the link to the document and trigger a click event
+        document.body.appendChild(a);
+        a.click();
+      
+        // Remove the link from the document
+        document.body.removeChild(a);
+        window.URL.revokeObjectURL(a.href);
+      };
     
     return (
         <>
