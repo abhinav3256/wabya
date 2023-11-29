@@ -21,8 +21,8 @@ import DataTable2 from '../../components/Datatable2';
 function isSameMonth(date, targetMonth, targetYear) {
   const meetingDate = new Date(date);
   return (
-    meetingDate.getMonth() === targetMonth &&
-    meetingDate.getFullYear() === targetYear
+    meetingDate.getMonth() == targetMonth &&
+    meetingDate.getFullYear() == targetYear
   );
 }
 
@@ -1081,6 +1081,8 @@ const timestampToMatch = dateObject.getTime() / 1000;
 
 
 const currentMonth = new Date().getMonth();
+
+console.log('add', currentMonth);
 const currentYear = new Date().getFullYear();
 
 const probonoCount = meetingSession != null ? meetingSession.filter(meet => meet.client_plan === 'probono' && isSameMonth(meet.meeting_start_time, currentMonth, currentYear)).length : 0;

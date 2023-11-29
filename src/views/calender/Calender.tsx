@@ -2877,7 +2877,7 @@ footer={[]}
     </form>
   </div>
   <div className="col-sm-10" >
-  {scheduleSuccess &&  <Alert severity='success' style={{ margin :'0 0 20px 0',width:'100%'}}> Data Saved</Alert> } </div>
+  {scheduleSuccess &&  <Alert severity='success' style={{ margin :'0 55px 20px 55px',width:'100%'}}> Data Saved</Alert> } </div>
   <div className="close-button">
     <button className="btn btn-darkgreen btn-close" onClick={updateSchedule}>approve</button>
   </div>
