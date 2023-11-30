@@ -258,6 +258,7 @@ async function updateMeetingDocument() {
           client_leave: 'no',
           meeting_end:'no',
           coachJoined:'no',
+          client_plan:'novice',
     
          
         })
