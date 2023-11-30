@@ -342,10 +342,11 @@ const filteredMeetingSessions2 = (a,b) =>{
 
 return meetingSession.filter((meet) => {
 
-  const meetingDate = new Date(meet.meeting_start_time * 1000);
+  const meetingDate = new Date(meet.meeting_start_time.seconds * 1000);
   const meetingMonth = meetingDate.getMonth();
   const isMatchingMonth = meetingMonth === currentMonth;
 
+  
   if (!isMatchingMonth) {
     return false;
   }
