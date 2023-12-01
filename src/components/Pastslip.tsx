@@ -5,36 +5,44 @@ const Pastslip = ({ datesArray, meetingSession }) => {
     const convertToCSV = (e) => {
         e.preventDefault();
       const csvRows = [];
-      csvRows.push("Rate,Number of Hours,RateHour,Vages,Amount,Deduction,Balance"); // Header row
+
+      csvRows.push("Employee name:, abhinav, , , job title:, coach"); // Header row
+
+      csvRows.push("Employee id:, 1234, , , job type:, fulltime"); // Header row
     
-      datesArray.forEach((d_arr, index) => {
-        console.log('Processing date:', d_arr);
+      csvRows.push("Date,Number of Hours,RateSssion,Vages,Amount,Deduction,Balance"); // Header row
     
-        const probonoCount = meetingSession != null ? meetingSession.filter(meet => meet.client_plan === 'probono' ).length : 0;
-        const noviceCount = meetingSession != null ? meetingSession.filter(meet => meet.client_plan === 'novice').length : 0;
-        const experiencedCount = meetingSession != null ? meetingSession.filter(meet => meet.client_plan === 'experienced').length : 0;
+      meetingSession.forEach((meet, index) => {
+        const csvRow = `probono, ${meet.meeting_start_time} hours, £ 0.0`;
+        //         csvRows.push(csvRow);
+
+        //console.log('Processing date:', d_arr);
     
-        console.log('Counts:', probonoCount, noviceCount, experiencedCount);
+  //       const probonoCount = meetingSession != null ? meetingSession.filter(meet => meet.client_plan === 'probono' ).length : 0;
+  //       const noviceCount = meetingSession != null ? meetingSession.filter(meet => meet.client_plan === 'novice').length : 0;
+  //       const experiencedCount = meetingSession != null ? meetingSession.filter(meet => meet.client_plan === 'experienced').length : 0;
     
-        if (index === 0) {
-          const csvRow = `probono, ${probonoCount * 0.5} hours, £ 0.0`;
-          csvRows.push(csvRow);
-        } 
-        if (index === 1) {
-          const csvRow = `novice, ${noviceCount * 0.5} hours, £ ${noviceCount * 20}`;
-          csvRows.push(csvRow);
-        }
-        if (index === 2) {
-          const csvRow = `experienced, ${experiencedCount * 0.5} hours, £ ${experiencedCount * 50}`;
-          csvRows.push(csvRow);
-        }
-         // Calculate and add the Total row if index is 3
-  if (index === 3) {
-    const totalAmount = (probonoCount * 0) + (noviceCount * 20) + (experiencedCount * 50);
-    const formattedTotal = new Intl.NumberFormat('en-GB', { style: 'currency', currency: 'GBP' }).format(totalAmount);
-    const csvRow = `,Total,${formattedTotal}`;
-    csvRows.push(csvRow);
-  }
+  //       console.log('Counts:', probonoCount, noviceCount, experiencedCount);
+    
+  //       if (index === 0) {
+  //         const csvRow = `probono, ${probonoCount * 0.5} hours, £ 0.0`;
+  //         csvRows.push(csvRow);
+  //       } 
+  //       if (index === 1) {
+  //         const csvRow = `novice, ${noviceCount * 0.5} hours, £ ${noviceCount * 20}`;
+  //         csvRows.push(csvRow);
+  //       }
+  //       if (index === 2) {
+  //         const csvRow = `experienced, ${experiencedCount * 0.5} hours, £ ${experiencedCount * 50}`;
+  //         csvRows.push(csvRow);
+  //       }
+  //        // Calculate and add the Total row if index is 3
+  // if (index === 3) {
+  //   const totalAmount = (probonoCount * 0) + (noviceCount * 20) + (experiencedCount * 50);
+  //   const formattedTotal = new Intl.NumberFormat('en-GB', { style: 'currency', currency: 'GBP' }).format(totalAmount);
+  //   const csvRow = `,Total,${formattedTotal}`;
+  //   csvRows.push(csvRow);
+  // }
       });
     
       // Join rows into a single CSV string
