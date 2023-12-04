@@ -600,7 +600,7 @@ return (
         <td key={index}>
             <div className='third'>
                 <p>
-                    {probonoCount}  <span>hour</span>
+                    {probonoCount}.0  <span>hour</span>
                 </p>
                 <p>
                 £ <span>000.00</span>
