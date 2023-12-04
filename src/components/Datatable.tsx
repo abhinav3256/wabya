@@ -17,7 +17,7 @@ function isSameMonth(date, targetMonth, targetYear) {
   );
 }
 
-const DataTable = ({ datesArray, meetingSession }) => {
+const DataTable = ({ datesArray, meetingSession, coachName }) => {
     const [csvData, setCsvData] = useState('');
     const convertToCSV = () => {
       const csvRows = [];
@@ -117,7 +117,7 @@ const [csvData2, setCsvData2] = useState('');
         e.preventDefault();
       const csvRows = [];
 
-      csvRows.push("Employee name:, abhinav, , , job title:, coach"); // Header row
+      csvRows.push(`Employee name:, ${coachName}, , , job title:, coach`); // Header row
 
       csvRows.push("Employee id:, 1234, , , job type:, fulltime"); // Header row
       csvRows.push("");

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const DataTable2 = ({ datesArray, meetingSession }) => {
+const DataTable2 = ({ datesArray, meetingSession,coachName }) => {
     const [csvData, setCsvData] = useState('');
     const convertToCSV = (e) => {
         e.preventDefault();
@@ -87,7 +87,7 @@ const convertToCSV2 = (e) => {
     e.preventDefault();
   const csvRows = [];
 
-  csvRows.push("Employee name:, abhinav, , , job title:, coach"); // Header row
+  csvRows.push(`Employee name:, ${coachName}, , , job title:, coach`); // Header row
 
   csvRows.push("Employee id:, 1234, , , job type:, fulltime"); // Header row
   csvRows.push("");

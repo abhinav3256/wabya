@@ -278,6 +278,7 @@ console.log('abc');
       getClients();
       getMeetingSession();
       console.log(client);
+      myprofile();
     }
 }, [])
 
@@ -330,8 +331,16 @@ const getWeekDates = () => {
   return Array.from({ length: 7 }, (_, index) => (weekStart + index) <= lastDateOfMonth ? weekStart + index : null);
 };
 
+const [proName, setName] = useState('');
 
-
+const myprofile= async () =>{
+  const coachIds = sessionStorage.getItem('coachId');
+  const userCollection = collection(database, 'coaches_user');
+  const userDocRef = doc(userCollection, coachIds);
+  const userDoc = await getDoc(userDocRef);
+  console.log(userDoc.data());
+  setName(userDoc.data().coach_name);
+}
 
 
 const weekDates = getWeekDates();
@@ -792,7 +801,7 @@ return (
               </div>
             </div>
 
-            <DataTable datesArray={datesArray} meetingSession={meetingSession} />
+            <DataTable datesArray={datesArray} meetingSession={meetingSession} coachName={proName}  />
      
           </div>
         </div>
@@ -1142,7 +1151,7 @@ return (
               </a>
             </p>
           </div> */}
-           <DataTable2 datesArray={datesArray} meetingSession={meetingSession} />
+           <DataTable2 datesArray={datesArray} meetingSession={meetingSession} coachName={proName} />
         </div>
         {/*/ col-sm */}
       </div>
