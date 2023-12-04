@@ -18,7 +18,7 @@ const About = () => {
         <div className="col-sm-6 left">
           <div className="inner">
           <h2> hi, nice to meet you </h2>
-          <p>We know what it's like to feel there has to be something more to life than sleep, eat, work, repeat. We've been there. </p>
+          <p>We know what it's likes to feel there has to be something more to life than sleep, eat, work, repeat. We've been there. </p>
           <p>And we've discovered realising our own goals and finding fulfilment is possible. </p>
           <p>In fact, we believe <strong>everyone</strong> should be given that opportunity.</p>
           <p>Because if <strong>you</strong> do it, your family, friends and those important to you will also benefit.</p>

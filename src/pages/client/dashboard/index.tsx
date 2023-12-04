@@ -774,6 +774,10 @@ setShowCoachErr(true);
    
   }
 }
+
+
+
+
 function test(){
   //console.log('abc');
 }
@@ -4445,7 +4449,7 @@ const timeRemaining = Math.floor((meetingDate - currentTime) / 60000);
               />
             </form>
           </div>
-          <div className="file-list">
+          {/* <div className="file-list">
             <div className="file-list-scroll">
 
             {allFiles.length> 0 ? allFiles.map((myfile, index) => {
@@ -4475,9 +4479,46 @@ const timeRemaining = Math.floor((meetingDate - currentTime) / 60000);
 
         
             </div>
-            {/*/ file-list-scroll */}
-          </div>
+
+            
+           
+          </div> */}
+
           {/*/ file-list */}
+
+          {allFiles.length > 0 && (
+  <div className="file-list">
+    <div className="file-list-scroll">
+      {allFiles.map((myfile, index) => {
+        return (
+          myfile.fileName.toLowerCase().indexOf(SearchVal.toLowerCase()) !== -1 ? (
+            <div className="file-box" key={index}>
+              <a href={myfile.resourceURL} className="file-link" target="_blank" />
+              <div className="inner">
+                <figure>
+                  <img src="../../images/file-icon.jpg" alt="" />
+                </figure>
+                <h4>
+                  {myfile.fileName}<span>{myfile.uploadDate}</span>
+                </h4>
+                <figure className="download-right">
+                  <img src="../../images/download.png" alt="" />
+                </figure>
+              </div>
+            </div>
+          ) : null
+        );
+      })}
+    </div>
+  </div>
+)}
+
+{allFiles.length === 0 && (
+  <div className="file-box" style={{ textAlign: 'center' }}>
+    No File Found
+  </div>
+)}
+
         </div>
         {/*/ notes-search */}
         <div className="session-info mrb-50">
