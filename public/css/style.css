@@ -2981,7 +2981,7 @@ button{font-family: Gothic A1 !important;}
   .header-mobile .client-login-info figure{-webkit-border-radius: 100%; -moz-border-radius: 100%; border-radius: 100%; width: 50px; margin: 0 8px 0 0; border: 2px solid #fff;}
   .header-mobile .client-login-info figure, .client-login-info a{display: inline-block; vertical-align: middle;}
   .header-mobile .client-login-info .btn{border: 2px solid #eae3d1; color: #eae3d1; font-family: 'Gothic A1', sans-serif; font-weight: 600; font-size: 13px; padding: 4px 15px; background:none; text-decoration: none; -webkit-border-radius: 30px; -moz-border-radius: 30px; border-radius: 30px; position: relative; z-index: 1; display: inline-block; text-align: center; overflow:hidden; text-shadow:none; box-shadow:none; text-transform: inherit; width: auto;}
-  .header-mobile .client-login-info .btn:hover{color: #0e2540;}
+  .header-mobile .client-login-info .btn:hover{color: #0e2540  !important;}
   .header-mobile .client-login-info .btn:after{content: ''; position: absolute; height: 100%; left: 0; top: 0; width: 0%; -webkit-transition: all .3s; -moz-transition: all .3s; -o-transition: all .3s; transition: all .3s; background-color: #eae3d1; z-index: -1;}
   .header-mobile .client-login-info .btn:hover:after{width: 100%;}
 
