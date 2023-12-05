@@ -2950,7 +2950,7 @@ button{font-family: Gothic A1 !important;}
    .client-pass-desktop{display: none;}
    .client-listing-mobile{display: block;}
    .client-listing-desktop{display: none;}
-   .client-pass-mobile{display: block;}
+   .client-pass-mobile{display: block; padding: 35px 0 80px;}
    .client-pass-mobile form{position:relative;}
    .user-detail-mobile{display: block;}
    .user-details-desktop{display: none;}
