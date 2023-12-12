@@ -163,7 +163,7 @@ const getClients = async () => {
             <Link href={`${router.basePath}/coach/clientDetail/${cl.client_id}`} passHref>
               <div className='info'>
                 <figure>
-                  <img src='../../images/clients-01.png' alt='' />
+                  <img src='../../images/dummy-user.png' alt='' />
                 </figure>
                 <h3>
                   {cl.client_name} <span> {cl.status}</span>
@@ -279,7 +279,7 @@ const getClients = async () => {
           <Link href="#" passHref>
             <div className="info">
               <figure>
-                <img src="../../images/clients-01.png" alt="" />
+                <img src="../../images/dummy-user.png" alt="" />
               </figure>
               <h3>
                 {cl.client_name} <span> {cl.status}</span>

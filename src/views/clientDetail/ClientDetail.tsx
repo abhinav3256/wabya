@@ -191,7 +191,7 @@ console.log(currentDate);
 
         <div className="col-sm-12 top">
           <div className="inner-info">
-            <figure><img src={`${router.basePath}/images/clients-01.png`} alt=""/></figure>
+            <figure><img src={`${router.basePath}/images/dummy-user.png`} alt=""/></figure>
             <h2> {!clientData ? null : clientData.client_name} <span>{!clientData ? null : clientData.status}</span></h2>
           <div className="right-area">
             <p><a href="#" className="btn">join call</a></p>
@@ -247,7 +247,7 @@ console.log(currentDate);
         <div className="col-12">
           <div className="user-profile mrb-60">
             <figure>
-              <img src={`${router.basePath}/images/clients-01.png`} alt="" />
+              <img src={`${router.basePath}/images/dummy-user.png`} alt="" />
             </figure>
             <h3>
             {!clientData ? null : clientData.client_name} <span>{!clientData ? null : clientData.status}</span>
