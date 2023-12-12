@@ -2950,7 +2950,7 @@ button{font-family: Gothic A1 !important;}
    .client-pass-desktop{display: none;}
    .client-listing-mobile{display: block;}
    .client-listing-desktop{display: none;}
-   .client-pass-mobile{display: block;}
+   .client-pass-mobile{display: block; padding: 35px 0 80px;}
    .client-pass-mobile form{position:relative;}
    .user-detail-mobile{display: block;}
    .user-details-desktop{display: none;}
@@ -2981,7 +2981,7 @@ button{font-family: Gothic A1 !important;}
   .header-mobile .client-login-info figure{-webkit-border-radius: 100%; -moz-border-radius: 100%; border-radius: 100%; width: 50px; margin: 0 8px 0 0; border: 2px solid #fff;}
   .header-mobile .client-login-info figure, .client-login-info a{display: inline-block; vertical-align: middle;}
   .header-mobile .client-login-info .btn{border: 2px solid #eae3d1; color: #eae3d1; font-family: 'Gothic A1', sans-serif; font-weight: 600; font-size: 13px; padding: 4px 15px; background:none; text-decoration: none; -webkit-border-radius: 30px; -moz-border-radius: 30px; border-radius: 30px; position: relative; z-index: 1; display: inline-block; text-align: center; overflow:hidden; text-shadow:none; box-shadow:none; text-transform: inherit; width: auto;}
-  .header-mobile .client-login-info .btn:hover{color: #0e2540;}
+  .header-mobile .client-login-info .btn:hover{color: #0e2540  !important;}
   .header-mobile .client-login-info .btn:after{content: ''; position: absolute; height: 100%; left: 0; top: 0; width: 0%; -webkit-transition: all .3s; -moz-transition: all .3s; -o-transition: all .3s; transition: all .3s; background-color: #eae3d1; z-index: -1;}
   .header-mobile .client-login-info .btn:hover:after{width: 100%;}
 
@@ -3034,9 +3034,9 @@ button{font-family: Gothic A1 !important;}
 
   .user-detail-mobile .client-name{position: relative; margin:0 0 30px;}
   .user-detail-mobile .client-name .info-name{display: flex; align-items: start; gap: 30px; justify-content: space-between;}
-  .user-detail-mobile .client-name h2{color: #0e2540;  font-size: 36px; margin: 0 0 5px;}
+  .user-detail-mobile .client-name h2{color: #0e2540; font-weight: 600; font-size: 36px; margin: 0 0 5px;}
   .user-detail-mobile .client-name img{-webkit-border-radius: 100%; -moz-border-radius: 100%; border-radius: 100%; width: 75px; margin: 0 5px 0 0; border: 3px solid #fff;}
-  .user-detail-mobile h4{color: #0e2540; font-weight:700; font-size: 20px; margin: 0 0 5px;}
+  .user-detail-mobile h4{color: #0e2540; font-weight:600; font-size: 20px; margin: 0 0 5px;}
   .user-detail-mobile .session-info h3{color: #296c6f; font-size: 20px;}
   .user-detail-mobile .session-info ul{margin:0; padding:0 0 0 15px;}
   .user-detail-mobile .session-info ul li{margin:0; padding:0 0 5px; list-style: circle;}
@@ -3060,6 +3060,7 @@ button{font-family: Gothic A1 !important;}
   .notes-search form .form-group{margin:0 0 30px;}
   .notes-search form .btn{background: #1d696c; color:#fff; border:0; font-weight:700; margin:0; padding:10px 35px; letter-spacing: 2px; -webkit-border-radius: 30px; -moz-border-radius: 30px; border-radius: 30px; position:relative;}
   .notes-search form .btn:hover, .notes-search form .btn:active{background: #6cc3a5; color: #000; -webkit-transition: background 0.5s ease-in-out, color 0.5s ease-in-out; transition: background 0.5s ease-in-out, color 0.5s ease-in-out;}
+  .notes-list .file-list.file-list-noscroll{overflow: inherit !important;}
   .notes-list .file-list{background: #f7f0e4; padding: 20px; -webkit-border-radius: 20px; -moz-border-radius: 20px;  border-radius: 20px; height: 311px; overflow-y: scroll; overflow-x: hidden; scrollbar-width: thin; scrollbar-color: #0e2540 orange;}
   .notes-list .file-list::-webkit-scrollbar{width: 12px; /* width of the entire scrollbar */}
   .notes-list .file-list::-webkit-scrollbar-track{border: 1px solid #0e2540; border-radius:30px; /* color of the tracking area */}
@@ -3124,6 +3125,7 @@ button{font-family: Gothic A1 !important;}
 
   .user-detail{position:relative; margin:0; padding: 30px 15px 30px; z-index:1;}
   .user-detail.new-user-profile-edit{padding-bottom: 80px;}
+  .user-profile.new-user-profile{padding: 30px 0 10px !important;}
   .user-profile{background:#faf4e8; font-size:12px; -webkit-border-radius:30px; -moz-border-radius:30px; border-radius:30px; color:#0f2540; position: relative; padding:30px 25px 10px; font-size:12px;margin-top: 40px;} 
   .user-profile .accepting-info{position:relative; margin:0 0 10px; align-items: center; display: flex; justify-content: space-between;}
   .user-profile .accepting-info span{display: block; font-weight:700; font-size:14px; padding:0 15px 0 0; text-transform: lowercase;
